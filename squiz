@@ -3,7 +3,8 @@
 # TODO: Make a Squiz class, turn global functions into methods
 
 from random import sample
-from pprint import pprint
+from typing import Tuple
+
 from qna_mapping import qna_mapping
 
 VALID_QNAS = {1, 2, 3}
@@ -18,7 +19,7 @@ def generate_random_qna(_dict: dict, sample_size: int = 20) -> dict:
     }
     return return_dict
 
-def test_qna(qna: dict):
+def test_qna(qna: dict) -> None:
     retry_dict = {}
     for num, qna_subdict in qna.items():
         user_current_a = input(qna_subdict['q'])
@@ -31,9 +32,10 @@ def test_qna(qna: dict):
 
     if retry_dict:
         test_qna(retry_dict)
+    return None
 
 
-def get_input_from_menu():
+def get_input_from_menu() -> None:
     return int(input("""
     C Basics (1)
     C++ Basics (2)
@@ -41,14 +43,14 @@ def get_input_from_menu():
     """))
 
 
-def get_question_count(MAX: int):
+def get_question_count(MAX: int) -> int:
     return int(input(f"""
     Selection the number of questions you'd like to be asked,
     (must be less than {MAX} and greater than 0)
     """))
 
 
-def interactive_logic():
+def interactive_logic() -> Tuple[dict, int]:
     user_option = get_input_from_menu()
     while user_option not in VALID_QNAS:
         print("Invalid selection, try again!")
