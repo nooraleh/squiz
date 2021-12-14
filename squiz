@@ -73,7 +73,6 @@ def interactive_logic() -> Tuple[dict, int]:
 
 if __name__ == "__main__":
     qna, q_count = interactive_logic()
-    # import ipdb; ipdb.set_trace()
     random_qna = generate_random_qna(qna, q_count)
 
     test_qna(random_qna)
