@@ -1,3 +1,5 @@
+# Notes taken in a Q & A style format from Marc Gregoire's Professional C++
+
 qna = {
 	1: {
 		'q':  """

@@ -1,3 +1,5 @@
+# Notes taken in a Q & A style format from Edube's C++ Essentials - Parts 1 & 2 courses
+
 qna = {
     1: {
         "q": """What are the i) << ii) >> operators called?""",

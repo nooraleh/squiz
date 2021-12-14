@@ -1,3 +1,5 @@
+# Notes taken in a Q & A style format from Edube's C Essentials - Parts 1 & 2 courses
+
 qna = {
 	1: {
 		"q": "Define portability with respect to high level programming languages",
