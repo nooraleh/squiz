@@ -1,2 +1,82 @@
 #!/usr/bin/env python3
 
+# TODO: Make a Squiz class, turn global functions into methods
+
+from random import sample
+from pprint import pprint
+from qna_mapping import qna_mapping
+
+VALID_QNAS = {1, 2, 3}
+
+def generate_random_qna(_dict: dict, sample_size: int = 20) -> dict:
+    # TODO: ideally we should be using a generator
+    assert len(_dict) > sample_size, "Sample size must be less than or equal to qna dict"
+
+    return_dict = {
+        key: _dict[key]
+        for key in sample(_dict.keys(), sample_size)
+    }
+    return return_dict
+
+def test_qna(qna: dict):
+    retry_dict = {}
+    for num, qna_subdict in qna.items():
+        user_current_a = input(qna_subdict['q'])
+        print(f"Here's your answer: {user_current_a}")
+        print("\n\n")
+        print(f"Here's the model answer: {qna_subdict['a']}")
+        happy = input("Are you happy with how you're answer (y/n)? ")
+        if happy != 'y':
+            retry_dict.update({num: qna_subdict})
+
+    if retry_dict:
+        test_qna(retry_dict)
+
+
+def get_input_from_menu():
+    return int(input("""
+    C Basics (1)
+    C++ Basics (2)
+    Gregoire (3)
+    """))
+
+
+def get_question_count(MAX: int):
+    return int(input(f"""
+    Selection the number of questions you'd like to be asked,
+    (must be less than {MAX} and greater than 0)
+    """))
+
+
+def interactive_logic():
+    user_option = get_input_from_menu()
+    while user_option not in VALID_QNAS:
+        print("Invalid selection, try again!")
+        user_option = get_input_from_menu()
+
+    user_qna = qna_mapping[user_option]
+    user_qna_max_count = len(user_qna)
+
+    user_question_count = get_question_count(user_qna_max_count)
+
+    while (
+        user_question_count <= 0 and
+        user_question_count > user_qna_max_count and
+        not isinstance(user_question_count, int)
+        ):
+        print("Whoops! Try again!")
+        user_question_count = get_question_count(user_qna_max_count)
+
+    return user_qna, user_question_count
+
+if __name__ == "__main__":
+    qna, q_count = interactive_logic()
+    # import ipdb; ipdb.set_trace()
+    random_qna = generate_random_qna(qna, q_count)
+
+    test_qna(random_qna)
+
+    print("""
+    You've made it to the end and you've successfully answered all questions adequately,
+    nice one!"""
+    )
