@@ -1,4 +1,4 @@
-notes = {
+qna = {
 	1: {
 		'q':  """
 		What's an alternative way of writing 'include <iostream>'
