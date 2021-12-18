@@ -336,24 +336,53 @@ qna = {
 		i) T var1 {arg1, arg2};""",
 	},
 	39: {
-		'q':  """ """,
+		'q':  """
+		What is meant by literal pooling?""",
 		'a': """
-		""",
+		Literal pooling is a compiler memory optimization technique to reuse references
+		to equivalent string literals.
+		
+		For example, if your program uses the string literal "hello" 500 times, the
+		compiler is allowed to create just one instance of "hello" in memory.""",
 	},
 	40: {
-		'q':  """ """,
+		'q':  """
+		i) What is a raw string literal in C++
+		ii) Declare and initialize a raw string literal.""",
 		'a': """
-		""",
+		i) Raw string literals are string literal that can:
+			- span across multiple lines of code
+			- don't require escpaing of embedded double quotes
+			- escape sequences like \t and \n are processed as normal text.
+			
+		ii) const char* example = R"("Hello \t world!")"; """,
 	},
 	41: {
-		'q':  """ """,
+		'q':  """
+		
+		Consider the two statements:
+			auto string1 = "Hello World";
+			auto string2 = "Hello World";
+
+		What changes would you make to the second statement to
+		cause auto to infer that the literal is of type std::string?
+		""",
 		'a': """
+			using namespace std::string_literals;
+			// Append an s after the closing double quotes i.e:
+			auto string2 = "Hello World"s;
+			
 		""",
 	},
 	42: {
-		'q':  """ """,
+		'q':  """
+		What does [[noreturn]] function qualifier indicate?""",
 		'a': """
-		""",
+		[[noreturn]] is an attribute used to indicate that the function doesn't return to the caller.
+		I.e. a function where the control flow will not return to the calling function after the
+		function finishes (e.g functions that exit the application, loop forever or throw exceptions.)
+		
+		NB: Behaviour is undefined if the function with this attribute actaully returns.""",
 	},
 	43: {
 		'q':  """ """,
@@ -435,58 +464,248 @@ qna = {
 		'a': """
 		""",
 	},
-	59: {
-		'q':  """ """,
+	59: { # chapter 3 - coding with style
+		'q':  """
+		What are loop invariants?""",
 		'a': """
-		""",
+		Conditions that have to be true during the execution of the loop.""",
 	},
 	60: {
-		'q':  """ """,
+		'q':  """
+		i) What is meant by meta-information with regards to code creation?
+		ii) Give some examples of meta-information.
+		iii) In what case would these examples in (ii) be discourages?""",
 		'a': """
-		""",
+		i) Meta-information provides detail about the creation of the code without
+		addressing the specifics of its behaviour.
+		
+		ii) Examples include:
+			Origin author(s),
+			Code creation date,
+			Code last update date,
+			Change log,
+			Citations of external documents or referrences to other code
+
+		iii) Meta-information is discourage when a source-control solution (such as git) is
+		in place.
+			""",
 	},
 	61: {
-		'q':  """ """,
+		'q':  """
+		What is the free tool for C++ which parsed formatted comments to automatically build
+		HTML documentation, class diagrams, UNIX man pages etc?""",
 		'a': """
-		""",
+		Doxygen""",
 	},
 	62: {
-		'q':  """ """,
+		'q':  """
+		What is meant by the computing term `cruft`?""",
 		'a': """
-		""",
+		Cruft refers to the gradual accumulation of small amouunts of code that 
+		eventually turns a once-elegant piece of code into a mess of patches and
+		special cases.""",
 	},
 	63: {
-		'q':  """ """,
+		'q':  """
+		In object-oritented programming, what is meant by:
+			i) Pull up
+			ii) Push down""",
 		'a': """
-		""",
+			i) Pull up: Move the location of code to a base class
+			ii) Push down: Move the location of code to a derived class""",
 	},
 	64: {
-		'q':  """ """,
+		'q':  """
+		Name three advantages of using pass-by-reference over pass-by-pointer in C++?""",
 		'a': """
-		""",
+		1) References are safer than pointers because they do not directly deal with memory addresses
+		and nullptr.
+		2) References do not need operators such as * and & when interacting with them.
+		3) Ownership/deletion responsibility is clear, unlike with pointers.""",
 	},
-	65: {
-		'q':  """ """,
+	65: { # chapter 4: Designing professional C++ Programs
+		'q':  """
+		i) What is the very first step to take when starting a new program or a new
+		feature for an existing program?
+		
+		ii) What does your answer to (i) involve?
+		
+		iii) What is a vital outcome of (i)""",
 		'a': """
-		""",
+		i) Requirements analysis
+		ii) Discussion with your stakeholders
+		iii) A vital outcome of the requirements analysis phase is a functional requirements documents.""",
 	},
 	66: {
-		'q':  """ """,
+		'q':  """
+		i) What does a functional requirements document do?
+		ii) What doesn't a functional requirements document do?
+		iii) What does a non-functional requirements document do? Give some examples?""",
 		'a': """
-		""",
+		i) A functional requirements document describes what exactly the new piece of code
+		has to do.
+
+		ii) A functional requirements document doesn't describe how it has to implement the requirement.
+		
+		iii) A non-functional requirements documents described how the final system should be, as 
+		opposed to what it should do. Examples include: extensibility, performance criteria satisfaction etc.""",
 	},
 	67: {
-		'q':  """ """,
+		'q':  """
+		i) What phase comes after the requirements analysis phase?
+		ii) What does your answer to i) entail?""",
 		'a': """
-		""",
+		i) The software design phase
+		ii) The software design phase is the specification of the architecture that you will
+		implement to fulfill all the requirements (both functional and non-functional) of the program.""",
 	},
 	68: {
-		'q':  """ """,
+		'q':  """
+		What are the two fundamental design rules in C++ and define them/""",
+		'a': """
+		1) Abstraction - separating an entity's internal implementation from its external interface.
+		2) Reuse - Using code functionality from elsewhere wherever possible, using common design patterns
+			for your problems. I.e. avoid reinventing the wheel wherever possible. Create code that is extensible.""",
+	},
+	69: {
+		'q':  """
+		Describe the difference between a library and a framework?""",
+		'a': """
+		Library - a collection of code used to accomplish a specific task, such as parsing
+				XML, or the hand a specific domain, such as cryptography.
+		Framework - A collection of code aruond which you design a program.
+		
+		Difference: A program uses a library but fits into a framework. Libraries
+				provide specific functionality, while frameworks are fundamental to your
+				program design and structure.""",
+	},
+	70: {
+		'q':  """
+		What's the key distinction between a library and an API?""",
+		'a': """
+		A library refers to the implementation, while the API refers to the published
+		interface to the library.""",
+	},
+	71: {
+		'q':  """
+		Libraries that use <3_points> when handling errors should be avoided. Fill in the blank.""",
+		'a': """
+		Libraries that:
+			1) Pop up message boxes
+			2) Issue messages to stderr/cerr or stdout/cout
+			3) Termination the program""",
+	},
+	72: {
+		'q':  """
+		What are two benefits of specifying performance as a function of the input size (like big-O notation)
+		instead of in absolute numbers?""",
+		'a': """
+		1) It is platform independent
+		2) It covers all possible inputs to the algorithm with one specification.
+		""",
+	},
+	73: {
+		'q':  """
+		What is the meaning of orthogonality in the context of programming?
+		
+		Give a real world analogy of:
+		i) orthogonality ii) non-orthogonality""",
+		'a': """
+		Orthogonality in the context of programming means 'changing A does not change B'.
+		I.e. operations do not have (unintended) side effects. Each action changes just one thing.
+		
+		i) An orthogonal system analogy would be a radio, where changing station
+			doesn't change the volume and vice versa.
+		ii) A non-orthogonal system analogy would be a helicopter, where changing the speed
+			can change the direction.""",
+	},
+	74: {
+		'q':  """
+		What is a sequence diagram?""",
+		'a': """
+		A sequence diagram shows object interactions arranged in a time sequence.""",
+	},
+	75: {
+		'q':  """
+		""",
 		'a': """
 		""",
 	},
-	69: {
-		'q':  """ """,
+	76: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	77: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	78: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	79: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	80: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	81: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	82: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	83: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	84: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	85: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	86: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	87: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	88: {
+		'q':  """
+		""",
 		'a': """
 		""",
 	},
