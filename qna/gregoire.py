@@ -966,21 +966,26 @@ qna = {
 	},
 	107: {
 		'q':  """
-		""",
+		What are destructors implicitly marked as?""",
 		'a': """
-		""",
+		Destructors are implicitly marked as `noexcept`, since they should not throw any exceptions.""",
 	},
 	108: {
 		'q':  """
-		""",
+		What is a dangling pointer?""",
 		'a': """
-		""",
+		A pointer that no longer points to valid memory.""",
 	},
 	109: {
 		'q':  """
-		""",
+		Say you have class which dynamically allocates memory. What steps should you take
+		to ensure against memory leaks/mismanagement.""",
 		'a': """
-		""",
+		Steps to take: write your own:
+			1) copy constructor
+			2) assignment operator
+			
+		to provide a deep copy of the memory.""",
 	},
 	110: {
 		'q':  """
