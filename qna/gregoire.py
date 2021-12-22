@@ -385,46 +385,63 @@ qna = {
 		NB: Behaviour is undefined if the function with this attribute actaully returns.""",
 	},
 	43: {
-		'q':  """ """,
+		'q':  """
+		What problem does <string_view>'s std::string_view solve?""",
 		'a': """
-		""",
+		std::string_view is a drop-in replacement for:
+			const std::string&
+		but without the overhead i.e string_view doesn't copy a string.""",
 	},
 	44: {
-		'q':  """ """,
+		'q':  """
+		What can you not do with an std::string and std::string_view?""",
 		'a': """
-		""",
+		Concatenation (i.e the operator+ is not define for those operands.""",
 	},
 	45: {
-		'q':  """ """,
+		'q':  """
+		When should you use an std::string_view over options:
+			1) const std::string&
+			2) const char*
+		in a function parameter specification????""",
 		'a': """
-		""",
+		Whenever a function or method requires a read-only string as one of its parameters.""",
 	},
 	46: {
-		'q':  """ """,
+		'q':  """
+		In computer science, what is a callback?""",
 		'a': """
-		""",
+		A callback is a function which is passed to another function as an argument.""",
 	},
 	47: {
-		'q':  """ """,
+		'q':  """Describe polymorphism.""", # chapter 5: Designing with Objects
 		'a': """
-		""",
+		Polymorphism is the notion that objects that adhere to a standard set of 
+		properties and methods can be used interchageably.""",
 	},
 	48: {
-		'q':  """ """,
+		'q':  """
+		What is the Liskov substitution principle?""",
 		'a': """
-		""",
+		The Liskov substitution principle states that objects of a superclass must be interchangeable
+		with objects of a subclass without breaking the program.""",
 	},
 	49: {
-		'q':  """ """,
+		'q':  """
+		Outline three things that good object-oriented hierarchy accomplishes?""",
 		'a': """
-		""",
+		1) Organizes classes into meaningful functional relationships
+		2) Supports code reuse by factoring common functionality to base classes
+		3) Avoids having derived classes that override much of the parent's functionality, unless
+		the parent is an abstract base class.""",
 	},
 	50: {
-		'q':  """ """,
+		'q':  """
+		In OOP, what is the interface to a class?""",
 		'a': """
-		""",
+		The collection of publicly accessible properties and methods.""",
 	},
-	51: {
+	51: { # chapter 6: Designing for Reuse
 		'q':  """ """,
 		'a': """
 		""",
@@ -625,85 +642,587 @@ qna = {
 		'a': """
 		A sequence diagram shows object interactions arranged in a time sequence.""",
 	},
-	75: {
+	75: { # chapter 7: Memory management
 		'q':  """
-		""",
+		What's the main advantage of the C++ `new` keyword over C-style malloc?""",
 		'a': """
-		""",
+		`new` doesn't just allocate memory, it's calls the object's constructor (which malloc does not)""",
 	},
 	76: {
 		'q':  """
-		""",
+		What's the main advantage of C++ keyword delete/delete[] over C-style free? """,
 		'a': """
-		""",
+		With delete/delete[], the destructor is called and the object is properly cleaned up.""",
 	},
 	77: {
 		'q':  """
-		""",
+		Consider:
+			int* ptr = new int;
+			
+		Configure this statement to not throw an exception, instead returning a pointer if memory
+		allocation fails.""",
 		'a': """
-		""",
+			int* ptr = new(nothrow) int;""",
 	},
 	78: {
 		'q':  """
-		""",
+		Name one advantage of putting an array on the heap. """,
 		'a': """
-		""",
+		You can define the arrays size at run time.""",
 	},
 	79: {
 		'q':  """
+		Is the following statement true or false:
+		
+			'You should always use delete on anything allocated with new,
+			you should always use delete[] on anything allocated with new[]'
 		""",
 		'a': """
-		""",
+		True.""",
 	},
 	80: {
 		'q':  """
-		""",
+		Why is using static_cast on a pointer type safer than C-style pointer casting?""",
 		'a': """
-		""",
+		Because the compiler refuses to static cast on pointers to unrelated (through inheritance) data types.""",
 	},
 	81: {
 		'q':  """
+		Which one of these statements is the odd one out? Why?
+		
+			void double_ints(int* the_array, size_t size);
+			void double_ints(int the_array[], size_t size);
+			void double_ints(int the_array[2], size_t size);
+
 		""",
 		'a': """
+		Trick question. The compiler ignores any number between the square brackets
+		and array and pointers can be used interchangeable from a syntactical perspectic.
+		Therefore all three statements are functionally identical.
 		""",
 	},
 	82: {
 		'q':  """
-		""",
+		Give a high level overview of the garbage collection approach known as 'mark and sweep'. """,
 		'a': """
-		""",
+		With the 'mark and sweep' approach, the garbage collector periodically examines every single
+		pointer and annotates the fact that the references memory is still in use.
+		
+		At the end of the cycle, any memory that hasn't been marked is deemed to be not in-use and is freed.""",
 	},
 	83: {
 		'q':  """
+		Say we have a shared pointer variable names shrd_ptr:
+		
+			i) Invoke the method to get direct access to the underlying pointer.
+			ii) In what situations would using this method be helpful.
 		""",
 		'a': """
-		""",
+			i) shrd_ptr.get()
+			ii) When we need to pass the pointer to a function that requires a raw pointer.""",
 	},
 	84: {
 		'q':  """
-		""",
+		Consider the following snippet (assume Simple is a defined class):
+		
+			auto p_unq_simple = std::make_unique<Simple>();
+		(1)	p_unq_simple.reset();
+		(2)	p_unq_simple.reset(new Simple());
+		
+		Example what's happening in:
+		i) line (1)
+		ii) line (2)""",
 		'a': """
-		""",
+		i) Free the resource and set to nullptr.
+		ii) Free the resource and set to a new simple instance.
+	""",
 	},
 	85: {
 		'q':  """
-		""",
+		Say you have a shared pointer, name 'ptr_shared_var'. Invoke the method to retrieve
+		the number of std::share_ptr instances that are sharing the same resource.""",
 		'a': """
-		""",
+		ptr_shared_var.use_count()""",
 	},
 	86: {
 		'q':  """
-		""",
+		What functions are available for casting std::shared_ptr entities?""",
 		'a': """
-		""",
+		1) const_pointer_cast
+		2) dynamic_pointer_cast
+		3) static_pointer_cast
+		4) reinterpret_pointer_cast
+	""",
 	},
 	87: {
+		'q':  """
+		i) Explain the double deletion problem with respect to smart pointers
+		ii) What should you do to avoid the double deletion problem?""",
+		'a': """
+		i) Double deletion problem: When a constructor is called once and the destructor
+		is called twice because two distinct instances of a std::share_ptr to the same object
+		was declared.
+		
+		ii) To avoid the double deletion problem, make a copy of the first shared_ptr instance
+		and assign to the second.""",
+	},
+	88: {
+		'q':  """
+		i) Which smart pointer supports aliasing?
+		ii) What does aliasing of this smart pointer allow for?""",
+		'a': """
+		i) std::shared_ptr
+		
+		ii) The std::shared_ptr aliasing allows an std::shared_ptr to share ownership over a 
+			pointer with another shared_ptr, but while pointing to a difference objects (the stored pointer)""",
+	},
+	89: {
+		'q':  """
+		Outline two ways of convert an std::weak_ptr to an std::shared_ptr.""",
+		'a': """
+		1) Use the .lock() method on a std::weak_ptr instance, which returns an std::shared_ptr.
+		2) Create a new std::shared_ptr instance with an std::weak_ptr as an argument.""",
+	},
+	90: {
+		'q':  """
+		What does std::shared_pointer<T>::reset do?""",
+		'a': """
+		It replaces the managed object with an object pointed to by argument ptr. """,
+	},
+	91: {
+		'q':  """
+		How does a buffer overflow error arise?""",
+		'a': """
+		When writing to memory past the end of a (C-style) array.""",
+	},
+	92: {
 		'q':  """
 		""",
 		'a': """
 		""",
 	},
-	88: {
+	93: { # chapter 8: Gaining proficiency with classes and objects
+		'q': 
+		"""
+		True or false:
+
+			'Class definitions are statements'
+		""",
+		'a': """
+		True. That's why they must end in semicolons.""",
+	},
+	94: {
+		'q':  """
+		True or false:
+		
+			'Strict CANNOT have methods members like classes can'
+			
+		""",
+		'a': """
+		False. Structs can have methods.""",
+	},
+	95: {
+		'q':  """
+		What's the default access specifier for a:
+			
+			i) class
+			ii) struct""",
+		'a': """
+		
+			i) private
+			ii) public
+		""",
+	},
+	96: {
+		'q':  """
+		What do C++ programmers sometimes call a constructor?""",
+		'a': """
+		A ctor.""",
+	},
+	97: {
+		'q':  """
+		What is the most vexing parse in C++?""",
+		'a': """
+		The most vexing parse is a counterintuitive form of syntactic ambiguity resolution in C++.
+		In certain situations, the C++ grammar cannot distinguish between the creation of an object
+		parameter and specification of a function's type.
+		
+		In those situation, the compiler is required to interpret the line as a function type
+		specification.
+		
+		E.g:
+			// calling Spreadsheet's parameterless constructor
+			// however compiler interprets is as a function called my_cell which returns a Spreadsheet.
+			Spreadsheet my_cell();""",
+	},
+	98: {
+		'q':  """
+		Name two ways to avoid the most vexing problem.""",
+		'a': """
+		1) When calling an object's parameterless constructor on the stack, omit the parentheses.
+		2) Use uniform initialization (since C++11)""",
+	},
+	99: {
+		'q':  """
+		Let MyClass be a class. Say MyClass is designed to only have static methods
+		, and you do not want to write a constructors for MyClass.
+		
+		i) Give the syntax for explicitly deleting the default constructor
+		ii) What's the term for your answer to (i)""",
+		'a': """
+		i) MyClass() = delete;
+		ii) Explicitly deleted constructors.
+		
+		""",
+	},
+	100: {
+		'q':  """
+		With ctor-initializers, what order are the data members initialized in?""",
+		'a': """
+		ctor-initializers initialize data members in the order in which they are declared in the
+		class definition, not the order in the ctor-initializer.""",
+	},
+	101: {
+		'q':  """
+		Consider the following statement:
+		
+			'For performance reason, it is best to pass objects by const reference
+			insteaad of by value'.
+
+		Why is this true?
+		""",
+		'a': """
+		Because when passing by reference, we only copy over the address of the passed object.
+		When passing by value, we call the passed arguments copy constructor which usually
+		has more overhead than simply copying the address.""",
+	},
+	102: {
+		'q':  """
+		i) What is an initializer-list constructor?
+		
+		ii) Let EvenSquence be a proposed class. Write the sequence for an
+		EvenSequence initializer-list constructor for arguments of type double.""",
+		'a': """
+		i) An initializer-list constructor is a construct with only std::initializer_list<T> as first parameter.
+
+		
+		ii)
+
+			#include <initializer_list>
+			class EvenSequence
+			{
+			public:
+				EvenSequence(std::initializer_list<double> args)
+				{
+				}
+			};
+		""",
+	},
+	103: {
+		'q':  """
+		i) What is a delegating constructor.
+		ii) Give two constraints for delegating constructors to be valid.""",
+		'a': """
+		i) Delegating constructors allow constructors to call another constructor from the same class
+		ii)
+		
+			1) This call must be placed in the ctor-initializer (not the body)
+			2) The delegating constructor must be the only member initializer in the ctor-initializer list.
+		""",
+	},
+	104: {
+		'q':  """
+		In which order are data member objects of a class destroyed?""",
+		'a': """
+		In the reverse order of their declaration in the class definition.""",
+	},
+	105: {
+		'q':  """
+		C++11 onwards has deprecated the generation of a copy constructor is the class has a user-declared copy constructor
+		, the same applies to copy assignment operators.
+		
+		What should we do if we have a user define copy constructor or copy assignment operator but still want
+		the compiler generated version?""",
+		'a': """
+		In both cases, explicitly default one:
+		
+		MyClass(const MyClass& src) = default;
+		MyClass& operator=(const MyClass& rhs) = default;
+	""",
+	},
+	106: { # chapter 9: Mastering Classes and Objects 
+		'q':  """
+		Consider:
+		
+			class Foo
+			{
+				frience class Bar; (1)
+			};
+		
+		What implications does line (1) have for Bar?
+		""",
+		'a': """
+		All the methods of Bar can access private and protected members of Foo.""",
+	},
+	107: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	108: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	109: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	110: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	111: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	112: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	113: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	114: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	115: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	116: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	117: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	118: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	119: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	120: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	121: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	122: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	123: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	124: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	125: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	126: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	127: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	128: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	129: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	130: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	131: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	132: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	133: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	134: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	135: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	136: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	137: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	138: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	139: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	140: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	141: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	142: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	143: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	144: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	145: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	146: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	147: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	148: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	149: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	150: {
 		'q':  """
 		""",
 		'a': """
