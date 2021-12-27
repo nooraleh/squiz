@@ -216,11 +216,14 @@ qna = {
 	},
     22: {
 		'q':  """
-		""",
+		Consider the .find(value) method for STL associative containers, what is returned?""",
 		'a': """
-		""",
+		If `value` is found:
+			an iterator to the found element is returns
+		else:
+			.find returns std::end() <- the one-past-the-end iterator.""",
 	},
-    23: {
+    23: { # module 4: non-modifying containers
 		'q':  """
 		""",
 		'a': """
