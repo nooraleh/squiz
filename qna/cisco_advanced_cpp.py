@@ -225,63 +225,75 @@ qna = {
 	},
     23: { # module 4: non-modifying containers
 		'q':  """
-		""",
+		What's the main difference between std::vector::swap and std::vector::iter_swap?""",
 		'a': """
-		""",
+		std::vector::swap takes referenes as arguments, while std::vector::iter_swap
+		takes iterators as arguments.""",
 	},
     24: {
 		'q':  """
-		""",
+		What's one quirk of std::remove that you should be aware of?""",
 		'a': """
-		""",
+		It cannot alter the size of an array or a container.""",
 	},
     25: {
 		'q':  """
-		""",
+		What using std::partition with a predicate function `pred`,
+		what is the partitioning order?""",
 		'a': """
-		""",
+		Values which `pred` return true come before values which `pred`
+		returns false.""",
 	},
     26: {
 		'q':  """
-		""",
+		What do the *_copy suffix do to algorithms in the STL?""",
 		'a': """
-		""",
+		Does the same operation as *, but copies the result into a separate
+		container and preserves the state of the original.
+		
+		E.g std::copy_unique applied std::copy to the input container and stores
+		the result into an output container.""",
 	},
     27: {
 		'q':  """
-		""",
+		Which STL containers are compatible with std::random_shuffle?""",
 		'a': """
-		""",
+		std::vector, std::deque, std::array.""",
 	},
-    28: {
+    28: { # 05 module: STL sorting algorithms
 		'q':  """
-		""",
+		What STL containers are compatible with std::sort, std::stable_sort""",
 		'a': """
-		""",
+		std::vector, std::deque, std::array""",
 	},
-    29: {
+    29: { # 06 module: merging stl algorithms
 		'q':  """
-		""",
+		What's important to remember when using std::merge on two containers?""",
 		'a': """
-		""",
+		Both containers must be sorted beforehand (using the same comparators e.g std::less)""",
 	},
-    30: {
+    30: { # 07 module: utilities and functional tools STL
 		'q':  """
-		""",
+		i) What does <functional>'s std::ptr_fun do?
+		ii) What is this functionality useful in combination with?""",
 		'a': """
-		""",
+		i) Converts an input function into it's equivalent function object.
+		ii) std::bind1st and std::bind2nd""",
 	},
-    31: {
+    31: { # 08 module: Advanced I/O
 		'q':  """
-		""",
+		Define a stream?""",
 		'a': """
-		""",
+		A stream can be defined as some kind of channel through which bytes are transmitted.""",
 	},
     32: {
 		'q':  """
-		""",
+		Name the three families of stream classes that STL I/O library
+		provides functionality for?""",
 		'a': """
-		""",
+		1) console/terminal streams
+		2) file streams
+		3) string streams""",
 	},
     33: {
 		'q':  """
@@ -306,20 +318,59 @@ qna = {
 		""",
 		'a': """
 		""",
-	},
+	}, # 09 module: templates
     37: {
 		'q':  """
-		""",
+		What does RTTI stand for?""",
 		'a': """
-		""",
+		Run time type information.""",
 	},
     38: {
 		'q':  """
+		What's one notable limitation of templates?""",
+		'a': """
+		They have to be defined inside one file. I.e you cannot separate
+		the declaration and the implementation in separate files.
+		
+		Templates are usually declared and defined inside a header file.""",
+	},
+    39: {
+		'q':  """
+		When is a template verified to be valid for a given type?""",
+		'a': """
+		When it is used to create and actual class or function.""",
+	},
+	40: {
+		'q':  """
 		""",
 		'a': """
 		""",
 	},
-    39: {
+	41: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	42: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	43: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	44: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+	45: {
 		'q':  """
 		""",
 		'a': """
