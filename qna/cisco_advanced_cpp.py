@@ -238,7 +238,7 @@ qna = {
 	},
     25: {
 		'q':  """
-		What using std::partition with a predicate function `pred`,
+		When using std::partition with a predicate function `pred`,
 		what is the partitioning order?""",
 		'a': """
 		Values which `pred` return true come before values which `pred`
@@ -297,35 +297,40 @@ qna = {
 	},
     33: {
 		'q':  """
-		""",
+		i) Which STL container classes can be used for an std::queue?
+		ii) Which is the default?""",
 		'a': """
-		""",
+		i) std::deque, std::list
+		ii) std::deque""",
 	},
     34: {
 		'q':  """
-		""",
+		Explain the differences between:
+		
+		i) ios::out
+		ii) ios::app
+		iii) ios::trunc""",
 		'a': """
-		""",
+		i) """,
 	},
     35: {
 		'q':  """
+		i) ios::out is the default mode of std::ofstream, the mode
+			writes from the beginning but doesn't clear previous content.
+		ii) ios::app appends to an existing file insteand of overwriting.
+		iii) ios::trunc - if the file exists, the previous content is removed.
+		
 		""",
 		'a': """
 		""",
 	},
-    36: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	}, # 09 module: templates
-    37: {
+    36: { # 09 module: templates
 		'q':  """
 		What does RTTI stand for?""",
 		'a': """
 		Run time type information.""",
 	},
-    38: {
+    37: {
 		'q':  """
 		What's one notable limitation of templates?""",
 		'a': """
@@ -334,46 +339,10 @@ qna = {
 		
 		Templates are usually declared and defined inside a header file.""",
 	},
-    39: {
+    38: {
 		'q':  """
 		When is a template verified to be valid for a given type?""",
 		'a': """
 		When it is used to create and actual class or function.""",
-	},
-	40: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	41: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	42: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	43: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	44: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	45: {
-		'q':  """
-		""",
-		'a': """
-		""",
 	},
 }
