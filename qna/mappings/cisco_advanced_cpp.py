@@ -1,5 +1,16 @@
 # Notes taken in a Q & A style format from Cisco Academy's 'Advanced C++'
 qna = {
+	-1: {
+			1: ['Module 1: STL Sequential Containers', (1, 17)],
+			2: ['Module 2: Associative containers', (17, 23)],
+			3: ['Module 3: Non-Modifying containers', (23, 28)],
+			4: ['Module 4: STL Sorting Algorithms', (28, 29)],
+			5: ['Module 5: Merging STL Algorithms', (29, 30)],
+			6: ['Module 6: Utilities and Functional Tools STL', (30, 31)],
+			7: ['Module 7: Advanced I/O', (31, 36)],
+			8: ['Module 8: Templates', (36, 39)],
+		},
+	0: "Cisco Academy's Advanced C++",
 	1: { # module 1: STL Sequential Containers
 		'q':  """
 		What are boost libraries?""",
@@ -223,7 +234,7 @@ qna = {
 		else:
 			.find returns std::end() <- the one-past-the-end iterator.""",
 	},
-    23: { # module 4: non-modifying containers
+    23: { # module 3: non-modifying containers
 		'q':  """
 		What's the main difference between std::vector::swap and std::vector::iter_swap?""",
 		'a': """
@@ -260,19 +271,19 @@ qna = {
 		'a': """
 		std::vector, std::deque, std::array.""",
 	},
-    28: { # 05 module: STL sorting algorithms
+    28: { # 04 module: STL sorting algorithms
 		'q':  """
 		What STL containers are compatible with std::sort, std::stable_sort""",
 		'a': """
 		std::vector, std::deque, std::array""",
 	},
-    29: { # 06 module: merging stl algorithms
+    29: { # 05 module: merging stl algorithms
 		'q':  """
 		What's important to remember when using std::merge on two containers?""",
 		'a': """
 		Both containers must be sorted beforehand (using the same comparators e.g std::less)""",
 	},
-    30: { # 07 module: utilities and functional tools STL
+    30: { # 06 module: utilities and functional tools STL
 		'q':  """
 		i) What does <functional>'s std::ptr_fun do?
 		ii) What is this functionality useful in combination with?""",
@@ -280,7 +291,7 @@ qna = {
 		i) Converts an input function into it's equivalent function object.
 		ii) std::bind1st and std::bind2nd""",
 	},
-    31: { # 08 module: Advanced I/O
+    31: { # 07 module: Advanced I/O
 		'q':  """
 		Define a stream?""",
 		'a': """
@@ -324,7 +335,7 @@ qna = {
 		'a': """
 		""",
 	},
-    36: { # 09 module: templates
+    36: { # 08 module: templates
 		'q':  """
 		What does RTTI stand for?""",
 		'a': """

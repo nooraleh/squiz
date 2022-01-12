@@ -1,6 +1,17 @@
 # Notes taken in a Q & A style format from Marc Gregoire's Professional C++
 
 qna = {
+	-1: {
+			1: ['Chapter 1: STL Sequential Containers', (1, 17)],
+			2: ['Chapter 2: Associative containers', (17, 23)],
+			3: ['Chapter 3: Non-Modifying containers', (23, 28)],
+			4: ['Chapter 4: STL Sorting Algorithms', (28, 29)],
+			5: ['Chapter 5: Merging STL Algorithms', (29, 30)],
+			6: ['Chapter 6: Utilities and Functional Tools STL', (30, 31)],
+			7: ['Chapter 7: Advanced I/O', (31, 36)],
+			8: ['Chapter 8: Templates', (36, 39)],
+		},
+	0: "Gregoire's Professional C++",
 	1: {
 		'q':  """
 		What's an alternative way of writing 'include <iostream>'

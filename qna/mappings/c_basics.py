@@ -10,6 +10,7 @@ qna = {
 			6: ['Module 6: Structs', (36, 46)],
 			7: ['Module 7: Memory Management and Preprocessing', (46, 62)],
 		},
+	0: "C Essentials - Parts 1 & 2 Courses",
 	1: { # Module 1: Introduction to Computer Programming, Variables, and Comments
 		"q": "Define portability with respect to high level programming languages",
 		"a": "It is the feature of programs written in high level programming languages being able to be translated into any number of different machine languages.",
