@@ -1,6 +1,6 @@
 # Notes taken in a Q & A style format from Edube's C Essentials - Parts 1 & 2 courses
 
-qna = {
+qna = { # module 1: Introduction to Computer Programming, Variables, and Comments
 	1: {
 		"q": "Define portability with respect to high level programming languages",
 		"a": "It is the feature of programs written in high level programming languages being able to be translated into any number of different machine languages.",
@@ -35,7 +35,7 @@ qna = {
 		often defined at the top of a C file to make the function available in all parts of the file
 		""",
 	},
-	8: {
+	8: { # Module 2: Basic Data Types, Operations, and Flow Control
 		"q": "What is 'int Counter;' and example of?",
 		"a": """Variable declaration""",
 	},
@@ -88,7 +88,7 @@ qna = {
 		"q": """What is integer promotion?""",
 		"a": """When data of type `char` or `short int` is implicity converted to `int` at runtime.""",
 	},
-	19: {
+	19: { # Module 3: Flow Control Part II
 		"q": """What is the word for the part of the declaraion placed on the RHS of the = in:
 			'int x = 0;'""",
 		"a": """An initiator.""",
@@ -107,7 +107,7 @@ qna = {
 		"a": """A nibble is a 4-bit aggregation, also known as a half-byte.
 		The terms low-nibble and high-nibble denote the nibbles containing the less signifance and more significant bits respectively.""",
 	},
-	23: {
+	23: { # Module 4: Switch Aggregating Data Into Arrays
 		"q": """What are amorphous pointers""",
 		"a": """Pointers that can be used to point to any data of any type. Note that these cannot be subject to the dereference operator.""",
 	},
@@ -144,7 +144,7 @@ qna = {
 		ii) Is a pointer to a 10-element array of type int
 		iii) Is a pointer to a 10 element array of pointers which point to type int""",
 	},
-	31: {
+	31: { # Module 5: Advanced Operations
 		"q": """When the compiler knows that an entity (e.g. function) has been declared,
 		but knows nothing about the entity's type - what does the compiler assume?""",
 		"a": """That the entity is an `int` type.""",
@@ -164,11 +164,7 @@ qna = {
 		""",
 		"a": """No it does not and will trigger a compilation error.""",
 	},
-	35: {
-		"q": """Explain the difference between  """,
-		"a": """No it does not and will trigger a compilation error.""",
-	},
-	36: {
+	36: { # Module 6: Structs
 		"q": """What are the sub-elements of `struct`s composed of? How are they identified?""",
 		"a": """They are called fields (can be any type). They are identified by the field name.""",
 	},
@@ -224,7 +220,7 @@ qna = {
 		double quotes: The preprocessor will look for the included file in the same directory where the original file processed by the preprocessor was located.
 		""",
 	},
-	46: {
+	46: { # Module 7: Memory Management and Preprocessing
 		"q": """Explain the difference between an l-value and an r-value.""",
 		"a": """
 		l-values:

@@ -1,7 +1,7 @@
 # Notes taken in a Q & A style format from Edube's C++ Essentials - Parts 1 & 2 courses
 
 qna = {
-    1: {
+    1: { # Module 1: Basics
         "q": """What are the i) << ii) >> operators called?""",
         "a": """ i) The insertion operator, commonly used with cout. ii) the extraction operator, commonly used with cin""",
     },

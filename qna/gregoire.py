@@ -441,46 +441,6 @@ qna = {
 		'a': """
 		The collection of publicly accessible properties and methods.""",
 	},
-	51: { # chapter 6: Designing for Reuse
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	52: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	53: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	54: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	55: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	56: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	57: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
-	58: {
-		'q':  """ """,
-		'a': """
-		""",
-	},
 	59: { # chapter 3 - coding with style
 		'q':  """
 		What are loop invariants?""",
