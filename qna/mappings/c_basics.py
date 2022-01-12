@@ -1,7 +1,16 @@
 # Notes taken in a Q & A style format from Edube's C Essentials - Parts 1 & 2 courses
 
-qna = { # module 1: Introduction to Computer Programming, Variables, and Comments
-	1: {
+qna = {
+	-1: {
+			1: ['Module 1: Introduction to Computer Programming, Variables, and Comments', (1, 8)],
+			2: ['Module 2: Basic Data Types, Operations, and Flow Control', (8, 19)],
+			3: ['Module 3: Flow Control Part II', (19, 23)],
+			4: ['Module 4: Switch Aggregating Data Into Arrays', (23, 31)],
+			5: ['Module 5: Advanced Operations', (31, 36)],
+			6: ['Module 6: Structs', (36, 46)],
+			7: ['Module 7: Memory Management and Preprocessing', (46, 62)],
+		},
+	1: { # Module 1: Introduction to Computer Programming, Variables, and Comments
 		"q": "Define portability with respect to high level programming languages",
 		"a": "It is the feature of programs written in high level programming languages being able to be translated into any number of different machine languages.",
 	},
