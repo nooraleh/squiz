@@ -18,17 +18,7 @@ class BaseQNA(ABC):
     def __call__(self):
         self.run_logic()
 
-    def get_random_mode(self):
-        # TODO: I'm pretty sure we can implement this up here
-        pass
-
-    def get_chapter_mode(self):
-        # TODO: You may be able to implement this up here too
-        pass
-
     def get_display_page1(self):
-        # TODO: This should dynamically format and produce the menu based on the class variables
-
         for index, mapping in all_qna_options.items():
             print(f"{index}: {mapping[0]}")
 
