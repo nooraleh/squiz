@@ -6,8 +6,8 @@ from qna.mappings import smith # from 'Cython - A Guide for Python Programmers'
 
 qna_mapping = {
     1: c_basics.qna,
-    # 2: cpp_basics.qna,
-    # 3: gregoire.qna,
+    2: cpp_basics.qna,
+    3: gregoire.qna,
     4: cisco_advanced_cpp.qna,
     # 5: smith.qna
 }
