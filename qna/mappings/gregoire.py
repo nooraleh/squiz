@@ -2,17 +2,18 @@
 
 qna = {
 	-1: {
-			1: ['Chapter 1: STL Sequential Containers', (1, 17)],
+			1: ['Chapter 1: A Crash Course in C++ and the Standard Library', (1, 39)],
 			2: ['Chapter 2: Associative containers', (17, 23)],
-			3: ['Chapter 3: Non-Modifying containers', (23, 28)],
-			4: ['Chapter 4: STL Sorting Algorithms', (28, 29)],
-			5: ['Chapter 5: Merging STL Algorithms', (29, 30)],
-			6: ['Chapter 6: Utilities and Functional Tools STL', (30, 31)],
-			7: ['Chapter 7: Advanced I/O', (31, 36)],
-			8: ['Chapter 8: Templates', (36, 39)],
+			3: ['Chapter 3: Coding with Style', (59, 65)],
+			4: ['Chapter 4: Designing Professional C++ Programs', (65, 75)],
+			5: ['Chapter 5: Designing with Objects', (47, 59)],
+			6: ['Chapter 6: Designing for Reuse', (92, 31)],
+			7: ['Chapter 7: Memory Management', (75, 92)],
+			8: ['Chapter 8: Gaining Proficiency with Classes and Objects', (93, 106)],
+			8: ['Chapter 9: Mastering Classes and Objects ', (106, 110)],
 		},
 	0: "Gregoire's Professional C++",
-	1: {
+	1: { # Chapter 1: A Crash Course in C++ and the Standard Library
 		'q':  """
 		What's an alternative way of writing 'include <iostream>'
 		introduced by C++20 standard?""",
@@ -346,7 +347,7 @@ qna = {
 		i) T var1 = {arg1, arg2};
 		i) T var1 {arg1, arg2};""",
 	},
-	39: {
+	39: { # Chapter 2: Working with Strings and String Views
 		'q':  """
 		What is meant by literal pooling?""",
 		'a': """
@@ -452,7 +453,7 @@ qna = {
 		'a': """
 		The collection of publicly accessible properties and methods.""",
 	},
-	59: { # chapter 3 - coding with style
+	59: { # chapter 3 - Coding with Style
 		'q':  """
 		What are loop invariants?""",
 		'a': """
@@ -511,7 +512,7 @@ qna = {
 		2) References do not need operators such as * and & when interacting with them.
 		3) Ownership/deletion responsibility is clear, unlike with pointers.""",
 	},
-	65: { # chapter 4: Designing professional C++ Programs
+	65: { # Chapter 4: Designing Professional C++ Programs
 		'q':  """
 		i) What is the very first step to take when starting a new program or a new
 		feature for an existing program?
@@ -613,7 +614,7 @@ qna = {
 		'a': """
 		A sequence diagram shows object interactions arranged in a time sequence.""",
 	},
-	75: { # chapter 7: Memory management
+	75: { # Chapter 7: Memory Management
 		'q':  """
 		What's the main advantage of the C++ `new` keyword over C-style malloc?""",
 		'a': """
@@ -766,70 +767,90 @@ qna = {
 		'a': """
 		When writing to memory past the end of a (C-style) array.""",
 	},
-	92: { # chapter 6: Designing for reuse
+	92: { # chapter 6: Designing for Reuse
 		'q':  """
-		""",
+		What is meant by client code?""",
 		'a': """
-		""",
+		Code that is written to use your interfaces.""",
 	},
 	93: {
 		'q':  """
-		""",
+		Fill in the blank:
+		
+			When designing your interface, do not expose _______ to your clients.""",
 		'a': """
-		""",
+		implementation details""",
 	},
 	94: {
 		'q':  """
-		""",
+		What is meant by an opaque class?""",
 		'a': """
-		""",
+		A class in which a client cannot access the internal data members, either directly or via getters/setters.""",
 	},
 	95: {
 		'q':  """
+		What is meant by high cohesion of a OOP component?
 		""",
 		'a': """
+		High cohesion is the quality of a component having encapsulated only a single task or a group
+		of logically related tasks.
 		""",
 	},
 	96: {
 		'q':  """
-		""",
+		Give an example of a class that can be said to have low cohesion.""",
 		'a': """
-		""",
+		A class which implements an XML parser and a random number generator (two strongly unrelated functionalities).""",
 	},
 	97: {
 		'q':  """
-		""",
+		What does designing for low coupling achieve?""",
 		'a': """
-		""",
+		Low couple achieves subsystems of discrete components that can be reused independently.""",
 	},
 	98: {
 		'q':  """
-		""",
+		Give an overview of design-by-contract.""",
 		'a': """
-		""",
+		Design-by-contract means that the documentation for a function or a class
+		represents a contract with a detailed of what the responsiblity of:
+		
+			- the client code
+			- your own function or class.""",
 	},
 	99: {
 		'q':  """
-		""",
+		What are the three import aspects of design-by-contract, give an description of each.""",
 		'a': """
-		""",
+		1) preconditions: the conditions that the client must satisfy before calling a function or method
+		2) postconditons: the conditions that must be satisfied by the function or method when it has finished executing.
+		3) invariants: the conditions that must be satisfied during the whole execution of the function or method.""",
 	},
 	100: {
 		'q':  """
-		""",
+		What is meant by the open/closed principle?""",
 		'a': """
-		""",
+		The open/closed principle states that software entities should be open for extension, but
+		closed for modification.
+		
+		I.e. the entity can allow its behaviour to be extended without modifying its source code.""",
 	},
 	101: {
 		'q':  """
-		""",
+		What is meant by the interface segregation principle?""",
 		'a': """
-		""",
+		Code should not be forced to depend on methods it doesn't use.
+		
+		Alternative: Clients should not be forced to depend on interfaces that they do not use.""",
 	},
 	102: {
 		'q':  """
-		""",
+		What is meant by the dependency inversion principle?""",
 		'a': """
+		High level modules should not depend on low-level modules. Both should 
+		depend on abstractions.
+
+		Abstractions should not depend on details. Details should depend on abstractions.
 		""",
 	},
 	103: {
@@ -850,7 +871,7 @@ qna = {
 		'a': """
 		""",
 	},
-	93: { # chapter 8: Gaining proficiency with classes and objects
+	93: { # Chapter 8: Gaining Proficiency with Classes and Objects
 		'q': 
 		"""
 		True or false:
@@ -999,7 +1020,7 @@ qna = {
 		MyClass& operator=(const MyClass& rhs) = default;
 	""",
 	},
-	106: { # chapter 9: Mastering Classes and Objects 
+	106: { # Chapter 9: Mastering Classes and Objects 
 		'q':  """
 		Consider:
 		
@@ -1038,153 +1059,225 @@ qna = {
 	},
 	110: {
 		'q':  """
-		""",
+		What does a function/method marked with `noexcept` specifiy?""",
 		'a': """
-		""",
+		A function/method marked with `noexcept` specifies that it does not 
+        throw exceptions.""",
 	},
 	111: {
 		'q':  """
-		""",
+		Which idiom is recommended to implement an exception-safe assignment operator?""",
 		'a': """
-		""",
+		The `copy-and-swap` idiom.""",
 	},
 	112: {
 		'q':  """
-		""",
+		What is the rule of five?""",
 		'a': """
-		""",
+		The rule of five states:
+        
+            If you have dynamically allocated memory in your class, then you
+            should typically implement:
+            
+                1) Destructor
+                2) Copy constructor and copy assignment operator
+                3) Move constructor and moe assignment operator
+        """,
 	},
 	113: {
 		'q':  """
-		""",
+		What is the rule of zero? Give examples of things you can do to adopt rule of zero?""",
 		'a': """
-		""",
+		i) The rule of zero states that you should design your classes in a way that they
+            do not require any of the special member functions from the rule of five.
+            
+        ii) Examples: Using modern smart pointers instead of old-style dynamically allocated memory
+            Using a vector<vector<int>> instead of int** for a 2d array of integers.""",
 	},
 	114: {
 		'q':  """
-		""",
+		What are static member functions? When would be like to have static member functions?""",
 		'a': """
-		""",
+		Static member functions have no `this` pointer, can only access:
+            i) private or protected static members of the class
+            ii) private or protected non-static members of the class
+            
+        You can call static member functions without a class instance, just namespace the class name.""",
 	},
 	115: {
 		'q':  """
-		""",
+		What does the `inline` do?""",
 		'a': """
-		""",
+		The `inline` keyword is a recommendation to the compiler to insert the method/function's body
+        directly at the call site of the invoker of the inline method/function.
+        
+        NB: `inline` is simply a hint and the compiler is free to ignore it.""",
 	},
 	116: {
 		'q':  """
-		""",
+		What is one caveat to using the `inline` keyword that you should bear in mind?""",
 		'a': """
-		""",
+		Definitions of methods marked as `inline` must be available in every source file
+        in which they are called.""",
 	},
 	117: {
 		'q':  """
-		""",
+		What is a static data member in one sentence.""",
 		'a': """
-		""",
+		A static data member is a data member associated with a class instead of an object.""",
 	},
 	118: {
 		'q':  """
-		""",
+		What is one 'benefit' of declaring a data member as both `static` and `inline`?
+        """,
 		'a': """
-		""",
+		The benefit is that you do not have to write them up in the source file (.cpp). Declaring
+        them in the header file is sufficient.""",
 	},
 	119: {
 		'q':  """
-		""",
+		When should you declare a data member as `static const`?""",
 		'a': """
-		""",
+		When you want 'global' constants that only apply to/are relevant to a specific class.""",
 	},
-	120: {
+	120: { # Chapter 10: 
 		'q':  """
-		""",
+		Which keyword would you mark a class with to prevent inheritance?""",
 		'a': """
-		""",
+		`final` e.g
+        
+            class Base final {};""",
 	},
 	121: {
 		'q':  """
-		""",
+		What's a good rule of thumb with regard to `virtual` and super class methods?""",
 		'a': """
-		""",
+		Rule of thumb: Make all (except constructors) virtual (inc. the destructor) to avoid
+        problems associated with ommision of the virtual keyword.""",
 	},
 	122: {
 		'q':  """
-		""",
+		True or false:
+        
+            Adding the `override` keyword for override methods in a derived class is mandatory.""",
 		'a': """
-		""",
-	},
+		False, however it is highly recommended.""",
 	123: {
 		'q':  """
-		""",
+		With regard to a derive class's data members and overridden methods, what is meant by slicing?""",
 		'a': """
-		""",
+		Slicing occurs when you cast a derived class to a base class, causing a loss of the 
+        derived class's data members and overridden methods.
+        
+        NB: Slicing does not occur when a derived class is assigned to a pointer or 
+        reference to a super class.""",
 	},
 	124: {
 		'q':  """
-		""",
+		What does a vtable (virtual table) introduce overhead?""",
 		'a': """
-		""",
+		To call a virtual method, the program needs to perform an extra operation
+        by dereferencing the pointer to the appropriate code to execute.""",
 	},
 	125: {
 		'q':  """
-		""",
+		Which keyword can you use to prevent a derived class from overriding
+        a method?""",
 		'a': """
-		""",
+		`final` e.g
+        
+            virtual void some_method() final;""",
 	},
-	126: {
+	126: { # chapter 11: C++ Quirks, Oddities, and Incidentals
 		'q':  """
-		""",
+		True or false:
+        
+            i) You can declare a reference to a reference e.g int& &
+            ii) You cannot declare a pointer to a reference e.g int&*
+            iii) You can declare a reference to a pointer e.g int*&""",
 		'a': """
-		""",
+		    i) False
+            ii) True
+            iii) True""",
 	},
 	127: {
 		'q':  """
-		""",
+		Consider the following guideline:
+        
+            Prefer references over pointers, that is, only use a pointer if a reference
+            is not possible.
+            
+        Name a case in which we'd prefer to recieve a pointer over a reference.""",
 		'a': """
-		""",
+		If the code receiving the variable becomes the owner of the memory and is thus
+        responsible for releasing the memory. Then we must receive a pointer.""",
 	},
 	128: {
 		'q':  """
-		""",
+		i) True or false:
+        
+            If the member function of a class is marked as constexpr, then it cannot be virtual.
+            
+        ii) Why?""",
 		'a': """
-		""",
+		i) True
+        ii) Because virtual functions create a vtable which is used to determine polymorphic dispatch at run time,
+        which goes against the purpose of `constexpr` which is compile time determination of a function's result.
+        """,
 	},
 	129: {
 		'q':  """
-		""",
+		What is the difference between:
+        
+            i) External linkage, and;
+            ii) Internal/static linkage""",
 		'a': """
-		""",
+		    i) The name of a C++ source file is available from other source files
+            ii) Internal/static linkages means that the name of a C++ source file IS NOT available from other source files.""",
 	},
 	130: {
 		'q':  """
-		""",
+		i) What's an alternative to using the keyword static to achieve internal linkage?
+        ii) Which is the recommended method to achieve internal linkage between
+        using the `static` keyword or using your answer to (i)?""",
 		'a': """
-		""",
+		i) Using anonymous namespace - variables/functions declared within an anonymous namespace are only
+        available to the source file in which they were declared.
+        
+        ii) The recommended method is using anonymous namespaces.""",
 	},
 	131: {
 		'q':  """
-		""",
+		i) What is the `extern` keyword used for?
+        ii) What does the compiler treat a name qualified with `extern` as?
+        iii) What implications does your answer to (ii) have for space allocation?
+        """,
 		'a': """
-		""",
+		i) Making variables globally accessible from multiple source files.
+        ii) A declaration.
+        iii) This means that the compiler doesn't allocate space for variables.
+        """,
 	},
 	132: {
 		'q':  """
-		""",
+		True or False:
+        
+            Initialization order of nonlocal variables in different source files is well defined.""",
 		'a': """
-		""",
+		False.""",
 	},
 	133: {
 		'q':  """
-		""",
+		Which is preferred:
+            Pre-C++11 `typedef`s or `using` type aliases?""",
 		'a': """
-		""",
+		`using` type aliases""",
 	},
 	134: {
 		'q':  """
-		""",
+		What does <utility>'s std::as_const() function do?""",
 		'a': """
-		""",
+		std::as_const() returns a `const` reference version of its reference parameter.""",
 	},
 	135: {
 		'q':  """
@@ -1222,7 +1315,7 @@ qna = {
 		'a': """
 		""",
 	},
-	141: {
+	141: { # chapter 11: C++ Quirks, Oddities, and Incidentals
 		'q':  """
 		""",
 		'a': """
