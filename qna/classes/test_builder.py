@@ -52,10 +52,10 @@ class TestBuilder:
         while self.quiz:
             current_qna = self.quiz.popleft()
 
-            user_current_a = input(current_qna['q'])
-            print(f"Here's your answer: {user_current_a}")
+            user_current_a = input('\033[95m' + current_qna['q'] + '\n\n \033[0m')
+            print(f"\033[92m Here's your answer: {user_current_a} \033[0m")
             print("\n\n")
-            print(f"Here's the model answer: {current_qna['a']}")
+            print(f"\033[93m Here's the model answer: {current_qna['a']} \033[0m")
 
             happy = input("Are you happy with how you're answer (y/n)? ")
             if happy == 'n':
