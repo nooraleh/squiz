@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 
-from qna.classes.base_qna import BaseQNA
+from qna.classes.test_builder import TestBuilder
 
 if __name__ == "__main__":
-    base_qna = BaseQNA()
-    base_qna()
+    test_builder = TestBuilder()
+    test_builder()
