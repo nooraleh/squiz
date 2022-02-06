@@ -23,7 +23,7 @@ class TestBuilder:
             int(input("Please select the resource you'd like to be quized on: "))
         , self.INVALID_OPTION)
         
-        assert(self.specific_qna != self.INVALID_OPTION), exit(f"Invalid QNA option in {__file__}, aborting.")
+        assert(self.specific_qna != self.INVALID_OPTION), exit(f"Invalid QNA option in `get_specific_qna`, aborting.")
 
     def get_quiz_mode(self):
         chapter_option = "2: Chapter" if self.specific_qna.chapter_mode else ""
