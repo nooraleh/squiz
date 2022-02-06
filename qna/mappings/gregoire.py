@@ -1161,7 +1161,8 @@ qna = {
         
             Adding the `override` keyword for override methods in a derived class is mandatory.""",
 		'a': """
-		False, however it is highly recommended.""",
+		False, however it is highly recommended."""
+	},
 	123: {
 		'q':  """
 		With regard to a derive class's data members and overridden methods, what is meant by slicing?""",
@@ -1315,7 +1316,7 @@ qna = {
 		'a': """
 		""",
 	},
-	141: { # chapter 11: C++ Quirks, Oddities, and Incidentals
+	141: {
 		'q':  """
 		""",
 		'a': """
@@ -1327,52 +1328,414 @@ qna = {
 		'a': """
 		""",
 	},
-	143: {
+	143: { # chapter 12: Writing generic code with templates
 		'q':  """
-		""",
+		True or false:
+        
+            i) The compiler always generates code for all virtual methods of a generic/templatized class
+            ii) The compiler always generates code for all non-virtual methods of a generic/templatized class""",
 		'a': """
-		""",
+		    i) True
+            ii) False, the compiler only generates code for non-virtual methods that are actually called
+                for that particular type T.""",
 	},
 	144: {
 		'q':  """
-		""",
+		What extension do some programmers like to give source files that are meant to be included in 
+        a header file?""",
 		'a': """
-		""",
+		ans: .inl <--""",
 	},
 	145: {
 		'q':  """
-		""",
+		
+        i) Why would we want to use explicitly instantiated class templates?
+        ii) What is one notable implication of using explicitly instantiated class templates?""",
 		'a': """
-		""",
+		i) To restrict the types that client code can use with our generic class.
+        ii) The compiler generates code for all methods of the class template, irrespective of
+            whether the methods will be methods or not.""",
 	},
 	146: {
 		'q':  """
-		""",
+		True or False:
+        
+            i) Template parameters have to be data types.
+            ii) Template parameters can have default values.""",
 		'a': """
-		""",
+		
+            i) False
+            ii) True
+        """,
 	},
 	147: {
 		'q':  """
-		""",
+		True or false:
+            Virtual methods and destructors cannot be method templates.""",
 		'a': """
-		""",
+	    ans: True""",
 	},
 	148: {
 		'q':  """
-		""",
+		For a nested template copy constructor, which syntax should you use:
+        
+            i)  template <typenmae T>
+                template <typename E>
+                
+            ii) template<typename T, typename E> """,
 		'a': """
-		""",
+		    i)""",
 	},
 	149: {
 		'q':  """
-		""",
+		i) What are alternative implementations of templates called?
+        ii) Give an example of the syntax of your answer to (i)""",
 		'a': """
-		""",
+		i) ANS: Template specializations
+        
+        ii) 
+        Specialization:
+            template<>
+            class Grid<const char*>
+            
+        Where the generalization would be:
+            template<T>
+            class Grid {// implementation details...}""",
 	},
 	150: {
 		'q':  """
+		i) Will a derived class which inhereits from a template (not an instance or specialization)
+            result in said derived class being a template?
+            
+        ii) Will deriving from a specific instantiation of a class template result in a template.""",
+		'a': """
+		i) yes, the derived class must be a template.
+        ii) the derived class in the case need not be a template.""",
+	},
+	151: {
+		'q':  """
+		When it comes to templates, when would we want to:
+            i) inherit from a template
+            ii) specialize a template""",
+		'a': """
+		    i) When we want to extend implementations and use polymorphism
+            ii) When we want to customize implementation for a particular type.""",
+	},
+	152: {
+		'q':  """
+		What is the difference between `auto` and `decltype` with regard to 
+            reference and `const` qualifiers?""",
+		'a': """
+		`auto` strips them way, decltype does not.""",
+	},
+
+	153: { # Chapter 13: Demystifying C++ I/O
+		'q':  """
+		What is the difference between a buffered and unbuffered stream?""",
+		'a': """
+		A buffered stream does not immediately send the data to the destination, but instead,
+        it buffers incoming data and then sends it in blocks.
+        
+        An unbuffered stream, contrastingly, immediately sends data to the destination.""",
+	},
+	154: {
+		'q':  """
+		What method can you use to always force a buffered stream to send all its currently buffered
+        data to the destination?""",
+		'a': """
+		`std::cout.flush()`""",
+	},
+	155: {
+		'q':  """
+		What is meant by the 'current position' of the stream?""",
+		'a': """
+		The current position is the position in the stream where the next read or write operation
+        will take place.""",
+	},
+	156: {
+		'q':  """
+		Give a brief description of the `clog` stream.""",
+		'a': """
+		A buffered version of cerr, clog writes data to the 'error console'.""",
+	},
+	157: {
+		'q':  """
+		i) What is the difference between '\n' and std::endl?
+        ii) What should you be wary of considering your answer to (i)?""",
+		'a': """
+		i) std::endl add a new line in addition to flushing the buffer
+        ii) Excessive buffer flushing could have performance implications""",
+	},
+	158: {
+		'q':  """
+		Consider a file as a stream destination.
+        
+        Which approach tends to be more performant:
+        
+            1) Writing to data in larger blocks
+            2) Writing to data character-by-character?""",
+		'a': """
+		ANS: (1)""",
+	},
+	159: {
+		'q':  """
+		Not all output streams are buffered. Give an example of an output stream
+        that does not buffer its output.""",
+		'a': """
+		ANS: cerr""",
+	},
+	160: {
+		'q':  """
+		i) Which method can be called directly on a stream to determine whether or not the stream is
+        currently good (i.e. in its normal, usable state).
+        
+        ii) Does your answer to (i) tell you why the stream is unusable?""",
+		'a': """
+		i) std::cout.good()
+        ii) no.""",
+	},
+	161: {
+		'q':  """
+		What does it mean for the following methods to return `true`:
+        
+            i)  std::cout.bad()
+            ii) std::cout.fail()""",
+		'a': """
+		    i) This means that a fatal error has occurred (as opposed to a non-fatal condition like eof())
+            ii) This means that the most recent operation has failed; however, it doesn't say anything about
+                the next operations which may succeed or fail.""",
+	},
+    162: {
+		'q':  """
+		Given that both good() and fail() return `false` if the end-of-file is reached.
+        State the relation between good(), fail() and eof() as a comparison that holds true.""",
+		'a': """
+		
+            good() == (!fail() && !eof())""",
+	},
+    163: {
+		'q':  """
+		In the context of C++ streams, what is meant by a 'manipulator'?""",
+		'a': """
+		Manipulators are objects that make a change to the behaviour of the stream
+        instead of, or in addition to, providing data for the stream to work.""",
+	},
+    164: {
+		'q':  """
+		All of the stream manipulators stay in effect for subsequent output to the stream until
+        they are reset, except one.
+            i) State the manipulator which is an exception
+            ii) How long does your answer to (i) stay active for?""",
+		'a': """
+		    i) setw
+            ii) setw is only active for the next single output.""",
+	},
+    165: {
+		'q':  """
+		std::cout does not immeditate flush for bluffer, does this hold true for std::cin as well?""",
+		'a': """
+		Not it does not as std::cin does not immediately flush the buffer.""",
+	},
+    166: {
+		'q':  """
+		What does a call to std::cin.unget() cause the stream to do?""",
+		'a': """
+		std::cin.unget() causes the stream to back up by one position, essentially putting
+        the previous character read back on the stream.""",
+	},
+    167: {
+		'q':  """
+		What does the `std::noskipws` input manipulator tell the stream to do?""",
+		'a': """
+		std::noskipws tells the stream to not skip whitespace""",
+	},
+    168: {
+		'q':  """
+		What is the difference between std::cin.putback() and std::cin.unget()?""",
+		'a': """
+		    std::cin.putback(): Allows you to take a character as a parameter to be placed on the stream.
+            std::cin.unget(): Causes the stream to back up the previous character read on the stream.
+            
+        Both methods allows you to move backward by one character in an input stream.""",
+	},
+    169: {
+		'q':  """
+		What does std::cin.peek() allow you to do?""",
+		'a': """
+		std::cin.peek() allows you to preview the next value that *would* be returned
+        if you were to call std::cin.get().""",
+	},
+    170: {
+		'q':  """
+		i) What do string streams provide?
+        ii) What is std::ostringstream used for?
+        iii) What is std::istringstream used for?""",
+		'a': """
+		i) string streams provide a way to use stream semantics with std::string objects
+        ii) Is used for writing data to an std::string
+        iii) Is used to read data from an std::string""",
+	},
+    171: {
+		'q':  """
+		Give a brief description of each of the following constants, which may be passed
+        as the second argument to a file stream constructor.
+        
+            i)   std::ios_base::app
+            ii)  std::ios_base::ate
+            iii) std::ios_base::binary
+            iv)  std::ios_base::in
+            v)   std::ios_base::out
+            vi)  std::ios_base::trunc
+        """,
+		'a': """
+		i)   std::ios_base::app
+            - open, and go to the end before each write operation
+        ii)  std::ios_base::ate
+            - open, and go the the end once immediately after opening
+        iii) std::ios_base::binary
+            - perform input and output in binary mode as opposed to text mode.
+        iv)  std::ios_base::in
+            - open for input, start reading from the beginning
+        v)   std::ios_base::out
+            - open for output, start writing at the beginning, overwriting existing data
+        vi)  std::ios_base::trunc
+            - open for output, and delete all existing data (truncate)
+        """,
+	},
+    172: {
+		'q':  """
+		When it comes to file stream modes, give the combination of constants that  
+        specify opening a file for output in binary while truncating existing data.""",
+		'a': """
+		std::ios_base::trunc | std::ios_base::binary | std::ios_base::out""",
+	},
+    173: {
+		'q':  """
+		i) When data is requested from an input stream, what happens to its linked output stream?
+		ii) Does the same thing happen in the vice-versa case to your answer in i? 
 		""",
 		'a': """
+		i) Its linked output is automatically flushed
+		ii) The vice-versa case is also true, this is known as flush-on-access""",
+	},
+    174: {
+		'q':  """
+		i) What method do we use do use to link streams?
+		ii) Let:
+			- `outfile` and `anotheroutfile` be output streams
+		Use your answer to (i) to link the two output streams.""",
+		'a': """
+		i) std::ostream::tie
+		i) outfile.tie(&anotheroutfile)""",
+	},
+    175: {
+		'q':  """
+		i) True or false:
+		
+			Bidirectional streams have separate pointers for the read position
+			and the write position.
+			
+		ii) What implications does your answer to (i) have for switching between
+			reading and writing?""",
+		'a': """
+		i) True
+		ii) When switching between reading and writing, you need to seek to the
+			appropriate position. E.g.
+				io_data.seekp(io_data.tellg());
 		""",
+	},
+	176: { # chapter 14: Handling Errors
+		'q':  """
+		Why should you always document the possibble exceptions a function can throw
+        in its code documentation?""",
+		'a': """
+		Because users of my function need to know which exceptions might get thrown
+        so they can properly handle them.""",
+	},
+    177: {
+		'q':  """
+		State two reasons in favour of throwing objects as excecptions.""",
+		'a': """
+		1) Objects convey information by their class name
+        2) Objects can store information, including strings that describe the exceptions.""",
+	},
+	178: {
+		'q':  """
+		Why should you always catch exception objects by const reference?""",
+		'a': """
+		1) In order to avoid object slicing, which can occur when you catch exceptions
+        by value.
+        2) Also to avoid unnecessary copying.""",
+	},
+	179: {
+		'q':  """
+		Why is it a good practice to reset the 'terminate handler' (the callback function) that
+        gets passed to <exception>std::set_terminate() to nullptr?""",
+		'a': """
+		Because the 'terminate handler' applies program-wide, and we may not want
+        the previous 'terminate handler' to be used once we've passed exception-handled code.
+        
+        NB: Using <exception>std::set_terminate() is not a recommended best practice, consider
+        try/catch'ing each exception individually wherever possible.""",
+	},
+	180: {
+		'q':  """
+		What is one good use of std::set_terminate in professionally written C++?""",
+		'a': """
+		To set up a crash dump before terminating the process. This crash dump can then
+        be loading into a debugger to allow you to figure out what the uncaught exception was,
+        and what caused it.""",
+	},
+	181: {
+		'q':  """
+		What does C++ do when a function is marked `noexcept` but throws and exception anyway?""",
+		'a': """
+		C++ calls <exception>std::terminate() to terminate the application.""",
+	},
+	182: {
+		'q':  """
+		i) When a second exception is thrown before the first exception has been caught, what happens to the
+        first exception?
+        ii) What can serve as a solution to avoid the problem posed by your answer to (i)
+        """,
+		'a': """
+		i) All information about the first exception is lost.
+        ii) Nested exceptions. Use <exception>std::throw_with_nested()""",
+	},
+	183: {
+		'q':  """
+		Consider:
+            size_t array_size = std::numeric_limits<size_t>::max();
+            
+        Declare a pointer to int `ptr` with array size `array_size` in a way that guarantees that
+        `ptr` will be null if we fail to allocate memory?
+        """,
+		'a': """
+		int* ptr = new(nothrow) int[integer_count];
+        """,
+	},
+	184: {
+		'q':  """
+		If an exception leaves the constructor, will the destructor be automatically called?""",
+		'a': """
+		No.""",
+	},
+	185: {
+		'q':  """
+		Let:
+            MyClass be a class. Write the boilerplate for the MyClass constructor which implements the
+                'function-try-block' feature, catching for std::exception.""",
+		'a': """
+		MyClass::MyClass()
+        try
+            : <ctor-initializer>
+        {
+            /* -- constructor body */
+        }
+        catch (const std::exception& e)
+        {
+            /* Exception-handling logic. */
+        }
+        """,
 	},
 }
