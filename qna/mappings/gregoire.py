@@ -1738,4 +1738,94 @@ qna = {
         }
         """,
 	},
+	186: { # Chapter 16: Overloading C++ Operataors
+		'q':  """
+		Name a few operators which you CANNOT overload?""",
+		'a': """
+		    1) operator.          (member access)
+            2) operator sizeof    
+            3) operator ::        (scope resolution)
+            4) operator ?:        (ternary)
+        """,
+	},
+    187: {
+		'q':  """
+		What is the main difference between overloading an operator as:
+            i) a method of a class; and
+            ii) a global function""",
+		'a': """
+		When you overload operators as a method of your class, the LHS must be always be 
+        an object of that class. When overloaded as a global function, the LHS can be an
+        object of a different type.
+        """,
+	},
+    188: {
+		'q':  """
+		i) What does Gregoire recommend with regard to choosing whether to overload operators as
+        methods or as global functions?
+        
+        ii) Why is your answer to (i) advantageous?""",
+		'a': """
+		i) Make every operator a method unless you must make it a global function.
+        ii) These methods can be marked as virtual, which global operators cannot. Useful
+            if you plan to write overloaded operators in an inheritance tree.""",
+	},
+    189: {
+		'q':  """
+		If your overloaded operator constructs a new object to be returned, should we return
+        that new object:
+            1) By reference
+            2) By value""",
+		'a': """
+		2) By value""",
+	},
+    190: {
+		'q':  """
+		i) What is `operator,` known as?
+        ii) What is it responsible for?""",
+		'a': """
+		i) operator, is known as the comma/sequencing operator
+        ii) It is resposible for separating expressions in a single statement delimited by a comma
+            guaranteeing that they are evaluated left to right.""",
+	},
+    191: {
+		'q':  """
+		Name two cases of when you'd want to overload the `operator()` - function call operator?""",
+		'a': """
+		1) When you want objects to behave like function pointers.
+        2) For multidimensional array access, since [] can only have one index.""",
+	},
+    192: {
+		'q':  """
+		i) Why should you avoid overloading operator&& and operator|| ?
+        ii) Explain why your answer to (i) occurs.""",
+		'a': """
+		i) Because you lose short-circuit evaluation if you do so.
+        ii) You lose short-circuit evaluation because both the LHS and the RHS
+        have to be evaluated before they can be bound to the parameters of your overloaded
+        && and ||.
+        """,
+	},
+    193: {
+		'q':  """
+		i) What do we call objects of a class which has overloaded the operator() - function call operator?
+        ii) True or false:
+            We cna only overload the operator() as a static method in a class""",
+		'a': """
+		i) Function objects/functors.
+        ii) False. Only as a non-static.
+        """,
+	},
+    194: {
+		'q':  """
+		Consider the following warning from Gregoire:
+        
+            Whenever you overload `operator new`, overload the corresponding form of
+            `operator delete`.
+            
+        Why is this guideline important?""",
+		'a': """
+		Because if you do not overload the corresponding `operator delete`, the memory
+        will be freed according to the built-in semantics, which may not be compatible.""",
+	},
 }
