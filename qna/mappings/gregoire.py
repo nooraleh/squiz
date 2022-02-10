@@ -1828,4 +1828,147 @@ qna = {
 		Because if you do not overload the corresponding `operator delete`, the memory
         will be freed according to the built-in semantics, which may not be compatible.""",
 	},
+	195: { # Chapter 16: Overview of the C++ Standard Library 
+		'q':  """
+		True or false:
+            The use of any functionality provided by C headers is discourages in
+            favour of true C++ functionality.""",
+		'a': """
+		True.""",
+	},
+	196: {
+		'q':  """
+		In which Standard Library header would you find functionality for formatting
+        data such as numbers and dates according to rules of a certain country or region?""",
+		'a': """
+		<locale>""",
+	},
+    197: {
+		'q':  """
+		In which Standard Library header would you find functionality for regular expressions?""",
+		'a': """
+		<regex>""",
+	},
+    198: {
+		'q':  """
+        Consider the following bad practices:
+
+		    1) Not deleting the object at all (failing to free the storage)
+            2) A piece of code deleting the storage while another piece of code is still pointing
+                to that storage.
+                
+                
+        Which ones lead to i) memory leakage ii) dangling pointer""",
+		'a': """
+		i) (1) leads to memory leaking as objects will accumulate and take up space that is
+                not used.
+        ii) (2) leads to dangling pointers at we are pointing to storage that is either no longer in use
+                or had been reallocated for another purpose.
+        """,
+	},
+    199: {
+		'q':  """
+		Out of:
+            1) std::shared_ptr
+            2) std::weak_ptr
+            3) std::unique_ptr
+            
+        i) Which smart pointer is NOT thread-safe is all cases?""",
+		'a': """
+		i) std::unique_ptr is not always thread-safe. Consider using std::atomic_exchange""",
+	},
+    200: {
+		'q':  """
+		State three headers in which exception support functionality is defined.
+        """,
+		'a': """
+		1) <exception>
+        2) <stdexcept>
+        3) <system_error>
+        """,
+	},
+    201: {
+		'q':  """
+		In which Standard Library header would you find functionality for working with time?""",
+		'a': """
+		<chrono>""",
+	},
+    202: {
+		'q':  """
+		In which Standard Library header would you find functionality for working with
+        variable number of arguments?""",
+		'a': """
+		<initializer_list>""",
+	},
+    203: {
+		'q':  """
+		Outline the affordances of the following classes that were introduced in C++17:
+        
+            1) std::optional
+            2) std::variant
+            3) std::any
+        """,
+		'a': """
+		    1) std::optional - holds a value for a specific type, or nothing.
+            2) std::variant - can hold a single valueof one of a given set of types, or nothing
+            3) std::any - a class that can contain a single value of any type.
+        """,
+	},
+    204: {
+		'q':  """
+		To which Standard Library header would you turn to for filesystem support?""",
+		'a': """
+		<filesystem>""",
+	},
+    205: {
+		'q':  """
+		Define amortized constant time.""",
+		'a': """
+		A way of measuring the average big-O as the number of operations tends to infinity.
+        So if an operation is said to have amortized constant time, that means that in the overwhelming
+        majority of cases we have O(1), but occasionally we may have O(N) <- due to resizing an std::vector e.g.""",
+	},
+    206: {
+		'q':  """
+		True or false:
+        
+            For std::priority_queue, removing an element with a priority tie with another
+            element in well-define. """,
+		'a': """
+		False""",
+	},
+    207: {
+		'q':  """
+		Name two cases in which an std::set would be an viable option over an std::vector
+        or an std::list?""",
+		'a': """
+		Case 1: If you need order and want equal performance for insertion, deletion and lookup.
+        Case 2: If you want to enfornce that there are no duplicate elements.""",
+	},
+    208: {
+		'q':  """
+		Consider and explain the usage of <algorithm>'s std::clamp:
+		
+		template<class T, class Compare>
+		constexpr const T& clamp( const T& v, const T& lo, const T& hi, Compare comp );
+		""",
+		'a': """
+		std::clamp checks whether a value `v` is between a given minimum `lo` and a given
+		maximum `hi`. 
+		
+		Return:
+			a reference to `lo` if v < lo.
+			a reference to `hi` if v > hi.
+			Otherwise, return a reference to `v`.
+		""",
+	},
+    209: {
+		'q':  """
+		True or false:
+		
+			The standard library guarantees thread safety for accessing containers simultaneously
+			from multiple threads.""",
+		'a': """
+		""",
+	},
 }
