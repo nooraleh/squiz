@@ -4,5 +4,4 @@
 from qna.classes.test_builder import TestBuilder
 
 if __name__ == "__main__":
-    test_builder = TestBuilder()
-    test_builder()
+    TestBuilder()

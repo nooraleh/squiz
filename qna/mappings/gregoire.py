@@ -1,16 +1,5 @@
 # Notes taken in a Q & A style format from Marc Gregoire's Professional C++
 
-chapter_info = {
-			1: ['Chapter 1: A Crash Course in C++ and the Standard Library', (1, 39)],
-			2: ['Chapter 2: Associative containers', (17, 23)],
-			3: ['Chapter 3: Coding with Style', (59, 65)],
-			4: ['Chapter 4: Designing Professional C++ Programs', (65, 75)],
-			5: ['Chapter 5: Designing with Objects', (47, 59)],
-			6: ['Chapter 6: Designing for Reuse', (92, 31)],
-			7: ['Chapter 7: Memory Management', (75, 92)],
-			8: ['Chapter 8: Gaining Proficiency with Classes and Objects', (93, 106)],
-			9: ['Chapter 9: Mastering Classes and Objects ', (106, 110)],
-		}
 
 qna = {
 	1: { # Chapter 1: A Crash Course in C++ and the Standard Library

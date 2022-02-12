@@ -1,16 +1,5 @@
 # Notes taken in a Q & A style format from Kurt Smith's 'Cython - A Guide for Python Programmers'
 qna = {
-	-1: {
-			1: ['Chapter 1: Cython Essentials', (1, 3)],
-			2: ['Chapter 2: Compiling and Running Cython Code', (3, )],
-			3: ['Chapter 3: Non-Modifying containers', (23, 28)],
-			4: ['Chapter 4: ', (28, 29)],
-			5: ['Chapter 5: ', (29, 30)],
-			6: ['Chapter 6: ', (30, 31)],
-			7: ['Chapter 7: ', (31, 36)],
-			8: ['Chapter 8: ', (36, 39)],
-		},
-	0: "Cython - A Guide for Python Programmers",
 	1: { # chapter 1: Cython Essentials
 		'q':  """
 		At the C-level, is a dynamic Python object:
