@@ -230,7 +230,7 @@ qna = {
 		'q':  """
 		i) What are initializer lists used for?
 		ii) Where are they defined?
-		ii) write the function prototype for a make_sum function with an initializer list.""",
+		iii) write the function prototype for a make_sum function with an initializer list.""",
 		'a': """
 		i) Initializer lists are used for writing functions that can accept a variable number of arguments
 		ii) <initializer_list>
@@ -1802,7 +1802,7 @@ qna = {
 		'q':  """
 		i) What do we call objects of a class which has overloaded the operator() - function call operator?
         ii) True or false:
-            We cna only overload the operator() as a static method in a class""",
+            We can only overload the operator() as a static method in a class""",
 		'a': """
 		i) Function objects/functors.
         ii) False. Only as a non-static.
