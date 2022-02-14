@@ -1085,13 +1085,16 @@ qna = {
 	},
 	114: {
 		'q':  """
-		What are static member functions? When would be like to have static member functions?""",
+		i) Do static member functions have a `this` pointer?
+		ii) What members can a static member function access?
+		iii) How can you call a static member function aside from via the . operator on an instance?""",
 		'a': """
-		Static member functions have no `this` pointer, can only access:
-            i) private or protected static members of the class
-            ii) private or protected non-static members of the class
+		i) Static member functions have no `this` pointer, can only access:
+        ii) 1) private or protected static members of the class
+            2) private or protected non-static members of the class
             
-        You can call static member functions without a class instance, just namespace the class name.""",
+        You can call static member functions without a class instance,
+		just namespace the class name with the scope resolution operator ::.""",
 	},
 	115: {
 		'q':  """
@@ -1449,7 +1452,7 @@ qna = {
 	},
 	157: {
 		'q':  """
-		i) What is the difference between '\n' and std::endl?
+		i) What is the difference between '\\n' and std::endl?
         ii) What should you be wary of considering your answer to (i)?""",
 		'a': """
 		i) std::endl add a new line in addition to flushing the buffer
