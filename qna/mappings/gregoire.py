@@ -395,7 +395,7 @@ qna = {
 	},
 	44: {
 		'q':  """
-		What can you not do with an std::string and std::string_view?""",
+		Which operator is not defined between an std::string and std::string_view?""",
 		'a': """
 		Concatenation (i.e the operator+ is not define for those operands.""",
 	},

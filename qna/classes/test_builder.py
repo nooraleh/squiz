@@ -1,5 +1,7 @@
-from qna.classes.qna_collections import QnaCollection
 from sys import exit
+
+from qna.classes.qna_collections import QnaCollection
+from qna.helpers import clear_screen
 
 from qna.classes.qna_collections import QnaCollection
 
@@ -39,6 +41,8 @@ class TestBuilder:
             happy = input("Are you happy with how you're answer (y/n)? ")
             if happy == 'n':
                 self.quiz.append(current_qna)
+            
+            clear_screen()
 
         print("""
         You've made it to the end and you've successfully answered all questions adequately,
