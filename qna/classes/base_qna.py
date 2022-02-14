@@ -26,7 +26,7 @@ class BaseQNA():
         )
 
         random_key_values = sample(
-            range(0, len(self.qna_dict) -2),
+            self.qna_dict.keys(),
             min(user_q_size, len(self.qna_dict)),
         )
 

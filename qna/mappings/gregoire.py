@@ -1934,7 +1934,7 @@ qna = {
 		Name two cases in which an std::set would be an viable option over an std::vector
         or an std::list?""",
 		'a': """
-		Case 1: If you need order and want equal performance for insertion, deletion and lookup.
+		Case 1: If you need ordered elements and want equal performance for insertion, deletion and lookup.
         Case 2: If you want to enfornce that there are no duplicate elements.""",
 	},
     208: {
