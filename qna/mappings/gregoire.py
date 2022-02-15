@@ -1,6 +1,5 @@
 # Notes taken in a Q & A style format from Marc Gregoire's Professional C++
 
-
 qna = {
 	1: { # Chapter 1: A Crash Course in C++ and the Standard Library
 		'q':  """
