@@ -728,7 +728,7 @@ qna = {
 	},
 	88: {
 		'q':  """
-		i) Which smart pointer supports aliasing?
+		i) Which smart pointer supports pointer aliasing?
 		ii) What does aliasing of this smart pointer allow for?""",
 		'a': """
 		i) std::shared_ptr
@@ -985,7 +985,7 @@ qna = {
 		ii)
 		
 			1) This call must be placed in the ctor-initializer (not the body)
-			2) The delegating constructor must be the only member initializer in the ctor-initializer list.
+			2) The delegated constructor must be the only member initializer in the ctor-initializer list.
 		""",
 	},
 	104: {
@@ -996,10 +996,10 @@ qna = {
 	},
 	105: {
 		'q':  """
-		C++11 onwards has deprecated the generation of a copy constructor is the class has a user-declared copy constructor
+		C++11 onwards has deprecated the generation of a copy constructor if the class has a user-declared copy constructor
 		, the same applies to copy assignment operators.
 		
-		What should we do if we have a user define copy constructor or copy assignment operator but still want
+		What should we do if we have a user-defined copy constructor or copy assignment operator but still want
 		the compiler generated version?""",
 		'a': """
 		In both cases, explicitly default one:
@@ -1014,7 +1014,7 @@ qna = {
 		
 			class Foo
 			{
-				frience class Bar; (1)
+				friend class Bar; (1)
 			};
 		
 		What implications does line (1) have for Bar?
@@ -1637,7 +1637,7 @@ qna = {
 	},
 	176: { # chapter 14: Handling Errors
 		'q':  """
-		Why should you always document the possibble exceptions a function can throw
+		Why should you always document the possible exceptions a function can throw
         in its code documentation?""",
 		'a': """
 		Because users of my function need to know which exceptions might get thrown
@@ -1645,7 +1645,7 @@ qna = {
 	},
     177: {
 		'q':  """
-		State two reasons in favour of throwing objects as excecptions.""",
+		State two reasons in favour of throwing exceptions as (excecption) objects.""",
 		'a': """
 		1) Objects convey information by their class name
         2) Objects can store information, including strings that describe the exceptions.""",
