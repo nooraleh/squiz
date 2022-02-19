@@ -1962,4 +1962,199 @@ qna = {
 		'a': """
 		""",
 	},
+	210: { # chapter 19: String Localization and Regular Expressions
+        "q": """
+        How does C++ store ASCII?""",
+        "a": """
+        ASCII is a 7-bit set usually stored in an 8-bit `char` type.""" 
+    },
+    211: {
+        "q": """
+        What is meant by making your source code localizable?""",
+        "a": """
+        It means to make your source code locale aware i.e to output different
+        language translations depending on the locale in which your program is running.""" 
+    },
+    212: {
+        "q": """
+        What is the wchar_t used for in C++?""",
+        "a": """
+        wchar_t is used for holding a wide character. This allows for storing non-ASCII (US) characters
+        such as Japanese and Arabic.""" 
+    },
+    213: {
+        "q": """
+        i) True or false:
+        
+            The C++ standard defines a size for wchar_t i.e compilers always use the same amount of bits.
+            
+        ii) What implications does your answer to (i) have for writing cross-platform code?""",
+        "a": """
+        i) False. Some compilers use 16 bits while others use 32 bits.
+        
+        ii) When writing cross-platform code, it is not safe to assume that wchar_t is of 
+            a particular size.""" 
+    },
+    214: {
+        "q": """
+        i) When working with wchar_t, what should we prefix string and character literals with
+        to indicate that a wide-character encoding should be used?
+        
+        ii) let my_wide by of type wchar_t. Define my_wide and use your answer to (i) to
+            appropriately assign the character 'm'.
+            """,
+        "a": """
+        i) We should prefix L e.g L'e'.
+        
+        ii) wchar_t my_wide = L'm';
+        """ 
+    },
+    215: {
+        "q": """
+        i) What is the wide version of the std::string class?
+        
+        ii) Name two additional string classes.""",
+        "a": """
+        i) std::wstring
+        
+        ii) std::u16string, std::u32string
+        """ 
+    },
+    216: {
+        "q": """
+        What is the benefit of using char16_t and char32_t instead of wchar_t?""",
+        "a": """
+        Benefit: char16_t is guaranteed to be at least 16 bits, char32_t is guaranteed to be at least 32 bits.
+            This is independent of the compile.
+            
+        Unlike wchar_t where the bit size is compiler-dependent i.e there is no minimum size guarantee for wchar_t.""" 
+    },
+    217: {
+        "q": """
+        Give a brief description of each of the following supported string prefixes:
+        
+        i) u8
+        ii) u
+        iii) U
+        iv) L
+
+        BONUS Q: Can all of these string literals be combined with the raw string literal prefix `R`?
+        """,
+        "a": """
+        i) u8 - A `char` string literal with UTF-8 encoding.
+        ii) u - A `char16_t` string literal.
+        iii) U - A `char32_t` string literal.
+        iv) L - A `wchar_t` string literal with a compiler-dependent encoding.
+        
+        BONUS ANS: Yes, they can. E.g
+
+        const char* wchar_t s1 = LR"(Raw wide string literal.)";
+        """ 
+    },
+    218: {
+        "q": """
+        i) What is the term for the C++ mechanism that groups specific data about a particular set of
+        cultural parameters?
+        
+        ii) What is the term for an individual component of a <answer_to_i>, such as a date format, time
+        format, number format and so on?""",
+        "a": """
+        i) Locale.
+        
+        ii) Facet.
+        """ 
+    },
+    219: {
+        "q": """
+        For ECMAScript regular expressions, the `.` wild card character can be used to match
+        any character except <fill_blank>?""",
+        "a": """
+        The newline character \n
+        """ 
+    },
+    220: {
+        "q": """
+        i) What is meant by a:
+            a) greedy regular expression?
+            b) non-greedy regular expression?
+        
+        ii) What can you do to make a regular expression non-greedy?""",
+        "a": """
+        i)
+            a) A greedy regular expression is one that finds the longest match possible.
+            b) A non-greedy regular expression repeats its pattern as few times as possible
+                while still matching the remainder of the regular expression.
+
+        ii) In order to make a regular expression non-greedy, a `?` can be added behind the
+            regex quantifier (?, *, {n, m}, +) e.g for the input: aaabbbb
+
+        Greedy: (a+)(ab)*()        ---matches---> "aaa" "" "bbb"
+        Non-greedy: (a+?)(ab)*(b+) ---matches---> "aa" "ab" "bb"
+        """ 
+    },
+    221: {
+        "q": """
+        i) When it comes to regex, what do back references allow for?
+        
+        ii) Break down the following regular expression:
+            (\d+)-.*-\1
+        """,
+        "a": """
+        i) Back references allow you to reference a captured group inside the regular expression itself.
+        
+        ii)
+            a) (\d+) --> one or more digits
+            b) -     --> a dash
+            c) .*    --> zero or more wild card characters (except newline)
+            d) -     --> a dash
+            e) \1    --> Exactly the same digits captures by (a)
+        """ 
+    },
+    222: {
+        "q": """
+        i) What is meant by positive lookahead.
+        ii) What is meant by negative lookahead.
+
+        iii) Consider the syntax:
+            a) ?! b) ?=
+        Which denotes positive lookahead, and which denotes negative lookahead.
+
+        """,
+        "a": """
+        i) Positive lookahead - we check whether the following characters match the regular expression
+            but the lookahead pattern is not consumed (i.e part of the match).
+
+        ii) Negative lookahead - we check whether the following characters DO NOT match the regular expression
+            but the lookahead pattern is not consumed (i.e part of the match).
+
+        iii) a) negative lookahead b) positive lookahead.
+        """ 
+    },
+    223: {
+        "q": """
+        In terms of regular expression (negative and positive) lookaheads, break down the following regex's:
+        
+        i) a(?!b)
+        ii) a(?=b)
+        """,
+        "a": """
+        i) a(?!b) denotes negative lookahead, so we match all `a` that DO NOT HAVE a consecutive b.
+            Note: b is not consumed i.e it will not be part of the match.
+            
+        ii) a(?=b) denotes positive lookahead, so we match all `a` that DO HAVE a consecutive b.
+            Note: b is not consumed i.e it will not be part of the match.
+        """ 
+    },
+    224: {
+        "q": """
+        What is the difference between <regex>'s:
+        
+            1) std::regex_iterator
+            2) std::regex_token_iterator""",
+        "a": """
+            1) std::regex_iterator - iterates through every matched pattern
+            2) std::regex_token_iterator - can be used to automatically iterate over all
+                or selected capture groups across all matched patterns.
+        """ 
+    },
 }
