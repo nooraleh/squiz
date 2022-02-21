@@ -2157,4 +2157,112 @@ qna = {
                 or selected capture groups across all matched patterns.
         """ 
     },
+	225: { # Chapter 20: Additional Library Utilities
+        "q": """
+        What does the Ratio library allow you to do?""",
+        "a": """
+        The Ratio library allows you to exactly repesent any finite rational
+        number that you can use at compile time.
+        """ 
+    },
+    226: {
+        "q": """
+        i) Why can't we use standard arithmetic operators for the std::ratio
+        objects?
+        
+        ii) Name the alternative template implementations of standard arithmetic
+            operators for std::ratio objects.""",
+        "a": """
+        i) Because all operations need to happen at compile time, so standard
+            arithmatic operators that may calculate at them at runtime may be
+            insufficient.
+            
+        ii)
+            1) std::ratio_add
+            2) std::ratio_subtract
+            3) std::ratio_multiply
+            3) std::ratio_divide    
+        """ 
+    },
+    227: {
+        "q": """
+        Consider the template of std::chrono::duration
+        
+            template<typename Rep, typename Period = std::ratio<1>>
+            class duration {...};
+        
+        i) What does `Rep` represent
+        ii) What does `Period` represent.""",
+        "a": """
+        i) The underlying data type to be wrapped around e.g. int64_t, float
+        ii) The rational constant representing the tick period i.e the time in seconds between
+        to ticket. Examples include std::ratio<1, 60>.
+        
+        """ 
+    },
+    228: {
+        "q": """
+        From the perspective of <chrono>, what does a `clock` class consist of?
+        """,
+        "a": """
+        A `clock` class consists of:
+            1) a time_point
+            2) a duration
+        """ 
+    },
+    229: {
+        "q": """
+        i) What are the three `clock`s in <chrono> that are defined by the standard?
+        ii) Which of the three should you avoid and why?""",
+        "a": """
+        i) 1) system_clock 2) steady_clock 3) high_resolution_clock
+        ii) You should avoid high_resolution_clock because depending on your compile,
+            it is possible for the high_resolution_clock to be a synonym for either
+            `steady_clock` or `system_clock`.
+            
+        """ 
+    },
+    230: {
+        "q": """
+        What are the three big components defined in the <random> header file?
+        """,
+        "a": """
+        1) random number engines
+        2) random number engine adapters
+        3) distributions
+        """ 
+    },
+    231: {
+        "q": """
+        Consider <random>. Describe the responsibilities of the following components:
+        
+        1) random number engines
+        2) random number engine adapters
+        3) distributions
+        """,
+        "a": """
+        1) random number engines - responsible for generating the actual random numbers
+                and storing the state for generating subsequent random numbers.
+        2) random number engine adapters - modifies the results of a random number engine
+                you associate it with.
+        3) distributions - determines the range of the generated random numbers and how
+            they are mathematically distributed within that range.
+        
+        """ 
+    },
+    232: {
+        "q": """
+        i) True or false:
+        
+            You can store a reference in an std::optional.
+
+        ii) What two methods can we use to create an std::reference_wrapper<T> and
+            std::reference_wrapper<const T> respectively.
+        """,
+        "a": """
+        i) False
+        
+        ii) std::ref, std::cref.
+        """ 
+    },
 }
