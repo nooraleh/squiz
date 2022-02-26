@@ -841,24 +841,6 @@ qna = {
 		Abstractions should not depend on details. Details should depend on abstractions.
 		""",
 	},
-	103: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	104: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	105: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
 	93: { # Chapter 8: Gaining Proficiency with Classes and Objects
 		'q': 
 		"""
@@ -1270,54 +1252,6 @@ qna = {
 		What does <utility>'s std::as_const() function do?""",
 		'a': """
 		std::as_const() returns a `const` reference version of its reference parameter.""",
-	},
-	135: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	136: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	137: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	138: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	139: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	140: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	141: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	142: {
-		'q':  """
-		""",
-		'a': """
-		""",
 	},
 	143: { # chapter 12: Writing generic code with templates
 		'q':  """
@@ -2265,4 +2199,397 @@ qna = {
         ii) std::ref, std::cref.
         """ 
     },
+	233: { # Chapter 17: Understanding containers and iterators
+		'q':  """
+		Standard library containers use value semantics on elements.
+        
+        That is, they:
+            1. store a copy of elements that they are given
+            2. assign to elements with the assignment operator
+            3. destroy elements with the destructor.
+            
+        What implications does this mean for writing classes that you
+        intend to use with the Standard Library?""",
+		'a': """
+		You need to make sure that they are copyable i.e the copy contructor
+        and copy assignment operators work as intended.""",
+	},
+	234: {
+		'q':  """
+		i) If you prefer using reference semantics. What is an alternative
+        to storing pointers to elements in a SL container?
+        
+        ii) What functions can help us achieve (i) and in which header are they defined?""",
+		'a': """
+		i) Storing `std::reference_wrapper`'s
+        
+        ii) std::ref(), std::cref(), defined in the <functional> header.
+        """,
+	},
+	235: {
+		'q':  """
+		Give an example of a move-only type i.e a type with is not
+        copyable.""",
+		'a': """
+		std::unique_ptr
+        """,
+	},
+	236: {
+		'q':  """
+		True or false:
+            If a move constructor/assignment is NOT marked as `noexcept`,
+            it will still be used in move construction/assignment
+            of elements in a SL container.""",
+		'a': """
+		False""",
+	},
+	237: {
+		'q':  """
+		What is <iterator>'s std::distance used for?""",
+		'a': """
+		It is used for computing the distance between two iterators
+        of a container.""",
+	},
+    238: {
+		'q':  """
+		Which of the following Standard Library class types support
+        iteration over their elements?
+        
+            1) sequential containers
+            2) ordered associative containers
+            3) unordered associative containers
+            4) container adapters
+            5) bitset
+            
+        """,
+		'a': """
+		(1), (2), (3)""",
+	},
+    239: {
+		'q':  """
+		True or false:
+        
+            For getting the begin, end, cbegin, cend, rbegin, rend... etc
+            
+        It is recommended to use the non-member functions e.g std::begin()
+        over their equivalent member functions e.g std::vector<int>::begin().""",
+		'a': """
+		True""",
+	},
+    240: {
+		'q':  """
+		Why is it preferred to use pre-increment instead of post-increment when
+        iterating SL container iterators?""",
+		'a': """
+		Pre-increment i.e ++iter can simply return a reference to an int.
+        Post-increment i.e iter++ must return a new iterator object.
+        """,
+	},
+    241: {
+		'q':  """
+		What is the difference between:
+            1) std::vector::size()
+            2) std::vector::capacity()
+            
+        """,
+		'a': """
+		    1) std::vector::size() - returns the number of elements in a vector
+            2) std::vector::capacity() - returns the number of elements the vector
+                can hold without reallocation""",
+	},
+    242: {
+		'q':  """
+		What does <iterator>'s std::data() global function do?""",
+		'a': """
+		It returns a pointer to the block of memory containing the elements
+        of the range.
+        """,
+	},
+    243: {
+		'q':  """
+		i) Which category of iterator does an std::list implement?
+        ii) What implications does your answer to (i) have for iterator arithmetic?""",
+		'a': """
+		i) bidirectional
+        ii) Implications: you can traverse through the elements of an std::list
+        with ++p or --p but you cannot use for example p+n or p-n.
+        """,
+	},
+    244: {
+		'q':  """
+		True or false:
+		
+			Comparing two std::vector's with:
+				1) operator==
+				2) operator!=
+				3) operator<, operator<=
+				4) operator> operator >=
+
+			Requires that the individual elements be comparable with the same respective
+			operator. Therefore, if you intend to store ojects of a custom class in an
+			std::vector and want those comparisons, operators (1)-(4) must be defined.
+				
+		""",
+		'a': """
+		True""",
+	},
+    245: {
+		'q':  """
+		What is a bit field?""",
+		'a': """
+		A bit field is a series of bits where individual bits or clusters of bits mean different
+		things.
+		
+		Example usages include:
+			- reducing the memory size of class/struct if possible
+			- setting the stream flags when opening a file
+			""",
+	},
+    246: {
+		'q':  """
+		 How can we force alignment in a struct with bitfield members?""",
+		'a': """
+		Force alignment in a struct with bitfield members is possible
+		by including an unnamed bit field of size 0.
+		
+		Essential a way of using up the padding bits.
+		""",
+	},
+    247: {
+		'q':  """
+		Consider the following struct:
+		
+			struct Node
+			{
+				static unsigned int x:5;
+			};
+		
+		i) Can we compile Node?
+		ii) If not, why not.
+		""",
+		'a': """
+		i) No, we cannot compile Node.
+		ii) Because bit fields cannot be static.
+		""",
+	},
+    248: {
+		'q':  """
+		Consider the statement:
+		
+			Many C++ experts recommend avoiding std::vector<bool> in favour of the std::bitset.
+			If you need a dynamically-sized bit field, then it's recommended to use 
+			std::vector<T>.
+			
+		State the two types of T.""",
+		'a': """
+		1) std::int_fast8_t 
+		2) unsigned char
+		""",
+	},
+    249: {
+		'q':  """
+		i) What is the key difference between std::array and std::vector?
+		ii) What is the purpose of your answer to (i)
+		
+		""",
+		'a': """
+		(i) Key difference: std::array is of fixed size. Unlike std::vector, it cannot
+			grow or shrink in size.
+
+		(ii) The purpose of std::array's fixed sizing is to allow the std::array to
+			be allocated on the stack, rather than always demanding heap access as
+			std::vector does.
+		""",
+	},
+    250: {
+		'q':  """
+		True or false:
+		
+			For std::priority_queue, if two elements have equal priority, their relative
+			order in the queue is well defined.""",
+		'a': """
+		False, it is undefined.
+		""",
+	},
+    251: {
+		'q':  """
+		Why are we unable to use std::list as the underlying container for the std::priority_queue
+		container adapter?
+		""",
+		'a': """
+		Because std::priority_queue requires random access to its elements, which std::list does not
+		provide.
+		""",
+	},
+    252: {
+		'q':  """
+		With std::priority_queue, how can we customize priority?""",
+		'a': """
+		For std::priority_queue by default priority is determined according to `operator<`
+		so we can customize priority by defining the operator< for the contained element
+		data type.
+		""",
+	},
+    253: {
+		'q':  """
+		Consider the excerpt:
+		
+			Single failures on a system can often cause multiple errors to be generated
+			from different components. A good error-handling system uses error correlation
+			[...]
+			
+		i) What is meant by error correlation
+		ii) Which Standard Library class would be a good candidate for a simple error
+			correlator given your answer to (i)
+		""",
+		'a': """
+		i) Error correlation is a means to process the most important errors first 
+			(not to be confused with statical concepts of similar naming)
+		ii) Since error correlators prioritize the most important errors, a good
+			Standard Library class candidate would be std::priority_queue.
+		""",
+	},
+	254: {
+		'q':  """
+		True or false:
+		
+		For an std::map:
+
+			1) Insertion is based on the key
+			2) Lookup is based on the value
+			3) Deletion is based on both the key and the value
+		""",
+		'a': """
+			1) True
+			2) False
+			3) False, Deletion is based only on the key
+		
+		""",
+	},
+    255: {
+		'q':  """
+		What is the computational complexity of std::map for:
+		
+			1) Insertion
+			2) Deletion
+			3) Lookup
+			
+		And why?""",
+		'a': """
+		All of (1), (2) and (3) take logarithmic time O(log(n)) as they are based on
+		some form of balanced tree implementation, such as a red-black tree.
+		
+		""",
+	},
+    256: {
+		'q':  """
+		Consider the following snippet:
+
+			std::map<int, std::string> mapping;
+			auto ret = mapping.insert({1, "a string"}); (1)
+
+
+		i) give the full data specification for variable `ret`
+		ii) How can we use your answer to (i) to confirm whether line (1)
+			was successful?
+		
+		""",
+		'a': """
+		i) std::pair<std::map<int, std::string>::iterator, bool> ret;
+		ii) By check ret.second (evaluates to true if insertion was successful, false if it wasn't)
+		""",
+	},
+	257: {
+		'q':  """
+		i) True or false:
+			For an std::map, you can modify elements through non-const
+			`std::map<T1, T2>::iterator`s, but the compiler generate an
+			error if you try to modify the key of an element, even through a non-const
+			iterator.
+
+		ii) Why did you go with your answer to (i)?
+		""",
+		'a': """
+
+		i) True
+
+		ii) Because if it was false we would be destroying the sorted order of the
+			elements in the std::map.
+		""",
+	},
+    258: {
+		'q':  """
+		Consider:
+		
+			std::map<int, int> src = \{ {1, 11}, {2, 22} };
+			std::map<int, int> dst = \{ {2, 22}, {3, 33}, {4, 44}, {5, 55} };
+			dst.merge(src); (1)
+
+		i) What elements are contains in `src` after line (1)?
+		ii) Why?
+			
+		""",
+		'a': """
+		i) `src` has \{2, 22}
+		ii) Because elements in the source that are duplicates to elements in the 
+			destination container are left in the source.
+		
+		""",
+	},
+    259: {
+		'q':  """
+		What criteria need to be satisfied for a hash function to be considered a 
+		`perfect hash`?""",
+		'a': """
+		1) The hash function does not create any collisions
+		2) The hash function must have constant O(1) lookup time
+		""",
+	},
+	260: {
+		'q':  """
+		How would you go about writing a hash function for your user-defined data type?
+		""",
+		'a': """
+		You would write a specialization of <functional>'s std::hash template
+		for your user-defined data type.
+		This specialization needs an implementation of the function call operator
+		and returns the hash of a given user-defined data type instance.
+		""",
+	},
+    261: {
+		'q':  """
+		True or false:
+		
+			Normally, you must not put anything in the `std` namespace; however,
+			`std` class template specializations are an exception to this rule.
+		""",
+		'a': """
+		True""",
+	},
+    262: {
+		'q':  """
+		True or false:
+		
+		Functions such as std::begin() and std::end() work with:
+			1) Statically allocated C-style arrays accessed through pointers.
+			2) Statically allocated C-style arrays not accessed through pointers.
+			3) Dynamically allocated C-style arrays.
+		""",
+		'a': """
+			1) False
+			2) True
+			3) False
+		""",
+	},
+	263: {
+		'q':  """
+		State three reasons as to why <bitset>'s std::bitset is not considered
+		to be a true Standard Library container?""",
+		'a': """
+		1) std::bitset is of fixed size
+		2) std::bitset is not templatized on an element type
+			(it is templatized on the number of bits it stores)
+		3) std::bitset does not support iteration
+		""",
+	},
 }
