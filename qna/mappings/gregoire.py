@@ -2592,4 +2592,264 @@ qna = {
 		3) std::bitset does not support iteration
 		""",
 	},
+	264: { # Chapter 18 - Mastering Standard Library Algorithms
+		'q':  """
+		What do we call a class that overloads the function call operator i.e
+        `operator()`?
+        """,
+		'a': """
+		A function object or a functor.
+        """,
+	},
+    265: {
+		'q':  """
+		Which of the following statements are correct:
+        
+        If <algorithm>'s std::find() fails to find an element it returns:
+
+            1) An iterator equal to the end of the underlying container
+            2) And iterator equal to the `end` iterator specified in the function call. 
+        """,
+		'a': """
+		(2) is correct.
+        """,
+	},
+	266: {
+		'q':  """
+		Some Standard Library containers, such as std::map and std::set
+        provide their own versions of `find` as class methods.
+
+        Why should you use the class method versions of `find` as opposed
+        to the generic std::find as defined in <algorithm>? Give a concrete example.
+        """,
+		'a': """
+
+        ANS: Because the class method versions are faster. For example, for std::map,
+        the generic std::find runs in O(N) time. While std::map::find() is O(log(n)).
+		""",
+	},
+    267: {
+		'q':  """
+		i) What is <functional>'s std::function used for?
+        ii) Consider the following generic syntax:
+
+            std::function<R(ArgTypes...)>
+
+        Use this template to assign the function:
+            void func(int num, const std::string& _str);
+
+        To variable `f1`
+        
+        """,
+		'a': """
+		i) std::function can be used to point to:
+            a) a function
+            b) a function object
+            c) a lambda expression
+        Basically anything that is callable.
+
+        ii) std::function<void(int, const std::string&)> f1 = func;
+        """,
+	},
+    268: {
+		'q':  """
+		Consider the following snippet:
+        
+            const double data = 1.23;
+            auto capturing_lambda = [data]\{ std::cout << data << std::endl; \}; (1)
+
+        Does the variable `data` retain or loss the constness in the lambda body?
+        """,
+		'a': """
+		`data` in the lambda body retains constness. In general,
+        variables captured from the enclosing scope retain the constness of the
+        variables that the lambda captures in the capture block.
+        """,
+	},
+    269: {
+		'q':  """
+		i) True or false:
+        
+            For a lambda expression, the function call operator is marked as `const`
+            by default. 
+
+        ii) What implications, if any, does your any to (i) have for non-const variables
+            captured by value in a lambda expression.
+
+        iii) What specification can we add to the lambda if we do not want your answer
+            to (ii)
+        """,
+		'a': """
+		i) True
+
+        ii) This means that even if you capture a non-const variable by value in a lambda
+            expression, the lambda expression is not able to modify this copy.
+        
+        iii) If we want to modify the value we capture, we must mark the lambda as mutable
+            i.e [data] () mutable \{data *= 2; std::cout << data << std::endl; \};
+        """,
+	},
+    270: {
+		'q':  """
+		For lambda expressions, there are two ways to capture all variables from
+        the enclosing scope.
+
+        Explain the following capture specifications:
+            1) [=] and;
+            2) [&]
+        
+        """,
+		'a': """
+		1) [=] : Captures all variables from the enclosing scope by value
+        2) [&] : Captures all variables from the enclosing scope by reference
+        
+        """,
+	},
+	271: {
+		'q':  """
+		What are generic lambda expressions?
+        """,
+		'a': """
+		Generic lambda expressions are lambda expressions which use `auto`
+        as a type in the parameter list. E.g
+
+        auto add = lambda[](auto x, auto y) { return x+y; }
+        """,
+	},
+    272: {
+		'q':  """
+		Why should you avoid using std::bind1st, std::bind2nd, std::mem_func??""",
+		'a': """
+		Because those functions have been officially removed frrom the C++17 standard.""",
+	},
+    273: {
+		'q':  """
+		State the five arithmetic functor class templates for binary arithmetic operations
+        as defined in <functional>
+        """,
+		'a': """
+		1) std::plus
+        2) std::divides
+        3) std::minus
+        4) std::multiplies
+        5) std::modulus
+        """,
+	},
+    274: {
+		'q':  """
+		i) What are transparent operator functors?
+        
+        ii) True or false:
+            It is recommended to always use the transparent operator functors.
+        """,
+		'a': """
+		i) Transparent operator functors are operator functors which allow
+            you to omit the template type.
+
+            E.g. std::multiplies<>() instead of std::multiplies<int>()
+        
+        ii) True
+        """,
+	},
+    275: {
+		'q':  """
+		State all 6 of the comparison functor class templates as defined in <functional>
+        """,
+		'a': """
+		1) std::equal_to
+        2) std::not_equal_to
+        3) std::less
+        4) std::greater
+        5) std::less_equal
+        6) std::greater_equal
+        """,
+	},
+	276: {
+		'q':  """
+		State the five non-modifying counting algorithms as defined
+		in <algorithm>.
+        """,
+		'a': """
+		1) std::all_of()
+		2) std::any_of()
+		3) std::none_of()
+		4) std::count()
+		5_ std::count_if()
+		""",
+	},
+    277: {
+		'q':  """
+		True or false:
+
+		With std::copy(), as with all modifying algorithms, std::copy() can indeed insert
+		elements into the destination container.
+		""",
+		'a': """
+		False. std::copy(), like all modifying algorithms, can only overwrite whatever
+		elements are there already.
+		""",
+	},
+    278: {
+		'q':  """
+		i) What does std::remove not actually remove the elements in a container
+		i.e it instead partitions the container into two sets; 
+			1) the elements to be kept; THEN
+			2) the elements to be removed.
+
+		ii) Name the idiom that uses std::remove/std::remove_if in order to 
+			get the removal functionality from the container.
+		
+		""",
+		'a': """
+		i) Algorithms such as std::remove have access only to the iterator abstaction,
+			not to the container. Thus, the std::remove algorithm cannot actually remove
+			the elements.
+
+		ii) remove-erase
+		""",
+	},
+    279: {
+		'q':  """
+		Why is sorting (e.g with <algorithm>'s std::sort) not relevant for:
+
+			1) std::set
+			2) std::unordered_map
+		""",
+		'a': """
+			1) std::set is an ordered associative container and they already maintain
+				elements in a sorted order
+			2) std::unordered_map is an unordered associative containers and have no
+				concept of sorting.
+		""",
+	},
+    280: {
+		'q':  """
+		What is the return value of <algorithm>'s:
+		
+			1) std::is_sorted()
+			2) std::is_sorted_until()
+		""",
+		'a': """
+			1) std::is_sorted returns `true` if a given range is sorted
+			2) std::is_sorted_until returns an iterator such that everything before
+				this iterator is sorted.
+		
+		""",
+	},
+	281: {
+		'q':  """
+		Explain the usage of <algorithm>'s std::clamp() and what it returns.
+
+		""",
+		'a': """
+		std::clamp(v, lo, hi) is a helper function that you can use to determine
+		if a given v in inside the range (lo, hi) <- both ends exclusive.
+
+		If returns:
+			- A reference to `lo` if v < lo
+			- A reference to `hi` if v > hi
+			- A reference to v otherwise. 
+		
+		""",
+	},
 }
