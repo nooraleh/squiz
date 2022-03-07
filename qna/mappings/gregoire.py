@@ -29,10 +29,12 @@ qna = {
 	},
 	5: {
 		'q':  """
-		What is the difference between std::endl and the escape character '\n'?
+		What is the difference between std::endl and the escape character '\\n'?
 		Why is use of std::endl in loops not recommended?""",
 		'a': """
-		En""",
+		The difference between std::endl and new line escape character is the std::endl adds a newline and flushes the buffer.
+		The use of std::endl is loops is not recommended as there is a performance cost to flushing the buffer a repeated amount of times.
+		""",
 	},
 	6: {
 		'q':  """
@@ -292,10 +294,10 @@ qna = {
 		'a': """
 		The `constexpr` specifier declares that it is possible to evaluate the value
 		of the function or variable at compile time. A constexpr specifier used in a 
-		function or static data member declaration implied `inline`.
+		function or static data member declaration implies `inline`.
 
-		The main idea is performance improvement of programs by doing computations at
-		compile time rather than run time.
+		The main motivation is for runtime performance improvements by delegating
+		computatations at compile time rather than run time.
 		""",
 	},
 	35: {
@@ -400,7 +402,7 @@ qna = {
 	},
 	45: {
 		'q':  """
-		When should you use an std::string_view over options:
+		When should you use `const std::string_view&` over options:
 			1) const std::string&
 			2) const char*
 		in a function parameter specification????""",
@@ -751,9 +753,11 @@ qna = {
 	},
 	91: {
 		'q':  """
-		How does a buffer overflow error arise?""",
+		How can a buffer overflow error arise with a C-style array?
+		""",
 		'a': """
-		When writing to memory past the end of a (C-style) array.""",
+		When writing to memory past the end of a (C-style) array.
+		""",
 	},
 	92: { # chapter 6: Designing for Reuse
 		'q':  """
@@ -926,7 +930,7 @@ qna = {
 		'q':  """
 		Consider the following statement:
 		
-			'For performance reason, it is best to pass objects by const reference
+			'For performance reasons, it is best to pass objects by const reference
 			insteaad of by value'.
 
 		Why is this true?
@@ -1088,7 +1092,8 @@ qna = {
 	},
 	116: {
 		'q':  """
-		What is one caveat to using the `inline` keyword that you should bear in mind?""",
+		What is one caveat to using the `inline` keyword on methods that you should bear in mind?
+		""",
 		'a': """
 		Definitions of methods marked as `inline` must be available in every source file
         in which they are called.""",
@@ -1138,13 +1143,18 @@ qna = {
 	},
 	123: {
 		'q':  """
-		With regard to a derive class's data members and overridden methods, what is meant by slicing?""",
+		With regards to a derive class's data members and overridden methods, what is meant by slicing?""",
 		'a': """
-		Slicing occurs when you cast a derived class to a base class, causing a loss of the 
+		Slicing occurs when you cast an instance of a derived class to a base class, causing a loss of the 
         derived class's data members and overridden methods.
         
         NB: Slicing does not occur when a derived class is assigned to a pointer or 
-        reference to a super class.""",
+        reference to a super class.
+		
+		e.g it does not occur with for example:
+
+			Base* _base = new Derived();
+		""",
 	},
 	124: {
 		'q':  """
@@ -1679,9 +1689,11 @@ qna = {
             i) a method of a class; and
             ii) a global function""",
 		'a': """
-		When you overload operators as a method of your class, the LHS must be always be 
-        an object of that class. When overloaded as a global function, the LHS can be an
-        object of a different type.
+		Overloading operators as a member of your class - the LHS must always
+			be the data type of that class.
+
+		Overloading operators as a global function - the LHS can be an object
+			of a different type (other than that class).
         """,
 	},
     188: {
@@ -1959,7 +1971,7 @@ qna = {
         What is the benefit of using char16_t and char32_t instead of wchar_t?""",
         "a": """
         Benefit: char16_t is guaranteed to be at least 16 bits, char32_t is guaranteed to be at least 32 bits.
-            This is independent of the compile.
+            This is independent of the compiler.
             
         Unlike wchar_t where the bit size is compiler-dependent i.e there is no minimum size guarantee for wchar_t.""" 
     },
@@ -2188,7 +2200,7 @@ qna = {
         "q": """
         i) True or false:
         
-            You can store a reference in an std::optional.
+            You can store a reference in an instance of std::optional.
 
         ii) What two methods can we use to create an std::reference_wrapper<T> and
             std::reference_wrapper<const T> respectively.
