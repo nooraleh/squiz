@@ -1,10 +1,11 @@
 from qna.classes.base_qna import BaseQNA
-from qna.mappings import gregoire, cpp_youtube
+from qna.mappings import gregoire, cpp_youtube, oliveira
 
 class QnaCollection:
     def __init__(self):
         self.qna_classes = [
-            self.Gregoire
+            self.Gregoire,
+            self.Oliveira,
             ]
         self.qna_collection = {
             i: qna_class()
@@ -27,5 +28,13 @@ class QnaCollection:
             super().__init__(
             title="C++ Youtube Content",
             qna_dict = cpp_youtube.qna,
+            obselete = False,
+            )
+
+    class Oliveira(BaseQNA):
+        def __init__(self):
+            super().__init__(
+            title="Oliveira's Practical C++20 Financial Programming",
+            qna_dict = oliveira.qna,
             obselete = False,
             )
