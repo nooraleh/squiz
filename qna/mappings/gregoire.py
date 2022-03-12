@@ -1589,10 +1589,12 @@ qna = {
 	},
     177: {
 		'q':  """
-		State two reasons in favour of throwing exceptions as (excecption) objects.""",
+		State two reasons in favour of throwing exceptions as (exception) objects.""",
 		'a': """
-		1) Objects convey information by their class name
-        2) Objects can store information, including strings that describe the exceptions.""",
+		1) Objects convey information by their class name e.g std::runtime_error
+        2) Objects can store information, including strings that describe the exceptions.
+			For instance, std::runtime_error::what().
+		""",
 	},
 	178: {
 		'q':  """
