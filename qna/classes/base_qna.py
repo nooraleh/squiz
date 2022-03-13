@@ -17,11 +17,10 @@ class BaseQNA():
         if not self.random_mode:
             raise NotImplementedError(f"{self.__name__}.random_mode evaluates to False")
 
-        user_q_size = int(input(
-            print(
-                f"""
-                Select the number of questions you'd like to be tested on for {self.title}:
-                """)
+        user_q_size = int(input(      
+            f"""
+            Select the number of questions you'd like to be tested on for {self.title}:
+            """
             )
         )
 
