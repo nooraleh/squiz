@@ -490,4 +490,95 @@ qna = {
             Impairment is unexpected damage to the asset while depreciation is expected wear and tear
 		""",
 	},
+	36: {
+		'q':  """
+		i) What is a nonperforming asset (NPA)?
+
+		ii) What criteria do banks usually have to classify
+			assets as nonperforming?
+		""",
+		'a': """
+		i)	A nonperforming asset (NPA) is a debt instrument where the borrower has
+			not made any previously agreed upon interest and principal repayments to
+			the designated lender for an extended period of time.
+
+		ii) Either:
+
+			1) 90 days of nonpayment of interest or principal; OR
+			2) Failure to pay principal due at maturity.
+		""",
+	},
+	37: {
+		'q':  """
+		i) What is a eurobond?
+
+		ii) What are eurobonds also called?
+
+		iii) What are they not to be confused with?
+
+		iv) Give a concrete example of a eurobond, given your answer to (i)
+		""",
+		'a': """
+		i) A eurobond is an international bond that is denominated in a currency
+		not native to the country where it is issued.
+
+		ii) External bonds
+
+		iii) They are not to be confused with eurozone eurobonds, which are
+			issued by eurozone states.
+
+		iv) An Australian company issues a bond in USD and sells it in Japan.
+		""",
+	},
+	38: {
+		'q':  """
+		i) What is underwriting?
+		ii) Where does underwriting fit into the context of IPOs?
+		""",
+		'a': """
+		i) Underwriting is the process through which an individual or
+			institution takes on financial risk for a fee.
+
+		ii) In the context of IPOs, a financial institution may underwrite
+			the remaining shared in an IPO to ensure the issuing company
+			meets capital requirements.
+		""",
+	},
+	39: {
+		'q':  """
+		Consider the statement:
+
+			Interest can be calculated either as a discrete or a continuous compounding process.
+
+		Let:
+
+			- R be the interest rate
+			- V be the future value
+			- P be the present value
+			- N be the number of periods
+
+		i)  Give the formula for discretely compounded interest rate
+		ii) Give the formula for continuously compounded interest rate
+		""",
+		'a': """
+		i)  V = P * ((1 + R)**N)
+		ii) V = P * (e**(R * N)) ; where e is Euler's number.
+		""",
+	},
+	40: {
+		'q':  """
+		Let:
+
+			- PV be the present value
+			- FV be the future that value we want to discount
+			- R be the interest rate
+			- N be the number of periods between PV and FV
+
+		Give the formula for calculating the present value of a future payment.
+		""",
+		'a': """
+			PV  = FV / ((1 + R) ** N)
+				= FV * ((1 + R) ** -N) 
+		""",
+	},
 }
