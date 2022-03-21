@@ -581,4 +581,307 @@ qna = {
 				= FV * ((1 + R) ** -N) 
 		""",
 	},
+	41: { # Chapter 2 - The Equities Market
+		'q':  """
+		What is an exchange-traded fund (ETF)?
+		""",
+		'a': """
+		An exchange-traded fund is:
+
+			- is a basket of securities that trades on an exchange just like a stock
+			- ETFs will track a particular index, sector commodity, or other asset.
+			- can be purchased or sold on a stock exchange the same way a regular stock can
+		""",
+	},
+	42: {
+		'q':  """
+		What is sell-side?
+		""",
+		'a': """
+		Sell-side refers to the part of the financial industry that is 
+		involved in the creation, promotion, and sale of:
+			- stocks,
+			- bonds,
+			- foreign exchange
+			- other financial instruments 
+		""",
+	},
+	43: {
+		'q':  """
+		What is the International Accounting Standards (IAS) definition
+		of a financial instrument?
+		""",
+		'a': """
+		A financial instrument is any contract that gives rise to a financial
+		asset of one entity and a financial liability or equity instrument
+		of another entity.
+		""",
+	},
+	44: {
+		'q':  """
+		What is the buy-side?
+		""",
+		'a': """
+		The buy-side is a segment of financial markets made up of investing
+		institutions that buy securities for money-management purposes.
+		""",
+	},
+	45: {
+		'q':  """
+		In the context of technical analysis, what is meant by the:
+
+			1) support
+			2) resistance
+		""",
+		'a': """
+		1) support:
+			- occurs where a downtrend is expected to pause due to a concentration
+			  of demand.
+			- i.e the lowest price an instrument is expected to reach
+
+
+		2) resistance:
+			- occurs where an uptrend is expected to pause temporarily, due to
+				a concentraion of supply
+			- i.e the highest price an instrument is expected to reach.
+		""",
+	},
+	46: {
+		'q':  """
+		i) What does EPS stand for?
+		ii) What is the basic version of the formula for calculating
+			EPS?
+		""",
+		'a': """
+		i) Earnings per share
+		ii) profit_after_tax_for_year / number_of_shares_in_issue
+		""",
+	},
+	47: {
+		'q':  """
+		What is vesting?
+		""",
+		'a': """
+		Vesting is a legal term that means to give or earn
+		a right to a present or future payment, asset, or benefit.
+
+		The rights are usually earned through time spent in employment.
+
+		'To vest' is the act of exercises such rights/options.
+		""",
+	},
+	48: {
+		'q':  """
+		What is a restricted stock unit (RSU)?
+		""",
+		'a': """
+		An RSU refers to a form of compensation issued by an employer to
+		an employee in the form of company shares.
+
+		RSUs are issued to employees after either:
+			- achieving required performance milestones; OR
+			- upon remaining with their employer for a particular length of time.
+		""",
+	},
+	49: {
+		'q':  """
+		What is diluted earnings per share (EPS)?
+		""",
+		'a': """
+		Diluted EPS considers the:
+			profit_after_tax_for_year / number_of_shares_outstanding
+
+		where `number_of_shares_outstanding` includes the hypothetical
+		exercise of a company's stock options, warrants and RSUs.
+
+		This consideration would increases the denominators, hence the 
+		qualification of 'diluted' EPS.
+			
+		""",
+	},
+	50: {
+		'q':  """
+		i) What is a warrant?
+
+		ii) What are two key difference between a warrant and an option?
+		""",
+		'a': """
+		i) Warrants are a derivative that give the right, but not the obligation
+			to buy or sell a security - most commonly an equity - at a certain
+			price before expiration.
+
+		ii) Differences:
+
+			1) Warrants are issued by the company itself, not a third part.
+			2) Warrants are dilutive - when an investor exercises their warrant
+				they receive newly issued stock, rather than already-outstanding stock.
+		""",
+	},
+	51: {
+		'q':  """
+		What are the two types of equity/ownership in a firm?
+		""",
+		'a': """
+		1) Common stock
+		2) Preferred stock
+		""",
+	},
+	52: {
+		'q':  """
+		Outline some differences between common stock and preferred stock.
+		""",
+		'a': """
+		Differences:
+			- Preferred stockholders have a higher claim on distributions (dividends)
+				than common stockholders.
+			- Preferred stockholders usually have no or limited voting rights in
+				corporate governance.
+			- Unlike common stock, preferred stock pay set dividends at regular intervals.
+		""",
+	},
+	53: {
+		'q':  """
+		In the event of a liquidation, give the descending order of claim
+		on assets for the three categories:
+
+			1) bond holders
+			2) common stock holders
+			3) preferred stock holders
+		""",
+		'a': """
+		bond holders > preferred stock holders > common stock holders
+		""",
+	},
+	54: {
+		'q':  """
+		What are callable stock?
+		""",
+		'a': """
+		Callable stock is shared in a company that the issue can buy back.
+		""",
+	},
+	55: {
+		'q':  """
+		i)  What is the book value?
+		ii) How is the book value calculated?
+		""",
+		'a': """
+		i) Book value - corresponds to the amouunt of assets currently on
+			the company balance sheet.
+
+		ii) Book value = assets - (liabilities + intangibles)
+		""",
+	},
+	56: {
+		'q':  """
+		Give the formula for the price-to-book ratio (P/B)?
+		""",
+		'a': """
+		price-to-book ratio = stock_price / book_value
+							= stock_price / (assets - (liabilities + intangibles))
+		""",
+	},
+	57: {
+		'q':  """
+		What does EBITDA stand for?
+		""",
+		'a': """
+		EBITDA - Earnings before interest, tax, depreciation and amortization
+		""",
+	},
+	58: {
+		'q':  """
+		What is the American term for 'profit after tax'?
+		""",
+		'a': """
+		Net income.
+		""",
+	},
+	59: {
+		'q':  """
+		Give the i) British and ii) American formulas for 
+		return on equity (ROE).
+		""",
+		'a': """
+		
+		i)  British:
+				ROE = profit_after_tax / equity_capital_employed
+		ii) American:
+				ROE = net_income / shareholders_equity
+
+		""",
+	},
+	60: {
+		'q':  """
+		What are toxic assets?
+		""",
+		'a': """
+		Toxic assets are investments that are difficult or impossible to sell
+		at any price because the demand for them has collapsed.
+		""",
+	},
+	61: {
+		'q':  """
+		What is the difference between a forward and futures contract?
+		""",
+		'a': """
+		Forward:
+			- is a private and customizable agreement
+			- settles at the end of the agreement
+			- is traded over the counter
+
+		Futures:
+			- has standardized terms
+			- is traded over an exchange
+			- prices are settled on a daily basis until the end of the contract
+		""",
+	},
+	62: {
+		'q':  """
+		What is the:
+
+			1) spot price
+			2) futures price
+			3) The term for the difference between the spot price and the futures price.
+		""",
+		'a': """
+			1) spot price (of an asset) - is the current cash cost of it for immediate
+				purchase and delivery.
+
+			2) futures price (of an asset) - locks in the cost of the asset that will
+				be delivered at some point other than the present.
+
+			3) The basis
+		""",
+	},
+	63: {
+		'q':  """
+		i) What is a clearinghouse?
+
+		ii) What do clearinghouses act as third parties for?
+		""",
+		'a': """
+		i) A clearinghouse:
+			- is a designated intermediary between a buyer and a seller in a financial market
+			- validates and finalizes the transation, ensuring that both the buyer and 
+				seller honour their contractual obligations.
+
+		ii) Clearninghouses act as third parties for futures and options contracts.
+		""",
+	},
+	64: {
+		'q':  """
+		In the context of futures markets, what is:
+
+			i) Contango
+			ii) Backwardation
+		""",
+		'a': """
+			i) Contango is a situation where the spot price of an asset
+				is lower than the futures price.
+			
+			ii) Backwardation is a situation where the spot price of an
+				asset is higher than the futures price.
+		""",
+	},
 }
