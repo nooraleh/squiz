@@ -132,7 +132,7 @@ qna = {
 		ii) how we get the double max or int min??""",
 		'a': """
 		i) using the std::numeric_limits class template defined in <limits>
-		ii) std::number_limits<double>::max(), std::numeric_limits<int>::min()""",
+		ii) std::numeric_limits<double>::max(), std::numeric_limits<int>::min()""",
 	},
 	19: {
 		'q':  """
@@ -199,7 +199,7 @@ qna = {
 		'q':  """
 		What is the local predefined variable that every function has?""",
 		'a': """
-		`__func__`. It contains the name fo the current function.""",
+		`__func__`. It contains the name of the current function.""",
 	},
 	26: {
 		'q':  """
