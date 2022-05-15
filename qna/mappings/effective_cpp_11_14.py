@@ -251,34 +251,93 @@ qna = {
 			2) smart points as proxy classes for raw pointers
 		""",
 	},
-	15: {
+	15: { # chapter 3: Moving to Modern C++
 		'q':  """
+		Consider the following snippet:
+
+			class Widget
+			{
+			private:
+				int x{ 0 };   (1)
+				int y = 0;    (2)
+				int z(0);     (3)
+			};
+		
+		i)  What types of initialization are (1), (2) and (3) known as?
+		ii) Which line triggers a compiler error?
 		""",
 		'a': """
+		i)
+			(1) - Uniform initialization
+			(2) - copy initialization
+			(3) - direct intialization
+
 		""",
 	},
 	16: {
 		'q':  """
+		Consider the following snippet:
+
+			double x, y, z;
+
+			int sum1{ x + y + z }; (1)
+			int sum2(x + y + z);   (2)
+			int sum = x + y + z;   (3)
+
+		i)  What type of conversion would implicitly take place in all three lines?
+		ii) Given your answer to (i), which lines give compiler errors and which warnings? 
 		""",
 		'a': """
+		i) Implicit narrowing conversion
+		ii) (1) gives a compiler error, (2) and (3) give warnings
 		""",
 	},
 	17: {
 		'q':  """
+		What is the output of the following snippet:
+
+			class Widget
+			{
+			public:
+				Widget() {
+					std::cout << "parameterless constructor" << std::endl;
+				}
+
+				template<typename T>
+				Widget(std::initializer_list<T> il)
+				{
+					std::cout << "initializer list constructor" << std::endl;
+				}
+			};
+
+			int main(void)
+			{
+				Widget{};
+				return 0;
+			}
 		""",
 		'a': """
+		ANS: parameterless constructor
+		NB: This is an odd edge case as uniform unitialized objects tend
+			to dispatch to constructors with initializer_list parameters.
 		""",
 	},
 	18: {
 		'q':  """
+		What is a compelling technical reason for preferring 'using' aliases
+		declarations over `typedef`s?
 		""",
 		'a': """
+		In C++11, alias declarations may be templatized (alias templates) while
+		`typedef`s cannot.
 		""",
 	},
 	19: {
 		'q':  """
+
 		""",
 		'a': """
+		
 		""",
 	},
 	20: {
