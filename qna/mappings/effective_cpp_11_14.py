@@ -30,74 +30,225 @@ qna = {
 	},
     3: {
 		'q':  """
+		Consider the following snippet:
+
+			template<typename T>
+			void f(T& param);
+
+		State the deduced type of i) `T` and ii) `param`
+		in the following cases:
+
+
+		1) int x = 27; f(x);
+		2) const int cx = x; f(cx);
+		3) const int& rx = x; f(rx);
+
+
 		""",
 		'a': """
+		
+		1) T is `int`, param's type is `int&`
+		2) T is `const int`, param's type is `const int&`
+		3) T is `const int`, param's type is `const int&`
+
 		""",
 	},
     4: {
 		'q':  """
+		Consider the following snippet:
+
+			template<typename T>
+			void f(const T& param);
+
+		State the deduced type of i) `T` and ii) `param`
+		in the following cases:
+
+		1) int x = 27; f(x);
+		2) const int cx = x; f(cx);
+		3) const int& rx = x; f(rx);
+
 		""",
 		'a': """
+		1) T is `int`, param's type is `const int&`
+		2) T is `int`, param's type is `const int&`
+		3) T is `int`, param's type is `const int&`
+
 		""",
 	},
     5: {
 		'q':  """
+		Consider the following snippet:
+
+			template<typename T>
+			void f(T&& param);
+
+			int x = 27;
+			const int cx = x;
+			const int& rx = x;
+
+		State the deduced types for (i) `T` (ii) `param`
+		in the following cases:
+
+			1) f(x);
+			2) f(cx);
+			3) f(rx);
+			4) f(27);
 		""",
 		'a': """
+
+			1) x is lvalue, so: (i) T is int& (ii) param's type also int&
+			2) cx is lvalue, so: (i) T is const int& ii) param's type is const int&
+			3) rx is lvalue, so: (i) T is const int& ii) param's type is const int&
+			4) 27 is rvalue, so: (i) T is int, ii) param's type is int&&
 		""",
 	},
     6: {
 		'q':  """
+		Fill in the blank in the following statement:
+
+			`const` and `volatile` qualifiers are ignored only for by-<_____> parameters
 		""",
 		'a': """
+		ANS: value (pass-by-value parameters)
 		""",
 	},
     7: {
 		'q':  """
+		State:
+		
+			i) the two things that may decay to pointers upon being passed as an
+				argument to a function,
+			ii) the caveat for this decomposition
 		""",
 		'a': """
+
+			i)  (1) array names (2) function names
+			ii) unless they're used to initializze references
 		""",
 	},
     8: {
 		'q':  """
+		i) In C++11, what is the only way in which `auto` type deduction and template
+			type deduction differ. 
+			
+		ii) Give a concrete example of your answer to (i)
 		""",
 		'a': """
+		i)  In the treatment of std::initializer_list
+
+		ii) 
+			auto x = {11, 23, 9}; // x's type: std::initializer_list<int> //success
+
+			template<typename T>
+			void f(T param);
+
+			f({11, 23, 9});  // error - cannot deduce type for T
 		""",
 	},
     9: {
 		'q':  """
+		Consider the following snippet:
+
+			auto create_init_list()
+			{
+				return {1, 2, 3};
+			}
+
+		i) Does the snippet compile?
+		ii) Why? Why not?
 		""",
 		'a': """
+		i)  It does not compile
+		ii) The `auto` in this case employs template type deduction rules
+			not `auto` type deduction. There braced initializaers won't compile.
+				
+		Compilation error excerpt:
+			C2440 'return': cannot convert from 'initializer list' to 'auto'
 		""",
 	},
     10: {
 		'q':  """
+		Consider the following snippet:
+
+			std::vector<int> v;
+			auto reset_V = [&v](const auto& new_value) {; };
+
+			reset_V({1, 2, 3});
+
+		----------
+		i) Does the above code compile in C++14?
+		ii) Why? Why not?
+
 		""",
 		'a': """
+		i)  No.
+		ii) C++14 lambda auto params use template type deduction rules,
+			and therefore cannot handle brace initialized arguments.
 		""",
 	},
 	11: {
 		'q':  """
+		Consider the following snippets:
+
+			decltype(auto) f1()
+			{
+				int x = 0;
+				return x;
+			}
+
+			decltype(auto) f2()
+			{
+				int x = 0;
+				return (x);
+			}
+
+		What is the return type for:
+
+			1) f1
+			2) f2
 		""",
 		'a': """
+
+			1) int
+			2) int&
 		""",
 	},
 	12: {
 		'q':  """
+		What is the main benefit (difference) of using <functional>'s std::function
+		over employing function pointers?
 		""",
 		'a': """
+		Function pointers can only point to functions. However, std::function
+		objects can refer to any callable object.
 		""",
 	},
 	13: {
 		'q':  """
+		std::vector<T>::operator[] (assuming access is valid)
+		returns a reference to an element of type T for all T except for which
+		data type?
 		""",
 		'a': """
+		Except for bool. std::vector<bool> returns std::vector<bool>::reference
+		because std::vector<bool> is specified to represent its `bool`s in packed form
+		i.e one bit per bool.
 		""",
 	},
 	14: {
 		'q':  """
+		i)  What is a proxy class?
+		ii) Give a concrete example of a proxy class?
 		""",
 		'a': """
+		i) A proxy class is a class that exists for the purpose of emulating
+		and augmenting the behaviour of some other type.
+
+		ii) Options include
+			1) std::vector<bool>::reference, exists to offer the illusion that
+			operator[] for std::vector<bool> returns a reference to a bit.
+
+			2) smart points as proxy classes for raw pointers
 		""",
 	},
 	15: {
