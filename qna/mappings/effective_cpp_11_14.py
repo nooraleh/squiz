@@ -334,40 +334,111 @@ qna = {
 	},
 	19: {
 		'q':  """
+		When C++ is given a choice between converting a float to an:
+			1) int
+			2) double
 
+		Which conversion does C++ prefer?
 		""",
 		'a': """
-		
+		ANS: (2) i.e double
 		""",
 	},
 	20: {
 		'q':  """
+		True or false:
+
+		When is comes to pointers of type `void*`:
+
+			1) there is no way to dereference them
+			2) there is no way to increment them
+			3) there is no way to decrement them
 		""",
 		'a': """
+		All three statements are false.
 		""",
 	},
 	21: {
 		'q':  """
+		True or false:
+
+			It is possible to give a member function template specialization
+			a different access level from that of the main template.
+
+		I.e
+
+			class Widget
+			{
+			public:
+				template<typename T>
+				void example(T* param) {}
+
+			private:
+				template<>
+				void example<int>(int* param) {}
+			};
 		""",
 		'a': """
+		False. This is because template specialization must be
+		written at namespace scope, not class scope.
 		""",
 	},
 	22: {
 		'q':  """
+		Let's talk class member function reference qualifiers.
+		Consider the snippet:
+			class Widget
+			{
+			public:
+				void do_work()&;  // (1)
+
+				void do_work()&&; // (2)
+			};
+
+		Explain the significant of lines (1) and (2).
 		""",
 		'a': """
+		(1) this version of do_work() is called only
+			when *this is an lvalue
+		(2) this version of do_work() is called only
+			when *this is an rvalue
 		""",
 	},
 	23: {
 		'q':  """
+		Describe the object code ramifications of declaring a function `noexcept`?
 		""",
 		'a': """
+		In a `noexcept` marked function:
+
+			1) optimizers need not keep the runtime stack in an unwindable
+				state if an exception would propagate out of the function
+			2) optimizers need not ensure that objects in a `noexcept` function
+				are destroyed in reverse order of construction should an exception
+				leave the function.
 		""",
 	},
 	24: {
 		'q':  """
+		In the context of library interface design, what is meant by:
+		a)
+			i)  A function with a wide contract
+			ii) A function with a narrow contract
+
+		b) Which of (i) or (ii) is marked `noexcep`
 		""",
 		'a': """
+		a)
+			i) A function with a wide contract:
+
+				1) has no preconditions
+				2) may be called regardless of the state of the program
+				3) imposes no constraints on the arguments that callers pass it
+				4) never exhibit undefined behaviour
+
+			ii) Narrow contracts - functions without a wide contract
+
+		b) Functions with wide contracts
 		""",
 	},
 	25: {
