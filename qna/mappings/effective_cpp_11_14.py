@@ -826,50 +826,170 @@ qna = {
 	},
 	48: {
 		'q':  """
+		In which two context does using two &&'s lead an identifier being
+		associated with a universal/forwarding reference -
+		and not just an rvalue reference?
 		""",
 		'a': """
+		Context 1: With template parameters 
+
+		E.g. 
+			template<typename T>
+			void f(T&& param);
+
+		Context 2: With auto
+
+		E.g.
+			auto&& var2 = var1;
+
+		NB: Both these context have the element of type deduction.
 		""",
 	},
 	49: {
 		'q':  """
+		Consider the following snippet which allows `param` to be a 
+		universal/forwarding reference:
+
+			template<typename T>
+			void f(T&& param);
+
+		Give two snippet rewrites to showcase the way that we can disqualifiy
+		the `param` from being forwarding reference to an rvalue reference.
 		""",
 		'a': """
+		1) Wrapping `T` in a sequential container:
+
+			template<typename T>
+			void f(std::vector<T>&& param);
+
+		This is because `param`s type deduction will now be std::vector<T>&&
+		and not T&&. 
+
+		2) Const qualification e.g.
+
+			template<typename T>
+			void f(const T&& param);
 		""",
 	},
 	50: {
 		'q':  """
+		Which of:
+			1) std::move 2) std::forward
+
+		Should be used on:
+			i)  universal/forwarding references
+			ii) rvalue references
 		""",
 		'a': """
+		ANS:
+			a) std::move should be used on rvalue references
+			b) std::forward should be used on universal references
 		""",
 	},
 	51: {
 		'q':  """
+		Consider the following snippet:
+
+			Widget make_widget()
+			{
+				Widget w;
+				return w;
+			}
+
+		i) What are the two conditions required for return value optimization
+			(RVO) to take place?
+
+		ii) What alternative to RVO does the Standard require if RVO does not take place?
+			Use the snippet as a guide to answering (ii)
 		""",
 		'a': """
+		i)	1) the type of the local object is the same as that returned by the
+				function.
+			2) the local object is what's being returned.
+
+		ii) Implicit move i.e if we do not get copy elision then compilers must treat
+			the function as if it were written like this:
+
+				Widget make_widget()
+				{
+					Widget w;
+					return std::move(w);
+				}
 		""",
 	},
 	52: {
 		'q':  """
+		Why is overloading a function that takes a universal/forwarding reference
+		a bad idea?
+
+		Visual snippet:
+
+			template<typename T>
+			void f(T&& param()
+			{ /* function body ...*/ }
+
+			void f(int param)
+			{ /* different function body ...*/ }
 		""",
 		'a': """
+		Because the universal reference function will instantiate far more
+		argument types (leading to exact matches - and hence be chosen candidate).
+
+		Then the developer may expect. In the visual snippet if a client
+		were to call f(arg) with argument of type:
+
+			1) unsigned int
+			2) long int
+			3) long int
+			4) std::size_t
+
+		All of (1) - (4) would be called by the forwarding reference function.
 		""",
 	},
 	53: {
 		'q':  """
+		Explain what the following type traits do:
+
+			1) std::is_integral
+			2) std::remove_reference_t
+
+		3) Use both (1) and (2) in tandem to determine whether a type T
+			is integral or not, irrespective of whether the T is deduced from
+			an lvalue or an rvalue.
 		""",
 		'a': """
+		1) Determines whether a type is integral (e.g. std::size_t, int, long unsigned <- True)
+		2) Removes any reference qualifiers from a type
+
+		3) std::is_integral<std::remove_reference_t<T>>()
 		""",
 	},
 	54: {
 		'q':  """
+		i) Name a strategy for getting around overloading perfect forwarding
+			functions.
+
+		ii) Explain the approach to this strategy.
 		""",
 		'a': """
+		i)  Tag dispatch
+
+		ii) This essentially entails for an overloaded function `f` to call
+			and `f_impl` which leverages type_traits to determine which implementation
+			to dispatch to. (see item27 p.204/334 for a refresher)
 		""",
 	},
 	55: {
 		'q':  """
+		What is the purpose of std::enable_if?
 		""",
 		'a': """
+		std::enable_if:
+
+			- a template using std::enable_if is enabled only if the condition
+				specified by std::enable_if is satisfied
+			- potential templates that do not satisfy these conditions are 
+				said to be disabled
 		""",
 	},
 	56: {
