@@ -994,272 +994,265 @@ qna = {
 	},
 	56: {
 		'q':  """
+		In C++14, which type trait can we use to remove any references and CV-qualifiers?
 		""",
 		'a': """
+		std::decay_t<T>
 		""",
 	},
 	57: {
 		'q':  """
+		Consider <type_trait>'s std::is_base_of and complete the following sentence.
+
+		std::is_base_of<A, B>::value is true if .....
 		""",
 		'a': """
+		.... if B is derived from A (or A is a base of B)
 		""",
 	},
 	58: {
 		'q':  """
+		i) Which <type_trait> can we use to determine whether a type A is constructible
+			from a type B?
+
+		ii) Write a templatized function that returns a true or false depending on whether
+			an std::string can be constructed from an object of type T.
 		""",
 		'a': """
+		i) std::is_constructible
+
+		ii) Something like:
+
+			template<typename T>
+			bool is_string_constructible_from_t(T candidate)
+			{
+				return std::is_constructible<std::string, T>();
+			}
 		""",
 	},
 	59: {
 		'q':  """
+		In the context of lambda expressions, what is:
+	   
+			i) a closure?
+			ii) a closure class?
 		""",
 		'a': """
+		i)  A closure is a runtime object created by a lambda.
+		ii) - A closure class is a class from which a closure is instantiated.
+		    - Each lambda causes compilers to generate a unique closure class.
 		""",
 	},
 	60: {
 		'q':  """
+		State whether the following exist during compilation or during runtime:
+
+			1) lambdas
+			2) closure classes
+			3) closures
 		""",
 		'a': """
+			1) compilation time
+			2) compilation time
+			3) runtime
 		""",
 	},
 	61: {
 		'q':  """
+		Consider the following snippet and (i) determine what is wrong with (1):
+
+			using FILTER_CONTAINER = std::vector<std::function<bool(int)>>;
+			FILTER_CONTAINER filters;
+
+			void add_divisor_filter()
+			{	
+				auto divisor = 2;
+
+				filters.emplace_back(
+					[&](int value) {return value % divisor == 0; }  // (1)
+				);
+			}
+
+		(ii) What could we do to line (1) to prevent the issue you raised
+			in (i)
+
+		(iii) What could go wrong with (ii)?
 		""",
 		'a': """
+		(1) uses the default-by-reference capture mode.
+		The problem is that if the lifetime of the closure generated exceeds
+		the lifetime of the local variable `divisor`, the reference in the closure will
+		dangle.
+
+		(ii) Replace default-capture-by-reference with default-capture-by-value i.e:
+				[=](int value) {return value % divisor == 0; }
+
+		(iii) If you're default-capture-by-value'ing a raw pointer, and that pointer
+			gets `delete`ed, then you end up with a dangling pointer.
 		""",
 	},
 	62: {
 		'q':  """
+		i) What are init captures used for?
+		ii) Give a code snippet exhibiting init capture usage.
 		""",
 		'a': """
+		i) Init captures are used for moving objects into closures.
+		ii) Code snippet (anything like this is fine):
+
+			class MyMessage
+			{
+			public:
+				MyMessage(const std::string& message)
+					: m_message(message)
+				{}
+
+				void print_message()
+				{
+					std::cout << m_message << std::endl;
+				}
+
+			private:
+				std::string m_message;
+			};
+
+			void usage()
+			{
+				auto up_my_message = std::make_unique<MyMessage>("hey yall");
+
+				auto func = [pw = std::move(up_my_message)]
+				{
+					return pw->print_message();
+				};
+
+				func();
+			}
 		""",
 	},
 	63: {
 		'q':  """
+		Consider the following:
+
+			auto func = [lhs_pw = std::move(rhs_pw)]{/**/};
+
+		Express in words what the capture clause represents.
 		""",
 		'a': """
+		ANS:
+			Create a data member of `lhs_pw` in the closure class,
+			and intialize that data member the result of applying std::move
+			to the local variable `pw`.
 		""",
 	},
 	64: {
 		'q':  """
+		What's another name for C++14's init capture?
 		""",
 		'a': """
+		Generalized lambda capture.
 		""",
 	},
 	65: {
 		'q':  """
+		What is a C++14 generic lambda?
 		""",
 		'a': """
 		""",
 	},
 	66: {
 		'q':  """
+		What is a good rule to remember with regards to reference
+		collapsing?
 		""",
 		'a': """
+		If either reference is an lvalue reference:
+			then the result is an lvalue reference
+		Else (if both are rvalue references):
+			the result is an rvalue reference.
 		""",
 	},
 	67: {
 		'q':  """
+		State the four context in which reference collapsing
+		occurs?
 		""",
 		'a': """
+		1) Template instantiation
+		2) `auto` type generation
+		3) creation and use of `typedef`s and alias declarations
+		4) decltype usage
 		""",
 	},
 	68: {
 		'q':  """
+		i)   What does SSO stand for?
+		ii)  What does SSO entail?
+		iii) What implications does your answer to (ii) have on moving
+			vs. copying performance?
 		""",
 		'a': """
+		i)   Small string optimization
+		ii)  "small" strings (defined as having a capacity of no more than 
+				15 characters) are stored in a buffer within the `std::string`
+				objects, i.e. no heap-allocated storage is used.
+		iii) Moving small strings that use an SSO-based implementation is
+			no faster than copying them, because the copy-only-a-pointer
+			trick that generally underlists the performance advantage of
+			moves over copies isn't applicable.
 		""",
 	},
 	69: {
 		'q':  """
+		Consider the snippet:
+
+			template<typename T>
+			void fwd(T&& param)
+			{
+				f(std::forward<T>(param));
+			}
+
+		Write `fwd` in variadic templace form to allow it to
+		accept any number of arguments.
 		""",
 		'a': """
+		template<typename... Ts>
+		void fwd(Ts&&... params)                // accept any argument
+		{
+			f(std::forward<Ts>(params)...);     // forward them to `f`
+		}
 		""",
 	},
 	70: {
 		'q':  """
+		What makes is possible for emplacement functions to outperform
+		insertion functions?
 		""",
 		'a': """
+		Essence:
+			Insertion functions take objects to be inserted.
+			Emplace functions take constructor arguments for objects to be inserted.
+
+		This difference permits emplacement functions to avoid the creation and
+		destruction of temporary objects that insertion functions can necessitate.
 		""",
 	},
 	71: {
 		'q':  """
+		Consider the following snippet:
+
+			int x = 1;
+			std::vector<int> vi;
+
+			vi.push_back(x);    (1)
+			vi.emplace_back(x); (2)
+
+		True or false:
+		Lines (1) and (2) have the same net effect on the constructor.
 		""",
 		'a': """
-		""",
-	},
-	72: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	73: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	74: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	75: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	76: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	77: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	78: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	79: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	80: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	81: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	82: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	83: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	84: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	85: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	86: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	87: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	88: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	89: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	90: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	91: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	92: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	93: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	94: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	95: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	96: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	97: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	98: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	99: {
-		'q':  """
-		""",
-		'a': """
-		""",
-	},
-	100: {
-		'q':  """
-		""",
-		'a': """
+		True.
+
+		Both take the lvalue `x` and copy-construct at the end of `vi`.
 		""",
 	},
 }
