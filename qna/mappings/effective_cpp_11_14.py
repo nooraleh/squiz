@@ -1157,6 +1157,7 @@ qna = {
 		What is a C++14 generic lambda?
 		""",
 		'a': """
+		A lambda which used at least one 'auto' parameter.
 		""",
 	},
 	66: {
