@@ -230,168 +230,389 @@ qna = {
 	},
 	21: {
 		'q':  """
+		True or false:
+
+		A futures contract is referred to by its delivery month.
 		""",
 		'a': """
+		True
 		""",
 	},
 	22: {
 		'q':  """
+		i)  How are crude oil futures prices quoted?
+		ii) How are treasury bond and treasury note futures prices quoted?
 		""",
 		'a': """
+		i)  In dollars and cents.
+		ii) In dollars and thirty-seconds of a dollar.
 		""",
 	},
 	23: {
 		'q':  """
+		i)   What is meant by limit down?
+		ii)  What is meant by limit up?
+		iii) What is meant by limit move?
+
+		iv) What normally happens in the event of a limit move?
 		""",
 		'a': """
+		i) Limit down:
+				If in a day, the price of a futures contract moves down from the
+				previous day's close by an amount equal to the daily price limit
+				(as defined by the exchange).
+
+		ii) Limit up:
+				If in a day, the price of a futures contract moves up from the
+				previous day's close by an amount equal to the daily price limit
+				(as defined by the exchange).
+				
+		iii) Limit move:
+				Is a move in either direction equal to the daily price limit.
+
+		iv) Trading normally ceases for a day. However, in some instances the exchange
+			has the authority to step in and change the limits.
 		""",
 	},
 	24: {
 		'q':  """
+		In the context of futures contracts,
+		i)  What is meant by position limits?
+		ii) What are the purpose of position limits?
 		""",
 		'a': """
+		i)  Position limits are the maximum number of contracts that a speculator may hold.
+		ii) The purpose of these limits is to prevent speculators from exercising undue
+			influence on the market.
 		""",
 	},
 	25: {
 		'q':  """
+		Fill in the blanks:
+
+		A trader goes long in two December gold futures contracts. The trader has to keep
+		funds in what is known as a <___1__> account. The amount that must be deposited
+		at the time the contract is entered into is known as the <___2____> margin.
+
+		At the end of each trading day, the <answer to 1> account is adjusted to reflect
+		the trader's gain or loss. This practice is referred to as <___3___> settlement
+		or <____4___>.
+
+		The daily flow of funds between traders to reflect gains and losses is known
+		as <____5____> margin.
 		""",
 		'a': """
+
+		1) margin
+		2) initial
+		3) daily
+		4) marking to market
+		5) variation
 		""",
 	},
 	26: {
 		'q':  """
+		Describe the role of the clearning house in futures markets.
 		""",
 		'a': """
+		A clearing house:
+			- acts as an intermediary in futures transactions.
+			- guarantees the performance of the parties to each transaction.
+			- keeps track of all the transactions that take place during a day,
+				so that it can calculate the net position of each of its members.
 		""",
 	},
 	27: {
 		'q':  """
+		Name two ideas borrowed from the exchange-traded markets by the OTC market
+		to reduce counterparty credit risk?
 		""",
 		'a': """
+			1) Central counterparties (CCP)
+			2) Bilateral clearing
 		""",
 	},
 	28: {
 		'q':  """
+		i)   What does CSA stand for?
+		ii)  What is a CSA?
+		iii) True or false:
+				A master agreement is required to trade derivatives OTC, and the CSA
+				is a mandatory part of the overall agreement.
+		iv) CSA's are associate with which of the following:
+				1) Central counterparties (CCP)
+				2) Bilateral clearing
 		""",
 		'a': """
+		i)  Credit support annex
+		ii) A credit support annex is a document that defines the terms
+			for the provision of collateral by the parties in derivatives transactions.
+		iii) False
+		iv)  (2) Bilateral clearing
 		""",
 	},
 	29: {
 		'q':  """
+		Which of the following earns interest? Why? Why not?
+
+			1) Daily variation margin provided by a clearing house member for futures
+				contracts (on an exchange).
+			2) Daily variation margin provided by a member of a CCP (central counterparty)
 		""",
 		'a': """
+			1) Does not earn interest. This is because the variation margin constitues daily
+				settlement.
+			2) Does earn interest. This is because the transactions in the OTC are usually not
+				settled daily.
 		""",
 	},
 	30: {
 		'q':  """
+		In the context of marginning, what is meant by a 'haircut'?
 		""",
 		'a': """
+		A haircut refers to the percentage difference between an asset's market value
+		and the amount that can be used as collateral for a loan.
 		""",
 	},
 	31: {
 		'q':  """
+		State what each of the following quotes represent on the futures market.
+			1) open
+			2) high
+			3) low
+			4) prior settlement
+			5) last trade
+			6) change
+			7) volume
 		""",
 		'a': """
+			1) open - representative of the prices at which contracts were trading immediately
+					after the start of trading on a day.
+			2) high - the highest price in trading so far during the day
+			3) low - the lowest price in trading so far during the day
+			4) prior settlement - the price at which the contract traded immediately before
+					the end of day's trading session.
+			5) last trade - most recent price at which a trade was executed
+			6) change - equal to (prior_settle_price - last_trade_price)
+			7) volume - the number of contracts traded in the day
 		""",
 	},
 	32: {
 		'q':  """
+		Outline the difference between 'trading volume' and 'open interest'.
+
 		""",
 		'a': """
+		Trading volume represents the number of derivative contracts traded on a given day.
+		Open interest represents the number of outstanding (i.e not settled) long OR
+		short derivative contracts.
 		""",
 	},
 	33: {
 		'q':  """
+		i) Which party - the long or the short - decides on when to deliver the underlying
+		asset of a futures contract?
+
+		ii) Which party - the long or the short - is responsible for all warehousing cost?
 		""",
 		'a': """
+		i) The short (seller).
+		ii) The long
 		""",
 	},
 	34: {
 		'q':  """
+		State the two main types of traders executing futures trades, briefly outline their role.
 		""",
 		'a': """
+		1) FCM (Futures commission merchants) - follow the instructions of their clients
+			and charge a commission for doing so.
+
+		2) Locals - individuals trading on their own account.
 		""",
 	},
 	35: {
 		'q':  """
+		Briefly explain the following sub-categories of speculators:
+
+			1) Scalpers
+			2) Day traders
+			3) Position traders
 		""",
 		'a': """
+
+			1) Scalpers - watch for very short-term trends and attempt to profit from small
+					changes in the contract price. Usually hold their position for only a few
+					minutes.
+			2) Day traders - hold their position for less than one trading day. They
+					are unwilling to take the risk that adverse new will occur overnight.
+			3) Position traders - hold their positions for much longer periods of time.
+					They hope to make significant profits from major movements in the markets.
 		""",
 	},
 	36: {
 		'q':  """
+		What is a 'market order'?
 		""",
 		'a': """
+		It is a request that a trade be carried out immediately at the best price
+		available in the market.
 		""",
 	},
 	37: {
 		'q':  """
+		What is a 'limit order'?
 		""",
 		'a': """
+		A limit order specifies a particular price. The order can be executed only at this
+		price or at one more favourable to the trader.
+
+		Thus, if the limit price is $30 for a trader wanting to buy, the order will be
+		executed only at a price of $30 or less.
+		Conversely, if the limit price is $30 for a trader wanting to sell, the order will be
+		executed only at a price of $30 or more.
 		""",
 	},
 	38: {
 		'q':  """
+		What is a 'stop order' or 'stop-loss order'?
 		""",
 		'a': """
+		This order is executed at the best available price once a bid or ask is made
+		at that particular price or a less favourable price.
+
+		Essentially a market order with the condition of the specified price being hit.
+		Purpose is usually to close out a position if unfavourable price movements take
+		place.
 		""",
 	},
 	39: {
 		'q':  """
+		What is a 'stop-limit order'?
 		""",
 		'a': """
+		In a stop-limit, the order becomes a limit order as soon as a bid or ask is made
+		at a price equal to or less favourable than the stop price.
+
+		Two prices must be specified in a stop-limit:
+			1) the stop price 2) the limit price
+
+		If the market price gaps from being more favourable than the stop to less
+		favourable than the limit, the stop-limit will not be executed.
 		""",
 	},
 	40: {
 		'q':  """
+		What is a:
+			i)  Day order
+			ii) GTC order
 		""",
 		'a': """
+			i) Day order - an order which expires at the end of the current market session
+						in which it was placed (i.e end of trading day)
+
+			ii) Good-'til-canceled (GTC) orders - the order is carried over to future trading sessions.
+						Different trading platforms and brokerages have varying expiries for GTC
+						orders.
 		""",
 	},
 	41: {
 		'q':  """
+		What is a 'stop-and-limit order'?
 		""",
 		'a': """
+		It is a stop-limit order where the stop price and the limit price are the same.
 		""",
 	},
 	42: {
 		'q':  """
+		What is a 'market-if-touched' (MIT) order?
 		""",
 		'a': """
+		Also known as a board order, an MIT becomes a market order once the specified price
+		has been hit.
 		""",
 	},
 	43: {
 		'q':  """
+		Contrast the design of a stop order with a market-if-touched (MIT) order.
 		""",
 		'a': """
+		A stop order is designed to place a limit on the loss that can occur in the
+		event of unfavourable price movements.
+		By contrast, a market-if-touched order is designed to ensure that profits are
+		taken if sufficiently favourable price movements occur.
 		""",
 	},
 	44: {
 		'q':  """
+		In the context of market orders, what is slippage?
 		""",
 		'a': """
+		Slippage is getting a difference price than expected on an order.
+		Since market orders seek the best available price - this doesn't guarantee
+		that the best available price is the price that you want.
 		""",
 	},
 	45: {
 		'q':  """
+		What is a 'time-of-day' order?
 		""",
 		'a': """
+		A time-of-day order specified a particular period of time during the day when the
+		order can be executed.
 		""",
 	},
 	46: {
 		'q':  """
+		What is a 'fill-or-kill' order?
 		""",
 		'a': """
+		A fill-or-kill order must be executed immediately on receipt or not at all.
 		""",
 	},
 	47: {
 		'q':  """
+		Consider the following pairs of statement and determine, for each pair, whether
+		the statement refers to a forward contract or a futures contract.
+
+		1.
+			a) traded on an exchange
+			b) private contract between two parties
+
+		2.
+			a) standardized contract
+			b) non-standardized contract
+
+		3.
+			a) usually one specified delivery date 
+			b) range of delivery dates
+
+		4.
+			a) settled daily
+			b) settled at end of contract
+
+		5.
+			a) delivery or final cash settlement usually takes place
+			b) contract is usually closed out prior to maturity
+
+		6.
+			a) virtually no credit risk
+			b) some credit risk
 		""",
 		'a': """
+		1) a) futures b) forward
+		2) a) futures b) forward
+		3) a) forward a) futures
+		4) a) futures b) forward
+		5) a) forward b) futures
+		6) a) futures b) forward
 		""",
 	},
-	48: {
+	48: { # chapter 3 - Hedging Strategies using Futures
 		'q':  """
+		What 
 		""",
 		'a': """
 		""",
