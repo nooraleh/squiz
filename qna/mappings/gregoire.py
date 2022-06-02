@@ -354,8 +354,8 @@ qna = {
 		'a': """
 		i) Raw string literals are string literal that can:
 			- span across multiple lines of code
-			- don't require escpaing of embedded double quotes
-			- escape sequences like \t and \n are processed as normal text.
+			- don't require escaping of embedded double quotes
+			- escape sequences like \\t and \\n are processed as normal text.
 			
 		ii) const char* example = R"("Hello \t world!")"; """,
 	},
@@ -915,7 +915,7 @@ qna = {
 		ii) What's the term for your answer to (i)""",
 		'a': """
 		i) MyClass() = delete;
-		ii) Explicitly deleted constructors.
+		ii) Explicitly deleted default constructor.
 		
 		""",
 	},
@@ -1055,7 +1055,9 @@ qna = {
             
                 1) Destructor
                 2) Copy constructor and copy assignment operator
-                3) Move constructor and moe assignment operator
+                3) Move constructor and move assignment operator
+		
+		NB: This does not apply to smart pointers.
         """,
 	},
 	113: {
@@ -1770,7 +1772,7 @@ qna = {
 	195: { # Chapter 16: Overview of the C++ Standard Library 
 		'q':  """
 		True or false:
-            The use of any functionality provided by C headers is discourages in
+            The use of any functionality provided by C headers is discouraged in
             favour of true C++ functionality.""",
 		'a': """
 		True.""",
@@ -1872,7 +1874,7 @@ qna = {
 		True or false:
         
             For std::priority_queue, removing an element with a priority tie with another
-            element in well-define. """,
+            element in well-defined. """,
 		'a': """
 		False""",
 	},
@@ -2017,7 +2019,7 @@ qna = {
         For ECMAScript regular expressions, the `.` wild card character can be used to match
         any character except <fill_blank>?""",
         "a": """
-        The newline character \n
+        The newline character \\n
         """ 
     },
     220: {
@@ -2326,7 +2328,7 @@ qna = {
 		'a': """
 		i) bidirectional
         ii) Implications: you can traverse through the elements of an std::list
-        with ++p or --p but you cannot use for example p+n or p-n.
+        with ++p or --p but you cannot use for example p+n or p-n where abs(n) > 1.
         """,
 	},
     244: {
@@ -2535,8 +2537,8 @@ qna = {
 		'q':  """
 		Consider:
 		
-			std::map<int, int> src = \{ {1, 11}, {2, 22} };
-			std::map<int, int> dst = \{ {2, 22}, {3, 33}, {4, 44}, {5, 55} };
+			std::map<int, int> src = { {1, 11}, {2, 22} };
+			std::map<int, int> dst = { {2, 22}, {3, 33}, {4, 44}, {5, 55} };
 			dst.merge(src); (1)
 
 		i) What elements are contains in `src` after line (1)?
@@ -2544,7 +2546,7 @@ qna = {
 			
 		""",
 		'a': """
-		i) `src` has \{2, 22}
+		i) `src` has {2, 22}
 		ii) Because elements in the source that are duplicates to elements in the 
 			destination container are left in the source.
 		
@@ -2724,7 +2726,7 @@ qna = {
 		What are generic lambda expressions?
         """,
 		'a': """
-		Generic lambda expressions are lambda expressions which use `auto`
+		Generic lambda expressions are lambda expressions which use at least one `auto`
         as a type in the parameter list. E.g
 
         auto add = lambda[](auto x, auto y) { return x+y; }
