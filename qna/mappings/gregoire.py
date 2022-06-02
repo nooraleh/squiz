@@ -606,7 +606,7 @@ qna = {
 	},
 	75: { # Chapter 7: Memory Management
 		'q':  """
-		What's the main advantage of the C++ `new` keyword over C-style malloc?""",
+		What's the main advantage of C++'s `new` keyword over C-style malloc?""",
 		'a': """
 		`new` doesn't just allocate memory, it's calls the object's constructor (which malloc does not)""",
 	},
