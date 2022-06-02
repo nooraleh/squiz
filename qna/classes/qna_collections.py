@@ -1,12 +1,16 @@
 from qna.classes.base_qna import BaseQNA
-from qna.mappings import gregoire, cpp_youtube, oliveira, excel
+from qna.mappings import (
+    gregoire, cpp_youtube, oliveira, excel,
+    effective_cpp_11_14, options_futures_derivatives
+)
 
 class QnaCollection:
     def __init__(self):
         self.qna_classes = [
             self.Gregoire,
             self.Oliveira,
-            self.Excel,
+            self.EffectiveCPP11_14,
+            self.OptionsFuturesAndOtherDerivatives
             ]
         self.qna_collection = {
             i: qna_class()
@@ -40,10 +44,26 @@ class QnaCollection:
                 obselete=False,
             )
 
+    class EffectiveCPP11_14(BaseQNA):
+        def __init__(self):
+            super().__init__(
+                title="Effective Modern C++ (11/14)",
+                qna_dict=effective_cpp_11_14.qna,
+                obselete=False,
+            )
+
+    class OptionsFuturesAndOtherDerivatives(BaseQNA):
+        def __init__(self):
+            super().__init__(
+                title="Options, Futures and Other Derivatives",
+                qna_dict=options_futures_derivatives.qna,
+                obselete=False,
+            )
+
     class Excel(BaseQNA):
         def __init__(self):
             super().__init__(
                 title="Microsoft Excel - Miscellaneous",
                 qna_dict=excel.qna,
-                obselete=False,
+                obselete=True,
             )
