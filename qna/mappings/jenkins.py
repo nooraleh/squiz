@@ -81,74 +81,111 @@ qna = {
 	},
     7: {
 		'q':  """
-		
+		Consider the following snippet:
+			
+			node ('master') {
+				// contents...
+			}
+
+		Explain the meaning of the preceding code.
 		""",
 		'a': """
-		
+		The string 'master' is a parameter (`label`) that tells Jenkins
+		to use the Jenkins master for running the contents of the `node`
+		block.
 		""",
 	},
     8: {
 		'q':  """
-		
+		The built-in node has been rename from 'master node' to ...?
 		""",
 		'a': """
-		
+		'built-in node'
 		""",
 	},
     9: {
 		'q':  """
-		
+		What does a Multibranch pipeline allow for?
 		""",
 		'a': """
-		
+		A Multibranch pipeline allows you to automatically create a 
+		pipeline for each branch on your source control repository.
 		""",
 	},
     10: {
 		'q':  """
-		
+		Outline the three stages of the automated deployment pipeline?
 		""",
 		'a': """
-		
+		1) Continuous integration
+		2) Automated acceptance testing
+		3) Configuration management
 		""",
 	},
 	11: {
 		'q':  """
-		
+		Explain what the following terms entail:
+			1) Automated acceptance testing
+			2) Configuration management
 		""",
 		'a': """
-		
+		1) Automated acceptance testing - this checks if the client's requirements have
+			been met by the developers implementing the features. This testing replaces the
+			manual QA phase.
+
+		2) Configuration management - This replaces the manual operations phase; it
+			configures the environment and deploys the software.
 		""",
 	},
 	12: {
 		'q':  """
-		
+		What is meant by:
+
+			i)  Exploratory testing
+			ii) Non-functional testing
+
+		And state whether each of the preceding are manual or automated.
 		""",
 		'a': """
-		
+			i)  Exploratory testing - is the manual black-box testing phase, which
+					tries to break or improve the system. Manual.
+			ii) Non-functional testing - tests that represent system properties related
+					to performance, scalability, security and so on. Automated.
 		""",
 	},
 	13: {
 		'q':  """
-		
+		Briefly outline what is meant by Infrastructure as Code (IaC).
 		""",
 		'a': """
-		
+		IaC - if you use the cloud instead of bare-metal servers, then tools such as
+			Terraform or AWS CloudFormation let you store the description of your
+			infrastructure in the version control system.
 		""",
 	},
 	14: {
 		'q':  """
-		
+		What is the difference between continuous delivery and continuous deployment?
 		""",
 		'a': """
-		
+		Continous delivery:
+			Less strict and means that each commit ends up with a release candidate,
+			so it allows the last step (from release to production) to be manual.
+		Continuous deployment:
+			Means each commit to the repository is automatically released to production.
 		""",
 	},
 	15: {
 		'q':  """
-		
+		i)  What is meant by 'trunk-based development'?
+		ii) What software development implications are there in the absence of trunk-based
+			development.
 		""",
 		'a': """
-		
+		i)  Developers must check changes into one centralized main branch regularly.
+		ii) Otherwise, if everyone develops in their branches, integration is rare,
+			which means that releases are rare, which is exactly the opposite of the
+			ideal continous delivery approach.
 		""",
 	},
 	16: {
