@@ -248,7 +248,7 @@ qna = {
 			1) std::vector<bool>::reference, exists to offer the illusion that
 			operator[] for std::vector<bool> returns a reference to a bit.
 
-			2) smart points as proxy classes for raw pointers
+			2) smart pointers as proxy classes for raw pointers
 		""",
 	},
 	15: { # chapter 3: Moving to Modern C++
