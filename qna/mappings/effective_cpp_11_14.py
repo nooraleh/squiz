@@ -330,6 +330,16 @@ qna = {
 		'a': """
 		In C++11, alias declarations may be templatized (alias templates) while
 		`typedef`s cannot.
+
+		For consider the following snippet:
+
+				template<typename T>
+				using ptr = T*
+
+				//.. down the line ..
+
+				ptr<int> pint = std::make_unique<int>(2).get();
+
 		""",
 	},
 	19: {
@@ -425,7 +435,7 @@ qna = {
 			i)  A function with a wide contract
 			ii) A function with a narrow contract
 
-		b) Which of (i) or (ii) is marked `noexcep`
+		b) Which of (i) or (ii) is marked `noexcept`
 		""",
 		'a': """
 		a)
@@ -854,7 +864,7 @@ qna = {
 			void f(T&& param);
 
 		Give two snippet rewrites to showcase the way that we can disqualifiy
-		the `param` from being forwarding reference to an rvalue reference.
+		the `param` from being a forwarding reference to an rvalue reference.
 		""",
 		'a': """
 		1) Wrapping `T` in a sequential container:
@@ -1141,7 +1151,7 @@ qna = {
 		ANS:
 			Create a data member of `lhs_pw` in the closure class,
 			and intialize that data member the result of applying std::move
-			to the local variable `pw`.
+			to the local variable `rhs_pw`.
 		""",
 	},
 	64: {
@@ -1225,7 +1235,7 @@ qna = {
 	},
 	70: {
 		'q':  """
-		What makes is possible for emplacement functions to outperform
+		What makes it possible for emplacement functions to outperform
 		insertion functions?
 		""",
 		'a': """
