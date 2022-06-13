@@ -341,9 +341,8 @@ qna = {
 		What is a high-level overview of a socket?
 		""",
 		'a': """
-		A socket is one end-point of a communication link between systems.
-		It's an abstraction in which your application can send and receive data over
-		the network.
+		A socket is an abstraction that represents one endpoint of a communication link
+		between systems.
 		""",
 	},
 	29: {
@@ -361,141 +360,237 @@ qna = {
 	},
 	30: { # Chapter 2: Getting to Grips with Socket APIs
 		'q':  """
-		
+		What is one difference between Winsock socket and a Berkeley socket?
 		""",
 		'a': """
-		
+		Winsock requires initialization before use and a cleanup function call when
+		we are finished.
+
+		These initialization and cleanup steps are not used with Berkeley sockets.
+		Berkley socket API is always ready to use.
 		""",
 	},
 	31: {
 		'q':  """
-		
+		i)  What are the two basic socket types?
+		ii) Which of TCP or UDP correspond to which type as per your answer to (i)
 		""",
 		'a': """
-		
+		i)  (1) Connection-oriented  (2) Connectionless
+		ii) TCP is a connection-oriented protocol, UDP is a connectionless protocol.
 		""",
 	},
 	32: {
 		'q':  """
-		
+		What does a connectionless protocol, such as UDP, entail?
 		""",
 		'a': """
-		
+		In a connectionless protocol, such as UDP, each data packet is addressed individually.
+		From the protocol's perspective, each data packet is completely independent and unrelated
+		to any packets coming before or after it.
 		""",
 	},
 	33: {
 		'q':  """
-		
+		What does a connection-oriented protocol, such as TCP, entail?
 		""",
 		'a': """
-		
+		In a connection-oriented protocol we:
+			1) Guarantee that data arrives in the same order it is sent.
+			2) Prevent duplicate data from arriving twice
+			3) Retry sending missing data
+			4) Notify when a connection is terminated
+			5) Run algorithms to mitigate network congestion
 		""",
 	},
 	34: {
 		'q':  """
-		
+		i)  Name a use case where UDP has an advantage over TCP
+		ii) What implications does your answer to (i) have on IP broadcast or multicast.
 		""",
 		'a': """
+		i)  UDP has the advantage in cases where you want to send a message without expecting
+			a response from the other end.
 		
+		ii) This makes it useful when using IP broadcast or multicast. TCP, on the other hand,
+			requires bidirectional communication to provide its guarantees and so
+			does not work with IP multicast or broadcast.
 		""",
 	},
 	35: {
 		'q':  """
-		
+		Explain the usage of the following socket functions:
+			1) socket()
+			2) bind()
+			3) listen()
 		""",
 		'a': """
-		
+			1) socket() - creates and initializes a new socket
+			2) bind() - associates a socket with a particular local IP address and port number
+			3) listen() - is used on the server to cause a TCP socket to listen for new connections
 		""",
 	},
 	36: {
 		'q':  """
-		
+		Explain the usage of the following socket functions:
+			1) connect()
+			2) accept()
+			3) send()
+			4) recv()
 		""",
 		'a': """
-		
+			1) connect() - is used on the client to set the remote address and port.
+				In the case of TCP, it also establishes a connection.
+			2) accept() - is used on the server to create a new socket for an incoming
+				TCP connection.
+			3) send() - used to send data with a socket
+			4) recv() - sued to receive data with a socket.
 		""",
 	},
 	37: {
 		'q':  """
-		
+		Explain the usage of the following socket functions:
+			1) sento()
+			2) recvfrom()
 		""",
 		'a': """
-		
+			1) sento() -
+				is used to send data from sockets without a bound remote address.
+			2) recvfrom() - 
+				is used to receive data from sockets without a bound remote address.
 		""",
 	},
 	38: {
 		'q':  """
-		
+		Explain the usage of the following socket functions:
+			1) close()
+			2) closesocket()
+			3) shutdown()
 		""",
 		'a': """
-		
+			1) close()
+				-  applies to Berkeley sockets
+			2) closesocket()
+				- applies to Winsock sockets.
+				
+		Both (1) and (2) are used to close a socket. In the case of TCP,
+		this also terminates the connection.
+
+			3) shutdown()
+				- is used to close one side of a TCP connection. It is useful
+				to ensure an orderly connection teardown.
 		""",
 	},
 	39: {
 		'q':  """
-		
+		Explain the usage of the following socket functions:
+			1) select()
+			2) getnameinfo()
+			3) getaddrinfo()
 		""",
 		'a': """
-		
+			1) select()
+				- is used to wait for an event on one or more sockets.
+			2) getnameinfo()
+				- provides a protocol-independent manner of working with hostnames
+			3) getaddrinfo()
+				- provides a protocol-independent manner of working with addresses
 		""",
 	},
 	40: {
 		'q':  """
-		
+		Explain the usage of the following socket functions:
+			1) setsockopt()
+			2) fcntl()
+			3) ioctlsocket()
 		""",
 		'a': """
-		
+			1) setsockopt()
+				- used to set socket options
+			2) fcntl()
+				- Berkely sockets only
+				- used to get and set some options
+			3) ioctlsocket()
+				- Winsock sockets only
+				- used to get and set some options
 		""",
 	},
 	41: {
 		'q':  """
-		
+		When could a TCP client to call `bind()` before `connect`?
 		""",
 		'a': """
-		
+		If the TCP client is particular about which network interface is
+		being used to connect with.
 		""",
 	},
 	42: {
 		'q':  """
-		
+		i)  In UNIX, how is a socket descriptor represented?
+		ii) What implications does your answer to (i) have on function usage on UNIX sockets?
 		""",
 		'a': """
-		
+		i)  In UNIX, a socket descriptor is represented by a standard file descriptor.
+		ii) This means that, as opposed to Windows, you can use any of the standard UNIX I/O
+			functions on sockets.
 		""",
 	},
 	43: {
 		'q':  """
-		
+		What are UNIX file descriptors?
 		""",
 		'a': """
-		
+		All UNIX file descriptors are small, non-negative integers.
 		""",
 	},
 	44: {
 		'q':  """
-		
+		What does a call to `socket()` return if it fails in the:
+			i)  UNIX platform
+			ii) Windows
 		""",
 		'a': """
-		
+			i)  negative number
+			ii) `INVALID_SOCKET`
 		""",
 	},
 	45: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			char request[1024];
+			int bytes_received = recv(socket_client, request, 1024, 0);
+			printf("Received %.*s bytes.\n", bytes_received, request);
+
+		Why is important to use the format specifier %.*s instead of for example:
+			printf("Received %s bytes.\n", request);
 		""",
 		'a': """
-		
+		Because there is no guarantee that the data that's received from `recv()`
+		is null terminated.
+
+		In the alternative case, you will likely receive a segmentation fault error
+		(or at best garbage output).
 		""",
 	},
 	46: {
 		'q':  """
-		
+		What is 'inetd'?
 		""",
 		'a': """
-		
+		inetd is a service on UNIX-like systems which can be used to turn
+		console-like applications into networked ones.
+
+		You can configure inetd (on /etc/inetd.conf) with your program's:
+			1) location
+			2) port number
+			3) protocol (TCP or UDP)
+			4) the user your want it to run as
+
+		inetd will then listen for connections on your desired port.
 		""",
 	},
-	47: {
+	47: { # Chapter 3: An In-Depth Overview of TCP Connections
 		'q':  """
 		
 		""",
