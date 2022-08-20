@@ -111,164 +111,260 @@ qna = {
               to a delegate.
 		""",
 	},
-    8: {
+    8: { # Chapter 9: Can I use your namespace in the library?
 		'q':  """
-		
+		i)  What is a project file?
+        ii) What are the extensions for 
+            a) C# project files
+            b) C++ project files
+        iii) What is the term for a set of project files?
 		""",
 		'a': """
-		
+		i)  A project file contains the instructions about which files 
+            should be used together and how they're combined.
+        ii)
+            a) .csproj
+            b) .vcxproj
+
+        iii) A solution (.sln)
 		""",
 	},
     9: {
 		'q':  """
-		
+		i)  C# 10.0 introduced the `global using` statement. Outline its usage.
+        ii) Other than C# 10.0, what other requirements are they to enable the usage of
+            `global using`?
 		""",
 		'a': """
-		
+        i)
+            The idea is that you place these `global using` statements into a 
+            separate file, where they're easy to find and manage, and that they
+            affect your entire project.
+        ii)
+            1) .NET core application.
+            2) select .NET 6.0 as the application. 
 		""",
 	},
     10: {
 		'q':  """
-		
+		Fill in the blank:
+            In visual studio and other .NET languages, one project equals one compile
+            module otherwise known as an <_____> in .NET.
 		""",
 		'a': """
-		
+		Assembly
+
+        NB: The words 'assembly' and 'module' have different technical meanings,
+            despite being used interchangeable in software parlance.
 		""",
 	},
 	11: {
 		'q':  """
-		
+		What are the two basic assembly types that c# can produce?
 		""",
 		'a': """
-		
+		1) Executable (.exe)
+        2) Class library (.dll)
 		""",
 	},
 	12: {
 		'q':  """
-		
+		i)  What does CLR stand for?
+        ii) What the CLR do?
 		""",
 		'a': """
-		
+		i)  Common language runtime
+        ii) 
+        The common language runtime:
+            - runs c# programs
+            - loads library assemblies (.dll's) into memory as needed
 		""",
 	},
 	13: {
 		'q':  """
-		
+		i)  Before becoming a .dll or a .exe, what does C# compile your source into?
+        iI) What is one benefit of your answer to (i)
 		""",
 		'a': """
-		
+		i)  C# compiles your source code into Common Intermediate Language (also [C]IL)
+        ii) CIL can be used to interact with other programming languages, for example C++.
 		""",
 	},
 	14: {
 		'q':  """
-		
+		Consider an executable with takes arguments such as files from the command line.
+        What is an alternative approach to running an .exe via the command line?
 		""",
 		'a': """
-		
+		Simply drag the file into the .exe from Windows File Explorer.
 		""",
 	},
 	15: {
 		'q':  """
-		
+		If you have a Visual Studio solution which contains more than .exe project,
+        what must you do?
 		""",
 		'a': """
-		
+		You must specify to Visual Studio which .exe project is the 'startup project' i.e
+        the one which runs from the Debug menu.
 		""",
 	},
 	16: {
 		'q':  """
-		
+		What distinguishing a project that compiles to a .exe (executable) or to
+        a .dll (class library)?
 		""",
 		'a': """
-		
+		The presence of a `Main()` method.
 		""",
 	},
 	17: {
 		'q':  """
-		
+		What is the most private access modifier that you should use
+        when the intent is to access the code from outside the assembly?
 		""",
 		'a': """
-		
+		public
 		""",
 	},
 	18: {
 		'q':  """
-		
+		i)  How should you approach exceptions in class library code.
+        ii) Explain the reasoning behind your answer to (i)
 		""",
 		'a': """
-		
+        i)
+            Normally, you shouldn't try to catch exceptions.
+            Allow them to bubble up from the library to the client code that's
+            calling the library.
+
+        ii)
+            Rationale: Clients need to know about the exceptions and handle
+            them in their own ways.
 		""",
 	},
 	19: {
 		'q':  """
-		
+		State two benefits of using namespaces?
 		""",
 		'a': """
-		
+		1) Putting related classes in one scope.
+        2) Reducing collision between names and used in different places.
 		""",
 	},
 	20: {
 		'q':  """
-		
+		True or false:
+            A namespace cannot span multiple assemblies.
 		""",
 		'a': """
-		
+		False. A namespace CAN multiple assemblies.
 		""",
 	},
 	21: {
 		'q':  """
-		
+		What happens if your classes are not wrapped in a namespace?
 		""",
 		'a': """
-		
+		C# puts the in the 'global namespace', which is the base (unnamed)
+        namespace for all other namespaces.
 		""",
 	},
 	22: {
 		'q':  """
-		
+		Fill in the blank:
+
+            Namespaces are implicitly <access_specifier_here>
 		""",
 		'a': """
-		
+		public
 		""",
 	},
 	23: {
 		'q':  """
-		
+		Besides classes, state four other types that namspaces can contain.
 		""",
 		'a': """
-		
+        1) delegate
+        2) enum
+        3) interface
+        4) struct
 		""",
 	},
 	24: {
 		'q':  """
-		
+		True or false:
+            Prefixing all namespaces in a program with your company name is conventional.
+            E.g. MyCompany.MathRoutines (<- this is a single (dotted ) namespace name, not a
+            nested namespace).
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	25: {
 		'q':  """
-		
+		Consider the following snippet:
+
+            namespace NotFileScopeNameSpace
+            {
+                class Program
+                {
+                    static void Main(string[] args)
+                    {
+                        // ....
+                    }
+                }
+            }
+
+        i)  Rewrite the snippet using C# 10.0's new 'file-scoped' namespace syntax. 
+
+        ii) What is one benefit of using file-scoped namespace syntax?
 		""",
 		'a': """
-		
+        i) 
+            namespace FileScopeNameSpace;
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    // ....
+                }
+            }
+
+        N.B: FileScopeNameSpace now applies to the entire file.
+
+        ii) Reduction of horizontal waste.
 		""",
 	},
 	26: {
 		'q':  """
-		
+		i)  What does the `new` modifier keyword do?
+        ii) Give a snippet example to illustrate your answer to (i)
 		""",
 		'a': """
-		
+		i)  The `new` keyword explicitly hides a member that is inherited
+            from a base class.
+        ii)
+        Snippet:
+                public class Base
+                {
+                    public void Invoke() { }
+                }
+
+                public class Derived : Base
+                {
+                    new public void Invoke() { }
+                }
 		""",
 	},
 	27: {
 		'q':  """
-		
+		What does a partial method do?
 		""",
 		'a': """
-		
+		A partial method allows you to split a method into a signature part
+        and potentially an implementation part.
 		""",
 	},
 	28: {
