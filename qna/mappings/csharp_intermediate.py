@@ -1,58 +1,114 @@
+# Notes taken in a QNA style from John Paul Mueller's 'C# All-in-One for Dummies'
+
 qna = {
-    1: {
+    1: { # Chapter 8: Delegating those events
 		'q':  """
-		
+		You can divide delegates used specifically as function pointers
+        into three types using three special keywords.
+
+            1) What are these three keywords
+            2) Outline an overview of each delegate type in your answer to (1)
 		""",
 		'a': """
-		
+            1) Action:
+                i) Has one or more input parameters and no output parameters
+            2) Func:
+                - Has zero or more input parameters and one return parameter
+            3) Predicate
+                - Defines a specific set of criteria and determines whether the input
+                    object meets those criteria.
+                - Returns True when the conditions are met and False otherwise.
 		""",
 	},
     2: {
 		'q':  """
-		
+		Consider the snippet (Form1.cs):
+            public partial class Form1 : Form 
+
+        What does the keyword `partial` mean?
 		""",
 		'a': """
-		
+		The partial keyword indicates that this file is only part of the full class.
+        The rest can be found in, for example, a file called 'Form1.Designer.cs'
 		""",
 	},
     3: {
 		'q':  """
-		
+		Consider the following snippet:
+            delegate void UpdateProgressCallback();
+            UpdateProgressCallback anon = delegate ()
+            {
+                // progressBar1.PerformStep();
+            };
+            if (anon != null) anon();
+
+        i) What are the hidden costs of using an anonymous function?
+        ii) Which keyword can you use to prevent these costs and why?
 		""",
 		'a': """
-		
+        i)
+            1) Overhead for the delegate invocation
+            2) Heap allocations for each of the argument
+            3) Heap allocations for the enclosing method created by the lambda expression
+        ii)
+            - Since C# 9.0 onwards allows the use of static keywords
+            - which disallows the capture of locals or instane state from containing scope
+            - we can, therefore, reduce or eliminate any unintended allocations functions.
 		""",
 	},
     4: {
 		'q':  """
-		
+		Consider the following two lines:
+            var handler = (object Obj, EventArgs Args) => ShowDialog(); (1)
+            var handler = (object _, EventArgs _) => ShowDialog(); (2)
+
+        i)  What is the term for the underscores in (2)
+        ii) What does you answer to (i) indicate to the compiler and readers?
 		""",
 		'a': """
-		
+		i)  Discard parameters
+        ii) That you don't intend on using those parameters
 		""",
 	},
     5: {
 		'q':  """
-		
+		In C#, when you have a class on which interesting events arise, how can you advertise
+        the availability of notifications to any classes that may have an interest in knowing
+        about such events?
 		""",
 		'a': """
-		
+		By providing a delegate and a coresponding event.
 		""",
 	},
     6: {
 		'q':  """
-		
+		What are the two event-related delegate types for .NET handles for you?
 		""",
 		'a': """
-		
+            1) EventHandler
+            2) EventHandler<TEventArgs>
 		""",
 	},
     7: {
 		'q':  """
-		
+		When should you use each of the following:
+            1) Events
+            2) Delegates
+            3) Lambdas
 		""",
 		'a': """
-		
+        1) Events:
+            - When you have multiple subscribers, or;
+            - When communicating with client software that uses your classes.
+
+        2) Delegates:
+            - Use delegates or anonymous functions when you need a 
+              callback or need to customize an operation.
+
+        3) Lambdas:
+            - Can be used instead of anomymous methods
+            - Lambdas are simply a short way to specify the method you're passing 
+              to a delegate.
 		""",
 	},
     8: {
