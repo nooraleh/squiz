@@ -367,68 +367,135 @@ qna = {
         and potentially an implementation part.
 		""",
 	},
-	28: {
+	28: { # Chapter 10 - Improving Productivity with Named and Optional Parameters
 		'q':  """
-		
+		i)  What are optional parameters in C#?
+        ii) Let:
+                - `func` be a public static method which returns void
+                - `param1` be a non-optional parameter of type string
+                - `param2` be an optional parameter of type int
+
+            Use the above information to outline to usage of optional parameters
 		""",
 		'a': """
-		
+		i)  Optional parameters are parameters that have a default value right in
+            the method signature.
+
+        ii) Snippet:
+                public static void func(string param1, int param2 = 2) { /*...*/ }
 		""",
 	},
 	29: {
 		'q':  """
-		
+		What is the `sealed` modifier keyword used for?
 		""",
 		'a': """
-		
+		The `sealed` keyword is used to stop inheriting the particular class from
+		other classes. It is essentially `final` in C++. 
 		""",
 	},
 	30: {
 		'q':  """
-		
+		What does the `in` parameter modifier do?
 		""",
 		'a': """
-		
+		The `in` keyword:
+			- causes arguments to be passed in by reference but ensures the
+			  argument is not modified.
 		""",
 	},
 	31: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			public static int addit(int z, int y, int x = 0, int w = 0, int v = 0)
+			{
+				return z + y + x + w + v;
+			}
+
+		In the context of named parameters, call the function `addit` with:
+			1) parameter z being passed an argument of 3
+			2) parameter y being passed an argument of 7
+			3) parameter v being passed an argument of 4
 		""",
 		'a': """
-		
+		int answer = addit(z: 3, y: 7, v: 4);
 		""",
 	},
 	32: {
 		'q':  """
-		
+		i)  What are output parameters?
+		ii) Which parameter modifier do we use to specify output parameters?
 		""",
 		'a': """
-		
+		i)  Output parameters are parameters in the method signature that actually
+			change the value of the variable that is passed into them by the user.
+		ii) `out`
 		""",
 	},
 	33: {
 		'q':  """
-		
+		i)  What does the `nameof` expression do?
+		ii) Give a simple example of its usage.
 		""",
 		'a': """
-		
+		i)  The nameof expression produces the name of a variable, type, or member
+			as a string constant.
+		ii)
+		Snippet:
+			int p = 2;
+			Console.WriteLine(nameof(p)); // output will be: p
 		""",
 	},
 	34: {
 		'q':  """
-		
+		i)   State the character used for the verbatim identifier.
+		ii)  State three ways the verbatim identifier can be uses.
 		""",
 		'a': """
-		
+		i)  @
+		ii) 
+		Usage:
+			1) To enable C# keywords to be used as identifiers.
+				e.g 'string[] @for = {"Jack", "Jill"}' 
+			2) To enable a string to be interpreted verbatim, similar to a raw string
+				in other languages where special characters are escaped.
+			3) To enable the compiler to distinguish between attributes in cases
+				of naming conflict.
 		""",
 	},
 	35: {
 		'q':  """
-		
+		Give the:
+			a) syntax
+			b) usage
+			c) C# version in which it was/will be released
+		For the:
+			1) The 'null-forgiving' operator
+			2) 'Parameter null checking'
 		""",
 		'a': """
-		
+		1)
+			a) !
+			b)
+				public static void Main()
+				{
+					Person? p = Find("John");
+					if (IsValid(p))
+					{
+						Console.WriteLine($"Found {p!.Name}");
+					}
+				}
+			c) 10.0
+
+		2)
+			a) !!
+			b) 
+				static void SayHello(String name!!)
+				{
+					Console.WriteLine($"Hello {Name}!");
+				}
+			c) 11.0
 		""",
 	},
 	36: {
