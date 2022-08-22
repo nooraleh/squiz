@@ -498,132 +498,276 @@ qna = {
 			c) 11.0
 		""",
 	},
-	36: {
+	36: { # Chapter 11 - Interacting with Structures
 		'q':  """
-		
+		What is the keyword used to create a structure?
 		""",
 		'a': """
-		
+		struct
 		""",
 	},
 	37: {
 		'q':  """
-		
+		State which of the following are reference types or value types:
+
+			1) classes
+			2) structures
 		""",
 		'a': """
-		
+			1) reference type
+			2) value type
 		""",
 	},
 	38: {
 		'q':  """
-		
+		True or false:
+			a) Structures can inherit from other structures or classes.
+			b) Structures can have constructors
+			c) Structures can have destructors
+			d) Can be defined as abstract
+			e) Cannot be defined as virtual
+			f) Cannot be protected
 		""",
 		'a': """
-		
+		a) False
+		b) True
+		c) False
+		d) False
+		e) True
+		f) True
 		""",
 	},
 	39: {
 		'q':  """
-		
+		Why does an array of references incur a larger penalty in resource use/
+		allocation time/deallocation time than an array of values?
 		""",
 		'a': """
-		
+		Because an array of references contains just pointers to the individual objects.
+		To access the object, the application must then look for it on the heap.
+
+		Values types undergo deterministic destruction at the moment they go out of scope.
+		Waiting for C# to garbage-collect reference types means that you can't be sure
+		how memory is used in your application.
 		""",
 	},
 	40: {
 		'q':  """
-		
+		What is a best practice for structure members? Explain the rationale.
 		""",
 		'a': """
-		
+		Best practice: Keep structures limited to other value types such as `int` and `double` where possible,
+		Rationale: Reference members reduce the impact of any resources and time savings that a structure can
+					provide (as they'll need to be garbage-collected).
 		""",
 	},
 	41: {
 		'q':  """
-		
+		Consider the following struct:
+				public struct Message2
+				{
+					public Message2(int msgID, int productId = 22, int quantity = 5)
+					{
+						MsgID = msgID;
+						ProductID = productId;
+						Quantity = quantity;
+
+						if (ProductID == 22)
+							Price = CalculatePrice(5.99, Quantity);     <-- line of interest (1)
+						else
+							Price = CalculatePrice(6.99, Quantity);
+					}
+
+					public int MsgID; public int ProductID; public int Quantity; public double Price;
+
+					public static double CalculatePrice(double singlePrice, int quantity) <-- line of interest (2)
+					{
+						return singlePrice * quantity;
+					}
+				}
+
+		Question: Why must the signature in (2) be declared static?		
 		""",
 		'a': """
-		
+		The compiler error would be:
+			The 'this' object cannot be used before all of its fields are assigned to
+
+		All the fields in a struct have to be assigned by the constructor before the constructor
+		can call an instance method, which essentially is a method which takes the argument `this`
+		under-the-hood.
+
+		We need a method which isn't bound to the instance i.e. a static method.
 		""",
 	},
 	42: {
 		'q':  """
-		
+		What are two benefits of using read-only structures?
 		""",
 		'a': """
-		
+		1)  Performance
+		2)  Thread safety
 		""",
 	},
 	43: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			public readonly struct ReadOnlyData
+			{
+				public readonly int Value { get; } // (1)
+
+				public ReadOnlyData(int n)
+				{
+					Value = n;
+				}
+			}
+
+		Q: Modify line (1) and initialize an `ReadOnlyData` with C# 9.0's
+		'init accessor', assigning `Value` to 12.
 		""",
 		'a': """
-		
+			public readonly struct ReadOnlyData
+			{
+				public readonly int Value { get; init;} // <- modification
+
+				public ReadOnlyData(int n)
+				{
+					Value = n;
+				}
+			}
+
+			public static void Main(string[] args)
+			{
+				ReadOnlyData rod = new ReadOnlyData
+				{
+					Value = 12;
+				}
+			}
 		""",
 	},
 	44: {
 		'q':  """
-		
+		State as many limitations of using a reference structure as you can.
 		""",
 		'a': """
-		
+		1) No array element support
+		2) Unable to declare it as a type of a field of a class or a non-ref struct
+		3) No interface implementation
+		4) No boxing to System.ValueType or System.Object
+		5) Unable to use it as a type argument
+		6) Ineligible for capture by a lambda expression or a local function
+		7) Inaccessible in an async method
+		8) No iterator support
 		""",
 	},
 	45: {
 		'q':  """
-		
+		What is the main readon to work with structures in most cases?
 		""",
 		'a': """
-		
+		To create records that contain custom data. You use these
+		custom data records to hold complex information and pass it around
+		as needed within your application.
 		""",
 	},
 	46: {
 		'q':  """
-		
+		True or false:
+
+			It's always better to restriction groupings of data records encapsulated
+			in structures to arrays (as opposed to C# collections) in your application when
+			speed is the most important concern.
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	47: {
 		'q':  """
-		
+		Outline some of the features of the `record` type.
 		""",
 		'a': """
-		
+		1) Ability to define immutable properties
+		2) Use of value equality i.e to records residing in distinct memory
+			locations yet have the same properties are considered equal.
+		3) Non-destructive mutation (using the `with` keyword)
+		4) Human-readable 'ToString' method
 		""",
 	},
 	48: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			public record NamedPoint(string Name, int X, int Y); // positional declaration
+			var p1 = new NamedPoint("A", 0, 0);
+
+		Write a line to instantiate a `NamedPoint` called `p2` with:
+			- `Name` assigned a value of "C",
+			- `Y` assigned a value of 4
+
 		""",
 		'a': """
-		
+		p2 = p1 with
+			{
+				Name = "C",
+				Y = 4
+			};
 		""",
 	},
 	49: {
 		'q':  """
-		
+		As you know, `record` types use value equality as opposed to reference equality.
+		Let:
+			- record1 be a record type
+			- record2 be the same record type
+			- record1 == record2 yields true
+
+		Use a function to determine whether record1 and record2 are equal in reference.
+		I.e. the two objects point to the same location in memory.
 		""",
 		'a': """
-		
+		ReferenceEquals(record1, record2);		
 		""",
 	},
 	50: {
 		'q':  """
-		
+		a) What is a backing field (a.k.a backing store)?
+		b) Give an example of its usage
 		""",
 		'a': """
-		
+		a) A backing field is a private field that stores the data exposed
+			by a public property.
+
+		b) Anything only the lines of:
+
+				private int m_Capacity;
+
+				public int Capacity
+				{
+					get { return m_Capacity > 0 ? m_Capacity : -666; }
+					set { m_Capacity = value; }
+				}
 		""",
 	},
 	51: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			public class record Person
+			{
+				// ...
+				private string department; // (backing field) (1)
+				public string Department {get {return department;}; set {department = value.ToUpper();}}
+			}
+
+		Use C# 10.0 `field` keyword to eliminate the use of the backing field in (1).		
 		""",
 		'a': """
-		
+			public class record Person
+			{
+				// ...
+				public string Department {get; set => field = value.ToUpper();}
+			}
 		""",
 	},
 	52: {
