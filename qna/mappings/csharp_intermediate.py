@@ -769,29 +769,47 @@ qna = {
 				public string Department {get; set => field = value.ToUpper();}
 			}
 		""",
-	},
-	52: {
+	}, # Book 3: Designing for C#
+	52: { # Chapter 1: Writing Secure Code
 		'q':  """
-		
+		Give a brief outline of the meaning of the terms:
+			1) authentication
+			2) authorisation
 		""",
 		'a': """
-		
+		Authentication:
+			- Making sure the user is authentic
+		Authorisation:
+			- the act of ensure that a user has the authority to perform
+				specific tasks.
 		""",
 	},
 	53: {
 		'q':  """
-		
+		In the context of threat modelling:
+			What does the acronym STRIDE stand for?
 		""",
 		'a': """
-		
+		S: Spoofing data
+			- users pretend to be someone they are not
+		T: Tampering with data or files
+			- users edit something that shouldn't be edited
+		R: Repudiation of action
+			- users have the opportunity to say they didn't do something that they actually did do
+		I: Information disclosure
+			- users see something that shouldn't be seen
+		D: Denial of service
+			- users prevent legitimate users from accessing the system
+		E: Elevation of privilege
+			- users get access to something that they shouldn't have access to
 		""",
 	},
-	54: {
+	54: { # Book 3, Chapter 2: Accessing Data
 		'q':  """
-		
+		What is the primary role of the System.Data namespace?
 		""",
 		'a': """
-		
+		Getting information out of and into a database.
 		""",
 	},
 	55: {
