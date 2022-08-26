@@ -883,52 +883,93 @@ qna = {
 		True.
 		""",
 	},
-	60: {
+	60: { # Book 3, Chapter 3: Fishing the File Stream
 		'q':  """
-		
+		What are the two kinds of output that programs can generate?
 		""",
 		'a': """
-		
+		1) Binary
+		2) Text-based
 		""",
 	},
 	61: {
 		'q':  """
-		
+		Explain the purpose of the following file modes:
+
+			1) FileMode.CreateNew
+			2) FileMode.Append
+			3) FileMode.Create
 		""",
 		'a': """
-		
+			1) FileMode.CreateNew
+				- Create a file if it doesn't exist or throw an exception if the file exists
+
+			2) FileMode.Append
+				- Append to an existing file or create a new file if it doesn't exist
+
+			3) FileMode.Create
+				- Create a new file or truncate an existing file
 		""",
 	},
 	62: {
 		'q':  """
-		
+		State the three FileAccess possibilities:
 		""",
 		'a': """
-		
+		1) FileAccess.Read
+		2) FileAccess.Write
+		3) FileAccess.ReadWrite
 		""",
 	},
 	63: {
 		'q':  """
+		1) True or false:
+				It's good programming practice to null a reference after it becomes
+				invalid so that you won't try to use it again.
 		
+		2) What could happen if you do not follow this guideline?
+
+		3) Give an example of the reference 'invalidation' described in (1)
+
 		""",
 		'a': """
-		
+		1) True
+		2) Runtime exception
+		3) Examples include:
+				1) Calling .Close() on a Stream/FileWriter
 		""",
 	},
 	64: {
 		'q':  """
-		
+		1) What is the usual way to do stream writing in C#
+
+			Hint: The answer has parallels with Python's `with` context manager.
 		""",
 		'a': """
-		
+		1) The usual way is with a `using` statement.
+
+			E.g.
+
+				using (StreamWriter sw = new StreamWriter(fs))
+				{
+					// use the resource
+				}
 		""",
 	},
 	65: {
 		'q':  """
-		
+		Consider the following template for `using` resource management idiom:
+				using (<initial_some_resource_or_resources>)
+				{
+					// use the resource
+				}
+
+		True or False:
+			The resources acquired in the parenthesis can be of different types.
+
 		""",
 		'a': """
-		
+		False
 		""",
 	},
 	66: {
