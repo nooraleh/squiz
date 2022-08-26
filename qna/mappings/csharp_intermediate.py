@@ -972,20 +972,23 @@ qna = {
 		False
 		""",
 	},
-	66: {
+	66: { # Book 3, Chapter 4: Accessing the Internet
 		'q':  """
-		
+		Consider System.Net.Cache 
+
+			What does a cache provide?
 		""",
 		'a': """
-		
+		A cache provides the means to improve application performance by storing commonly
+		used resources.
 		""",
 	},
 	67: {
 		'q':  """
-		
+		In the context of System.Net, what does MIME stand for?
 		""",
 		'a': """
-		
+		MIME = Multipurpose Internet Mail Exchange
 		""",
 	},
 	68: {
