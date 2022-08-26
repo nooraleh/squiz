@@ -814,42 +814,73 @@ qna = {
 	},
 	55: {
 		'q':  """
-		
+		i)  What does LINQ stand for?
+		ii) What does LINQ enable you to do?
 		""",
 		'a': """
-		
+		i)  LINQ stands for 'language integrated query'
+		ii) Enables you to get data out of the data containers in a less complicated
+			way than object-oriented language.
 		""",
 	},
 	56: {
 		'q':  """
-		
+		What is the black box problem?
 		""",
 		'a': """
-		
+		The black box problem is that of having a development environment
+		do some things for you over which you have no control.
 		""",
 	},
 	57: {
 		'q':  """
-		
+		Give a brief overview of the following C# data containers:
+			1) DataSet
+			2) DataTable
+			3) DataRow
+			4) DataView
+			5) DataReader
 		""",
 		'a': """
-		
+		1) DataSet:
+			- the in-memory representation of an entire database
+		2) DataTable
+			- a single table of data stored in memory
+			- `DataSet` containers are composed of `DataTable` containers
+		3) DataRow
+			- a row in a `DataTable` container
+		4) DataView
+			- a copy of a `DataTable` that you can use to sort and filter data
+			  for viewing purposes
+		5) DataReader
+			- A read-only, forward-only stream of data used for one-time processes.
 		""",
 	},
 	58: {
 		'q':  """
-		
+		There are two SQL Server database files, for each:
+			a) Name the extension and name
+			b) State the purpose of the file
 		""",
 		'a': """
-		
+			1)
+				a) .mdf, 'master database file'
+				b) Contains the schema and the data
+
+			2) 
+				a) .ldf, 'log database file'
+				b) Contains the logs (of db transactions, DDL, changed made by stored procs etc)
 		""",
 	},
 	59: {
 		'q':  """
-		
+		True or false:
+			Enterprise customers define a specific data code format and expect their
+			software developers to use that, rather than visual tools which is purposely generic
+			in order to support anything that anyone might want to do it.
 		""",
 		'a': """
-		
+		True.
 		""",
 	},
 	60: {
