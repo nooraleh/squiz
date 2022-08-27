@@ -1069,29 +1069,44 @@ qna = {
 				5) `base`
 
 		""",
-	},
-	74: { 
+	}, # Book 4: A Tour of Visual Studio
+	74: { # Book 4, Chapter 1: Getting Started with Visual Studio
 		'q':  """
-		
+		Explain the difference between the two console application project types
+		available in C# Visual Studio:
+			1) .NET Core
+			2) .NET Framework
 		""",
 		'a': """
-		
+		1) .NET Core
+			- supports Linux, macOS, and Windows
+		2) .NET Framework
+			- which supports desktop development
 		""",
 	},
 	75: {
 		'q':  """
-		
+		What is the purpose of a 'Service' C# Visual Studio project?
 		""",
 		'a': """
-		
+		Purpose:
+			- has no user interface
+			- sits in the background and waits for requests from clients
+			- these templates let you create services specifically designed
+				for your application in addition to Windows Services.
 		""",
 	},
 	76: {
 		'q':  """
-		
+		When would you want to deselect 'Place solution and project in the same directory'
+		when creating a new Visual Studio project?
 		""",
 		'a': """
-		
+		- When you want to add multiple projects to a single solution
+			and want each project to have its own directory within the solution
+
+		NOTE: Keep projects separate makes it easier to reuse a project in another
+			application.
 		""",
 	},
 	77: {
