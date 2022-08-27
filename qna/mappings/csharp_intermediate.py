@@ -991,55 +991,86 @@ qna = {
 		MIME = Multipurpose Internet Mail Exchange
 		""",
 	},
-	68: {
+	68: { # Book 3, Chapter 6: Programming Dynamically!
 		'q':  """
-		
+		1) Which C# keyword has a similar purpose to C++'s 'auto'? 
+		2) State this purpose
 		""",
 		'a': """
-		
+		1) `var`
+		2) Compile time type inference
 		""",
 	},
 	69: {
 		'q':  """
-		
+		What does the type keyword `dynamic` do?
 		""",
 		'a': """
-		
+		The `dynamic` keyword bypasses static type checking.
 		""",
 	},
 	70: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			var a = 5;
+			a.ToUpper();
+
+		Will this trigger a compile time error or a runtime error?
 		""",
 		'a': """
-		
+		Compile time error. Specifically:
+
+		Error CS7036:
+			There is no argument given that corresponds to the required formal parameter 'destination' of
+			'MemoryExtensions.ToUpper(ReadOnlySpan<char>, Span<char>, CultureInfo?)'
+
 		""",
 	},
 	71: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			dynamic a = 5;
+			a.ToUpper();
+
+		Will this trigger a compile time error or a runtime error?
 		""",
 		'a': """
+		Runtime error. Specifically:
 		
+			Unhandled exception. Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'int' does not contain a definition for 'ToUpper'
 		""",
 	},
 	72: {
 		'q':  """
-		
+		Consider the following snippet:
+			dynamic a = "asd";
+			int newNumber = (int)a;
+			Console.WriteLine(newNumber);
+
+		Q1) Will this trigger a compile time error or a runtime error?
 		""",
 		'a': """
-		
+		Runtime error.
 		""",
 	},
 	73: {
 		'q':  """
-		
+		State some of the trade-offs to consider when using the `static` keyword.
 		""",
 		'a': """
-		
+		1) You can now access static members, including constants, of an enclosing scope.
+		2) You can't access these members of an enclosing scope:
+				1) nameof()
+				2) local variables of an enclosing scope
+				3) Parameters
+				4) `this`
+				5) `base`
+
 		""",
 	},
-	74: {
+	74: { 
 		'q':  """
 		
 		""",
