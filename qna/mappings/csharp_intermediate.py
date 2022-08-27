@@ -1109,76 +1109,128 @@ qna = {
 			application.
 		""",
 	},
-	77: {
+	77: { # Book 4, Chapter 2: Using the Interface
 		'q':  """
-		
+		In which Visual Studio pane will a `Debug.Write()` statement go?
 		""",
 		'a': """
-		
+		The 'Output' pane.
 		""",
 	},
 	78: {
 		'q':  """
-		
+		a) What is a good pane for interactive debugging in Visual Studio?
+		b) How do you access it if it's not there?
 		""",
 		'a': """
-		
+		a) The 'immediate' pane
+		b) Debug->Windows->Immediate
 		""",
 	},
 	79: {
 		'q':  """
-		
+		a) In which pane can you see all the breakpoints set up in throughout a given solution?
+		b) How would you access it if it's not already there?
 		""",
 		'a': """
-		
+		a) 'Breakpoints' pane
+		b) Debug->Windows->Breakpoints
 		""",
 	},
 	80: {
 		'q':  """
-		
+		In terms of Visual Studio breakpoint options, outline the purpose of the following:
+			1) Hit count
+			2) Filter
+			3) Actions
 		""",
 		'a': """
-		
+		1) Hit count:
+				- Stop here only after the xth time it is hit
+		2) Filter:
+				- Similar to the 'Condition' setting, except that that you can
+				  use system values such as `MachineName`, `ProcessName`, `ThreadName`, `TheadID`
+		3) Actions:
+				- Allows you to do more than just stop at a breakpoint, instead
+				  you can do something like print a value to the Output window, or
+				  even run a test.
 		""",
 	},
 	81: {
 		'q':  """
-		
+		1) Explain how you can leverage the 'Task List' window?
+		2) How can you find the 'Task List' window?
 		""",
 		'a': """
-		
+		1) By writing a:
+			 '// TODO: <what_to_do>' comment
+
+			your TODO will show up in the 'Task List' window.
+
+		2) View->'Task List'.
 		""",
 	},
 	82: {
 		'q':  """
-		
+		Consider the option available to you in the Visual Studio
+		'Build' dropdown:
+
+			Rebuild
+
+		Outline the usage of this option.
 		""",
 		'a': """
-		
+		Rebuild
+			- Checks all the references throughout the project
+			- Then removes any existing compiled files and compiles the project from scratch
+			- Note: Especially useful if your development computer has changed configuration
+			  since your last build
 		""",
 	},
 	83: {
 		'q':  """
-		
+		Consider the option available to you in the Visual Studio
+		'Build' dropdown:
+
+			Clean
+
+		Outline the usage of this option.
 		""",
 		'a': """
-		
+		Clean:
+			- deletes the .exe's and .dll's created as part of your project.
+			- also deletes .dll's that were copied into your project by references
+			  that were set to that mode.
 		""",
 	},
 	84: {
 		'q':  """
-		
+		Consider the option available to you in the Visual Studio
+		'Build' dropdown:
+
+			Batch Build
+
+		Outline the usage of this option.
 		""",
 		'a': """
-		
+		Batch build:
+			- Enables you to build releases and debug versions, or 32 or 64
+			  bit versions at the same time.
 		""",
 	},
 	85: {
 		'q':  """
-		
+		Consider the option available to you in the Visual Studio
+		'Build' dropdown:
+
+			Configuration Manager
+
+		Outline the usage of this option.
 		""",
 		'a': """
-		
+		Configuration Manager:
+			- use this to set the order and the mode in which you
+			  build your projects.
 		""",
 	},
 	86: {
