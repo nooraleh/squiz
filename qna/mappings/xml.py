@@ -1,7 +1,7 @@
-# Notes taken in a QNA style from Jonathan Hartwell's 'C# and XML Primer'
+# Notes taken in a QNA style from Joe Fawcett's 'Beginning XML'
 
 qna = {
-    1: { # Chapter 1 - Introduction to XML
+    1: { # Chapter 1 - Introduction to XML/What is XML?
 		'q':  """
 		What does XML stand for?
 		""",
@@ -341,66 +341,121 @@ qna = {
 	},
 	22: {
 		'q':  """
-		
+		What is the term for the way that a file's characters are represented by the 
+		underlying data stream?
 		""",
 		'a': """
-		
+		Encoding
 		""",
 	},
 	23: {
 		'q':  """
-		
+		Outline the pros and cons of text files vs. binary files.
 		""",
 		'a': """
-		
+		Text file pros:
+			- Both human-readable and machine-readable (binary only machine-readable)
+			- Comparatively easier to parse than binary files
+
+		Binary files pros:
+			- Equivalent files are smaller in size than text files
+			- Support for metadata (which text files lack)
 		""",
 	},
 	24: {
 		'q':  """
-		
+		What need drove the development of markup?
 		""",
 		'a': """
-		
+		The need to:
+			- Have a human-readable file
+			- Which can also be read by a wide range of applications
+			- And can carry metada along with its content
 		""",
 	},
 	25: {
 		'q':  """
-		
+		What is the essence of markup?
 		""",
 		'a': """
-		
+		Markup is the act of surrounding text that conveys information
+		about the text.
 		""",
 	},
 	26: {
 		'q':  """
-		
+		Consider the following (incomplete snippets):
+
+		1)
+			<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+			<xsl:template match="/">
+				<html>
+					<head>
+						<title>Application Users Baby!</title>
+					</head>
+					<body>
+
+		2)
+			{for $user in doc(“appUsers.xml”)/applicationUsers/user
+				return <tr><td>{data($user/@firstName)}</td>
+				<td>{data($user/@lastName)}</td></tr>}
+
+		Which of the two snippets looks like:
+			a) XSLT b) XQuery
 		""",
 		'a': """
-		
+		1) XSLT
+		2) XQuery
 		""",
 	},
 	27: {
 		'q':  """
-		
+		Explain the difference between data-centric and document-centric XML.
 		""",
 		'a': """
-		
+		Data-Centric:
+			- Used to store pure data, such as configuration files.
+
+		Document-Centric:
+			- Used to add metadata to documents, e.g. XHTML
 		""",
 	},
 	28: {
 		'q':  """
-		
+		Name the four main technologies that rely on XML and explain
+		their usage.
 		""",
 		'a': """
-		
+		1) XML Schemas:
+			- used to validate that XML documents are in the correct format
+
+		2) XSLT
+			- used to convert from one XML format to another (e.g HTML)
+
+		3) XQuery
+			- used to query large document collections such as those
+			  held in databases
+
+		4) SOAP
+			- uses XML to represent the data that is passed to,
+			  and returned from, a web service.
 		""",
 	},
 	29: {
 		'q':  """
-		
+		Why is it that, when designing an XML format for your data,
+		it is recommended to choose attributes unless you have a good reason not to?
 		""",
 		'a': """
-		
+		Because the alternative, using elements as children, will need to a larger
+		file size for your XML document.
+
+		Bear in mind that data is often transmitted across networks rather than just
+		being consumed where it's stored.
+
+		For a small number of users the difference may be negligible, but with a large
+		number of users, or if you are transmitting many of these files, this could
+		lead to more network traffic, leading to higher costs and reduced efficiency.
 		""",
 	},
 	30: {
