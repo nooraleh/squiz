@@ -193,68 +193,160 @@ qna = { # Notes taken in a QNA style from Anothony Williams' 'C++ Concurrency in
 		`main()`
 		""",
 	},
-	14: {
+	14: { # Chapter 2 - Managing Threads
 		'q':  """
-		
+		Consider the following snippet:
+
+				class BackgroundTask
+				{
+				public:
+					void operator()()
+					{
+						do_something();
+						do_something_else();
+					}
+				private:
+					void do_something() { /* Implementation... */}
+					void do_something_else() { /* Implementation... */ }
+				};
+
+				int main(void)
+				{
+					// attempting to spawn a thread
+					std::thread myThread(BackgroundTask());   // (1)
+
+					if (myThread.joinable()) myThread.join();
+				}
+
+		a) Explain the issue that can arise with line (1)
+		b) Outline a few strategy to avoid your answer to (a)
 		""",
 		'a': """
-		
+		a) This is an example of 'the most vexing parse' and the compiler interprets
+			this as a declaration of a function which:
+				- takes as a single parameter a function pointer which takes no arguments
+				  and returns a `BackgroundTask`
+				- ultimate returns a object of type `std::thread`
+
+		b)
+		Strategy 1: By using 'uniform initialization syntax' i.e
+			std::thread myThread{BackgroundTask()}
+
+		Strategy 2: By using anonymous lambdas i.e
+			std::thread myThread2([] {
+				do_something();
+				do_something_else();
+			});
+
 		""",
 	},
 	15: {
 		'q':  """
-		
+		Outline the consequences of callig `detach()` on an instance of type `std::thread`?
 		""",
 		'a': """
-		
+		Calling `detach()` on a `std::thread` object:
+			- leaves the thread running in the background with no means of 
+			  communicating with it
+			- it's no longer possible to wait for the detached thread to be complete
+			  i.e it can no longer be `join`'ed
+			- detached threads run in the background, ownership and control are passed
+			  over to the C++ Runtime Library.
 		""",
 	},
 	16: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			class X
+			{
+			public:
+				void do_lengthy_work() { std::cout << "lengthy work?\n";}
+			};
+
+			int main(void)
+			{
+				X x1;
+
+				std::thread t1{ &X::do_lengthy_work, &x1 }; (1)
+
+				if (t1.joinable())
+					t1.join();
+
+				return 0;
+			}
+
+		Explain how line (1) works
 		""",
 		'a': """
-		
+		In the thread constructor, we supply as arguments:
+		1) The `X::do_lengthy_work` function pointer to be invoked by the new thread
+		2) The `this*` of the class.
+
+		As you know, non-static member functions internally
+		take `this*` as the first argument in a function.
 		""",
 	},
 	17: {
 		'q':  """
-		
+		Compare `std::unique_ptr` with `std::thread`, with a particular focus on
+		ownership semantics.
 		""",
 		'a': """
-		
+		1) Instances of `std::thread` own a resource, while instances of `std::unique_ptr`
+		   own a dynamic object.
+
+		2) Both instances of `std::thread` and `std::unique_ptr` are moveable, but not copyable.
 		""",
 	},
 	18: {
 		'q':  """
-		
+		a) What does ABI stand for?
+		b) How does an ABI differ from an API?
 		""",
 		'a': """
-		
+		a) Application binary interface
+		b) You may think of the ABI as the compiled version of the API.
+			When you write source code, you access the library through the API.
+			Once your code is compiled, your application accesses the binary data in the
+			library through the ABI.
 		""",
 	},
 	19: {
 		'q':  """
-		
+		State the Standard Library function used to return an indication of the number of
+		threads that can truly run concurrently for a given execution of a program?
 		""",
 		'a': """
-		
+		std::thread::hardware_concurrency()
+
+		NB: This is only a hint.
 		""",
 	},
 	20: {
 		'q':  """
-		
+		In the context of multithreading, what is meant by 'oversubscription'?
 		""",
 		'a': """
-		
+		Oversubscription is where your program is running more threads than
+		the hardware can support.
 		""",
 	},
 	21: {
 		'q':  """
-		
+		State two ways to get an identifier for a thread?
 		""",
 		'a': """
-		
+		Way 1:
+			Calling `std::thread::get_id` on an instance of type `std::thread`.
+
+			NB: If the `std::thread` object doesn't have an associated thread of
+			    execution e.g. from being `std::thread::detach`'ed, then `std::thread::get_id`
+				will return a default-constructed `std::thread::id` object which indicates
+				"not any thread".
+
+		Way 2:
+			Calling `std::this_thread::get_id`.
 		""",
 	},
 	22: {
