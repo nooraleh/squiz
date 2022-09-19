@@ -349,220 +349,444 @@ qna = { # Notes taken in a QNA style from Anothony Williams' 'C++ Concurrency in
 			Calling `std::this_thread::get_id`.
 		""",
 	},
-	22: {
+	22: { # Chapter 3 - Sharing Data between Threads
 		'q':  """
-		
+		What does the C++ Standard define the term 'data race' as?
 		""",
 		'a': """
-		
+		As per the C++ Standard, a 'data race' is a specific type of race condition
+		that arises because of concurrent modification to a single object.
+
+		NB: Data races cause UB.
 		""",
 	},
 	23: {
 		'q':  """
-		
+		True or false:
+
+			Because race conditions are generally timing-sensitive, they can often
+			disappear entirely when the application is run under the debugger.
 		""",
 		'a': """
-		
+		True.
 		""",
 	},
 	24: {
 		'q':  """
-		
+		Consider the following strategy to using a mutex:
+
+			1) Create a mutex by calling std::mutex::mutex()
+			2) Lock said mutex instance with a call to std::mutex::lock()
+			3) Apply business logic to mutex using thread with exclusive write access
+			4) Call std::mutex::unlock() when done
+
+		a) Why is (1)-(4) not the recommended practice?
+		b) Suggest an alternative to (1)-(4) and explain.
 		""",
 		'a': """
+		a) Because you have to remember to call std::mutex::unlock on every code path
+		   out of the function, including those due to exceptions.
+
+		b) An alternative would be the use of the std::lock_guard (or C++17's std::scoped_lock)
+		   class template which implements the RAII idiom for a mutex i.e it.
+		   	- locks the mutex on construction
+			- unlocks the mutex on destruction.
 		
+		  Ensuring that the mutex is always correctly unlocked. 
 		""",
 	},
 	25: {
 		'q':  """
-		
+		What is the main difference between:
+			1) pre-C++17's `std::lock_guard`
+			2) C++17's `std::scoped_lock`
 		""",
 		'a': """
-		
+		Both (1) and (2) implement RAII-based mutex management i.e
+		locking on construction and unlocking on destruction.
+
+		However, std::scoped_lock can handle multiple mutexes automatically,
+		while lock_guard is limited to a single mutex. 
 		""",
 	},
 	26: {
 		'q':  """
-		
+		Offer a guideline with respect to the relation between mutexes vs pointers and
+		references to protected/private data.
 		""",
 		'a': """
-		
+		Don't pass pointer and references to protected data outside the scope of the lock,
+		whether by:
+			1) returning them from a function
+			2) storing them in externally visible memory, or;
+			3) passing them as arguments to user-supplied functions.
 		""",
 	},
 	27: {
 		'q':  """
-		
+		a) Provide the definition for a 'trivial type'
+		b) Which <type_traits> function can be used to determine whether a type is trivial?
 		""",
 		'a': """
-		
+		a) Definition:
+				When a class or struct in C++ has either:
+					- compiler-provided, or;
+					- explicitly default
+				special member functions.
+
+		b) std::is_trivial
+
 		""",
 	},
 	28: {
 		'q':  """
-		
+		Fill in the blanks:
+			Objects with trivial copy constructors, trivial copy assignment operators and
+			trivial destructors can be copied with <blank1> or <blank2>.
+
+		BONUS: blank1 and blank2 are defined in which header file?
 		""",
 		'a': """
-		
+		blank1 = std::memcpy
+		blank2 = std::memmove
+
+		BONUS: <cstring>
 		""",
 	},
 	29: {
 		'q':  """
-		
+		Literal types used for constexpr functions must have which special member functions
+		trivially defined (i.e via =default or compiler-generated)?
 		""",
 		'a': """
-		
+		1) constructor
+		2) copy constructor
+		3) destructor
 		""",
 	},
 	30: {
 		'q':  """
-		
+		a) In C++17, what is meant by an 'aggregate'?
+		b) What are the implications of a class or struct being an aggregate?
+			Give a code snippet to demonstrate.
 		""",
 		'a': """
-		
+		a) An aggregate is a class or a struct with no user-supplied constructors
+		b) The implication is that an aggregate can be initialized with an aggregate
+			initializer. 
+
+			Snippet:
+				struct Aggregate
+				{
+				public:
+					Aggregate() = default;
+					Aggregate(const Aggregate&) = default;
+					int a;
+					double b;
+				};
+
+				int main(void)
+				{
+					Aggregate x={ 42, 3.14 };
+					return 0;
+				}
+
+			Note that the above snipper DOES NOT compile in C++20.
 		""",
 	},
 	31: {
 		'q':  """
-		
+		What is the key benefit of:
+			1) constant expressions, and;
+			2) `constexpr` functions involving user-defined types
 		""",
 		'a': """
-		
+		Key benefit: Objects of a literal type initialized with a constant expression
+					are statically initialized, and so their initialization is free
+					from race conditions and initialization order issues.
 		""",
 	},
 	32: {
 		'q':  """
-		
+		True or false:
+			In C++ up to and including 17, constexpr (non-special) member functions can be virtual.
 		""",
 		'a': """
-		
+		False, they cannot be virtual.
 		""",
 	},
 	33: {
 		'q':  """
-		
+		Consider the following snippet:
+			
+			template<typename T1, typename T2, typename T3>
+			constexpr T1 sum(T2 a, T3 b)
+			{
+				return a+b;
+			}
+
+		a) Under what conditions would the `constexpr` specifier be ignored?
+		b) Give concrete examples of a case when:
+				i)  The template instance is `constexpr`
+				ii) The template instance is not `constexpr`
 		""",
 		'a': """
-		
+		a) Condition: If at least one of T1, T2, T3 are not literal types, in which case
+				a template instantiation under this condition would not be `constexpr`.
+
+		b) 
+			i) constexpr int i = sum<int, int, int>(2, 3);
+
+			ii) /*constexpr */ std::string s = sum<std::string, std::string, std::string>(std::string("hello "), std::string("world!")); // not constexpr as std::string is non-literal type
 		""",
 	},
 	34: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			void foo()
+			{
+				thread_local std::vector<int> v;
+			}
+
+		What are the implications of marking a variable of `thread_local`?
 		""",
 		'a': """
-		
+		Thread local variables allow you to have a separate instance of each variable for
+			each thread in your program. These variables are said to have 'thread storage duration'.
 		""",
 	},
 	35: {
 		'q':  """
-		
+		True or false:
+
+			a) The `noexcept` specifier is part of the function type
+			b) The `noexcept` specifier can be used for function overloading i.e defining the two `func` functions
+					int func(int a, int b, int c) { return a * b * c; }
+					int func(int x, int y, int z) noexcept { return x + y + z; }
+
+				is fine.
+
 		""",
 		'a': """
-		
+		a) True
+		b) False, see compiler error: 'C2382'
 		""",
 	},
 	36: {
 		'q':  """
-		
+		State the only functions in C++ that are "implicitly non-throwing"
 		""",
 		'a': """
-		
+		The only functions in C++ that are implicitly non-throwing are the six special member functions,
+		namely:
+			1) the default constructor
+			2) the default destructor 
+			3) the move constructor
+			4) move assignment operator
+			5) the copy constructor
+			6) copy assignment operator
 		""",
 	},
 	37: {
 		'q':  """
-		
+		Under what condition is a class destructor non-throwing?
 		""",
 		'a': """
-		
+		Condition: All destructors of the class data members as well as the destructors of the class's base class(es)
+					data members must be non-throwing.
 		""",
 	},
 	38: {
 		'q':  """
-		
+		1) Fill in the blank:
+			`noexcept` can be used as a <BLANK> as well a specifier.
+
+		2) Describe the use-case of <BLANK>
 		""",
 		'a': """
-		
+		1) BLANK = operator
+
+		2) The `noexcept` operator checks at compile-time if an expression does not throw an exception.
 		""",
 	},
 	39: {
 		'q':  """
-		
+		Why is it more favourable to use std::lock(_mutex1, _mutex2) as opposed to _mutex1.lock(), _mutex2.lock()?
 		""",
 		'a': """
-		
+		Because std::lock locks all the mutexes and ensures that all arguments are locked on return (without producing any deadlocks).
+		If the function cannot lock all passed in mutexes, the function first unlocks all objects it successfully has locked (if any)
+		before failing.
 		""",
 	},
 	40: {
 		'q':  """
-		
+		a) Outline the purpose of <mutex>'s std::lock_guard
+		b) Specify a C++17 alternative to std::lock_guard and why it may be better
 		""",
 		'a': """
-		
+		a)
+			std::lock_guard is a mutex wrapper that provides a convenient RAII-style mechanism for owning a mutex
+			for the duration of a scoped bock.
+
+			When an std::lock_guard object is created, it attempts to take ownership of the mutex it is given.
+			When control leaves the scope in which the std::lock_guard object was created,
+			the std::lock_guard instance is destructed and the mutex is released.
+
+		b) std::scoped_lock offers a replacement for std::lock_guard as well as providing the ability to lock
+			multiple mutexes using a dealock avoidance algorithm.
 		""",
 	},
 	41: {
 		'q':  """
-		
+		In the context of mutex locking, what is the difference between:
+			1) .lock
+			2) .try_lock
+			3) .try_lock_for
+			4) .try_lock_until
 		""",
 		'a': """
-		
+		All of (1)-(4) attempt to take exclusive ownership of the mutex, the
+		difference really lies in the behaviour if the mutex is already owned beforehand.
+
+		So in the case that the call is unsuccessful in acquiring the mutex:
+			1) .lock will block until it has access and then process
+			2) .try_lock will return false (true if success)
+			3) .try_lock_for will continue to try for a specified std::chrono::duration
+			4) .try_lock_until will block until the specifed std::chrono::time_point has been reached
+				or the lock is acquired, whichever comes first. Behaves as std::try_lock after the std::chrono::time_point
+				has been reached.
 		""",
 	},
 	42: {
 		'q':  """
-		
+		Compare std::mutex with std::timed_mutex
 		""",
 		'a': """
-		
+		Similar to std::mutex, std::timed_mutex offers exclusive, recursive ownership semantics.
+		In addition to that, std::timed_mutex provides the ability to attempt to claim ownership of a std::timed_mutex
+		with a timeout via the member functions `std::timed_mutex::try_lock_for`, `std::timed_mutex::try_lock_until`
 		""",
 	},
 	43: {
 		'q':  """
-		
+		a) What is the purpose of std::recursive_mutex
+		b) In which coding scenarios would the use of std::recursive_mutex be application 
 		""",
 		'a': """
-		
+		a) And std::recursive mutex is, like std::mutex, Lockable. However, std::recursive_mutex
+		   allows the SAME THREAD to acquire multiple (recursive) levels of ownership over the
+		   mutex object
+
+		E.g. consider the pseudocode
+			std::recursive_mutex __recursive_mutex;
+
+			void recursive_function(int data)
+			{
+				if (terminal_condition()) return;
+				else
+				{
+					// lock as many times as the recursive depth or
+					// internal .lock() limit (this is unspecified as per docs)
+					__recursive_mutex.lock();
+					// critical section handling
+					
+					recursive_function(data - 1);
+
+					// By the nature of the recursive function,
+					// we unlock as many times as we lock
+					__recursive_mutex.unlock();
+				}
+			}
+
+		If we used a normal std::mutex the second call to .lock() would be blocked
+		and we would end up with a deadlock.
+
+		b)
+			1) handling critical section with a mutex in a recursive function
+			2) handling critical section with a mutex in a for loop
 		""",
 	},
 	44: {
 		'q':  """
-		
+		State and describe the three <mutex> header locking strategy constants.
 		""",
 		'a': """
-		
+		1) std::defer_lock
+			- Do not acquire ownership of the mutex
+			- i.e wrap but do not lock
+			- this leaves the responsibility of wrapper to the client code
+		2) std::try_to_lock
+			- Try to acquire ownership of the mutex without blocking
+		3) std::adopt_lock
+			- Assume the calling thread already has ownership of the thread
+			- I.e the thread has already called .lock() on mutex before said mutex
+			  is passed to std::unique_lock wrapper
+			- You'd only ever want to use this if you've already locked the mutex
+			  and want a convient RAII-unlocking wrapper afterwards
 		""",
 	},
 	45: {
 		'q':  """
-		
+		<mutex>'s std::unique_lock is a general-purpose mutex wrapper.
+
+		List the functionality that it allows for.
 		""",
 		'a': """
-		
+		1) Deferred locking
+		2) Time-constrained attempts at locking
+		3) Recursive locking
+		4) Transfer of lock ownership (Moveable but not Copyable)
+		5) Use with condition variables
 		""",
 	},
 	46: {
 		'q':  """
-		
+		a) What is the purpose of std::call_once?
+		b) What arguments do you pass to std::call_once
 		""",
 		'a': """
-		
+		a) <mutex>'s std::call_once executes a Callable function exactly once,
+			even if called concurrently from several threads.
+
+		b) 	First argument: std::once_flag
+			Second argument: Callable function
+			[third argument, variable]: arguments to the Callable function, 0 if Callable has zero parameters
 		""",
 	},
 	47: {
 		'q':  """
-		
+		Outline the difference between <mutex> header's:	
+			1) std::try_lock
+			2) std::mutex::try_lock
 		""",
 		'a': """
-		
+		1) std::try_lock is a:
+			- global function which takes 1...N Lockable objects
+			- will try to lock each of the given Lockable objects in order of arguments passed
+			- if the call fails, no further attempts are made 
+			- returns:
+				- (-1) returned on success
+				- 0-based index of failing Lockable argument returned on failure
+
+		2) std::mutex::try_lock:
+			- will attempt to lock the mutex instance once
+			- returns
+				- `true` on success
+				- `false` on failure
 		""",
 	},
 	48: {
 		'q':  """
-		
+		Compare std::lock with std::try_lock
 		""",
 		'a': """
-		
+		- Both std::lock and std::try_lock take 1...N Lockable objects.
+		- std::lock will implement a deadlock available algorithm and try multiple
+			orders of the arguments passed and block if no mutex fails
+		- std::try_lock will only try once and in the order of the mutexes passed
+			and return -1 on success or a 0-based index of the mutex that failed.
 		""",
 	},
 	49: {
