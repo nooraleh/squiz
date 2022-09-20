@@ -791,66 +791,123 @@ qna = { # Notes taken in a QNA style from Anothony Williams' 'C++ Concurrency in
 	},
 	49: {
 		'q':  """
-		
+		Consider the following deadlock avoidance guideline:
+			Avoid nested locks
+
+		a) Explain why this is a good guideline
+		b) If you need to acquire multiple locks, how should you approach this?
 		""",
 		'a': """
 		
+		a) Do not acquire a lock if you already hold.
+			Sticking to this guideline means that it's impossible to get a deadlock
+			from lock usage alone because each thread only ever holds a single lock.
+			Mutex locks are a very common cause of deadlocks.
+
+		b) If you need to acquire multiple locks, this should be done as a single
+			action with either std::lock or with std::scoped_lock (preferred)
 		""",
 	},
 	50: {
 		'q':  """
-		
+		Consider the following deadlock avoidance guideline:
+			Acquire locks in a fixed order.
+
+		Explain the importance of this guideline.
 		""",
 		'a': """
-		
+		If you absolutely cannot acquire multiple mutexes in one go either via
+		std::lock and std::scoped_lock then you must make sure to acquire each
+		lock in order in every thread.
 		""",
 	},
 	51: {
 		'q':  """
-		
+		a) State one pro in favour of using std::unique_lock over std::lock_guard
+		b) State one pro in favour of using std::lock_guard over std::unique_lock
+
+		BONUS: Explain why your answer to (a) is true.
 		""",
 		'a': """
-		
+		a) std::unique_lock provides more flexibilty of use via the locking strategy constants:
+				1) std::defer_lock 2) std::adopt_lock 3) std::try_to_lock
+
+		b) std::lock_guard takes less space and is slightly faster to use than std::unique_lock
+
+		BONUS: Because std::unique_lock must store and update a flag to determine whether
+			the std::unique_lock instance owns the mutex, the storage of the flag leads to
+			a size increase and the need to update and query said flag leads to a performance penalty.
 		""",
 	},
 	52: {
 		'q':  """
-		
+		Explain what is understood by the "granularity of a lock".
 		""",
 		'a': """
-		
+		The "granularity of a lock" is simply a hand-wavy term to describe the amouunt
+		of data protected by a single lock.
+
+		I.e a fine-grained lock protects a small amount of data, and a coarse-grained
+		lock protects a large amount of data.
 		""",
 	},
 	53: {
 		'q':  """
-		
+		Consider the case where the shared data needs protection only from
+		concurrent access while it's being initialized, but after that no
+		explicit synchronization is required.
+
+		Which functionality from the C++ Concurrency Support Library would
+		be best for this case. 
 		""",
 		'a': """
-		
+		std::call_once, std::once_flag
 		""",
 	},
 	54: {
 		'q':  """
-		
+		Consider the case where we want thread-safe initialization of a single global instance.
+		What is an alternative to accomplishing via std::call_once?
 		""",
 		'a': """
-		
+		Since post-C++11 `static` variable initialization is guaranteed to happen on exactly
+		once thread, and no other threads will proceed until that initialization is complete,
+		declaring a variable as `static` is a viable alternative.
+
+		E.g
+			class MyClass { };
+
+			MyClass& get_my_class_instance()
+			{
+				static MyClass __instance;
+				return __instance;
+			}
 		""",
 	},
 	55: {
 		'q':  """
-		
+		In what circumstances do reader/writer mutexes such as std::shared_mutex
+		provide a performance benefit?
 		""",
 		'a': """
-		
+		Circumstances where readers are overwhelmingly more frequent than writes.
+
+		Concrete example: A cache of DNS entries. DNS entries may be unchanged for years,
+			but can happen - so we need to share read access between threads and when
+			that rare occasion for write arises, a single thread must have exclusive
+			access to write.		
 		""",
 	},
 	56: {
 		'q':  """
-		
+		What is the main difference between std::shared_mutex and std::mutex?
 		""",
 		'a': """
-		
+		std::shared_mutex has two levels of access:
+			1) shared - several threads can share ownership of the same mutex
+			2) exclusive - only one thread can own the mutex
+
+		Note that std::mutex only has functionality for (2) i.e exclusive.
 		""",
 	},
 	57: {
