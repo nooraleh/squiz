@@ -910,20 +910,29 @@ qna = { # Notes taken in a QNA style from Anothony Williams' 'C++ Concurrency in
 		Note that std::mutex only has functionality for (2) i.e exclusive.
 		""",
 	},
-	57: {
+	57: { # Chapter 4: Synchronizing Concurrent Operations
 		'q':  """
-		
+		1) What is std::condition_variable used for?
+		2) How would you use an instance of std::condition_variable
 		""",
 		'a': """
-		
+		1) std::condition_variable is used for facilitating inter-thread communication.
+		2) pseudo-snippet:
+			std::condition_variable __condition_variable;
+			__condition_variable(
+				<arg1: instance of std::unique_lock>,
+				<arg2: lambda returning a bool>
+			)
 		""",
 	},
 	58: {
 		'q':  """
-		
+		Fill in the blank:
+			For an instance of std::condition_variable, we must <BLANK> before
+			call std::condition_variable::notify_one/all();
 		""",
 		'a': """
-		
+		BLANK: manually unlock the mutex
 		""",
 	},
 	59: {
