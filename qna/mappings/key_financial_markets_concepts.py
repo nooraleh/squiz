@@ -6,7 +6,7 @@ qna = { # Section 1: Time Value of Money
 		Give the assumption upon which each of the following calculations
 		are made?
 			1) Simple interest
-			2) Compount interest 
+			2) Compound interest 
 		""",
 		'a': """
 		Simple interest assumption:	
@@ -81,7 +81,7 @@ qna = { # Section 1: Time Value of Money
 		What is a nominal interest rate?
 		""",
 		'a': """
-		A nominal interest rate is a an interest rate which does not take inflation into account.
+		A nominal interest rate is an interest rate which does not take inflation into account.
 
 		E.g. if a lender lends $100 at 8pct for a year and inflation for that year
 			was 10pct, the lender would have received a 2pct loss in real-terms purchasing power. 
@@ -142,7 +142,7 @@ qna = { # Section 1: Time Value of Money
 		a) A rate of discount is the interest rate which has been chosen for
 			calculating a present value from a future amount.
 
-		b) A discount factor the number by which you need to multiply a future cashflow
+		b) A discount factor is the number by which you need to multiply a future cashflow
 			, in order to calculate its present value.
 		""",
 	},
@@ -244,7 +244,7 @@ qna = { # Section 1: Time Value of Money
 		a) What is the standard value date for most currencies in the international foreign
 			exchange and money markets?
 
-		b) Given your answer to (a) are value dates for forward settlements base on:
+		b) Given your answer to (a) are value dates for forward settlements based on:
 			1) the transaction date, or;
 			2) the value date
 		""",
@@ -408,106 +408,164 @@ qna = { # Section 1: Time Value of Money
 	},
 	31: {
 		'q':  """
-		
+		a) In the context of FX trading, what is a pip?
+		b) What does pip stand for?
 		""",
 		'a': """
-		
+		a) Pip:
+			The smallest whole unit price move that an exchange rate can make,
+			based on forex market convention.
+
+			It equals 1/100th of 1pct , or 0.0001
+
+		b) Either:
+			1) Percentage in point
+			2) Price interest point
 		""",
 	},
 	32: {
 		'q':  """
-		
+		Consider the following currency pair:
+			USD/CAD
+
+		Q: Which of the two is:
+			1) the base currency?
+			2) the quote (also known as 'variable') currency?
 		""",
 		'a': """
-		
+		The base current is the first currency stated in the pair so in this
+		case the base currency is USD.
+
+		CAD, being the second of the two, is the quote currency.
 		""",
 	},
 	33: {
 		'q':  """
-		
+		a) In the context of FX markets, what is meant by the term 'outrights'?
+		b) What are outrights also known as in the context of FX markets?
 		""",
 		'a': """
-		
+		a) The term outrights is used to describe a type of transaction where
+			two parties agree to buy or sell a given amount of currency at a predertermined
+			rate at some point in the future.
+
+		b) Forward outright, FX forward, currency forward.
 		""",
 	},
 	34: {
 		'q':  """
-		
+		As you know, the standard value date (i.e. spot value date) is two
+		working days after the transaction date (T+2).
+
+		a) Give an example of currency pair is an exception to this rule?
+		b) And in what way does it differ?
+		c) Why does it differ in this way?
 		""",
 		'a': """
-		
+		a) USD/CAD pair
+		b) USD/CAD settles in one business day
+		c) Because the currency pair is commonly traded and its financial
+			centres are in the same time zone.
 		""",
 	},
 	35: {
 		'q':  """
-		
+		What is the difference between a 'short date forward' and
+		a 'long-dated forward'?
 		""",
 		'a': """
-		
+		Short date forward:
+			A forward contract that expires in less than or equal to one year
+
+		Long-dated forward:
+			Forward contract with a settlement date longer than one
+			year and as far as 10 or more years.
 		""",
 	},
 	36: {
 		'q':  """
-		
+		What is a Spot Transaction?
 		""",
 		'a': """
-		
+		A spot transaction refers to an exchange of currencies at the prevailing market rate.
 		""",
 	},
 	37: {
 		'q':  """
-		
+		Fill in the blank:
+
+			Imagine a trader decides to execute an FX transaction using Japanese Yen to
+			buy New Zealand Dollars.
+
+			This would constitute opening a _____ position in the currency pair NZD/JPY.
+			
 		""",
 		'a': """
-		
+		BLANK: Long position
+
+		Remember when you go long a currency pair, you are buying the base currency via
+		selling the quote currency.
 		""",
 	},
 	38: {
 		'q':  """
-		
+		What is Spot Next (S/N)?
 		""",
 		'a': """
-		
+		A term used in foreign currency trading, it denotes the delivery of
+		purchased currency on a day after the spot date (the spot date being the day
+		that the funds of the foreign currency or instrument transaction are transferred - usually T+2)..
+
 		""",
 	},
 	39: {
 		'q':  """
-		
+		In the foreign currency markets, state three interchangeable terms for the 
+		'spot rate'.
 		""",
 		'a': """
-		
+		1) Benchmark rate
+		2) Straightforward rate
+		3) Outright rate
 		""",
 	},
 	40: {
 		'q':  """
-		
+		What do we call the difference between the spot rate and the forward rate?
 		""",
 		'a': """
-		
+		The basis.
 		""",
 	},
 	41: {
 		'q':  """
-		
+		What is a cross currency?
 		""",
 		'a': """
-		
+		A cross currency refers to a currency pair or transaction that doesn't involve the US dollar.
+		A cross currency transactoin, for example, doesn't use the U.S. dollar as a contract settlement
+		currency.
 		""",
 	},
 	42: {
 		'q':  """
-		
+		What is meant by a high/low yield currency?
 		""",
 		'a': """
-		
+		A high yield currency is a currency where the home country of said currency
+		has high prevailing interest rates.
+
+		Likewise, a low yield currency is the legal tender of a country where the
+		prevailing interest rates are low.
 		""",
 	},
 	43: {
 		'q':  """
-		
+		What is market depth?
 		""",
 		'a': """
-		
+		Market depth refers to a market's ability to absorb relatively large market orders
+		without significantly impacting the price of the security.
 		""",
 	},
 	44: {

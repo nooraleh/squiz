@@ -1,34 +1,65 @@
 qna = {
     1: { # <any>
 		'q':  """
-		
+		Which type_trait must a class satisfy in order for an instance
+		of said class to be containable in an std::any class?
 		""",
 		'a': """
-		
+		std::is_copy_constructible
 		""",
 	},
-    2: {
-		'q':  """
-		
+    2: { # <cmath>
+		'q':  """ 
+		a) State the standalone function used for Euler exponentiation?
+		b) Use your answer to (a) as well as other code to represent:
+			 e** i * pi
 		""",
 		'a': """
-		
+		a) std::exp() - so std::exp(1) is e**1
+		b)
+		Snippet:
+			#include <numbers> // for pi, C++20 only
+			#include <complex> // for i
+			#include <cmath>   // for the std::exp
+
+			void ans()
+			{
+				using namespace std::complex_literals;
+
+				auto answer = std::exp(std::numbers::pi * 1i);
+
+				// NB: Note that the output of `answer` will be -1 with E-16 epsilon tolerance
+			}
 		""",
 	},
     3: {
 		'q':  """
-		
+		What is std::reference_wrapper<T> in a nutshell?
 		""",
 		'a': """
-		
+		A std::reference_wrapper<T> is an object that:
+			1) wraps a pointer (T*) and has the semantics of a reference (T&)
+			2) It is assignable and copyable
+
+		Due to (1) & (2), it can rebind to another object like a pointer.
 		""",
 	},
     4: {
 		'q':  """
-		
+		a) What does std::enable_shared_from_this allow for
+		b) What is a pre-requisite to using std::enable_shared_from_this
 		""",
 		'a': """
-		
+		a) It enables you to get a valid std::shared_ptr instance to this,
+			when all you have is `this`
+
+		b) Pre-requisite:
+			If you want this functionality inside a class, say Y, then you must:
+				- publically inherit std::enable_shared_from_this
+
+			e.g.:
+				class Y : public std::enable_shared_from_this<T>
+				{ };
 		""",
 	},
     5: {
