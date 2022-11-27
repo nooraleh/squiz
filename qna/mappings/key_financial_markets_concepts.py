@@ -570,18 +570,30 @@ qna = { # Section 1: Time Value of Money
 	},
 	44: {
 		'q':  """
-		
+		In a "vanilla" interest rate swap (i.e adjusted-rate for fixed-rate), who is the:
+			1) receiver or seller
+			2) payer
 		""",
 		'a': """
 		
+		1) The receiver or seller swaps the adjustable rate payments in exchange for fixed interest payments.
+		2) The payer swaps the fixed interest payments in exchange for adjustable interest rate payments.
 		""",
 	},
 	45: {
 		'q':  """
-		
+		Consider a plain vanilla interest rate swap, in which there are two parties:
+			party a) the fixed-rate payer (floating-rate receiver)
+			party b) the floating-rate payer (fixed-rate receiver)
+
+		Which of (a) or (b) is considered to as having:
+			1) bought the swap/having a long position
+			2) sold the swap/having a short position
+
 		""",
 		'a': """
-		
+		1) party a
+		2) party b		
 		""",
 	},
 	46: {
