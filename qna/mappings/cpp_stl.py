@@ -64,58 +64,112 @@ qna = {
 	},
     5: {
 		'q':  """
-		
+		 Consider the following snippet:
+			
+				std::variant<int, std::string> __variant = std::string{"abc"};
+				
+		a) Identify the alternative types in variant `__variant`
+		b) Write code to determine whether `__variant` is currently holding an `int`
 		""",
-		'a': """
-		
+		'a': r"""
+		a) int, std::string
+		b) Snippet:
+				std::cout << std::boolalpha << std::holds_alternative<int>(__variant) << '\n';
 		""",
 	},
     6: {
 		'q':  """
-		
+		What does std::variant<T...>::index return?
 		""",
-		'a': """
-		
+		'a': r"""
+		A zero-based index of the alternative that is currently held by the variant.
+
+		E.g. consider:
+			std::variant<T1, T2, T3> __variant = T3{};
+
+			assert(__variant.index() == 2); // as T3 is at index 2
 		""",
 	},
     7: {
 		'q':  """
-		
+		State two cases in which you'd want to use <variant>'s std::monostate?
 		""",
 		'a': """
-		
+		1)	For use in a variant of non-default-constructible types.
+
+			For consider:
+				std::variant<T1, T2, T3> __variant; // compiler error
+
+			If none of T1, T2 or T3 are default constructible, then this line of code
+			will trigger a compiler error.
+
+			So you would have to add std::monostate at the start
+				std::variant<std::monostate, T1, T2, T3> __variant; 
+
+		2) To represent the idea of "empty", as std::monotone have their comparison
+			operators overloaded.
+
 		""",
 	},
     8: {
 		'q':  """
-		
+		a) What is the purpose of std::variant<T...>::valueless_by_exception() ?
+		b) What is the purpose of <variant>'s std::variant_npos?
 		""",
 		'a': """
+		a) std::variant<T...>::valueless_by_exception returns false if and only if the
+			variant holds a value.
+
+			NB: A variant may not hold a value when in an exception is thrown during various
+				initialization/assignment steps to a variant.
 		
+		b) std::variant_npos is returned if and only if std::variant<T...>::valueless_by_exception()
+			returns true;
 		""",
 	},
     9: {
 		'q':  """
-		
+		True or false:
+			An std::variant is never permitted to allocate dynamic memory.
 		""",
 		'a': """
-		
+		True	
 		""",
 	},
     10: {
 		'q':  """
-		
+		Say we have:
+
+				std::variant<int, std::string, float> __variant;
+				// ... various allowable assignments to variant
+
+		Write the line of code which will determine whether or not `__variant`
+		is currently holding an std::string.
 		""",
 		'a': """
-		
+		auto holding_string = std::holds_alternative<std::string>(__variant);
 		""",
 	},
 	11: {
 		'q':  """
-		
+		a) What is the purpose of std::visit?
+		b) State any constraints there may be on std::visit?
 		""",
 		'a': """
-		
+		a) The purpose of std::visit is to pass a callback to be invoke on the underlying
+		item within an std::variant.
+
+		Used as followed:
+			std::visit($<CALLBACK>, $<std::variant INSTANCE>)
+
+		b) Constraints include the callback being compatible with all data types specified in the variant.
+			Specifically, for variant:
+				std::variant<T1, T2, ..., TN>
+
+			The passed callback has to be invokable with any of T1, T2, ..., TN
+
+			NOTE: You can get around this with a generic lambda of by specifying a custom
+				visitor struct that call inherit from multiple lambdas and adapt to each type.
 		""",
 	},
 	12: {
