@@ -598,130 +598,202 @@ qna = { # Section 1: Time Value of Money
 	},
 	46: {
 		'q':  """
-		
+		Let:
+			USD/CAD = 1.0750
+			EUR/USD = 1.3400
+
+		Infer the EUR/CAD rate
 		""",
 		'a': """
-		
+		EUR/CAD = (1.0750USD / CAD) * (1.3400EUR / USD)
+				= (1.0750 * 1.3400) * (EUR/CAD)
+				= 1.4405EUR/CAD
 		""",
 	},
 	47: {
 		'q':  """
-		
+		Consider the following currency deal quote:
+
+			EUR 1 = CAD 1.4000 / 1.4800
+
+		a) How many Canadian dollars would you receive for selling one euro?
+		b) How many Canadian dollars would be required to buy one euro?
 		""",
 		'a': """
-		
+		a) 1.40
+		b) 1.48
 		""",
 	},
 	48: {
 		'q':  """
-		
+		In FOREX, what is meant by transaction risk?
 		""",
 		'a': """
-		
+		Transaction risk refers to the currency exchange risk associated with the time delay
+		between entering into a trade or contract and then settling it.
 		""",
 	},
 	49: {
 		'q':  """
-		
+		How do currency swaps differ from interest rate swaps?
 		""",
 		'a': """
-		
+		They can also involve principal exchanges.
 		""",
 	},
 	50: {
 		'q':  """
-		
+		Choose A or B.
+
+		Consider a one month currency forward contract.
+			A) The one month forward contract will settle one month after the spot date
+			B) The one month forward contract will settle one month after the transaction date
 		""",
 		'a': """
-		
+			A
 		""",
 	},
 	51: {
 		'q':  """
-		
+		What is an inflation swap?
 		""",
 		'a': """
-		
+		An inflation swap is a derivatives contract in which:
+			Party A
+				Pays a fixed rate cash flow on a notional principal amount
+			Party B
+				Pays a floating rate linked to an inflation index, such as the CPI.
+				This party pays the inflation-adjusted rate multiplied by a notional principle
+				amount.
 		""",
 	},
 	52: {
 		'q':  """
-		
+		What is a bullet repayment?
 		""",
 		'a': """
-		
+		A bullet repayment is a lump-sum repayment of the principal at maturity.
+		This contrasts with a loan structures in a way such that payment of principal is
+		amortized throughout the lifetime of the loan.
 		""",
 	},
 	53: {
 		'q':  """
-		
+		What is a swap spread?
 		""",
 		'a': """
-		
+		A swap spread is the difference between the fixed component (swap rate) of a given
+		interest rate swap and the yield of a given sovereign debt security with a given maturity.
+
+		In the U.S the given sovereign debt security would be a U.S Treasury security.
 		""",
 	},
 	54: {
 		'q':  """
-		
+		What is the swap rate?
 		""",
 		'a': """
-		
+		The swap rate is the rate of the fixed leg of a swap as determined by its
+		particular market and the parties involved.
+
+		Note that it is also the fixed rate portion of a currency swap as well as
+		an interest rate swap.
 		""",
 	},
 	55: {
 		'q':  """
-		
+		What is a reset date (in the context of financial derivatives such as interest rate swaps)?
 		""",
 		'a': """
-		
+		A reset date is the date on which the floating leg of the swap is recalculated
+		based on the agreed upon reference rate.
+
+		E.g. Consider a swap with:
+			- a floating leg is set to be SOFR + 200BP
+			- period 1 SOFR was 2pct so the floating leg with 2.2pct
+			- at the reset date SOFR is 2.5pct so the floating leg for period 2 
+				is calculated at 2.7pct and 'reset' to 2.7pct for period 2. 
 		""",
 	},
 	56: {
 		'q':  """
-		
+		a) True or false:
+			The federal funds rate is directly set by the federal reserve.
 		""",
 		'a': """
-		
+		a) False. However, the FOMC has tools at its deposal to influence to 
+			influence the federal funds rate.
 		""",
 	},
 	57: {
 		'q':  """
-		
+		a) What is the Interest on Reserve Balances (IORB)?
+		b) What are Overnight Reverse Repurchases?
+
+		c) Which of (a) or (b) is the ceiling and which is the floor
+			for the target range of the federal funds rate?
 		""",
 		'a': """
-		
+		a) The rate of interest a bank (depository institution) gets on deposits,
+		known as reserves, that it keeps at the Federal Reserve.
+
+		b) Overnight Reverse Repurchases are securities, like treasury bills, that
+			the federal reserve lends to banks, usually for a day, while paying
+			interest.
+
+		c) IORB (a) is the ceiling, the Overnight Reverse Repo (b) is the floor
 		""",
 	},
 	58: {
 		'q':  """
-		
+		Choose A or B:
+
+		A reverse repurchase agreement is from the perspective of:
+			A) The buyer of securities side that agrees to sell them back.
+			B) The seller of securities side that agrees to buy them back.
 		""",
 		'a': """
-		
+		A)
 		""",
 	},
 	59: {
 		'q':  """
-		
+		a) Provide a generally accepted definition for 'durable goods'
+		b) Given your answer to (a), what are 'core durable good'?
 		""",
 		'a': """
-		
+		a) Durable goods are:
+			1) Consumer goods with an expected useful life of 3 or more years, and;
+			2) Are purchased infrequently.
+
+		b) Core durable goods are durables goods excluding transportation 
+			equipment.
 		""",
 	},
 	60: {
 		'q':  """
-		
+		a) What are capital goods?
+		b) Give a few examples of capital goods.
 		""",
 		'a': """
-		
+		a) Capital goods are goods that:
+			- companies use to make produces that they then sell to the public
+			- are not finished goods but are used to make finished goods
+			
+		b) Examples include:
+			- machinery, vehicles, processing tools
 		""",
 	},
 	61: {
 		'q':  """
-		
+		a) What is a credit spread (AKA yield spread)?
+		b) Other than 'yield spreads', state two other terms that credit spreads
+			are interchangeable with.
 		""",
 		'a': """
-		
+		a) A credit spread (ALKA yield spread) is the differece in yield between
+		two debt securities of the same maturity but different credit quality.
+		b) Bond spread, default spread.
 		""",
 	},
 	62: {

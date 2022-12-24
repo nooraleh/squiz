@@ -174,26 +174,53 @@ qna = {
 	},
 	12: {
 		'q':  """
-		
+		When would we favour <utility>'s std::as_const over const_cast?
 		""",
 		'a': """
-		
+		When you want to access the const member functions of an object, and
+		not accidentally remove const if the object is already const.
 		""",
 	},
 	13: {
 		'q':  """
-		
+		a) Which C++20 class provides information regarding source code, including file names, line numbers,
+		the calling function etc..
+		b) In which header file can I find your answer to (a)
 		""",
 		'a': """
-		
+		a) std::source_location
+		b) <source_location>
 		""",
 	},
 	14: {
 		'q':  """
-		
+		Consider the following example:
+
+			if (<BLANK>)
+			{
+				// do some compile time logic
+			}
+			else
+			{
+				// we know we're in runtime, so do some runtime based logic e.g.
+				// dynamic memory, manage runtime variables, perhaps throw exception.
+			}
+
+		Which function/construct BLANK would be used to differentiation between whether we're in
+		compile time or runtime when we are in:
+			a) C++20
+			b) C++23
 		""",
 		'a': """
-		
+		a) <type_trait>'s std::is_constant_evaluated
+		b) Using 'if consteval' e.g.:
+
+			if consteval
+			{ // if logic}
+			else
+			{  // else logic}
+
+		Note that 'if consteval' doesn't use parenthesis.
 		""",
 	},
 	15: {

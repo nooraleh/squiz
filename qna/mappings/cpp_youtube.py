@@ -206,90 +206,185 @@ qna = {
 	},
 	13: {
 		'q':  """
-		
+		a) What is a constant expression?
+		b) What is an integral constant expression?
 		""",
 		'a': """
-		
+		a) A constant expression is an expression that can be evaluated at compile time
+		b) An integral constant expression is an expression that:
+			- can be evaluated at compile time
+			- whose type is integral or an enumeration
 		""",
 	},
 	14: {
 		'q':  """
-		
+		Why should you avoid:
+			1) using identifiers that contain a double underscore for any use?
+			2) using identifiers that begin with and underscore followed by an upperscore letter for any use?
+			3) using an identifier that begins with an underscore in the global namespace.
 		""",
 		'a': """
-		
+		According the lex.name section of the C++ draft, cases (1) and (2) are reserved to the implementation for any use.
+		Also case (3) is reserved to the implementation for any use.
+
+		Therefore, writing identifiers in any of (1), (2) or (3) will invoke undefined behaviour, as we may be conflicting
+		with things that the STL or the compiler has already defined for us.
+
+		Source: https://eel.is/c++draft/lex.name
 		""",
 	},
 	15: {
 		'q':  """
-		
+		a) State three types which can take a std::in_place in its constructor?
+		b) use std::in_place to construct a:
+			- std::optional
+			- which can optionally take a std::vector of `int`s
+			- of size 10, all elements 3
 		""",
 		'a': """
-		
+		a)	Three types:
+				1) std::optional 2) std::any 3) std::variant 
+
+		b) std::optional<std::vector<int>> ov1{ std::in_place, 10, 3 };
 		""",
 	},
 	16: {
 		'q':  """
-		
+		What is a generally accepted definition of "const correctness"?
 		""",
-		'a': """
-		
+		'a': r"""
+		ANS: It simply means the correct usage of `const` wherever applicable
+			to prevent objects that are not intended to be modified from being modified.
+
+		Source: https://isocpp.org/wiki/faq/const-correctness
 		""",
 	},
 	17: {
 		'q':  """
-		
+		In C++, what is the main difference between `static_assert` and `assert`?
 		""",
 		'a': """
-		
+		`static_assert` is for compile-time checks and compilation will fail if the conditions
+		are not met.
+
+		`assert` is for run-time checks, will not trigger compilations errors but will end
+		the execution of the program if the condition is false by calling `abort()`.
 		""",
 	},
 	18: {
 		'q':  """
-		
+		Explain with examples the difference (at the language level) of logical vs 
+		physical constness.
 		""",
 		'a': """
-		
+		Language level physical constness:
+			- simply takes place when you declare an object (i.e not a pointer or reference) as const.
+			- from the language's perspective, following objects are physically `const`
+
+				const double d = 5;
+				const std::string _str = "Hello world!";
+				const MyClass mc;
+
+			- note that it doesn't matter whether the above objects are placed in read-only (RO)
+				memory or not.
+			- any attempts to modify physical const objects will result in undefined behaviour.
+
+		Language level logical constness:
+			- related to the constness of the "access path"
+			- access path refers to the access via a reference or a pointer.
+
+			Consider:
+				const MyClass* pc;
+
+			Note that whether we assign the address to a const or non-object instance
+			of MyClass to `pc`, for the purposes of access via `pc` the underlying
+			instance is considered to be const.
+
+				MyClass mc1;
+				const MyClass mc2;
+
+				pc = &mc1; // when accessing mc1 via pc it is const
+				pc = &mc2; // same is true in this case
 		""",
 	},
 	19: {
 		'q':  """
-		
+		a) What are fundamental types in C++?
+		b) What are the three main categories of built-in types?
 		""",
 		'a': """
-		
+		a) Fundamental types are also known as built-in types. They have the
+		following characteristics:
+			1) Specified by the C++ language standard
+			2) Built into the compiler
+			3) Aren't defined in any header file
+
+		b) 1) integral 2) floating point 3) void
 		""",
 	},
 	20: {
 		'q':  """
-		
+		Consider the following example:
+
+			// inside example.h
+			void increment_n_times(int n, int* obj);
+
+			// inside example.cpp
+			#include <example.h>
+			void increment_n_times(const int n, int* const obj)
+			{ }
+
+		Would the above example cause a compiler error? Why or why not?
 		""",
 		'a': """
-		
+		The above example would not cause a compiler error because cv-qualifications
+		are ignored between declaration and definition.		
 		""",
 	},
 	21: {
 		'q':  """
-		
+		Consider the following snippet:
+			const int* p = nullptr;
+			const int i{};
+			const int& i_ref = i;
+
+			auto p_copy = p;			// (1)
+			auto i_copy = i;			// (2)
+			auto i_ref_copy = i_ref;	// (3)
+			auto& i_ref_copy2 = i_ref;	// (4)
+
+		State the types of (1), (2), (3), (4)
 		""",
 		'a': """
-		
+			(1): const int*
+			(2): int
+			(3): int
+			(4): const int&
+
+		NB: const-ness is auto-deduced for reference and pointers but not for value types.
 		""",
 	},
 	22: {
 		'q':  """
-		
+		Is the following quote true?
+
+			'It makes virtually no sense to use 'constexpr if' outside of a template'
+					- Jason Turner
 		""",
 		'a': """
-		
+		Yes, source: https://youtu.be/AtdlMB_n2pI?t=64
 		""",
 	},
 	23: {
 		'q':  """
-		
+		a) What is a constant expression?
+		b) What is a core constant expression (give an example)?
 		""",
 		'a': """
-		
+		a) A constant expression is an expression that can be evaluated at compile time.
+
+		b) A core constant expression is any non-volatile integral or enumeration value which is initialized
+			with a constant expression.
 		""",
 	},
 	24: {
