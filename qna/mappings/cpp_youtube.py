@@ -389,98 +389,201 @@ qna = {
 	},
 	24: {
 		'q':  """
-		
+		In one sentence, what is a C++20 `concept`?
 		""",
 		'a': """
-		
+		A `concept` is a compile-time predicate which is true if the given
+		type(s) meet the requirements.
 		""",
 	},
 	25: {
 		'q':  """
-		
+		When would we ever use std::ranges::unreachable_sentinel ?
 		""",
 		'a': """
-		
+		When we are using the std::find algorithm, and we're certain that
+		what we are looking for is in the container in which we are searching.
+
+		The std::ranges::unreachable_sentinel is more efficient than using .end()/.cend()
+		as there is one less comparison (checking if we are at the end) per cycle.
+
+		Recommended to be used in a constexpr context as misuse can be discovered at compile time.
 		""",
 	},
 	26: {
 		'q':  """
-		
+		i) Choose A or B:
+			A) a local variable cannot be declared `constinit`
+			B) a static variable cannot be declared `constinit`
+
+		ii) constinit assign 42 to an int variable i within `int main()` 
 		""",
 		'a': """
-		
+		i) A
+		ii) int main(void)
+			{
+				constinit static int i = 42;
+			}
 		""",
 	},
 	27: {
 		'q':  """
-		
+		State and explained the two properties which each expression has?
 		""",
 		'a': """
-		
+		1) A type (including const/volatile qualifiers) e.g int*, const volatile unsigned long, etc
+		2) A value category. 
+			1) glvalue (generalized lvalue)
+			2) prvalue (pure rvalues)
+			3) lvalue (historically appearing on the LHS)
+
+			NOTE: A value category is a quality of an expression.
 		""",
 	},
 	28: {
 		'q':  """
-		
+		Consider the following:
+			int&& ra = 42;
+
+		State the:
+			1) type, and;
+			2) value category
+		of `ra`.
 		""",
 		'a': """
-		
+		1) type: int&&
+		2) value category: lvalue
 		""",
 	},
 	29: {
 		'q':  """
-		
+		Consider the follow snippet:
+
+			template<typename T>
+			void foo(T&& t) { /*logic*/}
+
+		True or false:
+			An r-value reference can only be a forwarding reference in the scope
+			of a template function?
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	30: {
 		'q':  """
-		
+		What does the [[nodiscard]] attribute do?
 		""",
 		'a': """
-		
+		The [[nodiscard]] attribute instructs the compiler to generate
+		a warning if a return value is dropped.
 		""",
 	},
 	31: {
 		'q':  """
-		
+		State 4 places where [[nodiscard]] can be used and 
+		give an example for each.
 		""",
 		'a': """
-		
+		1) on a function's (return value)
+			e.g [[nodiscard]] bool is_empty() const;
+
+		2) On the type itself:
+				struct [[nodiscard]] NDStruct {/*members*/};
+
+		3) On a lambda (C++23)
+			auto lamb = []() [[nodiscard]] constexpr {return 42;}
+			// now the return value of lamb() is no discard.
+
+		4) on a constructor of a class/struct (C++20)
+			
+			struct FDHolder
+			{
+				[[nodiscard]] explicit FDHolder(int FD);
+				FDHolder();
+			};
+
+			// now when we call the ctor overload which takes an int
+			// we are warned when we discard the instance
 		""",
 	},
 	32: {
 		'q':  """
-		
-		""",
+		[[nodiscard]] should be used extensively. Give examples of places
+		where [[nodiscard]] should be applied.
+ 		""",
 		'a': """
-		
+		Examples include:
+			1) getter
+			2) accessor
+			2) const 
+		functions should be [[nodiscard]]
 		""",
 	},
 	33: {
 		'q':  """
-		
+		True or false:
+			If an exception is marked `noexcept` and actually does throw an exception,
+			std::terminate MUST be called (i.e catching such an exception is futile).
 		""",
 		'a': """
-		
+		True.
 		""",
 	},
 	34: {
 		'q':  """
-		
+		a) What is understood by 'out-of-band' error reporting.
+		b) Why is out-of-band error reporting considered bad practice?
 		""",
 		'a': """
-		
+		a) Out-of-band error reporting forces the client code to be responsible
+		for checking if the logic come from an library API is correct or not.
+
+		E.g forces the client to make their own switch/case function to find the
+		error code, or checking if a pointer_v type returned is null or not.
+
+		b)
+			1) Will lead to threading issues in a multi-threaded application
+			2) User may ignore/forget to make extra function calls, leading to bugs
+
+		source: https://youtu.be/zL-vn_pGGgY?t=2244
 		""",
 	},
 	35: {
-		'q':  """
-		
+		'q': r"""
+		Consider the following snippet, which is intended to be a modernized
+		version of <cstdio>'s std::fopen:
+
+			using FilePtr = std::unique_ptr < FILE, decltype([](FILE* f) { std::fclose(f); }) > ;
+
+			[[nodiscard]] FilePtr modern_fopen(const std::filesystem::path& path, std::string_view mode)
+			{
+				return FilePtr{};
+			}
+
+			auto file = modern_fopen("rw+", "/my/file"); (1)
+
+		a) Does the snippet compile successfully?
+		b) What is wrong with line (1)
+		c) Propose code to prevent line `modern_fopen` being unintentionally misused.
+
 		""",
-		'a': """
-		
+		'a': r"""
+		a) The snippet does compile successfully
+		b) The arguments passes are clearly in the wrong order, the rw+ mode is meant
+			to be passed to the second parameter and /my/file clearly a path.
+
+			We have an issue of implicitly conversions allowing the code the compile
+			successfully and thus the api being misused.
+
+		c) delete a catch-all for all other template specializations for function `modern_fopen`
+			which restricts the compilable usage of the function to explicit arguments
+			passed in.
+
+			snippet:
+				void modern_fopen(const auto&, const auto&) = delete;
+
+
 		""",
 	},
 	36: {

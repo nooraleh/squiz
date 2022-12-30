@@ -225,66 +225,122 @@ qna = {
 	},
 	15: {
 		'q':  """
-		
+		Consider the following function:
+			auto some_function()
+			{
+				return 1;
+			}
+
+		Using C++20's concepts, constrain the function to only return
+		integral values.
 		""",
 		'a': """
-		
+		#include <concepts>
+
+		std::integral auto some_function()
+		{
+			return 1;
+		}
 		""",
 	},
 	16: {
 		'q':  """
-		
+		Explain the motivation behind std::span (particular what it intends to replace)
+		as well as any other benefits of using std::span.
 		""",
 		'a': """
-		
+		Explanation:
+			Consider the following old-fashioned way of passing an array to a function,
+			you need to also pass along a parameter specifying its size so the for loop
+			knows when do stop.
+
+				void process_array(const int arr[], const int array_size)
+				{
+					for(int i = 0; i < array_size; ++i)
+					{
+						// processing logic
+					}
+				}
+
+			You can accomplish the same thing with std::span, for example:
+				void process_span(std::span<int> my_span)
+				{
+					for (auto i : my_span)
+					{
+						// processing logic
+					}
+				}
+
+			It's essentially a cleaner, less error-prone way of processing continguous blocks
+			of data:
+				1) more lightweight than using a container such as std::vector
+				2) access to methods/idioms such as range-based for, find_if etc
 		""",
 	},
 	17: {
 		'q':  """
-		
+		What is the formal definition of an std::ranges::view ?
 		""",
 		'a': """
-		
+		A `view` is a range which:
+			1) is default constructible 
+			2) has O(1) move and destruction operations
+			3) (if std::is_copyable_v is true) has O(1) copy operations
 		""",
 	},
 	18: {
 		'q':  """
-		
+		What is <functional>'s std::identity used for?
 		""",
 		'a': """
-		
+		std::identity is simply a function object type whose `operator()` returns
+		its argument unchanges.
 		""",
 	},
 	19: {
 		'q':  """
-		
+		What does the concept `std::semiregular` specify?
 		""",
 		'a': """
-		
+		The concept `std::semiregular` specifies a type T that is both:
+			1) copyable and;
+			2) default initialization
+
+		I.e. an implementation would look like this
+
+		template<typename T>
+		concept semiregualar = std::copyable<T> && std::default_initializable<T>
 		""",
 	},
 	20: {
 		'q':  """
-		
+		What is the purpose/use case of std::declval?
 		""",
 		'a': """
-		
+		Converts any type T into a reference type, making it possible to use member functions
+		in decltype expressions without the need to go through constructors.
+
+		NOTE: std::declval can only be used in unevaluated contexts (like `decltype`, `sizeof` etc).
 		""",
 	},
 	21: {
 		'q':  """
-		
+		In what scenario would you prefer using <memory>'s `std::addressof` as opposed to
+		simple calling `&` on a (non-rvalue) object?
 		""",
 		'a': """
-		
+		When you're using user-defined types/third-party libraries and are unsure if the 
+		operator& has been overloaded incorrectly.
 		""",
 	},
 	22: {
 		'q':  """
-		
+		True or false:
+			ADL (Argument dependent lookup)/Koenig lookup only
+			applies to namespaces.
 		""",
 		'a': """
-		
+		True.
 		""",
 	},
 	23: {
