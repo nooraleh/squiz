@@ -345,10 +345,14 @@ qna = {
 	},
 	23: {
 		'q':  """
-		
+		a) What function would you use to determine if a given floating-point number
+			is negative?
+
+		b) In which header does it reside?
 		""",
 		'a': """
-		
+		a) std::signbit
+		b) <cmath>
 		""",
 	},
 	24: {

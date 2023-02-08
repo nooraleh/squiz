@@ -582,16 +582,16 @@ qna = {
 
 			snippet:
 				void modern_fopen(const auto&, const auto&) = delete;
-
-
 		""",
 	},
 	36: {
 		'q':  """
-		
+		What are the three semantics categories in C++?
 		""",
 		'a': """
-		
+		1) Value semantics (copy semantics)
+		2) Move semantics
+		3) Reference semantics (pointer semantics)
 		""",
 	},
 	37: {

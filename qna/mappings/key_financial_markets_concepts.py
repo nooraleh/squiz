@@ -798,18 +798,23 @@ qna = { # Section 1: Time Value of Money
 	},
 	62: {
 		'q':  """
-		
+		What is the difference between subordinated debt (a.k.a junior debt)
+		and senior debt?
 		""",
 		'a': """
-		
+		They differ in priority in the event of bankruptcy or liquidation.
+		Senior debt is paid first and subordinated debt is repaid only after
+		senior debt is paid off.
 		""",
 	},
 	63: {
 		'q':  """
-		
+		Define 'Eurodollar Business Day'
 		""",
 		'a': """
-		
+		A Eurodollar Business Day is any day on which commercial banks are
+		open for international business (including dealings in dollar deposits) in the
+		applicable Eurodollar interbank market. 
 		""",
 	},
 	64: {
