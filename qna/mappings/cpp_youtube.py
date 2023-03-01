@@ -596,42 +596,90 @@ qna = {
 	},
 	37: {
 		'q':  """
-		
+		In C++, what is a class-type?
 		""",
 		'a': """
-		
+		A class-type is an object which is encapsulated either by:
+			1) a class
+			2) a struct, or;
+			3) a union
 		""",
 	},
 	38: {
 		'q':  """
-		
+		Consider the following statement:
+
+			You should use a class as opposed to a struct when the underlying
+			data is invariant.
+
+		Explain what 'invariant' means in this context and give an example
+		of a struct and a class to demonstrate.
 		""",
 		'a': """
-		
+		`Invariant` in this context means that the values are constrained by a notion of
+		"validity" as a subset of the domain of the type(s) being used to represent them.
+
+		For example, for a struct `Point`
+
+			struct Point
+			{
+			public:
+				int x;
+				int y;
+			} 
+
+		There is a no constaint on a point position, we could have negative
+		and position values, small and large etc to represent the notion of a point.
+
+		However, for a class `Date`:
+
+			class Date
+			{
+			public:
+				Date(unsigned int year, unsigned int month, unsigned int day)
+			
+			// private members
+			}
+
+		Note that there isn't a universally accepted notion of a 0 month, which
+		this allowed. Or a 35th day of a month, or a 13th, 14th month etc.
+
+		In this case the class is invariant, and we establish the invariant in the
+		constructor.
 		""",
 	},
 	39: {
 		'q':  """
-		
+		True or false:
+
+			As a core guideline, you should make single parameter
+			constructors (including conversion constructors) and conversion
+			operators explicit.
 		""",
 		'a': """
-		
+		True.
 		""",
 	},
 	40: {
 		'q':  """
-		
+		True or false:
+
+			A base class should either be:
+				1) public and virtual, or;
+				2) protected and non-virtual
 		""",
 		'a': """
-		
+		True on both accounts.
 		""",
 	},
 	41: {
 		'q':  """
-		
+		True or false:
+			For scope enums, you may specify 'enum struct' as well as 
+			'enum class'.
 		""",
 		'a': """
-		
+		True.
 		""",
 	},
 	42: {
