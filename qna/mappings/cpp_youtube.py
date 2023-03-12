@@ -684,18 +684,27 @@ qna = {
 	},
 	42: {
 		'q':  """
-		
+		In dynamic polymorphism you have to make a choice between two things.
+		What are they?
 		""",
 		'a': """
-		
+		Choice 1) Designing for the addition of types (to avoid having to make
+			switch/case statements and static_casting the values to call a method)
+		Choice 2) Designing for the addition of operations (you make want to avoid
+			lots of virtual functions in a base class which many inheritors
+			may not want to/need to implement)
 		""",
 	},
 	43: {
 		'q':  """
-		
+		When would be want to turn to the prototype pattern?
 		""",
 		'a': """
-		
+		When we are in a situation where:
+			1) an object is far more expensive to create than copy
+			2) objects have an initial common state
+			3) we want to hide the complexity of creating new instances from the user
+			4) the "customizations" of an object is specified at runtime.
 		""",
 	},
 	44: {
