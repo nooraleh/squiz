@@ -357,26 +357,49 @@ qna = {
 	},
 	24: {
 		'q':  """
-		
+		True or false:
+		a)	It is valid to make a pointer from a reference, that is you can have:
+				pointer to T&
+
+		b) Considering you're answer to (a) why would you want to
+			use <type_trait>'s std::add_pointer_t?
 		""",
 		'a': """
-		
+		a) false
+
+		b) Since it is NOT valid to make a pointer from a reference, it would
+			be preferably to use std::add_pointer<T> to represent T* withou
+			worrying about T being deduced as a reference (add_pointer removes the reference).
 		""",
 	},
 	25: {
 		'q':  """
-		
+		1) Express a duration instance as:
+			a) 10 minutes as 10 units of duration with a tick size of 60 seconds
+			b) 14 seconds as 14 units of duration with a ticket size of 1 second
+
+		2) What is the default duration tick size? 
 		""",
 		'a': """
-		
+		1)
+			#include <chrono>
+			#include <ratio>
+
+			a) std::chrono::duration<long, std::ratio<60>> a = 10;
+			b) std::chrono::duration<long, std::ratio<1>>  b = 1;
+
+		2) The default duration tick size is 1, so we could've written answer (b) as
+			std::chrono::duration<long> b = 1;
 		""",
 	},
 	26: {
 		'q':  """
-		
+		Give a brief explanation as to the purpose of <chrono>'s std::time_point?
 		""",
 		'a': """
-		
+		A std::time_point is:
+			1) Associated with a clock
+			2) Represents a point in time as a std::duration relative to the epoch
 		""",
 	},
 	27: {

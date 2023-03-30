@@ -709,10 +709,20 @@ qna = {
 	},
 	44: {
 		'q':  """
-		
+		a) What is the difference between a serial-based representation of time versus
+			a field base representation?
+
+		b) Which of the two representations are more performant?
 		""",
 		'a': """
+		a) A field based representation will have:
+			1) time segregation into fields such as year-month-day (e.g. 2023-04-02)
 		
+		A serial-based representation:	
+			- will have one single number (usually the units of duration from a time point 
+				such as the epoch) e.g. 18925 days from the epoch
+
+		b) In general, a serial-based representation is more performant.
 		""",
 	},
 	45: {
