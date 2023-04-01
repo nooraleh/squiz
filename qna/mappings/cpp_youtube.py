@@ -727,18 +727,36 @@ qna = {
 	},
 	45: {
 		'q':  """
-		
+		Explain what is meant by SFINAE.
 		""",
 		'a': """
-		
+		SFINAE, or Substitution Failure is not an Error, is a special rule for function
+        template overload resolution - it states that:
+        
+			If a function template overload candidate would cause a compilation error during type
+            substitution, it is silently removed from the overload set.
 		""",
 	},
 	46: {
 		'q':  """
-		
+		Consider the following incomplete snippet:
+			template<typename... Ts>
+            concept are_all_integral = BLANK1
+            
+            template<typename... Ts>
+            concept at_least_one_integral = BLANK2
+            
+        Please fill in BLANK1 and BLANK2 to get the desired concepts.
 		""",
 		'a': """
-		
+		Using <type_traits>'s std::conjunction (to perform logical and) and std::disjunction
+        (to perform logical or):
+        
+			template<typename... Ts>
+            concept are_all_integral = std::conjunction_v<std::is_integral<Ts>...>;
+            
+            template<typename... Ts>
+            concept at_least_one_integral = std::disjunction_v<std::is_integral<Ts>...>;
 		""",
 	},
 	47: {
