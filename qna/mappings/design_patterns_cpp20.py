@@ -232,42 +232,75 @@ qna = {
 	},
 	15: {
 		'q':  """
-		What need does the Prototype design pattern address?
+		True or false:
+			Copy constructors can be virtual.
 		""",
 		'a': """
-		
+		False
 		""",
 	},
 	16: {
 		'q':  """
-		
+		State a prime candidate for the Singleton pattern?
 		""",
 		'a': """
-		
+        Since the Singleton pattern grew out of the idea that you should only have one
+        instance of a particular component in your application, a prime candidate would be:
+        
+			A component that loads a database into memory and offers a read-only interface.
+			In this case, it doesn't make sense to waste memory storing several identical datasets.
 		""",
 	},
 	17: {
 		'q':  """
-		
+		Select the correct option:
+			The order of destruction of global static variables is BLANK:
+            
+        a) deterministic
+        b) non-deterministic
 		""",
 		'a': """
-		
+		b) non-deterministic, this is why using a global static variable v1 in the destructor
+			of a another global static variable v2 is not thread-safe.
 		""",
 	},
 	18: {
 		'q':  """
-		
+		a) What is understood by ambient context?
+        b) What is best way to design an ambient context?
 		""",
 		'a': """
-		
+		a) Ambient context - a set of states that are meaningful to a certain set of operations
+			being undertaken at a particular point in time.
+            
+        b) as a static construct addressable from within every point in the application, with `final`
+			so that it cannot be inherited from.
 		""",
 	},
 	19: {
 		'q':  """
-		
+		a) What is the Monostate variation on the Singleton pattern?
+        b) What are the pitfalls of using Monostate?
 		""",
 		'a': """
-		
+		a) A Monostate is a class that behaves like a singleton (all instances have the same underlying
+        data due to them being static) which appearing as an ordinary class (since you're allowed to
+        instantiate more than one class).
+        
+        Snippet example:
+			class Print
+            {
+            private:
+				static int m_id;
+            public:
+				int get_id() const {return id;}
+                void set_id(int id) {m_id = id;}
+			};
+            
+        b) Disadvantages include:
+			1) converting ordinary classes to Monostate is intrusive
+            2) the fact that underlying members are static mean that they ALWAYS take
+				up memory even when they're not needed
 		""",
 	},
 	20: {
