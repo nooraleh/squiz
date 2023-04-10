@@ -761,330 +761,652 @@ qna = {
 	},
 	47: {
 		'q':  """
-		
+		C++20 introduces modules. What is a module?
 		""",
 		'a': """
-		
+		A module is a modern solution that turns C++ libraries and programs into
+		components.
+
+		A module is a set of source code files that are compiled independently of
+		the translation units which import them.
 		""",
 	},
 	48: {
 		'q':  """
-		
+		a) How do precompiled header (PCH) files improve compile time?
+
+		b) State two cons of using PCH?
 		""",
 		'a': """
-		
+		By creating a compiler memory snapshot of a set of header files.
+		This is an improvement on repeatedly rebuilding header files.
+
+		b)
+			1) PCH files have restrictions that make them more difficult to maintain
+				than header files.
+			2) As of C++20, they are slower than importing modules
 		""",
 	},
 	49: {
 		'q':  """
-		
+		Including header units leads to slower compilation times than importing modules.
+
+		Why would you consider header units over modules?s
 		""",
 		'a': """
-		
+		In a legacy codebase that may be reliant on macros and internal implementation (typically
+		identified as functions beginning with an underscore and capital letter), you'd want to
+		use header units which still expose these as opposed to named modules which do not.
 		""",
 	},
 	50: {
 		'q':  """
-		
+		State two reasons as to why you would want to use module partitions?
 		""",
 		'a': """
-		
+		1) Reduce compilation times
+		2) Separate the interfaces into distinct pieces to unglue certain dependecies.
 		""",
 	},
 	51: {
 		'q':  """
-		
+		Why does importing a module have a faster compilation time than including
+		a header file? 
 		""",
 		'a': """
-		
+		ANS: When a source file imports a module, the compiler reads in the binary
+			that contains the contents of the module.
+
+			Reading a binary file is much faster for the compiler than processing
+			a header file.
+
+			In addition, the binary is reused by the compiler very time the module
+			is imported, saving even more time as opposed to reprocessing multiple
+			includes.
 		""",
 	},
 	52: {
 		'q':  """
-		
+		For every named module, there must be exactly one module interface unit (say A.ixx)
+		with no module interface unit with no module partition specified.
+
+		a) What is the term for A.ixx?
+		b) What is the purpose of A.ixx?
 		""",
 		'a': """
-		
+		a) Primary module interface unit.
+		b) The primary module interface unit is where you declare the:
+			1) functions 2) types 3) templates 4) other modules
+			5) module partitions
+
+		to expose when source files import the module.
 		""",
 	},
 	53: {
 		'q':  """
-		
+		Say I have a primary module interface unit file (Shapes.ixx). If I want a module
+		interface for a partition called with Rectangle concerns, how would I specify that
+		in the first line of Shapes-Rectangle.ixx.
 		""",
 		'a': """
-		
+		export module Shapes:Rectangle;
 		""",
 	},
 	54: {
 		'q':  """
-		
+		Say you have:
+			A.ixx which imports A-partition1.ixx
+
+		How would you import `partition1` in a way that allows importer of A.ixx access
+		to the exported contents of `partition1`?
 		""",
 		'a': """
-		
+		In A.ixx simply:
+			export import :partition1;
+
+		Think of this as:
+			export (import :partition1);
+
+		Where we forward export everthing that we can import from `partition1`.
 		""",
 	},
 	55: {
 		'q':  """
-		
+		True or false:
+			C++20 module require unique names across module since you will get clashes
+			similar to header files?
 		""",
 		'a': """
-		
+		False, the same name in multiple modules will not clash since under-the-hood the identiers
+		are mangled with the module name.
 		""",
 	},
 	56: {
 		'q':  """
-		
+		True of false:
+			Since C++20 if you want to capture `this` is a lambda, it is not sufficient
+			to use =, you will have to explicitly state `this` e.g.
+
+				auto lamb = [=, this](const auto i) { /*do something interesting*/};
 		""",
 		'a': """
-		
+		true;
 		""",
 	},
 	57: {
 		'q':  """
-		
+		Choose the correct way of templatizing a lambda expression post-C++20:
+
+			a) <typename T>[](T x) { };
+			b) []<typename T>(T x) { };
+			c) [] (T x) <typename T> { };
 		""",
 		'a': """
-		
+		b) the `<typename T>` should be after the capture clause and before
+			the parameter set.
 		""",
 	},
 	58: {
 		'q':  """
-		
+		In which language standard did we get the following features:
+			1) if initializer
+			2) switch initializer
+			3) ranged-based for loop initializer
 		""",
 		'a': """
-		
+		1) 17 2) 17 3) 20
 		""",
 	},
 	59: {
 		'q':  """
-		
+		What are the C++20 attributes [[likely]] and [[unlikely]] used for?
 		""",
 		'a': """
-		
+		The [[likely]] and [[unlikely]] attributes are used for giving hints
+		to the compiler that certain branches are more likely (or unlikely) to
+		be reached to allow the compiler to make optimizations for those branches
+		accordingly.
+
+		Snipper:
+			switch(value)
+			{
+				case 1:
+					break;
+				[[likely]] case 2:
+					break;
+				[[unlikely]] case 3:
+					break;
+			}
 		""",
 	},
 	60: {
 		'q':  """
-		
+		What is profile-guided optimization (PGO)?
 		""",
 		'a': """
-		
+		A.K.A profile-guided feedback, profile-guided optimization is the process of generating a file which logs information
+		on branches taken (if/else, switch/case etc) during runtime. This runtime profile information
+		is fed into the compiler upon recompilation to "guide" the optimization for the next time it runs.
+
+		E.g if case A it reached much more than case B, the compiler will receive this profile information
+		and make necessary optimizations which reflect the probably of these branches.
+
+		Similar to explicity hinting to the compiler that some branches are more likely than others with
+		attributes [[likely]] and [[unlikely]].
 		""",
 	},
 	61: {
 		'q':  """
-		
+		What is the difference between a fixed-sized span (compile-time) and a dynamic-sized span (run-time)?
 		""",
-		'a': """
-		
+		'a': r"""
+		A fixed size span has it size specified as a value in the second template argument,
+		while a dynamic span omits this - e.g.:
+
+					int data[42];
+					std::span<int, 42> a{data};
+					std::span<int> b{data};
 		""",
 	},
 	62: {
 		'q':  """
-		
+		What is the correct way of declaring a read-only span?
+
+			a) const std::span<int>;
+			b) std::span<const int>;
 		""",
 		'a': """
-		
+		b)
 		""",
 	},
 	63: {
 		'q':  """
-		
+		Consider the following:
+			__has_cpp_attribute(fallthrough)
+			__cpp_binary_literals
+			__cpp_char8_t
+			__cpp_coroutines
+
+		a) What is the purpose of C++20 feature tests?
+		b) Give examples on how you would use these feature tests?
 		""",
 		'a': """
-		
+		a) The purpose of C++20 feature tests is to provide a compile-time
+			way of testing if a feature is available to the current compiler.
+
+		b) with attributes you would test like so:
+			#if __has_cpp_attribute(fallthrough)
+				// ...
+			#endif
+
+			with language features you would test against a long value
+			represented the year and month the feature was added to the working draft.
+
+			#if __cpp_aggregate_bases >= 201603L
+				std::cout << "__cpp_aggregate_bases >= 201603L\n";
+			#else
 		""",
 	},
 	64: {
 		'q':  """
-		
+		a) What are immediate functions in C++20?
+		b) Which keyword should you use to create an immediate function?
 		""",
 		'a': """
-		
+		a) An immediate function is a function where every call to the function
+			produces a compile-time constant expression.
+		b) consteval
 		""",
 	},
 	65: {
 		'q':  """
-		
+		Consider the snippet:
+			enum class CardTypeSuits {Clubs, Diamonds, Hearts, Spades};
+
+			std::string_view get_string(const CardTypeSuits suit_type)
+			{
+				switch (suit_type)
+				{
+				case CardTypeSuits::Clubs:
+					return "Clubs";
+				case CardTypeSuits::Diamonds:
+					return "Diamonds";
+				case CardTypeSuits::Hearts:
+					return "Hearts";
+				case CardTypeSuits::Spades:
+					return "Spades";
+				}
+			}
+
+		Use a C++20 feature to reduce the visual pollution in the above. 
 		""",
 		'a': """
-		
+		The C++20 to use is 'using enum' which makes the members of the enum
+		unscoped and freely available without having to qualifier it with the
+		enum name. 
+
+			std::string_view get_string(const CardTypeSuits suit_type)
+			{
+				using enum CardTypeSuits;
+				switch (suit_type)
+				{
+				case Clubs:
+					return "Clubs";
+				case Diamonds:
+					return "Diamonds";
+				case Hearts:
+					return "Hearts";
+				case Spades:
+					return "Spades";
+				}
+			}
 		""",
 	},
 	66: {
 		'q':  """
-		
+		True or false:
+			As of C++20, you can now include a reason in the [[nodiscard]] attribute e.g.
+
+				[[nodiscard("Return value expensive the compute, please use return value or don't call function")]]
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	67: {
 		'q':  """
-		
+		True or false:
+
+			a) C++20 coroutines are suspendible
+			b) C++20 coroutines are resumable functions.
 		""",
 		'a': """
-		
+		a) True b) True
 		""",
 	},
 	68: {
 		'q':  """
-		
+		a) What is the difference between a stackless and stackful coroutine?
+		b) Are C++20 coroutines stackless or stackful?
 		""",
 		'a': """
-		
+		a) Stackful: Data of a coroutine, the coroutine frame, is stored on that stack
+		b) Stackless: Data of a coroutine, the coroutine frame, is stored on the heap.
 		""",
 	},
 	69: {
 		'q':  """
-		
+		In the context of C++20 coroutines, define the following:
+			1) task
+			2) generator
 		""",
 		'a': """
-		
+		1) task - is a coroutine that does a job without returning a value
+		2) generator - a coroutine that does a job AND returns a value (either via `co_yield` or `co_return`)
 		""",
 	},
 	70: {
 		'q':  """
-		
+		Consider the two coroutine helper types `std::suspend_always` and `std::suspend_never`. What
+		is the difference between the two classtypes with respect to their member function:
+
+			constexpr bool await_ready() const noexcept;
 		""",
 		'a': """
-		
+		1) `std::suspend_always` also returns false indicating that an await
+			expression always suspends as it waits for its value.
+
+		2) `std::suspend_never` also returns true indicating that an await
+			expression never suspends.
 		""",
 	},
 	71: {
 		'q':  """
-		
+		Brief explain heap ellision?
 		""",
 		'a': """
-		
+		Heap ellision is a way for the compiler to optimize code by
+		identifying heap allocations that can be replaced with stack or register
+		allocations, without changing the behaviour of the program.
 		""",
 	},
 	72: {
 		'q':  """
-		
+		Consider the following snippet:
+
+			std::function<int(int)> cb{
+				[i = std::make_unique<int>(42)](const int x) {return x + *i; }
+			};
+
+		a) Why would the above trigger a compilation error?
+		b) Given your answer to (a) se a C++23 alternative that will allow
+			this `cb` initialization to be error-free.
 		""",
 		'a': """
-		
+		a) std::function requires a function object that is copyable, since under the
+			hood the lambda is a struct-like with the init capture as a member, this
+			unique pointer cannot be copied and thus the pre-condition "copyable" fails,
+			the compiler compiler raises an error.
+
+		b) Replace 'std::function' with C++23's `std::move_only_function` 
 		""",
 	},
 	73: {
 		'q':  """
-		
+		C++20 coroutines are stackless. Explain what it means to be stackless in the 
+		context of C++20 coroutines?
 		""",
 		'a': """
-		
+		Stackless coroutines suspend execution by returning to the caller and the data that is
+		required to resume execution is tores separately from the stack.
 		""",
 	},
 	74: {
 		'q':  """
-		
+		A function is a coroutine if it contains at least one of 3 expressions. State these
+		3 expressions and what they each are used for.
 		""",
 		'a': """
-		
+		1) co_await - to suspend execution until resumed.
+		2) co_yield - to suspend execution returning a value
+		3) co_return - to complete execution returning a value
 		""",
 	},
 	75: {
 		'q':  """
-		
+		What are the definition of an aggregate as of C++20?
 		""",
 		'a': """
-		
+		An aggregate is an array or a class with:
+			1) no user-declared or inherited constructors
+			2) no private or protected non-static data members
+			3) no virtual functions
+			4) no virtual, private or protected base classes
 		""",
 	},
 	76: {
 		'q':  """
-		
+		a) What does `constinit` do?
+
+		b) In what situations is C++20's `constinit` specifier useful? 
+
 		""",
 		'a': """
+		a) `constinit` guarantees that initialization occurs at compile
+			time and if it cannot initialize the variable at compile time
+			it will be a compilation error.
+			
+			This resolves the 'static '
 		
+		b) `constinit` is useful in situations where:
+
+			1) you want to ensure that a variable is initialized, and;
+			2) that its value cannot be modified after initialization
+			
 		""",
 	},
 	77: {
 		'q':  """
-		
+		True or false, constinit implies const
 		""",
-		'a': """
-		
+		'a': r"""
+		`constinit` does not imply const, for you can initialize a constinit
+			variable at compile time and reassign a new literal/compile time expression
+			at compile time as well, snippet:
+
+				// static duration constinit int
+				static constinit int gs_i{9};
+
+				// declared in global scope so static duration as well
+				constinit int g_i{10};
+
+				int main(void)
+				{
+					gs_i = 1; // reassigning with constant expression, fine
+					g_i = 3; // fine here too
+					return 0;
+				}			
 		""",
 	},
 	78: {
 		'q':  """
-		
+		Consider the following snippet which attempts to capture
+		a structured binding into a lambda:
+
+				auto [a, b] = Widget{1, false};
+				auto f = [a]{return a > 0;} // is an error
+
+		Does the above compile?
 		""",
 		'a': """
-		
+		The snippet compiles in C++20, not in C++17.
 		""",
 	},
 	79: {
 		'q':  """
-		
+		True or false:
+			1) As of C++20, lambdas are not allowed in unevaluated contexts
+			2) As of C++20, capturesless lambdas are default constructible and assignable.
 		""",
 		'a': """
-		
+			1) False 2) True
 		""",
 	},
 	80: {
-		'q':  """
-		
+		'q':  r"""
+		What is the consequence of lambdas being allowed int unevaluated
+		contexts e.g.:
+			
+			decltype([]{}) f;
 		""",
-		'a': """
-		
+		'a': r"""
+		You can now have a lambda as a member of a classtype:
+
+			class Widget
+			{
+				decltype([]{}) f;
+			}
 		""",
 	},
 	81: {
 		'q':  """
-		
+		Explain the meaning of following terms:
+
+			1) Strong structural equality
+			2) Weak structural equality
+			3) Value equality
+			4) Reference equality
 		""",
 		'a': """
-		
+		Strong structural equality:
+
 		""",
 	},
 	82: {
 		'q':  """
-		
+		Define strong structural equality and give a concrete code snippet example of it.
 		""",
 		'a': """
-		
+		Types A and B are said to be strong structurally equal if the following holds:
+
+			A == B if and only if &T<A> == &T<B>
+
+		For example:
+				template<typename T>
+				struct Point
+				{
+					T x;
+					T y;
+				};
+
+				Point<int> p1{ 1, 2 };
+				Point<int> p2{ 1, 2 };
+
+				bool is_stong_structurally_equal = std::memcmp(std::addressof(p1), std::addressof(p2), sizeof(Point<int>)) == 0; // true
+
+		Note that the fact that Point is strong structurally equal means that we can use it as a template
+		argument in C++20 e.g.
+
+				template<Point p>
+				class PointyThing
+				{};
+
+				int main(void)
+				{
+					constexpr Point p1{ 0, 1 };
+					PointyThing< Point{ 0, 1 }> pt;
+					PointyThing < p1 > pt1;
+					return 0;
+				}
+
 		""",
 	},
 	83: {
 		'q':  """
-		
-		""",
+		Consider the following snippet, with a focus on line (1):
+
+			constexpr int square(int i)
+			{
+				if (std::is_constant_evaluated()) // (1)
+				{
+					return i * i;
+				}
+				else
+				{
+					return __magic_fast_square(i);
+				}
+			}
+
+		Why have we opted to `std::is_constant_evaluated()` as opposed to `if constexpr()`?
+		"""
 		'a': """
-		
+		Because `if constexpr` is only evaluated as compile time, meaning the the
+		function `square` will only work with compile time arguments. 
+
+		We use `std::is_constant_evaluated()` to evaluated the compile time
+		constant arguments for compile time, and then generate the runtime code
+		for non-compile time arguments which end up in the else clause.
 		""",
 	},
 	84: {
 		'q':  """
-		
+		What does the term 'manifestly constant-evaluated expression' mean?
 		""",
 		'a': """
-		
+		A manifestly constant-evaluated expression is an expression that has to be
+		evaluted at compile time, and it is a compiler error if a manifestly constant-evaluated
+		expression cannot be evaluated at compile time.
+
+		Examples of MCEE's include:
+			1) case expressions
+			2) array bounds
+			3) `if constexpr` conditions
 		""",
 	},
 	85: {
 		'q':  """
-		
+		In the context of C++20 coroutines, what is the behaviourial difference
+		between std::suspend_always and std::suspend_never?
 		""",
 		'a': """
-		
+		std::suspend_always:
+			'Pause execution at this point, hand control flow back to the caller'
+
+		std::suspend_never:
+			'Do not pause execution at this point (i.e. continue executing within the coroutine)'
 		""",
 	},
 	86: {
 		'q':  """
-		
+		True or false (C++20 coroutines context):
+
+			1) The `promise_type` provides the hook to control what happens at startup or
+				when we return from the coroutine.
+			2) The `Awaitable` provides the hooks for determining what happens when we go into
+				suspension.
+			3) Every `co_await` call suspends.
 		""",
 		'a': """
-		
+		1) True, 2) True
+		3) Falls - not every co_await call suspends.
 		""",
 	},
 	87: {
 		'q':  """
-		
+		a) What is one way to think about std::coroutine_handle ?
+		b) What is the difference between using the void specialization std::coroutine_handle<>
+			and using std::coroutine_handle<promise_type>? 
 		""",
 		'a': """
-		
+		a) As a raw pointer to the coroutine frame.
+		b)
+			std::coroutine_handle<>:
+				is type erased, can point to any coroutine
+			
+			std::coroutine_handle<promise_type>:
+				- simply more specific, the coroutine handle is constrained
+					to point to frames that used the `promise_type` passed in as
+					a template argument
 		""",
 	},
 	88: {

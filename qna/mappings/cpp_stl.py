@@ -404,10 +404,15 @@ qna = {
 	},
 	27: {
 		'q':  """
-		
+		a) Which header file should I turn to to get implementation-dependent information
+		about the C++ Standard Library that I am using?
+
+		b) Give a few examples of the type of information that you can get?
 		""",
 		'a': """
-		
+		a) C++20's <version>.
+		b) Version number, release date, copyright notice, select library feature
+			test macros like __cpp_lib_any
 		""",
 	},
 	28: {
