@@ -1411,26 +1411,49 @@ qna = {
 	},
 	88: {
 		'q':  """
-		
+		What is meant by a 'sink argument'?
 		""",
 		'a': """
-		
+		The term 'sink argument' is commonly used in the context of 
+		rvalue references and move semantics, particular the move ctor/assign
+		special member functions.
+
+		In a broader sense, the term can be used to describe any function argument
+		that is intended to consume or take ownership of a value without necessary
+		using it directly. Examples include smart pointers and function pointers.
 		""",
 	},
 	89: {
 		'q':  """
-		
+		Define the three components that make for type erasure.
 		""",
 		'a': """
-		
+		Type erasure is:
+			1) a templated constructor; and
+			2) a completely non-virtual interface; and
+			3) A combination of External Polymorphism + Bridge + Prototype
 		""",
 	},
 	90: {
-		'q':  """
-		
+		'q':  r"""
+		a) True or false: 
+
+			You can define a function within another function in C++ e.g.
+
+				int main(void)
+				{
+					void inner_function()
+					{
+						std::cout << "do inner function stuff\n";
+					}
+				}
 		""",
 		'a': """
-		
+		False. Local functions (functions defined within another function) are not permitted,
+		but you may declare a function within another function.
+
+		Note: One way of getting around this is to define a local class type and implement
+		the call operator. Or you can define a static function within a local class type.
 		""",
 	},
 	91: {
