@@ -417,10 +417,23 @@ qna = {
 	},
 	28: {
 		'q':  """
-		
+		What is the difference between <cstdint>'s:
+			1) std::uint8_t, and;
+			2) std::uint_fast8_t ?
+
+		When would I prefer one over the other?
 		""",
 		'a': """
-		
+		Difference:
+			std::uint8_t guarantees that the type will be exactly 8 bits,
+			while std::uint_fast8_t will be AT LEAST 8 bits, but the actual
+			width may be larger for performance reasons.
+
+		Use std::uint8_t when the size of the type is critical, e.g. when
+		working with hardware registers that expect a certain data width.
+
+		Use sd::uint_fast8_t when performance is a higher priority than the 
+		actual size of the data.
 		""",
 	},
 	29: {
