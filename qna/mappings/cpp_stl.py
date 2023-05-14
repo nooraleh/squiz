@@ -438,15 +438,35 @@ qna = {
 	},
 	29: {
 		'q':  """
-		
+		a) What is the purpose of C++23's `std::out_ptr` and `std::inout_ptr`? 
+		b) When should you use `std::out_ptr` and when should you turn to `std::inout_ptr`?
 		""",
 		'a': """
-		
+		a) std::out_ptr and std::inout_ptr exist for compatibility between C++ smart pointers
+		and C APIs. Commonly used to pass smart pointer in order to pass in the resultant 
+		std::out_ptr_t or std::inout_ptr_t to the C function.
+
+		Consider the C api from winsqlite3.h
+
+			SQLITE_API int SQLITE_APICALL sqlite3_open(
+			const char *filename,   /* Database filename (UTF-8) */
+			sqlite3 **ppDb          /* OUT: SQLite db handle */
+			);
+
+		in the second parameter we would like to pass a std::out_ptr(std::unique_ptr instance).
+
+		b) 
+			std::out_ptr use case:
+				When a function expects a raw pointer as an output parameter and takes ownership
+				of (is responsible for freeing the underlying resource) the pointed-to-resource.
+
+			std::inout_ptr use case:
+				When a function expects a raw pointer to an input/output parameter and modifies the
+				pointed-to-resource without taking ownership.
 		""",
 	},
 	30: {
 		'q':  """
-		
 		""",
 		'a': """
 		

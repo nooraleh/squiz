@@ -518,108 +518,194 @@ qna = {
 		True
 		""",
 	},
-	34: {
+	34: {  ## ---------------------
 		'q':  """
-		
+		Consider the statement:
+			Like any other type of I/O, the network I/O involves using memory buffers.
+
+		What are memory buffers?
 		""",
 		'a': """
-		
+		Memory buffers are contiguous blocks of memory allocated in the process's address space
+		used to store the data.
 		""",
 	},
 	35: {
 		'q':  """
-		
+		boost.asio supports two types of I/O operations:
+			1) synchronous 2) asynchronous
+
+		Outline the distiction in behaviour for synchronous and asynchronous i/o operations.
 		""",
 		'a': """
-		
+		Synchronous operations:
+			- block the thread of execution invoking them and unblock only when the
+				operation is finished.
+
+		Asynchronous operation:
+			- when initiated, is associated with a callback function or functor
+			- this callback is invoked by the boost.asio library when the operation is finished
 		""",
 	},
 	36: {
 		'q':  """
-		
+		Why is the ability to cancel a previously initiated asynchronous operation important?
 		""",
 		'a': """
-		
+		It allows the application to state that the previously initiated operation is not relevant
+		anymore, which may save the application's resources (both CPU and memory), that otherwise
+		would be unavoidably wasted.
 		""",
 	},
 	37: {
 		'q':  """
-		
+		In boost.asio, a fixed-length buffer is represented by either of two classes,
+		state them.
+
 		""",
 		'a': """
-		
+		1) boost::asio::mutable_buffer
+			- writable-buffer
+			- used to receive the output of an operation
+			- e.g. the `receive` operation of a socket
+
+		2) boost::asio::const_buffer
+			- read-only-buffer
+			- used as input to an operation
+			- e.g. `send` operation of a socket
 		""",
 	},
 	38: {
 		'q':  """
-		
+		Consider the following snippet:
+			const std::size_t BUFFER_SIZE{20};
+			auto p_buffer = std::make_unique<char[]>(BUFFER_SIZE);
+			std::unique_ptr<char[]> p_alt{ new char[BUFFER_SIZE] };
+			auto mutable_buffer = boost::asio::buffer(
+				static_cast<void*>(p_buffer.get()), BUFFER_SIZE
+			);
+
+		True or false:
+			All classes in boost.asio that represent buffers, i.e.
+				1) boost::asio::mutable_buffer
+				2) boost::asio::const_buffer
+				3) boost::asio::mutable_buffers_1 (adapter for sequences)
+				4) boost::asio::const_buffers_1 (adapter for sequences)
+
+			Take ownership of the underlying resource (i.e they are responsible)
+			for their lifetimes.
 		""",
 		'a': """
-		
+		False. They do not take ownership or control the underlying buffer resource
+		lifetime - it is up to you as the client of this code to control the lifetime
+		of the resources that you allocate and pass as an argument into the boost.asio 
+		library.
 		""",
 	},
 	39: {
 		'q':  """
-		
+		a) What are extensible buffers?
+		b) What is the purpose of extensible buffers?
+		c) Which class in the boost.asio library represents an extensible buffer?
 		""",
 		'a': """
-		
+		a) Extensible buffers are those buffers that dynamically increase
+			in size when new data is written to them.
+		b) They are usually used to read data from sockets when the size of the 
+			incoming message is unknown.
+		c) boost::asio::streambuf
 		""",
 	},
 	40: {
 		'q':  """
-		
+		Writing to a TCP is an output operation that is used to send data to the
+		remote application connected to this socket.
+
+		What is the most basic way to write to the socket in the boost.asio library?
 		""",
 		'a': """
-		
+		Using member function `boost::asio::ip::tcp::socket::write_some`
 		""",
 	},
 	41: {
 		'q':  """
-		
+		a) Which free function in the boost.asio library should you turn to in order
+		to read from a socket until a particular pattern is found?
+
+		b) What should the client developer bear in mind when using the answer to (a)
 		""",
 		'a': """
-		
+		a)  boost::asio::read_until, consider one of the overloads:
+
+			template <typename SyncReadStream, typename Allocator>
+			inline std::size_t read_until(SyncReadStream& s,
+				boost::asio::basic_streambuf<Allocator>& b, char delim)
+			{
+			  return read_until(s, basic_streambuf_ref<Allocator>(b), delim);
+			}
+
+		b) boost::asio::read_until is guaranteed to contain at least one delimiter 
+			symbol but it may contain more. Therefore it is the developers responsibility
+			to parse the data in the buffer and handle the situation where it contains data
+			after the delimiter symbols.
 		""",
 	},
 	42: {
 		'q':  """
-		
+		True or false:
+			One of the benefits of asynchronous operations provided by the boost.asio library
+			is that they can be canceled at any moment after the initiation.
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	43: {
 		'q':  """
-		
+		What is the purpose of member function `boost::asio::ip::tcp::socket::cancel`?
 		""",
 		'a': """
-		
+		The purpose is to cancel all asynchronous operations (cancel, send and/or receive)
+		associated with the instance of `boost::asio::ip::tcp::socket`.
 		""",
 	},
 	44: {
 		'q':  """
-		
+		Do the `boost::asio::ip::tcp::socket` class implement the RAII idiom? Explain.
 		""",
 		'a': """
-		
+		Since the boost::asio::ip::tcp::socket class calls it's `close` member in the destructor,
+		and since the `close` member function is responsibily for returning the owned resource back
+		to the operating system - yes `socket` does use RAII.
 		""",
 	},
 	45: {
 		'q':  """
-		
+		Consider the snippet:
+			
+			boost::asio::ip::tcp::socket active_socket(io_context);
+			// ...
+			active_socket.shutdown(boost::asio::socket_base::shutdown_send); (1)
+
+		True or false:
+			Once writing to a socket has been disabled (as in line (1)) it is possible
+			to restore the socket state to make it writable again.
 		""",
 		'a': """
-		
+		False. It is not posssible to restore the socket state to make it writable again.
 		""",
 	},
 	46: {
 		'q':  """
-		
+		A synchronous approach has some functional limitations which can make it unacceptable.
+		State a few of these limitations that a synchronous approach would have that an asynchronous
+		one would not.
 		""",
 		'a': """
-		
+		Limitations:
+			1) The inability to cancel a synchronous operation after it has started.
+			2) Inability to assign the synchronous operation a timeout so that it gets interrupted
+				if it is running longer than a certain amount of time.
 		""",
 	},
 	47: {
