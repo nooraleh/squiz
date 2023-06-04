@@ -710,34 +710,68 @@ qna = {
 	},
 	47: {
 		'q':  """
-		
+		What is the term for hybrid server applications that provide their services through both TCP
+		and UDP?
 		""",
 		'a': """
-		
+		Multiprotocol servers.
 		""",
 	},
 	48: {
 		'q':  """
-		
+		Give a brief summary of the following terms:
+			1) iterative server
+			2) parallel server
+
+		And outline the pros and cons of using them
 		""",
 		'a': """
-		
+		Iterative server:
+			- serves clients in a one-by-one fashion
+			- it does not start serving the next client before it
+				completes serving the one it is currently serving.
+			- pro:
+				- relatively simple to implement
+				- ideal for low request rates
+
+		Parallel server:
+			- can serve multiple clients in parallel
+			- pro:
+				- ideal for higher request rates
+			- con:
+				- not as simply to implement
 		""",
 	},
 	49: {
 		'q':  """
-		
+		Consider the following typedef's in the boost.asio library:
+			1) typedef basic_waitable_timer<chrono::system_clock> system_timer;
+			2) typedef basic_waitable_timer<chrono::steady_clock> steady_timer;
+			3) typedef basic_waitable_timer<chrono::high_resolution_clock> high_resolution_timer;
+
+		Which of (1), (2) or (3) is best suited for:
+			a) cases when high precision in time management is required
+			b) cases when we need to set up a timer that will notify us when a certain absolute
+				timepoint is reached (e.g. 13h:15m:45s)
+			c) cases when we need to measure intervals between timepoints
 		""",
 		'a': """
-		
+		a) (3)
+		b) (1) as system_timer is influenced by external changes of the current system time.
+		c) (2) since:
+			- steady_clock not influenced by system clock changes
+			- system_clock is influenced by system clock shifts which may result in the timer
+				expiring sooner or later than expected.
 		""",
 	},
 	50: {
 		'q':  """
-		
+		True or false:
+			Because a steady timer is not influenced by the system clock shifts,
+			it is the best fit to implement the timeout mechanism.
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	51: {

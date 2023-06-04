@@ -467,9 +467,11 @@ qna = {
 	},
 	30: {
 		'q':  """
+		What does `std::thread::hardware_concurrency` return?
 		""",
 		'a': """
-		
+		It returns the number of threads supported by the current
+		implementation's hardware can suport.
 		""",
 	},
 	31: {

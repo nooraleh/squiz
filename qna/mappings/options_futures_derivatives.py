@@ -610,65 +610,152 @@ qna = {
 		6) a) futures b) forward
 		""",
 	},
-	48: { # chapter 3 - Hedging Strategies using Futures
+	48: {
 		'q':  """
-		What 
+		a) What is a short hedge?
+		b) When is a short hedge appropriate?
 		""",
 		'a': """
+		a) A short hedge involves shorting a derivative contract (such as a futures) that
+		offsets potential losses in the underlying.
+
+		b) A short hedge is appropriate when the prospective hedger already owns
+		the underlying and expects to sell it in the future - e.g. a cattle farmer who expects
+		to sell cattle in bulk.
+
+		A short hedge is also appropriate for a market participant that expects to own some asset
+		in the future, will be ready for sale - e.g. an exporter who expects to receive an amount
+		of foreign currency. 
 		""",
 	},
 	49: {
 		'q':  """
+		When is a long hedge (going long a derivative such as a futures contract) appropriate?
 		""",
 		'a': """
+		A long hedge is appropriate when a party knows it will have to purchase some asset in
+		the future, and wants to lock in a price now.
 		""",
 	},
 	50: {
 		'q':  """
+		Give the formula for `basis` in a hedging situation?
 		""",
 		'a': """
+		Basis = spot_price_of_asset_to_be_used - futures_price_of_contract_used
+
+		Note that if the asset to be hedged and the asset underlying the futures contract are the same, the
+		basis should be zero at the expiration of the futures contract. Prior to expiration, the basis
+		may be positive or negative
 		""",
 	},
 	51: {
 		'q':  """
+		a) What is meant by cross hedging?
+		b) Give an example of a cross hedge?
 		""",
 		'a': """
+		a) Cross hedging refers to the practice of hedging risk using two distinct
+			assets with positively correlated price movements.
+			
+		b) A airline company that knows it has to buy X amount of jet fuel hedges the price
+			of jet fuel by enterring a long futures contract on crude oil. Since jet fuel
+			and crude oil are distinct asset with positive correlation - the airline company's
+			decision would be identified as a cross hedge.
 		""",
 	},
 	52: {
 		'q':  """
+		What is an anticipatory hedge?
 		""",
 		'a': """
+		An anticipatory hedge is a futures position taken in advance of
+		an upcoming (anticipated) buy and sell transaction.
+
+		Examples include:
+			An American exporter that knows they will receive £1,000,000
+			and wants to lock in a price will enter in 16 CME GBP/USD contracts sell £1,000,000
+			for fixed USD in the same month that they receive the pound sterling.
+
+			A copper fabricator in Jan knows it will need 300,000lbs of copper in May.
+			Anticipating this, the copper manufacturer goes long 12 25,000lb CME contracts
+			to lock in the price of copper.
+
+		In summary, for anticipatory hedges a long hedge is used to cover a cost, while
+		a short hedge is used to lock in a sale price.
 		""",
 	},
 	53: {
 		'q':  """
+		One key factor affecting basis risk is the choice of the futures contract to be used
+		for hedging. This choice has two components. State them.
 		""",
 		'a': """
+		1) The choice of the asset underlying the futures contract.
+		2) The choice of the delivery month.
 		""",
 	},
 	54: {
 		'q':  """
+		True or false:
+			Basis risk increases as the time difference between the hedge expiration and
+			the delivery month increases.
 		""",
 		'a': """
+		True.
 		""",
 	},
 	55: {
 		'q':  """
+		What is the 'hedge ratio'?
 		""",
 		'a': """
+		The hedge ratio is the size of the position taken in futures contracts
+		to the size of the exposure.
+
+		For example, if a copper fabricator knows it will buy 200,000lbs of copper
+		in the future and goes long on 4 CME copper futures contracts (25,000lbs each),
+		then the copper fabricator has fixed the purchase cost for 100,000lbs of the
+		200,000lbs it will buy in the future - leading to a hedge ratio of 0.5.
 		""",
 	},
 	56: {
 		'q':  """
+		What is the difference between a:
+			1) static hedge
+			2) dynamic hedge
 		""",
 		'a': """
+		Static hedge:
+			- when the hedging position or the number of hedging contracts isn't changed over
+				the period of the hedge - regardless of the movement in the price of the hedging
+				instrument
+
+		Dynamic hedge:
+			- increasing number of hedging contracts are bought and sold over the time period of
+				the hedge to bring the hedge ratio towards the target hedge ratio.
 		""",
 	},
 	57: {
 		'q':  """
+		a) Define 'hedge effectiveness'
+		b) Consider the equation:
+			
+				h_* = rho * (sigma_S / sigma_F)
+
+			where:
+				- h_* is the optimal hedge ratio
+				- sigma_S is the standard deviation of the changes in spot price S over duration of the hedge
+				- sigma_F is the standard deviation of the changes in futures price F over duration of the hedge
+				- rho is the correlation coefficient between between S and F
+
+			Use this equation to identify the 'hedge effectiveness'
 		""",
 		'a': """
+		a) The 'hedge effectiveness' can be defined as the proportion of the variance that is eliminated
+			by hedging.
+
+		b) pow(rho, 2) [rho squared]
 		""",
 	},
 	58: {
