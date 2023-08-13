@@ -1458,10 +1458,26 @@ qna = {
 	},
 	91: {
 		'q':  """
-		
+		a) What does it mean to 'return perfectly' in C++?
+
+		b) Consider the following snippet (with the BLANK)
+
+			template<typename T>
+			__BLANK__ call_foo(T&& t)
+			{
+				return foo(std::forward<T>(t));
+			}
+
+		Fill in the __BLANK__ so that the return value in this forwarding function
+		returns perfectly.
 		""",
 		'a': """
-		
+		a) Perfect returning means that the value category of the returned value is preserved.
+			This means that if:	
+				- The return value category inside the function is an lvalue, we return by reference
+				- The return value category inside the function is a prvalue, we return by value
+
+		b) #define __BLANK__ decltype(auto) 
 		""",
 	},
 	92: {

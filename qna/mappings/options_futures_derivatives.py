@@ -760,50 +760,97 @@ qna = {
 	},
 	58: {
 		'q':  """
+		What is de-hedging?
 		""",
 		'a': """
+		De-hedging refers to the process of closing out positions that were originally
+		put in place to act as a hedge in a trade or portfolio.
 		""",
 	},
 	59: {
 		'q':  """
+		a) What is the federal funds rate?
+		b) What is the effective federal funds rate?
 		""",
 		'a': """
+		a) The federal funds rate is the target interest rate set by the FOMC
+		at which commercial banks borrow and lend their excess reseres to each other
+		overnight.
+
+		b) The EFFR is the volume-weighted median of overnight federal funds
+			transactions.
 		""",
 	},
 	60: {
 		'q':  """
+		True or false:
+			The federal funds rate is directly set by the federal reserve.
 		""",
 		'a': """
+		False, it is set indirectly via an upper limit and a lower limit.
+
+		Upper limit = Interest on Reserve Balances (IORB):
+			The rate of interest a commericial bank earns on reserves kept
+			at the federal reserve.
+
+		Lower limit = Overnight reverse repurchase
+			Securities, like Treasury bills, that the federal reserve
+			lends to banks, usually for a day, while paying interest.
 		""",
 	},
 	61: {
 		'q':  """
+		Consider the following rates:
+			1) SOFR
+			2) SONIA
+			3) TONAR
+			4) ESTR
+
+		Pick the odd one out, and explain your choice.
 		""",
 		'a': """
+		1) SOFR - since it is a secured rate (using the repo rate on overnight 
+			transactions). The others are unsecured, and based on transactions
+			between commericals banks when managing excess/deficit reserves.
 		""",
 	},
 	62: {
 		'q':  """
+		True or False:
+
+			According to Hull, for most practical purposes continuous compounding
+			can be thought of as equivalent to daily compounding.
 		""",
 		'a': """
+		True.
 		""",
 	},
 	63: {
 		'q':  """
+		What is the n-year zero rate?
 		""",
 		'a': """
+		The n-year zero rate (also 'n-year zero coupon interest rate', 'n-year spot rate', 'n-year zero')
+		is the rate of interest earned on a zero-coupon bond.
 		""",
 	},
 	64: {
 		'q':  """
+		How can the theoretical price of a bond be calculated?
 		""",
 		'a': """
+		The theoretical price of a bond can be calculated as the present value of
+		all the futures cashflows that the owner of the bond will receive.
 		""",
 	},
 	65: {
 		'q':  """
+		True or false:
+			The most accurate way of pricing a bond is to use a single discount rate
+			to get the present value of the future cashflows.
 		""",
 		'a': """
+		False, a more accurate approach is to use a different zero rate for each cash flow.
 		""",
 	},
 	66: {

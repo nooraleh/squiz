@@ -476,10 +476,25 @@ qna = {
 	},
 	31: {
 		'q':  """
-		
+		In the <concepts> context, when constraining a type T with `requires`.
+		Which helper templates should you reach for when:
+
+			a) You want to constrain for an exact match with std::string
+			b) You want to constrain for implicit conversions from T to std::string to be allowed
+			c) You want to constrain for explicit conversions to std::string with T as a constructor argument
 		""",
 		'a': """
-		
+			a)
+				template<typename T>
+				requires std::same_as<std::remove_cvref_t<T>, std::string>
+
+			b)
+				template<typename T>
+				requires std::convertible_to<T, std::string>
+
+			c)
+				template<typename T>
+				requires std::constructible_from<std::string, T>
 		""",
 	},
 	32: {
