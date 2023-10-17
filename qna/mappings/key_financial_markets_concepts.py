@@ -819,18 +819,41 @@ qna = { # Section 1: Time Value of Money
 	},
 	64: {
 		'q':  """
+		1) In a forward rate agreement (FRA) which of the long or short is:
+			a) the borrower, agreeing to pay a fixed rate and receive a floating rate
+			b) the lender, agreeing to pay a floating rate and receive a fixed rate
+
+		2)
+			a) What is the FRA borrower trying to hedge against (bet for)?
+			b) What is the FRA lender trying to hedge against (bet for)?
 		
 		""",
 		'a': """
-		
+		1)
+			a) the FRA long is the borrower, and agrees to pay fixed, receive floating
+			b) the FRA short is the lender, and agrees to pay floating, receive fixed
+
+		2) a) the FRA long (borrower) is hedging against an increase in interest rates
+		   b) the FRA short (lender) is hedging against a decline in interest rates 
 		""",
 	},
 	65: {
 		'q':  """
-		
+		a) For which type of bonds will NEITHER the Macaulay duration NOR the modified
+		duration be appropriate as a measure of interest rate sensitivity?
+
+		b) For your answer to (a), what would be an appropriate measure to compute in order
+			to ascertain the inerest rate sensitivity?
+
+		c) Provide the formula for your answer to (a)
 		""",
 		'a': """
+		a) Bonds with embedded options (e.g. callable and putable bonds)
+		b) The effective duration would be a more appropriate measure.
 		
+		b) effective_duration =
+			(price_change_if_yield_decreases_by_delta_y - price_change_if_yield_increases_by_delta_y) /
+				(2 * initial_bond_price * delta_y) 
 		""",
 	},
 	66: {
