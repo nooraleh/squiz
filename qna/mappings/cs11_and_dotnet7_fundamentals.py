@@ -884,106 +884,137 @@ qna = {
 	},
 	72: {
 		'q':  """
-		
+		Which command can you use in the terminal to check the versions of .NET SDKs and runtimes
+		that you have installed and to warn you if any need updating?
 		""",
 		'a': """
-		
+		dotnet sdk check
 		""",
 	},
 	73: {
 		'q':  """
-		
+		True or false:
+
+			A single assembly can contain many namespaces and a namespace can be defined in
+			many assemblies.
 		""",
 		'a': """
-		
+		True
 		""",
 	},
 	74: {
 		'q':  """
-		
+		What is the relationship between frameworks and packages?
 		""",
 		'a': """
-		
+		Packages define APIs, while frameworks group packages.
 		""",
 	},
 	75: {
 		'q':  """
-		
+		Consider `string` vs. `String` - which should you prefer and why?
 		""",
 		'a': """
-		
+		You should prefer lowercase `string` since it is a keyword and thus doesn't need
+		the namespace (in this case 'System') to be imported. Unlike `String` which is an
+		alias for System.String
 		""",
 	},
 	76: {
 		'q':  """
-		
+		a) What are native-sized integers?
+		b) Give a few examples of native-sized integers in C#?
 		""",
 		'a': """
-		
+		a) Native-sized integers are integer types for whose storage size for the value is platform specific.
+		b) `nint`, `nuint`
 		""",
 	},
 	77: {
 		'q':  """
-		
+		There are three ways to publish and deploy a .NET application, what are they?
 		""",
 		'a': """
-		
+		1) Framework-dependent deployment (FDD)
+		2) Framework-dependent executable (FDE)
+		3) Self-contained
 		""",
 	},
 	78: {
 		'q':  """
-		
+		Which elements would you use in a .csproj file to specify that the output can run on linux and/or
+		macOS and/or Windows OS?
 		""",
 		'a': """
-		
+		1) <RuntimeIdentifier> - for specifying a single OS to run on
+		2) <RuntimeIdentifiers> - for specifying multiple OSs to run on
 		""",
 	},
 	79: {
 		'q':  """
-		
+		Consider C++'s std::vector<T>::reserve, whose purpose is to allocate a pre-defined amount
+		of memory ahead of assignment. What is the C# equivalent to this? 
 		""",
 		'a': """
-		
+		The C# equivalent is `EnsureCapacity`
 		""",
 	},
 	80: {
 		'q':  """
-		
+		When should you favour a C# array (such as double[]) over a C# collection (e.g. List<double>)? 
 		""",
 		'a': """
-		
+		You should favour arrays over collections when the underlying data will not change size after
+		instantiation.
 		""",
 	},
 	81: {
 		'q':  """
-		
+		Fill in the blank:
+
+			If you need to work with a subset of an array, use a ____ because it is like a window
+			into the original array. This is more efficient in terms of memory usage and improves
+			performance. ___s only work with arrays, not collections, because the memory must be 
+			contiguous.
 		""",
 		'a': """
-		
+		Blank: span
 		""",
 	},
 	82: {
 		'q':  """
-		
+		Consider the following function signatures
+
+			void ProcessCollection<T>(IEnumerable<T> collection); (A)
+			void ProcessCollection<T>(List<T> collection);        (B)
+
+		i) Which should you prefer?
+		ii) Explain your choice in (i)
 		""",
 		'a': """
-		
+		i) (B)
+		ii) IEnumerable<T> must allocate an object on the heap. When looping through `collection`
+			both types will use the .Enumerator.GetEnumerator() method, which returns a stack-allocated
+			struct for List<T> and a heap-allocated reference for IEnumerable<T>.	
 		""",
 	},
 	83: {
 		'q':  """
-		
+		When and why should you use the `SecureString` type?
 		""",
 		'a': """
-		
+		When you require encryption of the text and assurance that the allocated memory for the text
+		is release immediately. Concrete case would be for passwords.
 		""",
 	},
 	84: {
 		'q':  """
-		
+		When is it appropriate to use a `StringBuilder` class?
 		""",
 		'a': """
-		
+		When concatenating more than about three `string` variables, you'll be using less
+		memory and will be getting improved performance using `StringBuilder` than using
+		string.Concat method or the + operator.
 		""",
 	},
 	85: {
