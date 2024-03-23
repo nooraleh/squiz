@@ -303,26 +303,38 @@ qna = {
 	},
 	26: {
 		'q':  """
-		
+		In .NET MAUI, you can fill in the colour of any number of controls using a brush.
+		There are three types of brushes, what are they?
 		""",
 		'a': """
-		
+		1) Solid
+		2) Linear Gradient
+		3) Radial Gradient
 		""",
 	},
 	27: {
 		'q':  """
-		
+		One key feature of a well-designed UX is that when something is going to take
+		more than a second or so, you let the user know that the app is working on it.
+
+		Explain why this is a good feature.
 		""",
 		'a': """
-		
+		It's a good feature because implementing this ensures that it doesn't look like
+		your app froze.
 		""",
 	},
 	28: {
 		'q':  """
-		
+		State and explain the two ways to let the user know that your application
+		is working on something time-consuming.
 		""",
 		'a': """
+		1) ActivityIndicator
+			- says 'I'm working on it, but I don't know how long it'll take'
 		
+		2) ProgressBar
+			- says 'I'm working on it and I'm (for example) about halfway done'
 		""",
 	},
 	29: {

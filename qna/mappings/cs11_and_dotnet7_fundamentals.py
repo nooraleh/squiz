@@ -1019,18 +1019,20 @@ qna = {
 	},
 	85: {
 		'q':  """
-		
+		What does it mean for a type to be 'anonymous'?
 		""",
 		'a': """
-		
+		An 'anonymous' type is one where the compiler generates a class for them
+		with the relevant properties etc, but the type's name is known only to the compiler.
 		""",
 	},
 	86: {
 		'q':  """
-		
+		What does Action<T> encapsulate?
 		""",
 		'a': """
-		
+		Action<T> encapsulates a method that has a single parameter and does not return
+		a value.
 		""",
 	},
 	87: {
