@@ -4,3 +4,10 @@ __pycache__/
 
 # C extensions
 *.so
+
+# Visual Studio 
+.vs
+Debug/
+bin/
+obj/
+*.user
