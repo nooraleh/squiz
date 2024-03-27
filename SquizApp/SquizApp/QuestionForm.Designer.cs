@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             questionLabel = new Label();
-            textBox1 = new TextBox();
+            quizeeAnswerTextBox = new TextBox();
+            quizeeAnswerLabel = new Label();
             SuspendLayout();
             // 
             // questionLabel
@@ -42,20 +43,31 @@
             questionLabel.TabIndex = 0;
             questionLabel.Text = "Question Placeholder";
             // 
-            // textBox1
+            // quizeeAnswerTextBox
             // 
-            textBox1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(28, 153);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(530, 50);
-            textBox1.TabIndex = 1;
+            quizeeAnswerTextBox.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            quizeeAnswerTextBox.Location = new Point(28, 200);
+            quizeeAnswerTextBox.Name = "quizeeAnswerTextBox";
+            quizeeAnswerTextBox.Size = new Size(530, 50);
+            quizeeAnswerTextBox.TabIndex = 1;
+            // 
+            // quizeeAnswerLabel
+            // 
+            quizeeAnswerLabel.AutoSize = true;
+            quizeeAnswerLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            quizeeAnswerLabel.Location = new Point(28, 152);
+            quizeeAnswerLabel.Name = "quizeeAnswerLabel";
+            quizeeAnswerLabel.Size = new Size(68, 30);
+            quizeeAnswerLabel.TabIndex = 2;
+            quizeeAnswerLabel.Text = "label1";
             // 
             // QuestionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox1);
+            Controls.Add(quizeeAnswerLabel);
+            Controls.Add(quizeeAnswerTextBox);
             Controls.Add(questionLabel);
             Name = "QuestionForm";
             Text = "Question Form";
@@ -66,6 +78,7 @@
         #endregion
 
         private Label questionLabel;
-        private TextBox textBox1;
+        private TextBox quizeeAnswerTextBox;
+        private Label quizeeAnswerLabel;
     }
 }
