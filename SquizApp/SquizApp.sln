@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquizApp", "SquizApp\SquizApp.csproj", "{53DC4BDA-353D-4F36-8B8F-41BF0AFAFAAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QNALibrary", "QNALibrary\QNALibrary.csproj", "{65B68299-4C3A-4C8C-A706-2A3782199B5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{53DC4BDA-353D-4F36-8B8F-41BF0AFAFAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53DC4BDA-353D-4F36-8B8F-41BF0AFAFAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53DC4BDA-353D-4F36-8B8F-41BF0AFAFAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
