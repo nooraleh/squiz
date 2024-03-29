@@ -5,23 +5,15 @@ using System.Runtime.Intrinsics.X86;
 using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using QNAMappingType = Dictionary<int, Dictionary<string, string>>;
-//QNAMappingType qna = new()
-//    {1,
-//		{
-//			'q',  """
-//			What's an alternative way of writing 'include <iostream>'
-//			introduced by C++20 standard?
-//			""",
-//			'a', """
-//			import <iostream>
-//			"""
-//		}
-//	}
-//};
 
-public partial class Gregoire
+
+public partial class Gregoire : QNABase
 {
-    Dictionary<int, Dictionary<string, string>> dict = new Dictionary<int, Dictionary<string, string>>() {
+    public Gregoire()
+        : base(title: "Marc Gregoire's Professional C++", category: QNACategory.CPP, qnaMapping: qnaMapping_)
+    {}
+
+    static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>() {
     {1, new Dictionary<string, string>() {
         {"q", @"What's an alternative way of writing 'include <iostream>'
 		introduced by C++20 standard?"},
