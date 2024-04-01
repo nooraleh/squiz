@@ -31,6 +31,7 @@
             questionLabel = new Label();
             quizeeAnswerTextBox = new TextBox();
             quizeeAnswerLabel = new Label();
+            compareAnswerButton = new Button();
             SuspendLayout();
             // 
             // questionLabel
@@ -61,11 +62,22 @@
             quizeeAnswerLabel.TabIndex = 2;
             quizeeAnswerLabel.Text = "label1";
             // 
+            // compareAnswerButton
+            // 
+            compareAnswerButton.Location = new Point(203, 303);
+            compareAnswerButton.Name = "compareAnswerButton";
+            compareAnswerButton.Size = new Size(210, 66);
+            compareAnswerButton.TabIndex = 3;
+            compareAnswerButton.Text = "Compare to Model Answer";
+            compareAnswerButton.UseVisualStyleBackColor = true;
+            compareAnswerButton.Click += compareAnswerButton_Click;
+            // 
             // QuestionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(compareAnswerButton);
             Controls.Add(quizeeAnswerLabel);
             Controls.Add(quizeeAnswerTextBox);
             Controls.Add(questionLabel);
@@ -80,5 +92,6 @@
         private Label questionLabel;
         private TextBox quizeeAnswerTextBox;
         private Label quizeeAnswerLabel;
+        private Button compareAnswerButton;
     }
 }

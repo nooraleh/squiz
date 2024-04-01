@@ -16,5 +16,13 @@ namespace SquizApp
         {
             InitializeComponent();
         }
+
+        private void compareAnswerButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CompareAnswerForm compareAnswerForm = new(); // TODO: Pass in generated questions
+            compareAnswerForm.FormClosed += (sender, e) => this.Close();
+            compareAnswerForm.Show();
+        }
     }
 }
