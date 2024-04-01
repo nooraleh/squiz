@@ -83,6 +83,7 @@
             startQuizButton.TabIndex = 4;
             startQuizButton.Text = "Start Quiz!";
             startQuizButton.UseVisualStyleBackColor = true;
+            startQuizButton.Click += this.startQuizButton_Click;
             // 
             // MainForm
             // 
