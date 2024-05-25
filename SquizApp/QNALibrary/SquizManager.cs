@@ -43,7 +43,7 @@ namespace QNALibrary
             QNACollection qnaCollection = new();
             NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
-            CurrentQNA = QNASubmapping.Dequeue();
+            NextQNA();
         }
 
         public void AddUserAnswer(string userAnswer)
@@ -78,6 +78,11 @@ namespace QNALibrary
             return CurrentQNA["q"];
         }
 
+        public string NAttempts()
+        {
+            // number of attempts at the current question
+            return CurrentQNA["nAttempts"];
+        }
 
         public void CurrentQNAFail()
         {
@@ -91,14 +96,25 @@ namespace QNALibrary
             // pops the currentQNA to the back of the list if false, removes if true
             if (pass)
             {
-                CurrentQNA = QNASubmapping.Dequeue();
+                NextQNA();
             }
             else
             {
                 QNASubmapping.Enqueue(CurrentQNA);
-                CurrentQNA = QNASubmapping.Dequeue();
+                NextQNA();
             }
         }
 
+        private void NextQNA()
+        {
+            CurrentQNA = QNASubmapping.Dequeue();
+
+            string nAttemptsTryValue = "0";
+            if (!CurrentQNA.TryAdd("nAttempts", nAttemptsTryValue))
+            {
+                CurrentQNA["nAttempts"] = $"{Int32.Parse(CurrentQNA["userA"]) + 1}";
+            }
+        }
+        
     }
 }
