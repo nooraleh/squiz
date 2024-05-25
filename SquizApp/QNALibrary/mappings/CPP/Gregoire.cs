@@ -5,13 +5,18 @@ using System.Runtime.Intrinsics.X86;
 using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using QNAMappingType = Dictionary<int, Dictionary<string, string>>;
-
+using System.Runtime.CompilerServices;
 
 public partial class Gregoire : QNABase
 {
     public Gregoire()
         : base(title: "Marc Gregoire's Professional C++", category: QNACategory.CPP, qnaMapping: qnaMapping_)
     {}
+
+    public override string ToString()
+    {
+        return "Gregoire";
+    }
 
     static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>() {
     {1, new Dictionary<string, string>() {
