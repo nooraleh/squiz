@@ -40,10 +40,10 @@
             // questionLabel
             // 
             questionLabel.AutoSize = true;
-            questionLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            questionLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             questionLabel.Location = new Point(33, 27);
             questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(324, 45);
+            questionLabel.Size = new Size(193, 25);
             questionLabel.TabIndex = 1;
             questionLabel.Text = "Question Placeholder";
             // 
@@ -51,7 +51,7 @@
             // 
             modelAnswerLabel.AutoSize = true;
             modelAnswerLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            modelAnswerLabel.Location = new Point(33, 163);
+            modelAnswerLabel.Location = new Point(33, 311);
             modelAnswerLabel.Name = "modelAnswerLabel";
             modelAnswerLabel.Size = new Size(167, 32);
             modelAnswerLabel.TabIndex = 2;
@@ -59,23 +59,25 @@
             // 
             // modelAnswerTextBox
             // 
-            modelAnswerTextBox.Location = new Point(33, 233);
+            modelAnswerTextBox.Location = new Point(33, 383);
+            modelAnswerTextBox.Multiline = true;
             modelAnswerTextBox.Name = "modelAnswerTextBox";
-            modelAnswerTextBox.Size = new Size(100, 23);
+            modelAnswerTextBox.Size = new Size(563, 490);
             modelAnswerTextBox.TabIndex = 3;
             // 
             // userAnswerTextBox
             // 
-            userAnswerTextBox.Location = new Point(698, 233);
+            userAnswerTextBox.Location = new Point(962, 383);
+            userAnswerTextBox.Multiline = true;
             userAnswerTextBox.Name = "userAnswerTextBox";
-            userAnswerTextBox.Size = new Size(100, 23);
+            userAnswerTextBox.Size = new Size(527, 490);
             userAnswerTextBox.TabIndex = 5;
             // 
             // userAnswerLabel
             // 
             userAnswerLabel.AutoSize = true;
             userAnswerLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            userAnswerLabel.Location = new Point(698, 163);
+            userAnswerLabel.Location = new Point(962, 311);
             userAnswerLabel.Name = "userAnswerLabel";
             userAnswerLabel.Size = new Size(145, 32);
             userAnswerLabel.TabIndex = 4;
@@ -84,28 +86,30 @@
             // userHappyButton
             // 
             userHappyButton.AutoSize = true;
-            userHappyButton.Location = new Point(125, 496);
+            userHappyButton.Location = new Point(152, 929);
             userHappyButton.Name = "userHappyButton";
-            userHappyButton.Size = new Size(156, 25);
+            userHappyButton.Size = new Size(211, 48);
             userHappyButton.TabIndex = 6;
             userHappyButton.Text = "I'm happy with my answer";
             userHappyButton.UseVisualStyleBackColor = true;
+            userHappyButton.Click += userHappyButton_Click;
             // 
             // userNotHappyButton
             // 
             userNotHappyButton.AutoSize = true;
-            userNotHappyButton.Location = new Point(723, 496);
+            userNotHappyButton.Location = new Point(1098, 935);
             userNotHappyButton.Name = "userNotHappyButton";
-            userNotHappyButton.Size = new Size(177, 25);
+            userNotHappyButton.Size = new Size(235, 42);
             userNotHappyButton.TabIndex = 7;
             userNotHappyButton.Text = "I'm not happy with my answer";
             userNotHappyButton.UseVisualStyleBackColor = true;
+            userNotHappyButton.Click += userNotHappyButton_Click;
             // 
-            // CompareAnswer
+            // CompareAnswerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1260, 793);
+            ClientSize = new Size(1698, 1025);
             Controls.Add(userNotHappyButton);
             Controls.Add(userHappyButton);
             Controls.Add(userAnswerTextBox);
@@ -113,7 +117,7 @@
             Controls.Add(modelAnswerTextBox);
             Controls.Add(modelAnswerLabel);
             Controls.Add(questionLabel);
-            Name = "CompareAnswer";
+            Name = "CompareAnswerForm";
             Text = "CompareAnswer";
             ResumeLayout(false);
             PerformLayout();
