@@ -40,7 +40,7 @@
             // 
             qnaDropdownComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             qnaDropdownComboBox.FormattingEnabled = true;
-            qnaDropdownComboBox.Items.AddRange(new object[] { "MockQNA1", "MockQNA2" });
+            qnaDropdownComboBox.Items.AddRange(new object[] { "MockQNA1", "MockQNA2", "Gregoire" });
             qnaDropdownComboBox.Location = new Point(427, 88);
             qnaDropdownComboBox.Name = "qnaDropdownComboBox";
             qnaDropdownComboBox.Size = new Size(502, 29);
@@ -83,7 +83,7 @@
             startQuizButton.TabIndex = 4;
             startQuizButton.Text = "Start Quiz!";
             startQuizButton.UseVisualStyleBackColor = true;
-            startQuizButton.Click += this.startQuizButton_Click;
+            startQuizButton.Click += startQuizButton_Click;
             // 
             // MainForm
             // 
