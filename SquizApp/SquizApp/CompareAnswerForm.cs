@@ -16,8 +16,9 @@ namespace SquizApp
         public CompareAnswerForm()
         {
             InitializeComponent();
-            modelAnswerTextBox.Text = SquizManager.Instance.CurrentQNA["a"];
-            userAnswerTextBox.Text = SquizManager.Instance.CurrentQNA["userA"];
+            modelAnswerTextBox.Text = SquizManager.Instance.ModelAnswer();
+            userAnswerTextBox.Text = SquizManager.Instance.UserAnswer();
+            questionLabel.Text = SquizManager.Instance.Question(); ;
         }
 
         private void userHappyButton_Click(object sender, EventArgs e)

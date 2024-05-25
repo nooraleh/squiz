@@ -59,6 +59,7 @@
             // 
             // modelAnswerTextBox
             // 
+            modelAnswerTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             modelAnswerTextBox.Location = new Point(33, 383);
             modelAnswerTextBox.Multiline = true;
             modelAnswerTextBox.Name = "modelAnswerTextBox";
@@ -67,6 +68,7 @@
             // 
             // userAnswerTextBox
             // 
+            userAnswerTextBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             userAnswerTextBox.Location = new Point(962, 383);
             userAnswerTextBox.Multiline = true;
             userAnswerTextBox.Name = "userAnswerTextBox";

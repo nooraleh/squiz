@@ -46,7 +46,7 @@
             // 
             // quizeeAnswerTextBox
             // 
-            quizeeAnswerTextBox.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            quizeeAnswerTextBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             quizeeAnswerTextBox.Location = new Point(55, 511);
             quizeeAnswerTextBox.Multiline = true;
             quizeeAnswerTextBox.Name = "quizeeAnswerTextBox";

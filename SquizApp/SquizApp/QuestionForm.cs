@@ -16,13 +16,13 @@ namespace SquizApp
         public QuestionForm()
         {
             InitializeComponent();
-            questionLabel.Text = SquizManager.Instance.CurrentQNA["q"];
+            questionLabel.Text = SquizManager.Instance.Question();
         }
 
         private void compareAnswerButton_Click(object sender, EventArgs e)
         {
             // save user answer
-            SquizManager.Instance.CurrentQNA.Add("userA", quizeeAnswerTextBox.Text);
+            SquizManager.Instance.AddUserAnswer(quizeeAnswerTextBox.Text);
 
             this.Hide();
             CompareAnswerForm compareAnswerForm = new(); // TODO: Pass in generated questions
