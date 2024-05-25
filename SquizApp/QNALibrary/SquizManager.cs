@@ -46,6 +46,38 @@ namespace QNALibrary
             CurrentQNA = QNASubmapping.Dequeue();
         }
 
+        public void AddUserAnswer(string userAnswer)
+        {
+            // if we can't add it then it already exists
+            if (!CurrentQNA.TryAdd("userA", userAnswer))
+            {
+                CurrentQNA["userA"] = userAnswer;
+            }
+        }
+
+        public string UserAnswer()
+        {
+            string tryValue = string.Empty;
+            if (CurrentQNA.TryGetValue("userA", out tryValue))
+            {
+                return tryValue;
+            }
+            else
+            {
+                return "User answer unavailable";
+            }
+        }
+
+        public string ModelAnswer()
+        {
+            return CurrentQNA["a"];
+        }
+
+        public string Question()
+        {
+            return CurrentQNA["q"];
+        }
+
 
         public void CurrentQNAFail()
         {
