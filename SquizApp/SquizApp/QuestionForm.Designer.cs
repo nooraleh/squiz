@@ -37,34 +37,35 @@
             // questionLabel
             // 
             questionLabel.AutoSize = true;
-            questionLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            questionLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             questionLabel.Location = new Point(28, 24);
             questionLabel.Name = "questionLabel";
-            questionLabel.Size = new Size(324, 45);
+            questionLabel.Size = new Size(211, 30);
             questionLabel.TabIndex = 0;
             questionLabel.Text = "Question Placeholder";
             // 
             // quizeeAnswerTextBox
             // 
             quizeeAnswerTextBox.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            quizeeAnswerTextBox.Location = new Point(28, 200);
+            quizeeAnswerTextBox.Location = new Point(55, 511);
+            quizeeAnswerTextBox.Multiline = true;
             quizeeAnswerTextBox.Name = "quizeeAnswerTextBox";
-            quizeeAnswerTextBox.Size = new Size(530, 50);
+            quizeeAnswerTextBox.Size = new Size(1239, 198);
             quizeeAnswerTextBox.TabIndex = 1;
             // 
             // quizeeAnswerLabel
             // 
             quizeeAnswerLabel.AutoSize = true;
             quizeeAnswerLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            quizeeAnswerLabel.Location = new Point(28, 152);
+            quizeeAnswerLabel.Location = new Point(55, 450);
             quizeeAnswerLabel.Name = "quizeeAnswerLabel";
-            quizeeAnswerLabel.Size = new Size(68, 30);
+            quizeeAnswerLabel.Size = new Size(133, 30);
             quizeeAnswerLabel.TabIndex = 2;
-            quizeeAnswerLabel.Text = "label1";
+            quizeeAnswerLabel.Text = "Your Answer:";
             // 
             // compareAnswerButton
             // 
-            compareAnswerButton.Location = new Point(203, 303);
+            compareAnswerButton.Location = new Point(549, 726);
             compareAnswerButton.Name = "compareAnswerButton";
             compareAnswerButton.Size = new Size(210, 66);
             compareAnswerButton.TabIndex = 3;
@@ -76,7 +77,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1437, 819);
             Controls.Add(compareAnswerButton);
             Controls.Add(quizeeAnswerLabel);
             Controls.Add(quizeeAnswerTextBox);

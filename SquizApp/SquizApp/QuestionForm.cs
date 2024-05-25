@@ -21,6 +21,9 @@ namespace SquizApp
 
         private void compareAnswerButton_Click(object sender, EventArgs e)
         {
+            // save user answer
+            SquizManager.Instance.CurrentQNA.Add("userA", quizeeAnswerTextBox.Text);
+
             this.Hide();
             CompareAnswerForm compareAnswerForm = new(); // TODO: Pass in generated questions
             compareAnswerForm.FormClosed += (sender, e) => this.Close();
