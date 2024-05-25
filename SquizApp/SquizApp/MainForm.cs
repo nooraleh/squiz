@@ -14,7 +14,7 @@ namespace SquizApp
             SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text);
 
             this.Hide();
-            QuestionForm questionForm = new(SquizManager.Instance.CurrentQNA);
+            QuestionForm questionForm = new();
             questionForm.FormClosed += (sender, e) => this.Close();
             questionForm.Show();
         }

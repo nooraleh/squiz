@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QNALibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace SquizApp
         public QuestionForm()
         {
             InitializeComponent();
+            questionLabel.Text = SquizManager.Instance.CurrentQNA["q"];
         }
 
         private void compareAnswerButton_Click(object sender, EventArgs e)
