@@ -59,6 +59,7 @@
             backToMainFormButton.TabStop = false;
             backToMainFormButton.Text = "Back to Main Page";
             backToMainFormButton.UseVisualStyleBackColor = true;
+            backToMainFormButton.Click += backToMainFormButton_Click;
             // 
             // ResultsForm
             // 
