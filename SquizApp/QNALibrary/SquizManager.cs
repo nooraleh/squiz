@@ -112,7 +112,7 @@ namespace QNALibrary
             string nAttemptsTryValue = "0";
             if (!CurrentQNA.TryAdd("nAttempts", nAttemptsTryValue))
             {
-                CurrentQNA["nAttempts"] = $"{Int32.Parse(CurrentQNA["userA"]) + 1}";
+                CurrentQNA["nAttempts"] = $"{Int32.Parse(CurrentQNA["nAttempts"]) + 1}";
             }
         }
         
