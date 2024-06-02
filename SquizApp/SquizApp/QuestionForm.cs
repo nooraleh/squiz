@@ -17,6 +17,7 @@ namespace SquizApp
         {
             InitializeComponent();
             questionLabel.Text = SquizManager.Instance.Question();
+            this.Text = SquizManager.Instance.Index();
         }
 
         private void compareAnswerButton_Click(object sender, EventArgs e)

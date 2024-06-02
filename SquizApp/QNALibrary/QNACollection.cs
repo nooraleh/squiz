@@ -74,6 +74,14 @@ public class QNACollection
             .Select(pair => pair.Value)
             .ToList();
 
+        // Add an index to each qna
+        string qnaIndex = "0";
+        foreach (var qna in randomSubcollection)
+        {
+            qna.Add("index", $"{Int32.Parse(qnaIndex) + 1}");
+        }
+
+
         // Create a Queue from the selected subcollection
         return new Queue<Dictionary<string, string>>((IEnumerable<Dictionary<string, string>>)randomSubcollection);
     }

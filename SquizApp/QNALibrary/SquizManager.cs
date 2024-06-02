@@ -55,6 +55,12 @@ namespace QNALibrary
             }
         }
 
+        public string Index()
+        {
+            return CurrentQNA["index"];
+        }
+
+
         public string UserAnswer()
         {
             string tryValue = string.Empty;
