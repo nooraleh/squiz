@@ -853,28 +853,43 @@ qna = {
 		False, a more accurate approach is to use a different zero rate for each cash flow.
 		""",
 	},
-	66: {
+	66: { # Chapter 10: Mechanics of Options Markets
 		'q':  """
+		Consider American and European options, which option style is:
+			a) More widely traded?
+            b) Easier to price/analyze?
 		""",
 		'a': """
+			a) American
+            b) European
 		""",
 	},
 	67: {
 		'q':  """
+		True or false:
+			Most index option contracts are European-style.
 		""",
 		'a': """
+		True.
 		""",
 	},
 	68: {
 		'q':  """
+		Describe a standard index option contract specification.
 		""",
 		'a': """
+		To buy (long) or sell (short) 100 times the index at a specified strike price K.
+        Index options are typically cash-settled. 
 		""",
 	},
 	69: {
 		'q':  """
+		Which day of the month do (stock) options typically expire in?
 		""",
 		'a': """
+		The third Friday of the month.
+        NB: Options expiring in Fridays other than the third Friday of the month
+        are known as 'weeklys'
 		""",
 	},
 	70: {
