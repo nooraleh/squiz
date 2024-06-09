@@ -894,78 +894,160 @@ qna = {
 	},
 	70: {
 		'q':  """
+		What is an option class?
 		""",
 		'a': """
+		An option class is the set of all options across expirations and strike prices
+        of the same type (either calls or puts).
+
+        For example, the set of all IBM calls across all available expirations and strike prices
+        are one class. The set of all IBM puts is another option class. 
 		""",
 	},
 	71: {
 		'q':  """
+		Describe what the following terms classify:
+			a) Option type
+            b) Option style
 		""",
 		'a': """
+		a) Refers to the classification of an option as either a put or a call
+        b) Refers to the classification of an option as either American-style or European-style (or Bermudan etc)
 		""",
 	},
 	72: {
 		'q':  """
+		What is an option series?
 		""",
 		'a': """
+		An option series consists of all the options of a given class with the same
+        expiration date and the same strike price.
+        
+        E.g. all IBM 160 October 2021 calls would constitute an option series.
 		""",
 	},
 	73: {
 		'q':  """
+		a) What are FLEX options? Explain how they work.
+        b) Why do FLEX options exist?
 		""",
 		'a': """
+		a) FLEX options, offered by the CBOE, allow traders to agree to nonstandard
+        terms involving the strike price or expiration date as opposed to what is typically
+        offered by the exchange.
+        
+        For instance, can involve a European option on what is normally American-style and vice versa.
+        
+        b) FLEX options are an attempt by option exchanges to regain business from the OTC markets.
 		""",
 	},
 	74: {
 		'q':  """
+		Consider stock splits. An n-for-m stock split should cause the price of the stock
+        to be reduced to what fraction of its previous value?
 		""",
 		'a': """
+		m / n
 		""",
 	},
 	75: {
 		'q':  """
+		Consider a call option to buy 100 shares of a company for $30/share. 
+        Suppose the company makes a 3-for-1 stock split.
+        
+        The terms of the option contract are changed so that the holder has the right
+        to buy:
+			a) how many shares?
+            b) at which strike price per share?
 		""",
 		'a': """
+			a) 300 shares
+            b) $10/share
 		""",
 	},
 	76: {
 		'q':  """
+		Consider a put option with terms:
+			a) Sell 100 shares
+            b) At K = $15
+            
+        Suppose the company declares a 25pct stock dividend. What are the terms (a) and (b) now?
 		""",
 		'a': """
+		A 25pct stock dividend is equivalent to a 5-for-4 stock split. So the new terms are:
+			a) Sell (5/4)100 = 125 shares
+            b) At K = $(4/5)*15 = $12 per share
 		""",
 	},
 	77: {
 		'q':  """
+		i) 	True or false:
+		
+			a) Long calls and short puts
+			b) Short calls and long puts
+			
+			For position limiting purporposes, (a) is considered to be one the same
+			side and (b)'s positions are considered to be one the same side.
+            
+        ii) Explain your answer to (i)
 		""",
 		'a': """
+		i) true
+        ii) (a)'s positions are bullish, while (b)'s positions are bearish
 		""",
 	},
 	78: {
 		'q':  """
+		In the context of options markets, define the following:
+			a) Position limit
+            b) Exercise limit
 		""",
 		'a': """
+		a) A position limit for options contracts defines the maximum number of options
+			contracts that an investor can hold on one side of the market.
+            
+        b) The exercise limit defines the maximum number of contracts that can be exercised by any
+			individual in any period of five consecutive business days.
+            
+        NB: The position limit value usually equals the exercise limit value.
 		""",
 	},
 	79: {
 		'q':  """
+		True or false:
+			a) When a trader buys an option, margin is required
+            b) When a trader sells an option, margin is required
 		""",
 		'a': """
+			a) False as the trade does not give rise to future obligations.
+			b) True as the trade gives rise to future obligations in the event
+				that the option is exercised.
 		""",
 	},
 	80: {
 		'q':  """
+		In the context of options, consider an option that is exercised with an OCC
+        on day T.
+        
+        Express, in terms of T and a number of business days, how long it will take for
+        the buy/sell transaction as specified in the option contract to take place?
 		""",
 		'a': """
+		T+3 business days.
 		""",
 	},
 	81: {
 		'q':  """
+		True or false:
+			The OTC market for options is larger than the exchanged-traded equivalent.
 		""",
 		'a': """
+		True.
 		""",
 	},
-	82: {
+	82: { # Chapter 11: Properties of stock options
 		'q':  """
+		
 		""",
 		'a': """
 		""",
