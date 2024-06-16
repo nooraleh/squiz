@@ -1047,51 +1047,166 @@ qna = {
 	},
 	82: { # Chapter 11: Properties of stock options
 		'q':  """
-		
+		True or false:
+			a) It is never optimal to exercise an American call option on a non-dividend-paying
+            	stock prior to the option's expiration.
+                
+			b) It is never optimal to exercise an American put option on a non-dividend-paying
+            	stock prior to the option's expiration.
 		""",
 		'a': """
+		a) True.
+        b) False - it can be optimal at times.
 		""",
 	},
 	83: {
 		'q':  """
+		Let:
+			- S_0 be the current stock price of an equity share
+            - C be the value of an American-style call option to buy one share
+            - c be the value of a European-style call option to buy one share
+            
+        a) Specify, in terms of the above, the upper bounds for:
+			i) An American-style call option
+            ii) A European-style call option
+            
+        b) Explain your answers to a) i) and ii)
 		""",
 		'a': """
+		a)
+			i) C <= S_0
+            ii) c <= S_0
+            
+        b) Before if those upper bounds to not hold true (i.e C > S_0 or c > S_0),
+        	an arbitrageur can make a riskless profit by buying the less expensive share
+			and writing the call option and earn C-S_0 (or c-s_0).
 		""",
 	},
-	84: {
+	84: { 
 		'q':  """
+		Let:
+			- S_0 be the current stock price of an equity share
+            - P be the value of an American-style put option to buy one share
+            - p be the value of a European-style put option to buy one share
+            
+        a) Specify, in terms of the above, the upper bounds for:
+			i) An American-style put option
+            ii) A European-style put option
+            
+        b) Explain your answers to a) i) and ii)
 		""",
 		'a': """
+		a) 
+			i)  P <= K
+            ii) p <= Ke^-rT
+            
+        b) i) The American put option value cannot be worth more than K. In other words,
+				a rational market participant would not pay $120 for the right but not the obligation
+                to sell at $100.
+                
+			ii) For European-options, at maturity the option cannot be worth more than K. Since this
+				is the only time the option can be exercised, the option value cannot be worth more
+				than the present value of K today.
 		""",
 	},
 	85: {
 		'q':  """
+		Please specify the lower bounds on the values for the following options on a non-dividend-paying
+        stock:
+			a) European call
+            b) European put
 		""",
 		'a': """
+		a) c >= max(S_0 - Ke^-rT, 0)
+		b) p >= max(Ke^-rT - S_0, 0)
+        
+        Where:
+			- c is the value of a European-style call option
+            - p is the value of a European-style put option
+            - S_0 is the current stock price
+            - r is the risk-free rate of interest
+            - K is the strike price
+            - T is the time to expiration
 		""",
 	},
 	86: {
 		'q':  """
+		a) Give the equation for put-call parity
+        b) Provide of overview of the rationale for put-call parity.
 		""",
 		'a': """
+		a)
+        Let:
+			- c be the price of a European call option on underlying S
+            - p be the price of a European put option on underlying S
+            - K be the strike price of the put and the call options
+            - r be the risk-free rate of interest
+            - S_0 be the current stock price of S
+            - T be the time to expiration for the options
+        
+        We have that:
+				c + Ke^-rT = p + S_0
+                
+		Note that the LHS portfolio is known as a 'fiduciary call' and the RHS
+        is known as a 'protective put'
+                
+		b) The idea is that the payoffs of LHS and RHS portfolios at expiration are the same
+        	(specifically max(S_T, K)). Therefore, since they are European options,
+            the value of the portfolios today must be the same and the equation holds.
 		""",
 	},
 	87: {
 		'q':  """
+		True or false:
+			Put-call parity only holds for American options.
 		""",
 		'a': """
+		Super false! Put-call parity only holds for European options.
 		""",
 	},
 	88: {
 		'q':  """
+		An American call option on a non-dividend-paying stock has:
+			K = 20
+            T = 5/12
+            C = $1.50
+            S_0 = $19.00
+            r = 0.1
+            
+		Derive the upper and lower bounds of the corresponding put option price P.
 		""",
 		'a': """
+		Recall that it can be shown that:
+			S_0 - K <= C - P <= S_0 - Ke^-rT
+            
+		So you should end up with:
+			1.68 <= P <= 2.5
 		""",
 	},
 	89: {
 		'q':  """
+		a) True or false:
+			It is never optimal to exercise an American call option on a non-dividend-paying
+            stock before the expiration date.
+            
+        b) Provide a formal argument backing your answer to (a)
 		""",
 		'a': """
+		a) True
+        b)
+        It can be proven that, for a European call option on a non-dividend-paying stock we have
+				c >= S_0 - Ke^-rT (proof by contradiction, if this doesn't hold we can make a riskless profit)
+                
+        Since embedded within the American call option are the same rights as European options and then
+        some we have:
+			C >= S_0 - Ke^-rT
+            
+        Assuming r > 0 and the fact that T > 0 we have:
+			C > S_0 - K
+            
+        This means that C is always greater than its intrinsic value prior to maturity, and that
+        exercising early would lead to a loss of (C - (S_0 - K)) > 0. This is commonly referred to
+        as the extrinsic or time value.
 		""",
 	},
 	90: {
