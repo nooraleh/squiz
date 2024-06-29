@@ -1209,58 +1209,138 @@ qna = {
         as the extrinsic or time value.
 		""",
 	},
-	90: {
+	90: { # Chapter 12 - Trading Strategies Involving Options
 		'q':  """
+		Give an overview of the structure of a principal-protected note
 		""",
 		'a': """
+		The structure of a principal-protected note (PPN) consists of:
+			a) A riskless asset which matures to the initial principal paid  for the PPN.
+            b) A risky asset (e.g. a call option) - the PPN invests:
+				(principal-PV(principal) - fees) amount
+				into the risky asset.
 		""",
 	},
 	91: {
 		'q':  """
+		What are the pros and cons of investing in a principal-protected note packaged
+        by a bank over buying the individual assets as a retail investor?
 		""",
 		'a': """
+		Pro:
+			- Banks likely to face narrower bid-ask spreads on derivatives than retail investor
+            - Banks likely to earn higher rates of interest than retail investor
+            
+		Con:
+			- Banks to charge built-in fees, retail investment would not have additional fees for
+				creating a PPN portfolio.
 		""",
 	},
 	92: {
 		'q':  """
+		What does a spread trading strategy involve?
 		""",
 		'a': """
+		A spread trading strategy involves taking a position in two or more options
+        of the same type (i.e. two or more calls or two or more puts)
 		""",
 	},
 	93: {
 		'q':  """
+		Describe what the following spread trading strategies entail:
+			a) Bull spread
+            b) Bear spread
 		""",
 		'a': """
+		a) A bull spread is one where you sell an option at a higher strike price,
+			buy an option at a lower strike price - both options being of the same type
+			(both calls OR both puts).
+            
+        b) A bear spread is one where you buy an option at a higher strike price,
+			sell an option at a lower strike price - both options being of the same type
+			(both calls OR both puts).
 		""",
 	},
 	94: {
 		'q':  """
+		a) What is the structure of a box spread?
+        b) Given your answer to (a), outline the payoff for the box spread
+        c) Given your answer to (b), deduce the value of the box spread
 		""",
 		'a': """
+		a) A box spread is a combination of:
+         	1) A bull call spread with strike prices K_1 and K_2
+            2) A bear put spread with the same strike prices K_1 and K_2
+        Where K_2 > K_1
+        
+        b) There are 3 possible outcomes at maturity:
+			1) S_T <= K_1
+            2) K_1 < S_T < K_2
+            3) S_T >= K_2
+            
+            You should fine the all possible outcomes lead to a payoff of (K_2-K_1)
+            
+        c) Since all possible outcomes lead to a payoff of K_2-K_1 - the value of the box spread
+			if always the present value of the payoff (K_2-K_1)e^-rT
+        
 		""",
 	},
 	95: {
 		'q':  """
+		a) What is an alligator spread?
+        b) Provide an example of a spread that can be described as an alligator spread?
 		""",
 		'a': """
+		a) An alligator spread is a trading position that generates too many commissions
+        to be profitable. 
+        b) A box spread (which involves four options positions) can be described as an alligator.
 		""",
 	},
 	96: {
 		'q':  """
+		a) True or false:
+            In an options butterfly spread, the use of put options results in exactly the same
+            spread as the use of call options.
+                
+            I.e. Let K1, K2, K3 be strike prices where:
+                - K1 < k2 < K3
+                - K2 - K1 = K3 - K2
+
+            The following two structures are the same:
+                Structure 1:
+                    Leg 1: Long call at K1
+                    Leg 2: Short 2x calls at K2
+                    Leg 3: Long call at K3 
+
+                Structure 2:
+                    Structure 1:
+                    Leg 1: Long put at K1
+                    Leg 2: Short 2x puts at K2
+                    Leg 3: Long put at K3 
+
+        b) Prove your answer to (a) by constructing payoff tables for structures 1 and 2,
+            assume all options are European.
 		""",
 		'a': """
+		a) True
+        b) Exercise for the quizee - but the payoffs for all cases of S_T should be the same.
 		""",
 	},
 	97: {
 		'q':  """
+		What is a 'combination' options trading strategy?
 		""",
 		'a': """
+		A combination is an options trading strategy that involves taking a position in both calls
+        and puts on the same underlying. I.e. a multi-leg strategy where legs are of different options types.
 		""",
 	},
-	98: {
+	98: { # Chapter 13 - Binomial Trees
 		'q':  """
+
 		""",
 		'a': """
+		
 		""",
 	},
 	99: {
