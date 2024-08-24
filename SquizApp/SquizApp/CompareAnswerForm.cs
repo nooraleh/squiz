@@ -18,8 +18,16 @@ namespace SquizApp
             InitializeComponent();
             modelAnswerTextBox.Text = SquizManager.Instance.ModelAnswer();
             userAnswerTextBox.Text = SquizManager.Instance.UserAnswer();
-            questionLabel.Text = SquizManager.Instance.Question(); ;
+            questionLabel.Text = SquizManager.Instance.Question();
+            SetViewAnswerSnippetButton();
         }
+
+        private void SetViewAnswerSnippetButton()
+        {
+            bool shouldRevealViewAnswerSnippetButton = SquizManager.Instance.SnippetA() == string.Empty;
+            viewAnswerSnippetButton.Visible = shouldRevealViewAnswerSnippetButton;
+        }
+
 
         private void userHappyButton_Click(object sender, EventArgs e)
         {
@@ -58,6 +66,11 @@ namespace SquizApp
         private void viewAnswerSnippetButton_Click(object sender, EventArgs e)
         {
             // TODO: Guard against there being no snippetA
+            //string snippetA = SquizManager.Instance.SnippetA();
+            //if (snippetA == string.Empty)
+            //{
+                
+            //}
         }
     }
 }
