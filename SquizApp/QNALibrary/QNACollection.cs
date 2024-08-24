@@ -29,6 +29,11 @@ public class QNACollection
         return qnaCollectionMapping[qnaKey].QNAMapping;
     }
 
+    public QNACategory qnaCategory(string qnaKey)
+    {
+        return qnaCollectionMapping[qnaKey].Category;
+    }
+
     //public Dictionary<int,Dictionary<string, string>> GetRandomSubcollection(int nQNA, string qnaKey)
     //{
     //    Dictionary<int, Dictionary<string, string>> localQNAMapping = qnaMapping(qnaKey);
@@ -51,6 +56,7 @@ public class QNACollection
     //        .Take(nQNA)
     //        .ToDictionary(pair => pair.Key, pair => pair.Value);
     //}
+
 
     public Queue<Dictionary<string, string>> GetRandomSubcollection(int nQNA, string qnaKey)
     {
@@ -86,4 +92,10 @@ public class QNACollection
         // Create a Queue from the selected subcollection
         return new Queue<Dictionary<string, string>>((IEnumerable<Dictionary<string, string>>)randomSubcollection);
     }
+
+    public QNACategory GetQNACategory(string qnaKey)
+    {
+        return qnaCategory(qnaKey);
+    }
+
 }

@@ -44,7 +44,14 @@ namespace QNALibrary
             NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
             NextQNA();
+
+            Title = qnaKey;
+            Category = qnaCollection.GetQNACategory(qnaKey);
         }
+
+        public string Title { get; set; }
+
+        public QNACategory Category { get; set; }
 
         public void AddUserAnswer(string userAnswer)
         {
