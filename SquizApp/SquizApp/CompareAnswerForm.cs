@@ -54,5 +54,10 @@ namespace SquizApp
             SquizManager.Instance.CurrentQNAFail();
             NextPageForm();
         }
+
+        private void viewAnswerSnippetButton_Click(object sender, EventArgs e)
+        {
+            // TODO: Guard against there being no snippetA
+        }
     }
 }
