@@ -74,6 +74,33 @@ namespace QNALibrary
             }
         }
 
+        public string SnippetA()
+        {
+            string tryValue = string.Empty;
+            if (CurrentQNA.TryGetValue("snippetA", out tryValue))
+            {
+                return tryValue;
+            }
+            else
+            {
+                return tryValue;
+            }
+        }
+
+        public string SnippetQ()
+        {
+            string tryValue = string.Empty;
+            if (CurrentQNA.TryGetValue("snippetQ", out tryValue))
+            {
+                return tryValue;
+            }
+            else
+            {
+                return tryValue;
+            }
+        }
+
+
         public string ModelAnswer()
         {
             return CurrentQNA["a"];
