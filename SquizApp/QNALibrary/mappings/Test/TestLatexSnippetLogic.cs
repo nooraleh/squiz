@@ -8,7 +8,7 @@ namespace QNALibrary.mappings.Test
 {
     public class TestLatexSnippetLogic : QNABase
     {
-        public Gregoire()
+        public TestLatexSnippetLogic()
         : base(title: "TestLatexSnippetLogic", category: QNACategory.CPP, qnaMapping: qnaMapping_)
         { }
 
