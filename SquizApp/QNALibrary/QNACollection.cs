@@ -15,7 +15,8 @@ public class QNACollection
     public static QNACollectionMapping qnaCollectionMapping = new();
     public QNACollection()
     {
-        Add(new Gregoire.Gregoire());   
+        Add(new Gregoire.Gregoire());
+        Add(new mappings.Test.TestLatexSnippetLogic());
     }
 
     private void Add(QNABase qnaBase)
