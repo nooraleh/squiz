@@ -55,7 +55,48 @@ i) Free the resource and set to nullptr.
 ii) Free the resource and set to a new simple instance."
                     },
                 }
-            }
+            },
+            {3, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the following snippet:
+
+Does the variable `data` retain or loss the constness in the lambda body?
+"                   },
+                    {"snippetQ",@"
+const double data = 1.23;
+auto capturing_lambda = [data]\{ std::cout << data << std::endl; \}; (1)
+" },
+                    { "a", @"
+`data` in the lambda body retains constness. In general,
+variables captured from the enclosing scope retain the constness of the
+variables that the lambda captures in the capture block.
+"
+                    },
+                    {"snippetA", @"" },
+                }
+            },
+            {4, new Dictionary<string, string>()
+                {
+                    { "q", @"
+C++11 onwards has deprecated the generation of a copy constructor if the class has a user-declared copy constructor, the same applies to copy assignment operators.
+		
+What should we do if we have a user-defined copy constructor or copy assignment operator but still want
+the compiler generated version?
+"                   },
+                    {"snippetQ", @""},
+                    { "a", @"
+`data` in the lambda body retains constness. In general,
+variables captured from the enclosing scope retain the constness of the
+variables that the lambda captures in the capture block.
+"
+                    },
+                    {"snippetA", @"
+MyClass(const MyClass& src) = default;
+MyClass& operator=(const MyClass& rhs) = default;
+"},
+                }
+            },
         };
     }
 }
