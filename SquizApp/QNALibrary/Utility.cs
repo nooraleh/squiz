@@ -17,51 +17,51 @@ namespace QNALibrary
             {
                 case QNACategory.CPP:
                     latexTemplate = @"
-\documentclass{article}
-\usepackage{minted}
+\documentclass{{article}}
+\usepackage{{minted}}
 
-\begin{document}
+\begin{{document}}
 
-\section*{Example C++ Function}
+\section*{{Example C++ Function}}
 
 Here is a simple C++ function:
 
-\begin{minted}[linenos, breaklines, frame=single]{cpp}
+\begin{{minted}}[linenos, breaklines, frame=single]{{cpp}}
 {0}
-\end{minted}
+\end{{minted}}
 
-\end{document}
+\end{{document}}
 ";
                     break;
                 case QNACategory.CSharp:
                     latexTemplate = @"
-\documentclass{article}
-\usepackage{minted}
+\documentclass{{article}}
+\usepackage{{minted}}
 
-\begin{document}
+\begin{{document}}
 
-\section*{Example C# Function}
+\section*{{Example C++ Function}}
 
-Here is a simple C# function:
+Here is a simple C++ function:
 
-\begin{minted}[linenos, breaklines, frame=single]{csharp}
+\begin{{minted}}[linenos, breaklines, frame=single]{{csharp}}
 {0}
-\end{minted}
+\end{{minted}}
 
-\end{document}
+\end{{document}}
 ";
                     break;
                 default:
                     latexTemplate = @"
-\documentclass{article}
+\documentclass{{article}}
 
-\begin{document}
+\begin{{document}}
 
-\section*{Snippet}
+\section*{{Snippet}}
 
 Snippet:
 ${0}$
-\end{document}
+\end{{document}}
 ";
                     break;
 
@@ -70,14 +70,16 @@ ${0}$
             return string.Format(latexTemplate, codeSnippet);
         }
 
-        public static string CompileLatexDocumentToPDF(string textFilePath, string latexDocument)
+        public static string CompileAndDisplayLatexDocumentToPDF(string texFilePath, string codeSnippet, QNACategory qnaCategory)
         {
-            // textFilePath will be based on the QNA in question
+            string generatedLatex = GenerateLatexDocument(qnaCategory, codeSnippet);
+            CompileLatexPDF(texFilePath, generatedLatex);
+            DisplayLatexPDF(texFilePath);
 
             return string.Empty;
         }
 
-        public static void DisplayLatexPDF(string texFilePath, string latexCode)
+        public static void CompileLatexPDF(string texFilePath, string latexCode)
         {
             // to be called in the 'displaySnippetButton_OnClick' event handler
             File.WriteAllText(texFilePath, latexCode);
