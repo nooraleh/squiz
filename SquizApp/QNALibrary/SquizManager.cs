@@ -83,27 +83,27 @@ namespace QNALibrary
 
         public string SnippetA()
         {
-            string tryValue = string.Empty;
+            string tryValue;
             if (CurrentQNA.TryGetValue("snippetA", out tryValue))
             {
                 return tryValue;
             }
             else
             {
-                return tryValue;
+                return string.Empty;
             }
         }
 
         public string SnippetQ()
         {
-            string tryValue = string.Empty;
+            string tryValue;
             if (CurrentQNA.TryGetValue("snippetQ", out tryValue))
             {
                 return tryValue;
             }
             else
             {
-                return tryValue;
+                return string.Empty;
             }
         }
 
