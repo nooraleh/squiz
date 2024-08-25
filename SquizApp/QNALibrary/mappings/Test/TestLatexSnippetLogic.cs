@@ -39,6 +39,23 @@ public:
                     }
                 }
             },
+            {2, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the following snippet (assume Simple is a defined class):
+Example what's happening in:
+		i) line (1)
+		ii) line (2)
+"                   },
+                    {"snippetQ",@"
+(1)	p_unq_simple.reset();
+(2)	p_unq_simple.reset(new Simple());" },
+                    { "a", @"
+i) Free the resource and set to nullptr.
+ii) Free the resource and set to a new simple instance."
+                    },
+                }
+            }
         };
     }
 }

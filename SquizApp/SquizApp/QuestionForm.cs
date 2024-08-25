@@ -18,7 +18,15 @@ namespace SquizApp
             InitializeComponent();
             questionLabel.Text = SquizManager.Instance.Question();
             this.Text = SquizManager.Instance.Index();
+            SetViewQuestionSnippetButton();
         }
+
+        private void SetViewQuestionSnippetButton()
+        {
+            bool shouldRevealViewQuestionSnippetButton = !(SquizManager.Instance.SnippetQ() == string.Empty);
+            viewQuestionSnippetButton.Visible = shouldRevealViewQuestionSnippetButton;
+        }
+
 
         private void compareAnswerButton_Click(object sender, EventArgs e)
         {
@@ -29,6 +37,18 @@ namespace SquizApp
             CompareAnswerForm compareAnswerForm = new(); // TODO: Pass in generated questions
             compareAnswerForm.FormClosed += (sender, e) => this.Close();
             compareAnswerForm.Show();
+        }
+
+        private void viewQuestionSnippetButton_Click(object sender, EventArgs e)
+        {
+            string snippetQ = SquizManager.Instance.SnippetQ();
+            string texFileName = GenerateTexFileName();
+            Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, snippetQ, SquizManager.Instance.Category);
+        }
+
+        private string GenerateTexFileName()
+        {
+            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.Index()}-snippetQ.tex";
         }
     }
 }

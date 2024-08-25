@@ -32,6 +32,7 @@
             quizeeAnswerTextBox = new TextBox();
             quizeeAnswerLabel = new Label();
             compareAnswerButton = new Button();
+            viewQuestionSnippetButton = new Button();
             SuspendLayout();
             // 
             // questionLabel
@@ -73,11 +74,22 @@
             compareAnswerButton.UseVisualStyleBackColor = true;
             compareAnswerButton.Click += compareAnswerButton_Click;
             // 
+            // viewQuestionSnippetButton
+            // 
+            viewQuestionSnippetButton.Location = new Point(253, 450);
+            viewQuestionSnippetButton.Name = "viewQuestionSnippetButton";
+            viewQuestionSnippetButton.Size = new Size(199, 30);
+            viewQuestionSnippetButton.TabIndex = 4;
+            viewQuestionSnippetButton.Text = "View Snippet";
+            viewQuestionSnippetButton.UseVisualStyleBackColor = true;
+            viewQuestionSnippetButton.Click += viewQuestionSnippetButton_Click;
+            // 
             // QuestionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1437, 819);
+            Controls.Add(viewQuestionSnippetButton);
             Controls.Add(compareAnswerButton);
             Controls.Add(quizeeAnswerLabel);
             Controls.Add(quizeeAnswerTextBox);
@@ -94,5 +106,6 @@
         private TextBox quizeeAnswerTextBox;
         private Label quizeeAnswerLabel;
         private Button compareAnswerButton;
+        private Button viewQuestionSnippetButton;
     }
 }
