@@ -43,11 +43,13 @@ namespace QNALibrary
             QNACollection qnaCollection = new();
             NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
-            NextQNA();
-
             Title = qnaKey;
             Category = qnaCollection.GetQNACategory(qnaKey);
+
+            // assign first QNA to `CurrentQNA`
+            NextQNA();
         }
+
 
         public string Title { get; set; }
 
