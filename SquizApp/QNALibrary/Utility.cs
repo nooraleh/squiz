@@ -22,9 +22,8 @@ namespace QNALibrary
 
 \begin{{document}}
 
-\section*{{Example C++ Function}}
+\section*{{C++ Snippet}}
 
-Here is a simple C++ function:
 
 \begin{{minted}}[linenos, breaklines, frame=single]{{cpp}}
 {0}
@@ -40,9 +39,8 @@ Here is a simple C++ function:
 
 \begin{{document}}
 
-\section*{{Example C++ Function}}
+\section*{{C# Snippet}}
 
-Here is a simple C++ function:
 
 \begin{{minted}}[linenos, breaklines, frame=single]{{csharp}}
 {0}

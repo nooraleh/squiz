@@ -24,7 +24,7 @@ namespace SquizApp
 
         private void SetViewAnswerSnippetButton()
         {
-            bool shouldRevealViewAnswerSnippetButton = SquizManager.Instance.SnippetA() == string.Empty;
+            bool shouldRevealViewAnswerSnippetButton = !(SquizManager.Instance.SnippetA() == string.Empty);
             viewAnswerSnippetButton.Visible = shouldRevealViewAnswerSnippetButton;
         }
 
@@ -65,12 +65,15 @@ namespace SquizApp
 
         private void viewAnswerSnippetButton_Click(object sender, EventArgs e)
         {
-            // TODO: Guard against there being no snippetA
-            //string snippetA = SquizManager.Instance.SnippetA();
-            //if (snippetA == string.Empty)
-            //{
-                
-            //}
+            string snippetA = SquizManager.Instance.SnippetA();
+            string texFileName = GenerateTexFileName();
+            Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, snippetA, SquizManager.Instance.Category);
         }
+
+        private string GenerateTexFileName()
+        {
+            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.Index()}-snippetA.tex";
+        }
+        
     }
 }
