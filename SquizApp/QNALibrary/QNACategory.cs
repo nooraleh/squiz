@@ -4,6 +4,7 @@
 public enum QNACategory
 {
     CPP = 0,
-    CSharp = 1,
-    Finance = 2
+    C = 1,
+    CSharp = 2,
+    Finance = 3
 }

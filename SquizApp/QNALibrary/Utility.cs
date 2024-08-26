@@ -15,6 +15,7 @@ namespace QNALibrary
             string latexTemplate;
             switch (qnaCategory)
             {
+                case QNACategory.C:
                 case QNACategory.CPP:
                     latexTemplate = @"
 \documentclass{{article}}
