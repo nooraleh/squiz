@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+import sys
+import os
 # from mappings import (
 #     gregoire, cpp_youtube, oliveira, excel,
 #     effective_cpp_11_14, options_futures_derivatives
@@ -36,6 +38,7 @@ def write_to_file(csharp_code, filename):
 
 # Convert to C#
 csharp_code = convert_to_csharp(gregoire.qna)
-write_to_file(csharp_code, 'gregoire_qna_output_final.cs')
+ 
+write_to_file(csharp_code, f'{os.path.splitext(sys.argv[1])[0]}_output_final.cs')
 
 
