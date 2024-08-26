@@ -10,9 +10,14 @@ def convert_to_csharp(dictionary):
     for key, inner_dict in dictionary.items():
         csharp_code += f"\t{{{key}, new Dictionary<string, string>() {{\n"
         for inner_key, inner_value in inner_dict.items():
-            # Escape double quotes inside the string
-            escaped_value = inner_value.replace('"', '\\"')
+            # Escape double quotes inside the string and ensure verbatim string formatting
+            escaped_value = inner_value.replace('"', '""')
             csharp_code += f'\t\t{{"{inner_key}", @"{escaped_value.strip()}"}},\n'
+        
+        # Add additional Dictionary<string, string> items for "snippetQ" and "snippetA"
+        csharp_code += '\t\t{"snippetQ", @""},\n'
+        csharp_code += '\t\t{"snippetA", @""},\n'
+
         csharp_code += "\t}},\n"
     csharp_code += "};"
     return csharp_code
@@ -31,7 +36,6 @@ def write_to_file(csharp_code, filename):
 
 # Convert to C#
 csharp_code = convert_to_csharp(gregoire.qna)
-write_to_file(csharp_code, 'gregoire_qna_output.cs')
-
+write_to_file(csharp_code, 'gregoire_qna_output_final.cs')
 
 
