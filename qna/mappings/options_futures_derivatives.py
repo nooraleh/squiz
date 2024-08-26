@@ -853,211 +853,1012 @@ qna = {
 		False, a more accurate approach is to use a different zero rate for each cash flow.
 		""",
 	},
-	66: {
+	66: { # Chapter 10: Mechanics of Options Markets
 		'q':  """
+		Consider American and European options, which option style is:
+			a) More widely traded?
+            b) Easier to price/analyze?
 		""",
 		'a': """
+			a) American
+            b) European
 		""",
 	},
 	67: {
 		'q':  """
+		True or false:
+			Most index option contracts are European-style.
 		""",
 		'a': """
+		True.
 		""",
 	},
 	68: {
 		'q':  """
+		Describe a standard index option contract specification.
 		""",
 		'a': """
+		To buy (long) or sell (short) 100 times the index at a specified strike price K.
+        Index options are typically cash-settled. 
 		""",
 	},
 	69: {
 		'q':  """
+		Which day of the month do (stock) options typically expire in?
 		""",
 		'a': """
+		The third Friday of the month.
+        NB: Options expiring in Fridays other than the third Friday of the month
+        are known as 'weeklys'
 		""",
 	},
 	70: {
 		'q':  """
+		What is an option class?
 		""",
 		'a': """
+		An option class is the set of all options across expirations and strike prices
+        of the same type (either calls or puts).
+
+        For example, the set of all IBM calls across all available expirations and strike prices
+        are one class. The set of all IBM puts is another option class. 
 		""",
 	},
 	71: {
 		'q':  """
+		Describe what the following terms classify:
+			a) Option type
+            b) Option style
 		""",
 		'a': """
+		a) Refers to the classification of an option as either a put or a call
+        b) Refers to the classification of an option as either American-style or European-style (or Bermudan etc)
 		""",
 	},
 	72: {
 		'q':  """
+		What is an option series?
 		""",
 		'a': """
+		An option series consists of all the options of a given class with the same
+        expiration date and the same strike price.
+        
+        E.g. all IBM 160 October 2021 calls would constitute an option series.
 		""",
 	},
 	73: {
 		'q':  """
+		a) What are FLEX options? Explain how they work.
+        b) Why do FLEX options exist?
 		""",
 		'a': """
+		a) FLEX options, offered by the CBOE, allow traders to agree to nonstandard
+        terms involving the strike price or expiration date as opposed to what is typically
+        offered by the exchange.
+        
+        For instance, can involve a European option on what is normally American-style and vice versa.
+        
+        b) FLEX options are an attempt by option exchanges to regain business from the OTC markets.
 		""",
 	},
 	74: {
 		'q':  """
+		Consider stock splits. An n-for-m stock split should cause the price of the stock
+        to be reduced to what fraction of its previous value?
 		""",
 		'a': """
+		m / n
 		""",
 	},
 	75: {
 		'q':  """
+		Consider a call option to buy 100 shares of a company for $30/share. 
+        Suppose the company makes a 3-for-1 stock split.
+        
+        The terms of the option contract are changed so that the holder has the right
+        to buy:
+			a) how many shares?
+            b) at which strike price per share?
 		""",
 		'a': """
+			a) 300 shares
+            b) $10/share
 		""",
 	},
 	76: {
 		'q':  """
+		Consider a put option with terms:
+			a) Sell 100 shares
+            b) At K = $15
+            
+        Suppose the company declares a 25pct stock dividend. What are the terms (a) and (b) now?
 		""",
 		'a': """
+		A 25pct stock dividend is equivalent to a 5-for-4 stock split. So the new terms are:
+			a) Sell (5/4)100 = 125 shares
+            b) At K = $(4/5)*15 = $12 per share
 		""",
 	},
 	77: {
 		'q':  """
+		i) 	True or false:
+		
+			a) Long calls and short puts
+			b) Short calls and long puts
+			
+			For position limiting purporposes, (a) is considered to be one the same
+			side and (b)'s positions are considered to be one the same side.
+            
+        ii) Explain your answer to (i)
 		""",
 		'a': """
+		i) true
+        ii) (a)'s positions are bullish, while (b)'s positions are bearish
 		""",
 	},
 	78: {
 		'q':  """
+		In the context of options markets, define the following:
+			a) Position limit
+            b) Exercise limit
 		""",
 		'a': """
+		a) A position limit for options contracts defines the maximum number of options
+			contracts that an investor can hold on one side of the market.
+            
+        b) The exercise limit defines the maximum number of contracts that can be exercised by any
+			individual in any period of five consecutive business days.
+            
+        NB: The position limit value usually equals the exercise limit value.
 		""",
 	},
 	79: {
 		'q':  """
+		True or false:
+			a) When a trader buys an option, margin is required
+            b) When a trader sells an option, margin is required
 		""",
 		'a': """
+			a) False as the trade does not give rise to future obligations.
+			b) True as the trade gives rise to future obligations in the event
+				that the option is exercised.
 		""",
 	},
 	80: {
 		'q':  """
+		In the context of options, consider an option that is exercised with an OCC
+        on day T.
+        
+        Express, in terms of T and a number of business days, how long it will take for
+        the buy/sell transaction as specified in the option contract to take place?
 		""",
 		'a': """
+		T+3 business days.
 		""",
 	},
 	81: {
 		'q':  """
+		True or false:
+			The OTC market for options is larger than the exchanged-traded equivalent.
 		""",
 		'a': """
+		True.
 		""",
 	},
-	82: {
+	82: { # Chapter 11: Properties of stock options
 		'q':  """
+		True or false:
+			a) It is never optimal to exercise an American call option on a non-dividend-paying
+            	stock prior to the option's expiration.
+                
+			b) It is never optimal to exercise an American put option on a non-dividend-paying
+            	stock prior to the option's expiration.
 		""",
 		'a': """
+		a) True.
+        b) False - it can be optimal at times.
 		""",
 	},
 	83: {
 		'q':  """
+		Let:
+			- S_0 be the current stock price of an equity share
+            - C be the value of an American-style call option to buy one share
+            - c be the value of a European-style call option to buy one share
+            
+        a) Specify, in terms of the above, the upper bounds for:
+			i) An American-style call option
+            ii) A European-style call option
+            
+        b) Explain your answers to a) i) and ii)
 		""",
 		'a': """
+		a)
+			i) C <= S_0
+            ii) c <= S_0
+            
+        b) Before if those upper bounds to not hold true (i.e C > S_0 or c > S_0),
+        	an arbitrageur can make a riskless profit by buying the less expensive share
+			and writing the call option and earn C-S_0 (or c-s_0).
 		""",
 	},
-	84: {
+	84: { 
 		'q':  """
+		Let:
+			- S_0 be the current stock price of an equity share
+            - P be the value of an American-style put option to buy one share
+            - p be the value of a European-style put option to buy one share
+            
+        a) Specify, in terms of the above, the upper bounds for:
+			i) An American-style put option
+            ii) A European-style put option
+            
+        b) Explain your answers to a) i) and ii)
 		""",
 		'a': """
+		a) 
+			i)  P <= K
+            ii) p <= Ke^-rT
+            
+        b) i) The American put option value cannot be worth more than K. In other words,
+				a rational market participant would not pay $120 for the right but not the obligation
+                to sell at $100.
+                
+			ii) For European-options, at maturity the option cannot be worth more than K. Since this
+				is the only time the option can be exercised, the option value cannot be worth more
+				than the present value of K today.
 		""",
 	},
 	85: {
 		'q':  """
+		Please specify the lower bounds on the values for the following options on a non-dividend-paying
+        stock:
+			a) European call
+            b) European put
 		""",
 		'a': """
+		a) c >= max(S_0 - Ke^-rT, 0)
+		b) p >= max(Ke^-rT - S_0, 0)
+        
+        Where:
+			- c is the value of a European-style call option
+            - p is the value of a European-style put option
+            - S_0 is the current stock price
+            - r is the risk-free rate of interest
+            - K is the strike price
+            - T is the time to expiration
 		""",
 	},
 	86: {
 		'q':  """
+		a) Give the equation for put-call parity
+        b) Provide of overview of the rationale for put-call parity.
 		""",
 		'a': """
+		a)
+        Let:
+			- c be the price of a European call option on underlying S
+            - p be the price of a European put option on underlying S
+            - K be the strike price of the put and the call options
+            - r be the risk-free rate of interest
+            - S_0 be the current stock price of S
+            - T be the time to expiration for the options
+        
+        We have that:
+				c + Ke^-rT = p + S_0
+                
+		Note that the LHS portfolio is known as a 'fiduciary call' and the RHS
+        is known as a 'protective put'
+                
+		b) The idea is that the payoffs of LHS and RHS portfolios at expiration are the same
+        	(specifically max(S_T, K)). Therefore, since they are European options,
+            the value of the portfolios today must be the same and the equation holds.
 		""",
 	},
 	87: {
 		'q':  """
+		True or false:
+			Put-call parity only holds for American options.
 		""",
 		'a': """
+		Super false! Put-call parity only holds for European options.
 		""",
 	},
 	88: {
 		'q':  """
+		An American call option on a non-dividend-paying stock has:
+			K = 20
+            T = 5/12
+            C = $1.50
+            S_0 = $19.00
+            r = 0.1
+            
+		Derive the upper and lower bounds of the corresponding put option price P.
 		""",
 		'a': """
+		Recall that it can be shown that:
+			S_0 - K <= C - P <= S_0 - Ke^-rT
+            
+		So you should end up with:
+			1.68 <= P <= 2.5
 		""",
 	},
 	89: {
 		'q':  """
+		a) True or false:
+			It is never optimal to exercise an American call option on a non-dividend-paying
+            stock before the expiration date.
+            
+        b) Provide a formal argument backing your answer to (a)
 		""",
 		'a': """
+		a) True
+        b)
+        It can be proven that, for a European call option on a non-dividend-paying stock we have
+				c >= S_0 - Ke^-rT (proof by contradiction, if this doesn't hold we can make a riskless profit)
+                
+        Since embedded within the American call option are the same rights as European options and then
+        some we have:
+			C >= S_0 - Ke^-rT
+            
+        Assuming r > 0 and the fact that T > 0 we have:
+			C > S_0 - K
+            
+        This means that C is always greater than its intrinsic value prior to maturity, and that
+        exercising early would lead to a loss of (C - (S_0 - K)) > 0. This is commonly referred to
+        as the extrinsic or time value.
 		""",
 	},
-	90: {
+	90: { # Chapter 12 - Trading Strategies Involving Options
 		'q':  """
+		Give an overview of the structure of a principal-protected note
 		""",
 		'a': """
+		The structure of a principal-protected note (PPN) consists of:
+			a) A riskless asset which matures to the initial principal paid  for the PPN.
+            b) A risky asset (e.g. a call option) - the PPN invests:
+				(principal-PV(principal) - fees) amount
+				into the risky asset.
 		""",
 	},
 	91: {
 		'q':  """
+		What are the pros and cons of investing in a principal-protected note packaged
+        by a bank over buying the individual assets as a retail investor?
 		""",
 		'a': """
+		Pro:
+			- Banks likely to face narrower bid-ask spreads on derivatives than retail investor
+            - Banks likely to earn higher rates of interest than retail investor
+            
+		Con:
+			- Banks to charge built-in fees, retail investment would not have additional fees for
+				creating a PPN portfolio.
 		""",
 	},
 	92: {
 		'q':  """
+		What does a spread trading strategy involve?
 		""",
 		'a': """
+		A spread trading strategy involves taking a position in two or more options
+        of the same type (i.e. two or more calls or two or more puts)
 		""",
 	},
 	93: {
 		'q':  """
+		Describe what the following spread trading strategies entail:
+			a) Bull spread
+            b) Bear spread
 		""",
 		'a': """
+		a) A bull spread is one where you sell an option at a higher strike price,
+			buy an option at a lower strike price - both options being of the same type
+			(both calls OR both puts).
+            
+        b) A bear spread is one where you buy an option at a higher strike price,
+			sell an option at a lower strike price - both options being of the same type
+			(both calls OR both puts).
 		""",
 	},
 	94: {
 		'q':  """
+		a) What is the structure of a box spread?
+        b) Given your answer to (a), outline the payoff for the box spread
+        c) Given your answer to (b), deduce the value of the box spread
 		""",
 		'a': """
+		a) A box spread is a combination of:
+         	1) A bull call spread with strike prices K_1 and K_2
+            2) A bear put spread with the same strike prices K_1 and K_2
+        Where K_2 > K_1
+        
+        b) There are 3 possible outcomes at maturity:
+			1) S_T <= K_1
+            2) K_1 < S_T < K_2
+            3) S_T >= K_2
+            
+            You should fine the all possible outcomes lead to a payoff of (K_2-K_1)
+            
+        c) Since all possible outcomes lead to a payoff of K_2-K_1 - the value of the box spread
+			if always the present value of the payoff (K_2-K_1)e^-rT
+        
 		""",
 	},
 	95: {
 		'q':  """
+		a) What is an alligator spread?
+        b) Provide an example of a spread that can be described as an alligator spread?
 		""",
 		'a': """
+		a) An alligator spread is a trading position that generates too many commissions
+        to be profitable. 
+        b) A box spread (which involves four options positions) can be described as an alligator.
 		""",
 	},
 	96: {
 		'q':  """
+		a) True or false:
+            In an options butterfly spread, the use of put options results in exactly the same
+            spread as the use of call options.
+                
+            I.e. Let K1, K2, K3 be strike prices where:
+                - K1 < k2 < K3
+                - K2 - K1 = K3 - K2
+
+            The following two structures are the same:
+                Structure 1:
+                    Leg 1: Long call at K1
+                    Leg 2: Short 2x calls at K2
+                    Leg 3: Long call at K3 
+
+                Structure 2:
+                    Structure 1:
+                    Leg 1: Long put at K1
+                    Leg 2: Short 2x puts at K2
+                    Leg 3: Long put at K3 
+
+        b) Prove your answer to (a) by constructing payoff tables for structures 1 and 2,
+            assume all options are European.
 		""",
 		'a': """
+		a) True
+        b) Exercise for the quizee - but the payoffs for all cases of S_T should be the same.
 		""",
 	},
 	97: {
 		'q':  """
+		What is a 'combination' options trading strategy?
 		""",
 		'a': """
+		A combination is an options trading strategy that involves taking a position in both calls
+        and puts on the same underlying. I.e. a multi-leg strategy where legs are of different options types.
 		""",
 	},
-	98: {
+	98: { # Chapter 13 - Binomial Trees
 		'q':  """
+		Provide the equations which enable an option to be priced when stock price movements are
+        given by a one-step binomial tree.
 		""",
 		'a': """
+		f = e^(-r*T)*(p*f_u + (1-p)*f_d)
+        
+        Where p = (e^(r*T) - d) / (u - d)
+        
+			r = the risk-free rate of interest
+            T = time to expiration of the option
+            f = the options price
+            d = ratio down move of the underlying from t=0 to t=T
+            u = ratio up move of the underlying from t=0 to t=T
+            f_u = payoff of the option price given an upmove of the underlying from S_0 to S_0*u
+            f_d = payoff of the option price given a downmove of the underlying from S_0 to S_0*d
+            
+		NB: Parameter `p` should be interpreted as the probability of an up movement in a risk-neutral world,
+			so that (1-`p`) should be interpreted as the probability of a down movement in a risk-neutral world.
 		""",
 	},
 	99: {
 		'q':  """
+		Risk-neutral valuation states that, when valuing a derivative, we can make the assumption that
+        investors are risk-neutral.
+        
+        What does it mean for an investor to be risk-neutral?
+		""",
+		'a': """
+		An investor is said to be 'risk-neutral' if they do not increase the expected return they require
+        from an investment to compensate for increased risk.
+		""",
+	},
+	100: {
+		'q':  """
+		A risk-neutral world has two features that simplify the pricing of derivatives.
+        State them.
+		""",
+		'a': """
+		1) The expected return on a stock (or any other underlying asset) is the risk-free rate.
+        2) The discount rate used for the expected payoff on an option (or any other derivative instrument) is the risk-free
+			rate.
+		""",
+	},
+    101: {
+		'q':  """
+		Consider the following equations for the terminal value of an option in a one-step binomial tree:
+        
+			p*f_u + (1-p)*f_d                        (1)
+            
+		where:
+			p = (e^(r*T) - d) / (u - d)              (2)
+            
+		
+        And consider the following statement:
+			`p` should be interpreted as the probability of an up-movement in a risk-neutral world
+            while (1-`p`) should be interpreted as the probability of a down movement in a risk-neutral world.
+            
+        Prove the validity of this statement.
+		""",
+		'a': """
+		In a risk-neutral world, we assume that the expected return of a stock (or any underlying asset)
+        should be the risk-free rate.
+        
+        In a one-step binomial tree, let:
+			- p be the probability of an up-move
+            - S_0*u be the value of the stock at time T given an up-move
+            - S_0*d be the value of the stock at time T given a down-move
+            
+		The expected value of terminal time T would be
+        
+			E(S_T) = p*S_0*u + (1-p)*S_0*d
+				   = (p*S_0)*(u-d) + S_0*d
+                   
+		Substituting p = (e^rT-d) / (u-d)
+        
+				   = S_0*((e^rT-d) / (u-d))*(u-d) + S_0*d
+                   = S_0*e^rT - S_0*d + S_0*d
+                   = S_0*e^rT
+                   
+		Implying that the price of the underlying grows at the risk-free rate given the interpretation
+        of `p`, which is in line with the risk-neutral world assume. The statement is therefore valid.
+		""",
+	},
+    102: {
+		'q':  """
+		What is the key difference between Binomial tree option pricing when is comes to
+        the style of the option (i.e. American or European)?
+		""",
+		'a': """
+		For American options, the value of the option at nodes earlier than the terminal node
+        is the greater of:
+			(1) The value given by equation:
+				f = e^(-r*dt)*[p*f_u + (1-p)*f_d] and;
+			(2) The payoff from early exercise:
+					I.e. (S_t - K) for a call or (K - S_t) for a put
+		""",
+	},
+    103: {
+		'q':  """
+		In the context of option pricing, what is 'delta'? How may we interpret 'delta'?
+		""",
+		'a': """
+		The delta of a stock option is:
+			- The ratio of the change in the price of the stock (asset) option to the change in the
+				price of the underlying stock (asset)
+			- It is the number of units of stock we should hold for each stock option shorted to create
+	  			a riskless portfolio.
+		""",
+	},
+    104: {
+		'q':  """
+		True or false:
+			The volatility of a stock (or any other asset), sigma, is defined so that the
+            standard deviation of its return in a short period of time dt is sigma*sqrt(dt)
+		""",
+		'a': """
+		True.
+		""",
+	},
+    105: {
+		'q':  """
+		True or false:
+			When the binomial tree is used to price a European option, the price converges
+            to the Black-Scholes-Merton price as the numbre of time steps is increased.
+		""",
+		'a': """
+		True.
+		""",
+	},
+    106: { # Chapter 14: Weiner Processes and Ito's Lemma
+		'q':  """
+		a) Give a non-rigorous description of what a stochastic process is?
+		""",
+		'a': """
+		a) Any variable whose value changes over time in an uncertain way is said to follow a stochastic process.
+		""",
+	},
+    107: {
+		'q':  """
 		""",
 		'a': """
 		""",
 	},
-	100: {
+    108: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    109: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    110: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    111: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    112: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    112: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    113: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    114: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    115: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    116: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    117: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    118: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    119: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    120: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    121: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    122: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    123: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    124: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    125: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    126: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    127: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    128: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    129: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    130: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    131: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    132: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    133: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    134: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    135: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    136: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    137: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    138: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    139: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    140: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    141: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    142: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    143: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    144: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    145: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    146: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    147: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    148: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    149: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    150: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    151: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    152: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    153: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    154: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    155: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    156: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    157: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    158: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    159: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    160: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    161: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    162: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    163: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    164: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    165: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    166: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    167: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    168: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    169: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    170: {
 		'q':  """
 		""",
 		'a': """
