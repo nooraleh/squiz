@@ -1337,19 +1337,528 @@ qna = {
 	},
 	98: { # Chapter 13 - Binomial Trees
 		'q':  """
-
+		Provide the equations which enable an option to be priced when stock price movements are
+        given by a one-step binomial tree.
 		""",
 		'a': """
-		
+		f = e^(-r*T)*(p*f_u + (1-p)*f_d)
+        
+        Where p = (e^(r*T) - d) / (u - d)
+        
+			r = the risk-free rate of interest
+            T = time to expiration of the option
+            f = the options price
+            d = ratio down move of the underlying from t=0 to t=T
+            u = ratio up move of the underlying from t=0 to t=T
+            f_u = payoff of the option price given an upmove of the underlying from S_0 to S_0*u
+            f_d = payoff of the option price given a downmove of the underlying from S_0 to S_0*d
+            
+		NB: Parameter `p` should be interpreted as the probability of an up movement in a risk-neutral world,
+			so that (1-`p`) should be interpreted as the probability of a down movement in a risk-neutral world.
 		""",
 	},
 	99: {
+		'q':  """
+		Risk-neutral valuation states that, when valuing a derivative, we can make the assumption that
+        investors are risk-neutral.
+        
+        What does it mean for an investor to be risk-neutral?
+		""",
+		'a': """
+		An investor is said to be 'risk-neutral' if they do not increase the expected return they require
+        from an investment to compensate for increased risk.
+		""",
+	},
+	100: {
+		'q':  """
+		A risk-neutral world has two features that simplify the pricing of derivatives.
+        State them.
+		""",
+		'a': """
+		1) The expected return on a stock (or any other underlying asset) is the risk-free rate.
+        2) The discount rate used for the expected payoff on an option (or any other derivative instrument) is the risk-free
+			rate.
+		""",
+	},
+    101: {
+		'q':  """
+		Consider the following equations for the terminal value of an option in a one-step binomial tree:
+        
+			p*f_u + (1-p)*f_d                        (1)
+            
+		where:
+			p = (e^(r*T) - d) / (u - d)              (2)
+            
+		
+        And consider the following statement:
+			`p` should be interpreted as the probability of an up-movement in a risk-neutral world
+            while (1-`p`) should be interpreted as the probability of a down movement in a risk-neutral world.
+            
+        Prove the validity of this statement.
+		""",
+		'a': """
+		In a risk-neutral world, we assume that the expected return of a stock (or any underlying asset)
+        should be the risk-free rate.
+        
+        In a one-step binomial tree, let:
+			- p be the probability of an up-move
+            - S_0*u be the value of the stock at time T given an up-move
+            - S_0*d be the value of the stock at time T given a down-move
+            
+		The expected value of terminal time T would be
+        
+			E(S_T) = p*S_0*u + (1-p)*S_0*d
+				   = (p*S_0)*(u-d) + S_0*d
+                   
+		Substituting p = (e^rT-d) / (u-d)
+        
+				   = S_0*((e^rT-d) / (u-d))*(u-d) + S_0*d
+                   = S_0*e^rT - S_0*d + S_0*d
+                   = S_0*e^rT
+                   
+		Implying that the price of the underlying grows at the risk-free rate given the interpretation
+        of `p`, which is in line with the risk-neutral world assume. The statement is therefore valid.
+		""",
+	},
+    102: {
+		'q':  """
+		What is the key difference between Binomial tree option pricing when is comes to
+        the style of the option (i.e. American or European)?
+		""",
+		'a': """
+		For American options, the value of the option at nodes earlier than the terminal node
+        is the greater of:
+			(1) The value given by equation:
+				f = e^(-r*dt)*[p*f_u + (1-p)*f_d] and;
+			(2) The payoff from early exercise:
+					I.e. (S_t - K) for a call or (K - S_t) for a put
+		""",
+	},
+    103: {
+		'q':  """
+		In the context of option pricing, what is 'delta'? How may we interpret 'delta'?
+		""",
+		'a': """
+		The delta of a stock option is:
+			- The ratio of the change in the price of the stock (asset) option to the change in the
+				price of the underlying stock (asset)
+			- It is the number of units of stock we should hold for each stock option shorted to create
+	  			a riskless portfolio.
+		""",
+	},
+    104: {
+		'q':  """
+		True or false:
+			The volatility of a stock (or any other asset), sigma, is defined so that the
+            standard deviation of its return in a short period of time dt is sigma*sqrt(dt)
+		""",
+		'a': """
+		True.
+		""",
+	},
+    105: {
+		'q':  """
+		True or false:
+			When the binomial tree is used to price a European option, the price converges
+            to the Black-Scholes-Merton price as the numbre of time steps is increased.
+		""",
+		'a': """
+		True.
+		""",
+	},
+    106: { # Chapter 14: Weiner Processes and Ito's Lemma
+		'q':  """
+		a) Give a non-rigorous description of what a stochastic process is?
+		""",
+		'a': """
+		a) Any variable whose value changes over time in an uncertain way is said to follow a stochastic process.
+		""",
+	},
+    107: {
 		'q':  """
 		""",
 		'a': """
 		""",
 	},
-	100: {
+    108: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    109: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    110: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    111: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    112: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    112: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    113: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    114: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    115: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    116: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    117: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    118: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    119: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    120: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    121: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    122: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    123: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    124: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    125: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    126: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    127: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    128: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    129: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    130: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    131: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    132: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    133: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    134: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    135: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    136: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    137: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    138: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    139: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    140: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    141: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    142: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    143: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    144: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    145: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    146: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    147: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    148: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    149: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    150: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    151: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    152: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    153: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    154: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    155: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    156: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    157: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    158: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    159: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    160: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    161: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    162: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    163: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    164: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    165: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    166: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    167: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    168: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    169: {
+		'q':  """
+		""",
+		'a': """
+		""",
+	},
+    170: {
 		'q':  """
 		""",
 		'a': """
