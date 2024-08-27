@@ -15,7 +15,7 @@ sys.modules[module_name] = module
 spec.loader.exec_module(module)
 
 def convert_to_csharp(dictionary):
-    csharp_code = "Dictionary<int, Dictionary<string, string>> dict = new Dictionary<int, Dictionary<string, string>>() {\n"
+    csharp_code = "static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>() {\n"
     for key, inner_dict in dictionary.items():
         csharp_code += f"\t{{{key}, new Dictionary<string, string>() {{\n"
         for inner_key, inner_value in inner_dict.items():
