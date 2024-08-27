@@ -392,6 +392,83 @@ namespace QNALibrary.mappings.C
 		
 		int main(void) {
 			char s[3]; // 3-element array, each of type char
-			strcpy(s, ""hello""); // ""hello"" is larger than the s array so lo
+			strcpy(s, ""hello""); // ""hello"" is larger than the s array so lo will be writting to adjacent memory.
+		}"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {56, new Dictionary<string, string>() {
+        {"q", @"Let prog.c be a C source file. What would you enter into the command line to know what your source code looks like after preprocessing?"},
+        {"a", @"gcc -E prog.c"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {57, new Dictionary<string, string>() {
+        {"q", @"Consider #define <identifier> <text>. What is: i) the identifier often called, ii) the process of replacing the text with the identifier?"},
+        {"a", @"i) macro ii) macro substitution"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {58, new Dictionary<string, string>() {
+        {"q", @"Give the generalised form of a parameterised macro"},
+        {"a", @"#define <identifier>(<parameter_list>) <text>. Note there can't be any space between ( and the identifier."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {59, new Dictionary<string, string>() {
+        {"q", @"Name the macro used for getting out the line number in the source code. What is it useful for?"},
+        {"a", @"i) __LINE__ ii) debugging"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {60, new Dictionary<string, string>() {
+        {"q", @"Name the macro used for getting the name of the current source file."},
+        {"a", @"__FILE__"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {61, new Dictionary<string, string>() {
+        {"q", @"Name the macro used for getting the i) date ii) time of the source file's compilation."},
+        {"a", @"i) __DATE__ ii) __TIME__"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {62, new Dictionary<string, string>() {
+        {"q", @"Define internal linkage?"},
+        {"a", @"When an entity (variable or function) has coverage limited to a single module."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {63, new Dictionary<string, string>() {
+        {"q", @"Let:
+		1. DEBUG be a macro identifier used in a conditional preprocessor directive.
+		2. prog.c be the C source file containing the direcive.
+		
+		How would we define it from command line and therefore include any code within the ifdef/endif block?"},
+        {"a", @"gcc -D DEBUG prog.c"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {64, new Dictionary<string, string>() {
+        {"q", @"Name the three storage classes and what they each represent:
+		
+		1) extern: 
+		
+		2) static: 
+		
+		3) register:"},
+        {"a", @"1) extern: 
+		
+		2) static: variable is brought to life when the function starts and is destroyed when the program finishes.
+			It does not allow the scope of the variable to be extended beyond the parent module
+			i.e. it's not going to be accessible in other modules.
+		
+		3) register: qualifier to not store data in conventional memory, instead in registers.
+			Variables with this declaration cannot be used as an argument to address-of &, since they have no address."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+};
+
     }
 }
