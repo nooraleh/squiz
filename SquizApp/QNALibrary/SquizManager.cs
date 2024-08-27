@@ -69,6 +69,11 @@ namespace QNALibrary
             return CurrentQNA["index"];
         }
 
+        public string ID()
+        {
+            return CurrentQNA["ID"];
+        }
+
 
         public string UserAnswer()
         {
