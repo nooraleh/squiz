@@ -65,11 +65,15 @@ public class QNACollection
         // Validate the input size
         if (nQNA < 1)
         {
+            // TODO: Don't really like the idea of throwing an exception - bit too agressive for user
+            // input - perhaps a MessageBox up the call stack where System.Windows.Forms.MessageBox is available
             throw new ArgumentException("Size must be at least 1.");
         }
 
         if (nQNA > localQNAMapping.Count)
         {
+            // TODO: Don't really like the idea of throwing an exception - bit too agressive for user
+            // input - perhaps a MessageBox up the call stack where System.Windows.Forms.MessageBox is available
             throw new ArgumentException($"Size must not exceed the size of the collection. Collection size: {localQNAMapping.Count}");
         }
 
@@ -78,19 +82,24 @@ public class QNACollection
         var randomSubcollection = localQNAMapping
             .OrderBy(x => random.Next())
             .Take(nQNA)
-            .Select(pair => pair.Value)
             .ToList();
 
-        // Add an index to each qna
+        // Add an index and ID to each qna
         string qnaIndex = "0";
-        foreach (var qna in randomSubcollection)
+        foreach (var kvp in randomSubcollection)
         {
-            qna.Add("index", $"{Int32.Parse(qnaIndex) + 1}");
+            // Access the original dictionary (Value) and the ID (Key)
+            var qna = kvp.Value;
+            qnaIndex = $"{Int32.Parse(qnaIndex) + 1}";
+
+            // Add "index" and "ID" to the dictionary
+            qna.Add("index", qnaIndex);
+            qna.Add("ID", kvp.Key.ToString());
         }
 
 
         // Create a Queue from the selected subcollection
-        return new Queue<Dictionary<string, string>>((IEnumerable<Dictionary<string, string>>)randomSubcollection);
+        return new Queue<Dictionary<string, string>>(randomSubcollection.Select(kvp => kvp.Value));
     }
 
     public QNACategory GetQNACategory(string qnaKey)
