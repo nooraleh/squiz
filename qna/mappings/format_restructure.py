@@ -6,6 +6,13 @@ import os
 #     effective_cpp_11_14, options_futures_derivatives
 # )
 import gregoire
+import importlib
+module_name = os.path.splitext( sys.argv[1])[0]
+module_path = os.path.join(os.path.dirname(__file__), f"{module_name}.py")
+spec = importlib.util.spec_from_file_location(module_name, module_path)
+module = importlib.util.module_from_spec(spec)
+sys.modules[module_name] = module
+spec.loader.exec_module(module)
 
 def convert_to_csharp(dictionary):
     csharp_code = "Dictionary<int, Dictionary<string, string>> dict = new Dictionary<int, Dictionary<string, string>>() {\n"
@@ -37,8 +44,8 @@ def write_to_file(csharp_code, filename):
         file.write(csharp_code)
 
 # Convert to C#
-csharp_code = convert_to_csharp(gregoire.qna)
+csharp_code = convert_to_csharp(module.qna)
  
-write_to_file(csharp_code, f'{os.path.splitext(sys.argv[1])[0]}_output_final.cs')
+write_to_file(csharp_code, f'{module_name}_output_final.cs')
 
 
