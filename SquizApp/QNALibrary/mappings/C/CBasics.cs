@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QNALibrary.C
+namespace QNALibrary.mappings.C
 {
     public partial class CBasics : QNABase
     {
