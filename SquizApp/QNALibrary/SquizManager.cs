@@ -58,10 +58,12 @@ namespace QNALibrary
             // compiles any snippetA/snippetQ value strings into LaTeX based pdfs
             // will be part of the SQUIZ loading phase
 
-
+            CompileQNA(CurrentQNA);
 
             foreach (var queueItem in qnaSubMapping)
             {
+                CompileQNA(queueItem)
+
                 //foreach (var keyValuePair in queueItem)
                 //{
                 //    if ((keyValuePair.Key == "snippetQ") || (keyValuePair.Key == "snippetA"))
@@ -81,20 +83,20 @@ namespace QNALibrary
                 //}
 
 
-                if (queueItem["snippetA"] != string.Empty)
-                {
-                    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetA.tex";
-                    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetA"], Category);
-                }
-                else if (queueItem["snippetQ"] != string.Empty)
-                {
-                    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetQ.tex";
-                    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetQ"], Category);
-                }
-                else
-                {
-                    continue;
-                }
+                //if (queueItem["snippetA"] != string.Empty)
+                //{
+                //    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetA.tex";
+                //    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetA"], Category);
+                //}
+                //else if (queueItem["snippetQ"] != string.Empty)
+                //{
+                //    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetQ.tex";
+                //    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetQ"], Category);
+                //}
+                //else
+                //{
+                //    continue;
+                //}
             }
         }
 
