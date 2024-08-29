@@ -33,8 +33,6 @@ namespace QNALibrary
 
         public void CurrentQNAPass()
         {
-            // TODO: Implement (calls .Next() to move the CurrentQNA along)
-
             NextQNA(true);
         }
 
@@ -58,45 +56,12 @@ namespace QNALibrary
             // compiles any snippetA/snippetQ value strings into LaTeX based pdfs
             // will be part of the SQUIZ loading phase
 
+            // compile the first QNA in the queue
             CompileQNA(CurrentQNA);
 
             foreach (var queueItem in qnaSubMapping)
             {
-                CompileQNA(queueItem)
-
-                //foreach (var keyValuePair in queueItem)
-                //{
-                //    if ((keyValuePair.Key == "snippetQ") || (keyValuePair.Key == "snippetA"))
-                //    {
-                //        if (keyValuePair.Value != string.Empty)
-                //        {
-                //            string texFileName = $"{Title}-{ID()}-{Index()}-{keyValuePair.Key}.tex";
-
-                //            Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, keyValuePair.Value, Category);
-
-                //        }
-                //    }
-                //    else
-                //    {
-                //        continue;
-                //    }
-                //}
-
-
-                //if (queueItem["snippetA"] != string.Empty)
-                //{
-                //    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetA.tex";
-                //    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetA"], Category);
-                //}
-                //else if (queueItem["snippetQ"] != string.Empty)
-                //{
-                //    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetQ.tex";
-                //    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetQ"], Category);
-                //}
-                //else
-                //{
-                //    continue;
-                //}
+                CompileQNA(queueItem);
             }
         }
 
