@@ -70,8 +70,7 @@ namespace SquizApp
 
         private string GenerateTexFileName()
         {
-            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetA.tex";
+            return Utility.FullTextFilePath( @$"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetA.tex");
         }
-        
     }
 }

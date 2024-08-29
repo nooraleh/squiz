@@ -71,26 +71,51 @@ ${0}$
 
         public static string GenerateAndCompileLatexDocumentToPDF(string texFilePath, string codeSnippet, QNACategory qnaCategory)
         {
+
             string generatedLatex = GenerateLatexDocument(qnaCategory, codeSnippet);
-            CompileLatexPDF(texFilePath, generatedLatex);
+            CompileLatexPDF(FullTextFilePath(texFilePath), generatedLatex);
 
             return string.Empty;
         }
+
+        public static string FullTextFilePath(string texFileName)
+        {
+            return Path.Combine(SnippetsDirectory(), texFileName);
+        }
+
+
+        private static string SnippetsDirectory()
+        {
+
+            string appDirectory = AppContext.BaseDirectory;
+            string snippetSubDirectory = "Snippets";
+            string fullSnippetsPath = Path.Combine(appDirectory, snippetSubDirectory);
+
+            // create the directory if it does not exist
+            Directory.CreateDirectory(fullSnippetsPath);
+            return fullSnippetsPath;
+        }
+
 
         public static void CompileLatexPDF(string texFilePath, string latexCode)
         {
             File.WriteAllText(texFilePath, latexCode);
 
-            // Compile the .tex file to a PDF using pdflatex with -shell-escape option
+            // compile the .tex file to a PDF using pdflatex with -shell-escape option
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = "pdflatex";
             psi.Arguments = $"-shell-escape -interaction=nonstopmode {texFilePath}";
+            psi.WorkingDirectory = Path.GetDirectoryName(texFilePath);
             psi.RedirectStandardOutput = true;
             psi.RedirectStandardError = true;
             psi.UseShellExecute = false;
 
+            // prevent command prompt window from appearing
+            psi.CreateNoWindow = true;
+
             Process process = Process.Start(psi);
             process.WaitForExit();
+
         }
 
         public static void DisplayLatexPDF(string texFilePath)

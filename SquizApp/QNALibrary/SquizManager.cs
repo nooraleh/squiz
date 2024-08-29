@@ -69,7 +69,7 @@ namespace QNALibrary
         {
             if (qnaItem["snippetA"] != string.Empty)
             {
-                string texFileName = $"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetA.tex";
+                string texFileName = $@"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetA.tex";
                 Utility.GenerateAndCompileLatexDocumentToPDF(texFileName, qnaItem["snippetA"], Category);
             }
             else if (qnaItem["snippetQ"] != string.Empty)

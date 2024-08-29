@@ -44,10 +44,9 @@ namespace SquizApp
             Utility.DisplayLatexPDF(GenerateTexFileName());
         }
 
-        // TODO: Remove `GenerateTexFileName`
         private string GenerateTexFileName()
         {
-            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetQ.tex";
+            return Utility.FullTextFilePath(@$"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetQ.tex");
         }
     }
 }
