@@ -48,6 +48,68 @@ namespace QNALibrary
 
             // assign first QNA to `CurrentQNA`
             NextQNA();
+
+            // compile relevant snippets into LaTeX pdf files
+            CompileSubmappingSnippetsLaTeX( QNASubmapping);
+        }
+
+        public void CompileSubmappingSnippetsLaTeX(Queue<Dictionary<string, string>> qnaSubMapping)
+        {
+            // compiles any snippetA/snippetQ value strings into LaTeX based pdfs
+            // will be part of the SQUIZ loading phase
+
+
+
+            foreach (var queueItem in qnaSubMapping)
+            {
+                //foreach (var keyValuePair in queueItem)
+                //{
+                //    if ((keyValuePair.Key == "snippetQ") || (keyValuePair.Key == "snippetA"))
+                //    {
+                //        if (keyValuePair.Value != string.Empty)
+                //        {
+                //            string texFileName = $"{Title}-{ID()}-{Index()}-{keyValuePair.Key}.tex";
+
+                //            Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, keyValuePair.Value, Category);
+
+                //        }
+                //    }
+                //    else
+                //    {
+                //        continue;
+                //    }
+                //}
+
+
+                if (queueItem["snippetA"] != string.Empty)
+                {
+                    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetA.tex";
+                    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetA"], Category);
+                }
+                else if (queueItem["snippetQ"] != string.Empty)
+                {
+                    string texFileName = $"{Title}-{queueItem["ID"]}-{queueItem["index"]}-snippetQ.tex";
+                    Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, queueItem["snippetQ"], Category);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+
+        private void CompileQNA(Dictionary<string, string> qnaItem)
+        {
+            if (qnaItem["snippetA"] != string.Empty)
+            {
+                string texFileName = $"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetA.tex";
+                Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, qnaItem["snippetA"], Category);
+            }
+            else if (qnaItem["snippetQ"] != string.Empty)
+            {
+                string texFileName = $"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetQ.tex";
+                Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, qnaItem["snippetQ"], Category);
+            }
         }
 
 
