@@ -36,7 +36,8 @@ public:
 	{
 	}
 };"                 
-                    }
+                    },
+                    {"snippetQ",@"" }
                 }
             },
             {2, new Dictionary<string, string>()
@@ -54,6 +55,7 @@ Example what's happening in:
 i) Free the resource and set to nullptr.
 ii) Free the resource and set to a new simple instance."
                     },
+                    {"snippetA" ,@""},
                 }
             },
             {3, new Dictionary<string, string>()
