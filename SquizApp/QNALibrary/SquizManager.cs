@@ -70,12 +70,12 @@ namespace QNALibrary
             if (qnaItem["snippetA"] != string.Empty)
             {
                 string texFileName = $"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetA.tex";
-                Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, qnaItem["snippetA"], Category);
+                Utility.GenerateAndCompileLatexDocumentToPDF(texFileName, qnaItem["snippetA"], Category);
             }
             else if (qnaItem["snippetQ"] != string.Empty)
             {
                 string texFileName = $"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetQ.tex";
-                Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, qnaItem["snippetQ"], Category);
+                Utility.GenerateAndCompileLatexDocumentToPDF(texFileName, qnaItem["snippetQ"], Category);
             }
         }
 

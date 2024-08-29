@@ -69,18 +69,16 @@ ${0}$
             return string.Format(latexTemplate, codeSnippet);
         }
 
-        public static string CompileAndDisplayLatexDocumentToPDF(string texFilePath, string codeSnippet, QNACategory qnaCategory)
+        public static string GenerateAndCompileLatexDocumentToPDF(string texFilePath, string codeSnippet, QNACategory qnaCategory)
         {
             string generatedLatex = GenerateLatexDocument(qnaCategory, codeSnippet);
             CompileLatexPDF(texFilePath, generatedLatex);
-            DisplayLatexPDF(texFilePath);
 
             return string.Empty;
         }
 
         public static void CompileLatexPDF(string texFilePath, string latexCode)
         {
-            // to be called in the 'displaySnippetButton_OnClick' event handler
             File.WriteAllText(texFilePath, latexCode);
 
             // Compile the .tex file to a PDF using pdflatex with -shell-escape option
@@ -105,7 +103,7 @@ ${0}$
             }
             else
             {
-                Console.WriteLine("PDF generation failed.");
+                // "PDF generation failed"
             }
         }
 
