@@ -172,18 +172,25 @@ namespace QNALibrary
             // pops the currentQNA to the back of the list if false, removes if true
             if (pass)
             {
+                QNASubmapping.Dequeue();
                 NextQNA();
             }
             else
             {
                 QNASubmapping.Enqueue(CurrentQNA);
+                QNASubmapping.Dequeue();
                 NextQNA();
             }
         }
 
         private void NextQNA()
         {
-            CurrentQNA = QNASubmapping.Dequeue();
+
+            if (!IsEmpty())
+            {
+                CurrentQNA = QNASubmapping.Peek();
+            }
+
 
             string nAttemptsTryValue = "0";
             if (!CurrentQNA.TryAdd("nAttempts", nAttemptsTryValue))
@@ -191,6 +198,11 @@ namespace QNALibrary
                 CurrentQNA["nAttempts"] = $"{Int32.Parse(CurrentQNA["nAttempts"]) + 1}";
             }
         }
-        
+
+        public bool IsEmpty()
+        {
+            return SquizManager.Instance.QNASubmapping.Count == 0;
+        }
+
     }
 }

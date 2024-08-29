@@ -43,7 +43,7 @@ namespace SquizApp
 
             // hide this page
             this.Hide();
-            if (SquizManager.Instance.QNASubmapping.Count == 0)
+            if (SquizManager.Instance.IsEmpty())
             {
                 ResultsForm resultsForm = new();
                 resultsForm.FormClosed += (sender, e) => this.Close();
