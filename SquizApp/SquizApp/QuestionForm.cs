@@ -41,14 +41,13 @@ namespace SquizApp
 
         private void viewQuestionSnippetButton_Click(object sender, EventArgs e)
         {
-            string snippetQ = SquizManager.Instance.SnippetQ();
-            string texFileName = GenerateTexFileName();
-            Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, snippetQ, SquizManager.Instance.Category);
+            Utility.DisplayLatexPDF(GenerateTexFileName());
         }
 
+        // TODO: Remove `GenerateTexFileName`
         private string GenerateTexFileName()
         {
-            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.Index()}-snippetQ.tex";
+            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetQ.tex";
         }
     }
 }

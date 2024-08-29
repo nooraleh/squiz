@@ -65,14 +65,12 @@ namespace SquizApp
 
         private void viewAnswerSnippetButton_Click(object sender, EventArgs e)
         {
-            string snippetA = SquizManager.Instance.SnippetA();
-            string texFileName = GenerateTexFileName();
-            Utility.CompileAndDisplayLatexDocumentToPDF(texFileName, snippetA, SquizManager.Instance.Category);
+            Utility.DisplayLatexPDF(GenerateTexFileName());
         }
 
         private string GenerateTexFileName()
         {
-            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.Index()}-snippetA.tex";
+            return $"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetA.tex";
         }
         
     }
