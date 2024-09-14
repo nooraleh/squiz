@@ -21,7 +21,7 @@ public class QNACollection
 
     private void Add(QNABase qnaBase)
     {
-        qnaCollectionMapping.Add(qnaBase.ToString(), qnaBase);
+        qnaCollectionMapping.TryAdd(qnaBase.ToString(), qnaBase);
     }
 
     public Dictionary<int, Dictionary<string, string>> qnaMapping(string qnaKey)
