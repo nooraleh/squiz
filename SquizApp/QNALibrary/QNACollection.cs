@@ -34,29 +34,6 @@ public class QNACollection
         return qnaCollectionMapping[qnaKey].Category;
     }
 
-    //public Dictionary<int,Dictionary<string, string>> GetRandomSubcollection(int nQNA, string qnaKey)
-    //{
-    //    Dictionary<int, Dictionary<string, string>> localQNAMapping = qnaMapping(qnaKey);
-
-    //    // Validate the input size
-    //    if (nQNA < 1)
-    //    {
-    //        throw new ArgumentException("Size must be at least 1.");
-    //    }
-
-    //    if (nQNA > localQNAMapping.Count)
-    //    {
-    //        throw new ArgumentException($"Size must not exceed the size of the collection. Collection size: {localQNAMapping.Count}");
-    //    }
-
-    //    // Get a randomized subcollection of the specified size
-    //    var random = new Random();
-    //    return localQNAMapping
-    //        .OrderBy(x => random.Next())
-    //        .Take(nQNA)
-    //        .ToDictionary(pair => pair.Key, pair => pair.Value);
-    //}
-
 
     public Queue<Dictionary<string, string>> GetRandomSubcollection(int nQNA, string qnaKey)
     {
