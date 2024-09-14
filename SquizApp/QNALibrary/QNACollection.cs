@@ -16,10 +16,10 @@ public class QNACollection
     public QNACollection()
     {
         Add(new Gregoire.Gregoire());
-        Add(new mappings.Test.TestLatexSnippetLogic());
     }
 
-    private void Add(QNABase qnaBase)
+
+    protected void Add(QNABase qnaBase)
     {
         qnaCollectionMapping.TryAdd(qnaBase.ToString(), qnaBase);
     }
