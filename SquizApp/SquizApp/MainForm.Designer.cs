@@ -34,6 +34,8 @@
             numberOfQuestionsAskedNumericUpDown = new NumericUpDown();
             startQuizButton = new Button();
             squizSetupProgressBar = new ProgressBar();
+            testQNADropdownLabel = new Label();
+            testQNADropdownComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numberOfQuestionsAskedNumericUpDown).BeginInit();
             SuspendLayout();
             // 
@@ -93,11 +95,33 @@
             squizSetupProgressBar.Size = new Size(718, 23);
             squizSetupProgressBar.TabIndex = 5;
             // 
+            // testQNADropdownLabel
+            // 
+            testQNADropdownLabel.AutoSize = true;
+            testQNADropdownLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            testQNADropdownLabel.Location = new Point(211, 46);
+            testQNADropdownLabel.Name = "testQNADropdownLabel";
+            testQNADropdownLabel.Size = new Size(74, 21);
+            testQNADropdownLabel.TabIndex = 6;
+            testQNADropdownLabel.Text = "Test QNA";
+            // 
+            // testQNADropdownComboBox
+            // 
+            testQNADropdownComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            testQNADropdownComboBox.FormattingEnabled = true;
+            testQNADropdownComboBox.Items.AddRange(new object[] { "MockQNA1", "MockQNA2", "Gregoire", "TestLatexSnippetLogic" });
+            testQNADropdownComboBox.Location = new Point(427, 38);
+            testQNADropdownComboBox.Name = "testQNADropdownComboBox";
+            testQNADropdownComboBox.Size = new Size(502, 29);
+            testQNADropdownComboBox.TabIndex = 7;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1171, 702);
+            Controls.Add(testQNADropdownComboBox);
+            Controls.Add(testQNADropdownLabel);
             Controls.Add(squizSetupProgressBar);
             Controls.Add(startQuizButton);
             Controls.Add(numberOfQuestionsAskedNumericUpDown);
@@ -119,5 +143,7 @@
         private NumericUpDown numberOfQuestionsAskedNumericUpDown;
         private Button startQuizButton;
         private ProgressBar squizSetupProgressBar;
+        private Label testQNADropdownLabel;
+        private ComboBox testQNADropdownComboBox;
     }
 }

@@ -9,6 +9,7 @@ namespace SquizApp
             InitializeComponent();
 
             Populate_qnaDropdownComboBox();
+            Populate_testQNADropdownComboBox();
         }
 
         private void Populate_qnaDropdownComboBox()
@@ -18,6 +19,15 @@ namespace SquizApp
             qnaDropdownComboBox.DisplayMember = "Key";
             qnaDropdownComboBox.ValueMember = "Value";
         }
+
+        private void Populate_testQNADropdownComboBox()
+        {
+            QNATestCollection qnaCollection = new QNATestCollection();
+            testQNADropdownComboBox.DataSource = new BindingSource(QNATestCollection.qnaCollectionMapping, null);
+            testQNADropdownComboBox.DisplayMember = "Key";
+            testQNADropdownComboBox.ValueMember = "Value";
+        }
+        
 
 
         private async  void startQuizButton_Click(object sender, EventArgs e)
