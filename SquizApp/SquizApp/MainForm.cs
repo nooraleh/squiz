@@ -16,5 +16,15 @@ namespace SquizApp
         {
             InitializeComponent();
         }
+
+        private void randomModeButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            // create and display RandomModeForms
+            RandomModeForm randomModeForm = new();
+            randomModeForm.FormClosed += (sender, e) => this.Close();
+            randomModeForm.Show();
+        }
     }
 }

@@ -41,6 +41,7 @@
             randomModeButton.TabIndex = 0;
             randomModeButton.Text = "Random Mode";
             randomModeButton.UseVisualStyleBackColor = true;
+            randomModeButton.Click += randomModeButton_Click;
             // 
             // manualModeButton
             // 
