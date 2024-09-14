@@ -22,10 +22,19 @@ namespace SquizApp
 
         private void Populate_testQNADropdownComboBox()
         {
-            QNATestCollection qnaCollection = new QNATestCollection();
-            testQNADropdownComboBox.DataSource = new BindingSource(QNATestCollection.qnaCollectionMapping, null);
-            testQNADropdownComboBox.DisplayMember = "Key";
-            testQNADropdownComboBox.ValueMember = "Value";
+            // population and show if in DEBUG mode, hide if not
+            if (Utility.IsDebugMode())
+            {
+                QNATestCollection qnaCollection = new QNATestCollection();
+                testQNADropdownComboBox.DataSource = new BindingSource(QNATestCollection.qnaCollectionMapping, null);
+                testQNADropdownComboBox.DisplayMember = "Key";
+                testQNADropdownComboBox.ValueMember = "Value";
+            }
+            else
+            {
+                testQNADropdownComboBox.Visible = false;
+                testQNADropdownLabel.Visible = false;
+            }
         }
         
 

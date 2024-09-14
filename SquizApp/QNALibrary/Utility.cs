@@ -132,5 +132,15 @@ ${0}$
             }
         }
 
+        public static bool IsDebugMode()
+        {
+            bool isDebug = false;
+#if DEBUG
+            isDebug = true;
+#endif
+            return isDebug;
+        }
+
+
     }
 }
