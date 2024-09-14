@@ -51,6 +51,7 @@
             manualModeButton.TabIndex = 1;
             manualModeButton.Text = "Manual Mode";
             manualModeButton.UseVisualStyleBackColor = true;
+            manualModeButton.Click += manualModeButton_Click;
             // 
             // welcomeLabel
             // 

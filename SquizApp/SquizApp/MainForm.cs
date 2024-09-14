@@ -26,5 +26,15 @@ namespace SquizApp
             randomModeForm.FormClosed += (sender, e) => this.Close();
             randomModeForm.Show();
         }
+
+        private void manualModeButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            // create and display RandomModeForms
+            ManualModeForm manualModeForm = new();
+            manualModeForm.FormClosed += (sender, e) => this.Close();
+            manualModeForm.Show();
+        }
     }
 }
