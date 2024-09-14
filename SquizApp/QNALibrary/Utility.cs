@@ -84,7 +84,7 @@ ${0}$
         }
 
 
-        private static string SnippetsDirectory()
+        public static string SnippetsDirectory()
         {
 
             string appDirectory = AppContext.BaseDirectory;
