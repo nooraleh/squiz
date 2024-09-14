@@ -21,7 +21,7 @@ namespace SquizApp
         private void backToMainFormButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            MainForm mainForm = new();
+            RandomModeForm mainForm = new();
             mainForm.Show();
             this.Close();
         }
