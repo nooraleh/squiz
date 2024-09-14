@@ -7,12 +7,23 @@ namespace SquizApp
         public MainForm()
         {
             InitializeComponent();
+
+            Populate_qnaDropdownComboBox();
         }
+
+        private void Populate_qnaDropdownComboBox()
+        {
+            QNACollection qnaCollection = new QNACollection();
+            qnaDropdownComboBox.DataSource = new BindingSource(QNACollection.qnaCollectionMapping, null);
+            qnaDropdownComboBox.DisplayMember = "Key";
+            qnaDropdownComboBox.ValueMember = "Value";
+        }
+
 
         private async  void startQuizButton_Click(object sender, EventArgs e)
         {
             Initiate_squizSetupProgressBar();
-            await Task.Run(() => impl_startQuizButton_Click());
+            await Task.Run(() => Impl_startQuizButton_Click());
             End_squizSetupProgressBar();
 
             this.FormClosed += (sender, e) => CleanSnippetsDirectory();
@@ -36,7 +47,7 @@ namespace SquizApp
             squizSetupProgressBar.Value = 100;
         }
 
-        private void impl_startQuizButton_Click()
+        private void Impl_startQuizButton_Click()
         {
             SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text);
         }
