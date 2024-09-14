@@ -10,7 +10,14 @@ public class QNATestCollection : QNACollection
 {
     public QNATestCollection()
     {
-        base.Add(new mappings.Test.TestLatexSnippetLogic());
+        PopuplateQNACollectionMapping();
     }
+
+    protected override void PopuplateQNACollectionMapping()
+    {
+        qnaCollectionMapping.Clear();
+        Add(new mappings.Test.TestLatexSnippetLogic());
+    }
+
 
 }

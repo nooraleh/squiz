@@ -15,9 +15,14 @@ public class QNACollection
     public static QNACollectionMapping qnaCollectionMapping = new();
     public QNACollection()
     {
-        Add(new Gregoire.Gregoire());
+        PopuplateQNACollectionMapping();
     }
 
+    protected virtual void PopuplateQNACollectionMapping()
+    {
+        Add(new Gregoire.Gregoire());
+    }
+    
 
     protected void Add(QNABase qnaBase)
     {
