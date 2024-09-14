@@ -33,6 +33,7 @@
             numberOfQuestionsLabel = new Label();
             numberOfQuestionsAskedNumericUpDown = new NumericUpDown();
             startQuizButton = new Button();
+            squizSetupProgressBar = new ProgressBar();
             ((System.ComponentModel.ISupportInitialize)numberOfQuestionsAskedNumericUpDown).BeginInit();
             SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             // startQuizButton
             // 
             startQuizButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            startQuizButton.Location = new Point(303, 307);
+            startQuizButton.Location = new Point(211, 214);
             startQuizButton.Name = "startQuizButton";
             startQuizButton.Size = new Size(244, 64);
             startQuizButton.TabIndex = 4;
@@ -85,11 +86,19 @@
             startQuizButton.UseVisualStyleBackColor = true;
             startQuizButton.Click += startQuizButton_Click;
             // 
+            // squizSetupProgressBar
+            // 
+            squizSetupProgressBar.Location = new Point(211, 326);
+            squizSetupProgressBar.Name = "squizSetupProgressBar";
+            squizSetupProgressBar.Size = new Size(718, 23);
+            squizSetupProgressBar.TabIndex = 5;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1171, 702);
+            Controls.Add(squizSetupProgressBar);
             Controls.Add(startQuizButton);
             Controls.Add(numberOfQuestionsAskedNumericUpDown);
             Controls.Add(numberOfQuestionsLabel);
@@ -109,5 +118,6 @@
         private Label numberOfQuestionsLabel;
         private NumericUpDown numberOfQuestionsAskedNumericUpDown;
         private Button startQuizButton;
+        private ProgressBar squizSetupProgressBar;
     }
 }
