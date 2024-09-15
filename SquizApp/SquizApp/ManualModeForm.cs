@@ -24,8 +24,8 @@ namespace SquizApp
         {
             Populate_qnaDropdownComboBox();
             Populate_testQNADropdownComboBox();
-            Populate_qnaEndRangeNumericUpDown();
-            Populate_testQNAEndRangeNumericUpDown();
+            Populate_qnaRangeNumericUpDowns();
+            Populate_testQNARangeNumericUpDowns();
         }
 
         private void Populate_qnaDropdownComboBox()
@@ -36,7 +36,7 @@ namespace SquizApp
             qnaDropdownComboBox.ValueMember = "Value";
         }
 
-        private void Populate_testQNAEndRangeNumericUpDown()
+        private void Populate_testQNARangeNumericUpDowns()
         {
             if (Utility.IsDebugMode())
             {
@@ -55,7 +55,7 @@ namespace SquizApp
             }
         }
 
-        private void Populate_qnaEndRangeNumericUpDown()
+        private void Populate_qnaRangeNumericUpDowns()
         {
             QNABase? currentlySelectedQNA = qnaDropdownComboBox.SelectedValue as QNABase;
 
@@ -70,7 +70,7 @@ namespace SquizApp
                 qnaStartRangeNumericUpDown.Maximum = (qnaEndRangeNumericUpDown.Maximum - 1M);
             }
         }
-        
+
 
         private void Populate_testQNADropdownComboBox()
         {
@@ -111,6 +111,7 @@ namespace SquizApp
         {
             if (useTestQNACheckBox.Checked)
             {
+                // TODO
                 //SquizManager.Instance.RandomSetup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), testQNADropdownComboBox.Text, new QNATestCollection());
             }
             else
@@ -119,5 +120,14 @@ namespace SquizApp
             }
         }
 
+        private void qnaDropdownComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Populate_qnaRangeNumericUpDowns();
+        }
+
+        private void testQNADropdownComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Populate_testQNARangeNumericUpDowns();
+        }
     }
 }

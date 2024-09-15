@@ -66,6 +66,7 @@
             testQNADropdownComboBox.Name = "testQNADropdownComboBox";
             testQNADropdownComboBox.Size = new Size(502, 29);
             testQNADropdownComboBox.TabIndex = 8;
+            testQNADropdownComboBox.SelectedIndexChanged += testQNADropdownComboBox_SelectedIndexChanged;
             // 
             // testQNAStartRangeNumericUpDown
             // 
@@ -112,6 +113,7 @@
             qnaDropdownComboBox.Name = "qnaDropdownComboBox";
             qnaDropdownComboBox.Size = new Size(502, 29);
             qnaDropdownComboBox.TabIndex = 13;
+            qnaDropdownComboBox.SelectedIndexChanged += qnaDropdownComboBox_SelectedIndexChanged;
             // 
             // qnaStartRangeNumericUpDown
             // 
