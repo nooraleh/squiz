@@ -21,6 +21,7 @@ public class QNACollection
     protected virtual void PopuplateQNACollectionMapping()
     {
         Add(new Gregoire.Gregoire());
+        Add(new QNALibrary.mappings.CPP.CPPSTL());
     }
     
 
