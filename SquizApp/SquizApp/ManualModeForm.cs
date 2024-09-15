@@ -17,8 +17,15 @@ namespace SquizApp
         {
             InitializeComponent();
 
+            Imply_ManualModeForm_Logic();
+        }
+
+        private void Imply_ManualModeForm_Logic()
+        {
             Populate_qnaDropdownComboBox();
             Populate_testQNADropdownComboBox();
+            Populate_qnaEndRangeNumericUpDown();
+            Populate_testQNAEndRangeNumericUpDown();
         }
 
         private void Populate_qnaDropdownComboBox()
@@ -28,6 +35,42 @@ namespace SquizApp
             qnaDropdownComboBox.DisplayMember = "Key";
             qnaDropdownComboBox.ValueMember = "Value";
         }
+
+        private void Populate_testQNAEndRangeNumericUpDown()
+        {
+            if (Utility.IsDebugMode())
+            {
+                QNABase? currentlySelectedQNA = testQNADropdownComboBox.SelectedValue as QNABase;
+
+                if (currentlySelectedQNA != null)
+                {
+                    // set the maximum for `qnaEndRangeNumericUpDown` to the current selection's
+                    // underlying qnaMapping's Count
+                    testQNAEndRangeNumericUpDown.Maximum = (decimal)currentlySelectedQNA.Count;
+                    testQNAEndRangeNumericUpDown.Value = (decimal)currentlySelectedQNA.Count;
+
+                    // start maximum to be the end range maximum minus 1
+                    testQNAStartRangeNumericUpDown.Maximum = (testQNAEndRangeNumericUpDown.Maximum - 1M);
+                }
+            }
+        }
+
+        private void Populate_qnaEndRangeNumericUpDown()
+        {
+            QNABase? currentlySelectedQNA = qnaDropdownComboBox.SelectedValue as QNABase;
+
+            if (currentlySelectedQNA != null)
+            {
+                // set the maximum for `qnaEndRangeNumericUpDown` to the current selection's
+                // underlying qnaMapping's Count
+                qnaEndRangeNumericUpDown.Maximum = (decimal)currentlySelectedQNA.Count;
+                qnaEndRangeNumericUpDown.Value = (decimal)currentlySelectedQNA.Count;
+
+                // start maximum to be the end range maximum minus 1
+                qnaStartRangeNumericUpDown.Maximum = (qnaEndRangeNumericUpDown.Maximum - 1M);
+            }
+        }
+        
 
         private void Populate_testQNADropdownComboBox()
         {
