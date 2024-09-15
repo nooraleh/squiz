@@ -68,7 +68,16 @@ namespace SquizApp
 
         private void Impl_startQuizButton_Click()
         {
-            SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text);
+            if (useTestQNACheckBox.Checked)
+            {
+                SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), testQNADropdownComboBox.Text, new QNATestCollection());
+            }
+            else
+            {
+                SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text, new QNACollection());
+            }
+
+
         }
 
         private void CleanSnippetsDirectory()

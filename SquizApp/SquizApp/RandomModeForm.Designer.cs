@@ -36,6 +36,7 @@
             squizSetupProgressBar = new ProgressBar();
             testQNADropdownLabel = new Label();
             testQNADropdownComboBox = new ComboBox();
+            useTestQNACheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)numberOfQuestionsAskedNumericUpDown).BeginInit();
             SuspendLayout();
             // 
@@ -115,11 +116,22 @@
             testQNADropdownComboBox.Size = new Size(502, 29);
             testQNADropdownComboBox.TabIndex = 7;
             // 
-            // MainForm
+            // useTestQNACheckBox
+            // 
+            useTestQNACheckBox.AutoSize = true;
+            useTestQNACheckBox.Location = new Point(957, 45);
+            useTestQNACheckBox.Name = "useTestQNACheckBox";
+            useTestQNACheckBox.Size = new Size(97, 19);
+            useTestQNACheckBox.TabIndex = 8;
+            useTestQNACheckBox.Text = "Use Test QNA";
+            useTestQNACheckBox.UseVisualStyleBackColor = true;
+            // 
+            // RandomModeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1171, 702);
+            Controls.Add(useTestQNACheckBox);
             Controls.Add(testQNADropdownComboBox);
             Controls.Add(testQNADropdownLabel);
             Controls.Add(squizSetupProgressBar);
@@ -128,7 +140,7 @@
             Controls.Add(numberOfQuestionsLabel);
             Controls.Add(qnaDropdownLabel);
             Controls.Add(qnaDropdownComboBox);
-            Name = "MainForm";
+            Name = "RandomModeForm";
             Text = "Squiz";
             ((System.ComponentModel.ISupportInitialize)numberOfQuestionsAskedNumericUpDown).EndInit();
             ResumeLayout(false);
@@ -145,5 +157,6 @@
         private ProgressBar squizSetupProgressBar;
         private Label testQNADropdownLabel;
         private ComboBox testQNADropdownComboBox;
+        private CheckBox useTestQNACheckBox;
     }
 }
