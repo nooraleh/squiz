@@ -452,6 +452,103 @@ public partial class Gregoire : QNABase
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
+    {51, new Dictionary<string, string>() {
+        {"q", @"Explain the usage of <algorithm>'s std::clamp() and what it returns."},
+        {"a", @"std::clamp(v, lo, hi) is a helper function that you can use to determine
+		if a given v in inside the range (lo, hi) <- both ends exclusive.
+
+		If returns:
+			- A reference to `lo` if v < lo
+			- A reference to `hi` if v > hi
+			- A reference to v otherwise."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {52, new Dictionary<string, string>() {
+        {"q", @"What is the return value of <algorithm>'s:
+		
+			1) std::is_sorted()
+			2) std::is_sorted_until()"},
+        {"a", @"1) std::is_sorted returns `true` if a given range is sorted
+			2) std::is_sorted_until returns an iterator such that everything before
+				this iterator is sorted."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {53, new Dictionary<string, string>() {
+        {"q", @"Why is sorting (e.g with <algorithm>'s std::sort) not relevant for:
+
+			1) std::set
+			2) std::unordered_map"},
+        {"a", @"1) std::set is an ordered associative container and they already maintain
+				elements in a sorted order
+			2) std::unordered_map is an unordered associative containers and have no
+				concept of sorting."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {54, new Dictionary<string, string>() {
+        {"q", @"i) What does std::remove not actually remove the elements in a container
+		i.e it instead partitions the container into two sets; 
+			1) the elements to be kept; THEN
+			2) the elements to be removed.
+
+		ii) Name the idiom that uses std::remove/std::remove_if in order to 
+			get the removal functionality from the container."},
+        {"a", @"i) Algorithms such as std::remove have access only to the iterator abstaction,
+			not to the container. Thus, the std::remove algorithm cannot actually remove
+			the elements.
+
+		ii) remove-erase"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {55, new Dictionary<string, string>() {
+        {"q", @"True or false:
+
+		With std::copy(), as with all modifying algorithms, std::copy() can indeed insert
+		elements into the destination container."},
+        {"a", @"False. std::copy(), like all modifying algorithms, can only overwrite whatever
+		elements are there already."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {56, new Dictionary<string, string>() {
+        {"q", @"State the five non-modifying counting algorithms as defined
+		in <algorithm>."},
+        {"a", @"1) std::all_of()
+		2) std::any_of()
+		3) std::none_of()
+		4) std::count()
+		5_ std::count_if()"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {57, new Dictionary<string, string>() {
+        {"q", @"State all 6 of the comparison functor class templates as defined in <functional>"},
+        {"a", @"1) std::equal_to
+        2) std::not_equal_to
+        3) std::less
+        4) std::greater
+        5) std::less_equal
+        6) std::greater_equal"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {58, new Dictionary<string, string>() {
+        {"q", @"i) What are transparent operator functors?
+        
+        ii) True or false:
+            It is recommended to always use the transparent operator functors."},
+        {"a", @"i) Transparent operator functors are operator functors which allow
+            you to omit the template type.
+
+            E.g. std::multiplies<>() instead of std::multiplies<int>()
+        
+        ii) True"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
     {59, new Dictionary<string, string>() {
         {"q", @"What are loop invariants?"},
         {"a", @"Conditions that have to be true during the execution of the loop."},
@@ -1160,6 +1257,109 @@ public partial class Gregoire : QNABase
     {134, new Dictionary<string, string>() {
         {"q", @"What does <utility>'s std::as_const() function do?"},
         {"a", @"std::as_const() returns a `const` reference version of its reference parameter."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {135, new Dictionary<string, string>() {
+        {"q", @"State the five arithmetic functor class templates for binary arithmetic operations
+        as defined in <functional>"},
+        {"a", @"1) std::plus
+        2) std::divides
+        3) std::minus
+        4) std::multiplies
+        5) std::modulus"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {136, new Dictionary<string, string>() {
+        {"q", @"Why should you avoid using std::bind1st, std::bind2nd, std::mem_func??"},
+        {"a", @"Because those functions have been officially removed frrom the C++17 standard."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {137, new Dictionary<string, string>() {
+        {"q", @"What are generic lambda expressions?"},
+        {"a", @"Generic lambda expressions are lambda expressions which use at least one `auto`
+        as a type in the parameter list. E.g
+
+        auto add = lambda[](auto x, auto y) { return x+y; }"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {138, new Dictionary<string, string>() {
+        {"q", @"For lambda expressions, there are two ways to capture all variables from
+        the enclosing scope.
+
+        Explain the following capture specifications:
+            1) [=] and;
+            2) [&]"},
+        {"a", @"1) [=] : Captures all variables from the enclosing scope by value
+        2) [&] : Captures all variables from the enclosing scope by reference"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {139, new Dictionary<string, string>() {
+        {"q", @"i) True or false:
+        
+            For a lambda expression, the function call operator is marked as `const`
+            by default. 
+
+        ii) What implications, if any, does your any to (i) have for non-const variables
+            captured by value in a lambda expression.
+
+        iii) What specification can we add to the lambda if we do not want your answer
+            to (ii)"},
+        {"a", @"i) True
+
+        ii) This means that even if you capture a non-const variable by value in a lambda
+            expression, the lambda expression is not able to modify this copy.
+        
+        iii) If we want to modify the value we capture, we must mark the lambda as mutable
+            i.e [data] () mutable \{data *= 2; std::cout << data << std::endl; \};"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {140, new Dictionary<string, string>() {
+        {"q", @"Consider the following snippet:
+        
+            const double data = 1.23;
+            auto capturing_lambda = [data]\{ std::cout << data << std::endl; \}; (1)
+
+        Does the variable `data` retain or loss the constness in the lambda body?"},
+        {"a", @"`data` in the lambda body retains constness. In general,
+        variables captured from the enclosing scope retain the constness of the
+        variables that the lambda captures in the capture block."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {141, new Dictionary<string, string>() {
+        {"q", @"i) What is <functional>'s std::function used for?
+        ii) Consider the following generic syntax:
+
+            std::function<R(ArgTypes...)>
+
+        Use this template to assign the function:
+            void func(int num, const std::string& _str);
+
+        To variable `f1`"},
+        {"a", @"i) std::function can be used to point to:
+            a) a function
+            b) a function object
+            c) a lambda expression
+        Basically anything that is callable.
+
+        ii) std::function<void(int, const std::string&)> f1 = func;"},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
+    {142, new Dictionary<string, string>() {
+        {"q", @"Some Standard Library containers, such as std::map and std::set
+        provide their own versions of `find` as class methods.
+
+        Why should you use the class method versions of `find` as opposed
+        to the generic std::find as defined in <algorithm>? Give a concrete example."},
+        {"a", @"ANS: Because the class method versions are faster. For example, for std::map,
+        the generic std::find runs in O(N) time. While std::map::find() is O(log(n))."},
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
@@ -2421,206 +2621,5 @@ public partial class Gregoire : QNABase
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
-    {266, new Dictionary<string, string>() {
-        {"q", @"Some Standard Library containers, such as std::map and std::set
-        provide their own versions of `find` as class methods.
-
-        Why should you use the class method versions of `find` as opposed
-        to the generic std::find as defined in <algorithm>? Give a concrete example."},
-        {"a", @"ANS: Because the class method versions are faster. For example, for std::map,
-        the generic std::find runs in O(N) time. While std::map::find() is O(log(n))."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {267, new Dictionary<string, string>() {
-        {"q", @"i) What is <functional>'s std::function used for?
-        ii) Consider the following generic syntax:
-
-            std::function<R(ArgTypes...)>
-
-        Use this template to assign the function:
-            void func(int num, const std::string& _str);
-
-        To variable `f1`"},
-        {"a", @"i) std::function can be used to point to:
-            a) a function
-            b) a function object
-            c) a lambda expression
-        Basically anything that is callable.
-
-        ii) std::function<void(int, const std::string&)> f1 = func;"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {268, new Dictionary<string, string>() {
-        {"q", @"Consider the following snippet:
-        
-            const double data = 1.23;
-            auto capturing_lambda = [data]\{ std::cout << data << std::endl; \}; (1)
-
-        Does the variable `data` retain or loss the constness in the lambda body?"},
-        {"a", @"`data` in the lambda body retains constness. In general,
-        variables captured from the enclosing scope retain the constness of the
-        variables that the lambda captures in the capture block."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {269, new Dictionary<string, string>() {
-        {"q", @"i) True or false:
-        
-            For a lambda expression, the function call operator is marked as `const`
-            by default. 
-
-        ii) What implications, if any, does your any to (i) have for non-const variables
-            captured by value in a lambda expression.
-
-        iii) What specification can we add to the lambda if we do not want your answer
-            to (ii)"},
-        {"a", @"i) True
-
-        ii) This means that even if you capture a non-const variable by value in a lambda
-            expression, the lambda expression is not able to modify this copy.
-        
-        iii) If we want to modify the value we capture, we must mark the lambda as mutable
-            i.e [data] () mutable \{data *= 2; std::cout << data << std::endl; \};"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {270, new Dictionary<string, string>() {
-        {"q", @"For lambda expressions, there are two ways to capture all variables from
-        the enclosing scope.
-
-        Explain the following capture specifications:
-            1) [=] and;
-            2) [&]"},
-        {"a", @"1) [=] : Captures all variables from the enclosing scope by value
-        2) [&] : Captures all variables from the enclosing scope by reference"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {271, new Dictionary<string, string>() {
-        {"q", @"What are generic lambda expressions?"},
-        {"a", @"Generic lambda expressions are lambda expressions which use at least one `auto`
-        as a type in the parameter list. E.g
-
-        auto add = lambda[](auto x, auto y) { return x+y; }"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {272, new Dictionary<string, string>() {
-        {"q", @"Why should you avoid using std::bind1st, std::bind2nd, std::mem_func??"},
-        {"a", @"Because those functions have been officially removed frrom the C++17 standard."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {273, new Dictionary<string, string>() {
-        {"q", @"State the five arithmetic functor class templates for binary arithmetic operations
-        as defined in <functional>"},
-        {"a", @"1) std::plus
-        2) std::divides
-        3) std::minus
-        4) std::multiplies
-        5) std::modulus"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {274, new Dictionary<string, string>() {
-        {"q", @"i) What are transparent operator functors?
-        
-        ii) True or false:
-            It is recommended to always use the transparent operator functors."},
-        {"a", @"i) Transparent operator functors are operator functors which allow
-            you to omit the template type.
-
-            E.g. std::multiplies<>() instead of std::multiplies<int>()
-        
-        ii) True"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {275, new Dictionary<string, string>() {
-        {"q", @"State all 6 of the comparison functor class templates as defined in <functional>"},
-        {"a", @"1) std::equal_to
-        2) std::not_equal_to
-        3) std::less
-        4) std::greater
-        5) std::less_equal
-        6) std::greater_equal"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {276, new Dictionary<string, string>() {
-        {"q", @"State the five non-modifying counting algorithms as defined
-		in <algorithm>."},
-        {"a", @"1) std::all_of()
-		2) std::any_of()
-		3) std::none_of()
-		4) std::count()
-		5_ std::count_if()"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {277, new Dictionary<string, string>() {
-        {"q", @"True or false:
-
-		With std::copy(), as with all modifying algorithms, std::copy() can indeed insert
-		elements into the destination container."},
-        {"a", @"False. std::copy(), like all modifying algorithms, can only overwrite whatever
-		elements are there already."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {278, new Dictionary<string, string>() {
-        {"q", @"i) What does std::remove not actually remove the elements in a container
-		i.e it instead partitions the container into two sets; 
-			1) the elements to be kept; THEN
-			2) the elements to be removed.
-
-		ii) Name the idiom that uses std::remove/std::remove_if in order to 
-			get the removal functionality from the container."},
-        {"a", @"i) Algorithms such as std::remove have access only to the iterator abstaction,
-			not to the container. Thus, the std::remove algorithm cannot actually remove
-			the elements.
-
-		ii) remove-erase"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {279, new Dictionary<string, string>() {
-        {"q", @"Why is sorting (e.g with <algorithm>'s std::sort) not relevant for:
-
-			1) std::set
-			2) std::unordered_map"},
-        {"a", @"1) std::set is an ordered associative container and they already maintain
-				elements in a sorted order
-			2) std::unordered_map is an unordered associative containers and have no
-				concept of sorting."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {280, new Dictionary<string, string>() {
-        {"q", @"What is the return value of <algorithm>'s:
-		
-			1) std::is_sorted()
-			2) std::is_sorted_until()"},
-        {"a", @"1) std::is_sorted returns `true` if a given range is sorted
-			2) std::is_sorted_until returns an iterator such that everything before
-				this iterator is sorted."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {281, new Dictionary<string, string>() {
-        {"q", @"Explain the usage of <algorithm>'s std::clamp() and what it returns."},
-        {"a", @"std::clamp(v, lo, hi) is a helper function that you can use to determine
-		if a given v in inside the range (lo, hi) <- both ends exclusive.
-
-		If returns:
-			- A reference to `lo` if v < lo
-			- A reference to `hi` if v > hi
-			- A reference to v otherwise."},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
     };
-
 }
