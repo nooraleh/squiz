@@ -34,6 +34,7 @@ namespace SquizApp
             {
                 testQNADropdownComboBox.Visible = false;
                 testQNADropdownLabel.Visible = false;
+                useTestQNACheckBox.Visible = false;
             }
         }
         
