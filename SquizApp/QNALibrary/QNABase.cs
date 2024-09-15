@@ -16,6 +16,8 @@ public class QNABase
 
     public QNAMappingType QNAMapping { get; set; }
 
+    public int Count { get { return QNAMapping.Count; } }
+
     public List<Dictionary<string, string>> BuildRandomMode(int qnaSize = 10)
     {
         List<int> keyList = new(QNAMapping.Keys);
