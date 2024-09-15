@@ -71,14 +71,12 @@ namespace SquizApp
         {
             if (useTestQNACheckBox.Checked)
             {
-                SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), testQNADropdownComboBox.Text, new QNATestCollection());
+                SquizManager.Instance.RandomSetup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), testQNADropdownComboBox.Text, new QNATestCollection());
             }
             else
             {
-                SquizManager.Instance.Setup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text, new QNACollection());
+                SquizManager.Instance.RandomSetup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text, new QNACollection());
             }
-
-
         }
 
         private void CleanSnippetsDirectory()

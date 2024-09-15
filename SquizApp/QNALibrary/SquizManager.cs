@@ -36,7 +36,7 @@ namespace QNALibrary
             NextQNA(true);
         }
 
-        public void Setup(int nQNA, string qnaKey, QNACollection qnaCollection)
+        public void RandomSetup(int nQNA, string qnaKey, QNACollection qnaCollection)
         {
             NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
