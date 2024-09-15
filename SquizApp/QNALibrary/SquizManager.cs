@@ -50,6 +50,20 @@ namespace QNALibrary
             CompileSubmappingSnippetsLaTeX( QNASubmapping);
         }
 
+        public void ManualSetup(int startRange, int endRange, string qnaKey, QNACollection qnaCollection)
+        {
+            QNASubmapping = qnaCollection.GetManualSubcollection(startRange, endRange, qnaKey);
+            Title = qnaKey;
+            Category = qnaCollection.GetQNACategory(qnaKey);
+
+            // assign first QNA to `CurrentQNA`
+            NextQNA();
+
+            // compile relevant snippets into LaTeX pdf files
+            CompileSubmappingSnippetsLaTeX(QNASubmapping);
+        }
+
+
         public void CompileSubmappingSnippetsLaTeX(Queue<Dictionary<string, string>> qnaSubMapping)
         {
             // compiles any snippetA/snippetQ value strings into LaTeX based pdfs

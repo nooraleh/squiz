@@ -86,6 +86,5 @@ namespace SquizApp
                 Directory.Delete(snippetsDirectory, true);
             }
         }
-
     }
 }

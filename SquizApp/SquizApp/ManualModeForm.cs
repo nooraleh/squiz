@@ -102,21 +102,34 @@ namespace SquizApp
             squizSetupProgressBar.Value = 100;
         }
 
-        private void startQuizButton_Click(object sender, EventArgs e)
+        private async void startQuizButton_Click(object sender, EventArgs e)
         {
+            Initiate_squizSetupProgressBar();
+            await Task.Run(() => Impl_startQuizButton_Click());
+            End_squizSetupProgressBar();
 
+            this.FormClosed += (sender, e) => CleanSnippetsDirectory();
+            this.Hide();
+
+            // creation and display first QuestionForm
+            QuestionForm questionForm = new();
+            questionForm.FormClosed += (sender, e) => this.Close();
+            questionForm.Show();
         }
 
         private void Impl_startQuizButton_Click()
         {
             if (useTestQNACheckBox.Checked)
             {
-                // TODO
-                //SquizManager.Instance.RandomSetup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), testQNADropdownComboBox.Text, new QNATestCollection());
+                int startRange = Int32.Parse(testQNAStartRangeNumericUpDown.Text);
+                int endRange = Int32.Parse(testQNAEndRangeNumericUpDown.Text);
+                SquizManager.Instance.ManualSetup(startRange, endRange, testQNADropdownComboBox.Text, new QNATestCollection());
             }
             else
             {
-                //SquizManager.Instance.RandomSetup(Int32.Parse(numberOfQuestionsAskedNumericUpDown.Text), qnaDropdownComboBox.Text, new QNACollection());
+                int startRange = Int32.Parse(qnaStartRangeNumericUpDown.Text);
+                int endRange = Int32.Parse(qnaEndRangeNumericUpDown.Text);
+                SquizManager.Instance.ManualSetup(startRange, endRange, qnaDropdownComboBox.Text, new QNACollection());
             }
         }
 
@@ -128,6 +141,16 @@ namespace SquizApp
         private void testQNADropdownComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Populate_testQNARangeNumericUpDowns();
+        }
+
+        private void CleanSnippetsDirectory()
+        {
+            string snippetsDirectory = Utility.SnippetsDirectory();
+
+            if (Directory.Exists(snippetsDirectory))
+            {
+                Directory.Delete(snippetsDirectory, true);
+            }
         }
     }
 }
