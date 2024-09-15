@@ -37,8 +37,6 @@ namespace SquizApp
                 useTestQNACheckBox.Visible = false;
             }
         }
-        
-
 
         private async  void startQuizButton_Click(object sender, EventArgs e)
         {
