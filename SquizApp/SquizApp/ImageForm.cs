@@ -12,9 +12,15 @@ namespace SquizApp
 {
     public partial class ImageForm : Form
     {
-        public ImageForm()
+        public ImageForm(string pathToImage)
         {
             InitializeComponent();
+            DisplayImage(pathToImage);
+        }
+
+        private void DisplayImage(string pathToImage)
+        {
+            qnaPictureBox.Image = Image.FromFile(pathToImage);
         }
     }
 }
