@@ -12,6 +12,10 @@ namespace QNALibrary.mappings.Test
             : base(title: "TestImageDisplay", category: QNACategory.CPP, qnaMapping: qnaMapping_)
         { }
 
+        public override string ToString()
+        {
+            return "TestImageDisplay";
+        }
 
         static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>()
         {
