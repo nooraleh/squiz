@@ -17,6 +17,7 @@ public class QNATestCollection : QNACollection
     {
         qnaCollectionMapping.Clear();
         Add(new mappings.Test.TestLatexSnippetLogic());
+        Add(new mappings.Test.TestImageDisplay());
     }
 
 
