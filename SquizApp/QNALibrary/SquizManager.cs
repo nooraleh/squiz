@@ -161,7 +161,7 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("imgQ", out tryValue))
             {
-                string[] path = new string[] { AppContext.BaseDirectory, Title, tryValue };
+                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryValue };
                 return Path.Combine(path);
             }
             else
@@ -175,7 +175,7 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("imgA", out tryValue))
             {
-                string[] path = new string[] { AppContext.BaseDirectory , Title, tryValue };
+                string[] path = new string[] { AppContext.BaseDirectory , "Images", Title, tryValue };
                 return Path.Combine(path);
             }
             else
