@@ -20,7 +20,15 @@ namespace SquizApp
             userAnswerTextBox.Text = SquizManager.Instance.UserAnswer();
             questionLabel.Text = SquizManager.Instance.Question();
             SetViewAnswerSnippetButton();
+            SetViewImageSnippetButton();
         }
+
+        private void SetViewImageSnippetButton()
+        {
+            bool shouldRevealViewImageSnippetButton = SquizManager.Instance.ImageAExists();
+            viewImageButton.Visible = shouldRevealViewImageSnippetButton;
+        }
+
 
         private void SetViewAnswerSnippetButton()
         {
@@ -70,7 +78,13 @@ namespace SquizApp
 
         private string GenerateTexFileName()
         {
-            return Utility.FullTextFilePath( @$"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetA.tex");
+            return Utility.FullTextFilePath(@$"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetA.tex");
+        }
+
+        private void viewImageButton_Click(object sender, EventArgs e)
+        {
+            ImageForm imageForm = new(SquizManager.Instance.ImageA());
+            imageForm.Show();
         }
     }
 }

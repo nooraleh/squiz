@@ -36,6 +36,7 @@
             userHappyButton = new Button();
             userNotHappyButton = new Button();
             viewAnswerSnippetButton = new Button();
+            viewImageButton = new Button();
             SuspendLayout();
             // 
             // questionLabel
@@ -110,7 +111,7 @@
             // 
             // viewAnswerSnippetButton
             // 
-            viewAnswerSnippetButton.Location = new Point(428, 301);
+            viewAnswerSnippetButton.Location = new Point(232, 301);
             viewAnswerSnippetButton.Name = "viewAnswerSnippetButton";
             viewAnswerSnippetButton.Size = new Size(168, 42);
             viewAnswerSnippetButton.TabIndex = 8;
@@ -118,11 +119,22 @@
             viewAnswerSnippetButton.UseVisualStyleBackColor = true;
             viewAnswerSnippetButton.Click += viewAnswerSnippetButton_Click;
             // 
+            // viewImageButton
+            // 
+            viewImageButton.Location = new Point(428, 301);
+            viewImageButton.Name = "viewImageButton";
+            viewImageButton.Size = new Size(168, 42);
+            viewImageButton.TabIndex = 9;
+            viewImageButton.Text = "View Image";
+            viewImageButton.UseVisualStyleBackColor = true;
+            viewImageButton.Click += viewImageButton_Click;
+            // 
             // CompareAnswerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1698, 1025);
+            Controls.Add(viewImageButton);
             Controls.Add(viewAnswerSnippetButton);
             Controls.Add(userNotHappyButton);
             Controls.Add(userHappyButton);
@@ -147,5 +159,6 @@
         private Button userHappyButton;
         private Button userNotHappyButton;
         private Button viewAnswerSnippetButton;
+        private Button viewImageButton;
     }
 }
