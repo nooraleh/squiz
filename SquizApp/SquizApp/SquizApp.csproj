@@ -12,4 +12,8 @@
     <ProjectReference Include="..\QNALibrary\QNALibrary.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /E /I /Y &quot;$(SolutionDir)\QNALibrary\Images&quot; &quot;$(TargetDir)Images&quot;" />
+  </Target>
+
 </Project>
