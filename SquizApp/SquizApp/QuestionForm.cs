@@ -19,6 +19,13 @@ namespace SquizApp
             questionLabel.Text = SquizManager.Instance.Question();
             this.Text = SquizManager.Instance.Index();
             SetViewQuestionSnippetButton();
+            SetViewImagineSnippetButton();
+        }
+
+        private void SetViewImagineSnippetButton()
+        {
+            bool shouldRevealViewImageSnippetButton = !(SquizManager.Instance.ImageQ() == string.Empty);
+            viewImageButton.Visible = shouldRevealViewImageSnippetButton;
         }
 
         private void SetViewQuestionSnippetButton()
@@ -26,7 +33,6 @@ namespace SquizApp
             bool shouldRevealViewQuestionSnippetButton = !(SquizManager.Instance.SnippetQ() == string.Empty);
             viewQuestionSnippetButton.Visible = shouldRevealViewQuestionSnippetButton;
         }
-
 
         private void compareAnswerButton_Click(object sender, EventArgs e)
         {
@@ -47,6 +53,12 @@ namespace SquizApp
         private string GenerateTexFileName()
         {
             return Utility.FullTextFilePath(@$"{SquizManager.Instance.Title}-{SquizManager.Instance.ID()}-{SquizManager.Instance.Index()}-snippetQ.tex");
+        }
+
+        private void viewImageButton_Click(object sender, EventArgs e)
+        {
+            ImageForm imageForm = new(SquizManager.Instance.ImageQ());
+            imageForm.Show();
         }
     }
 }
