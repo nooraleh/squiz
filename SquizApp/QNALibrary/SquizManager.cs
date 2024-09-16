@@ -184,8 +184,6 @@ namespace QNALibrary
             }
         }
 
-
-
         public string ModelAnswer()
         {
             return CurrentQNA["a"];
