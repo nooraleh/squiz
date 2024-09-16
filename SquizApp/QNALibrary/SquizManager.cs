@@ -183,6 +183,33 @@ namespace QNALibrary
                 return string.Empty;
             }
         }
+        public bool ImageQExists()
+        {
+            string tryValue;
+            if (CurrentQNA.TryGetValue("imgQ", out tryValue))
+            {
+                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryValue };
+                return File.Exists(Path.Combine(path));
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ImageAExists()
+        {
+            string tryValue;
+            if (CurrentQNA.TryGetValue("imgA", out tryValue))
+            {
+                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryValue };
+                return File.Exists(Path.Combine(path));
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public string ModelAnswer()
         {
