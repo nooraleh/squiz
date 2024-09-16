@@ -71,7 +71,6 @@ ${0}$
 
         public static string GenerateAndCompileLatexDocumentToPDF(string texFilePath, string codeSnippet, QNACategory qnaCategory)
         {
-
             string generatedLatex = GenerateLatexDocument(qnaCategory, codeSnippet);
             CompileLatexPDF(FullTextFilePath(texFilePath), generatedLatex);
 
@@ -86,7 +85,6 @@ ${0}$
 
         public static string SnippetsDirectory()
         {
-
             string appDirectory = AppContext.BaseDirectory;
             string snippetSubDirectory = "Snippets";
             string fullSnippetsPath = Path.Combine(appDirectory, snippetSubDirectory);
