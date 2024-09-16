@@ -24,7 +24,7 @@ namespace SquizApp
 
         private void SetViewImageSnippetButton()
         {
-            bool shouldRevealViewImageSnippetButton = !(SquizManager.Instance.ImageQ() == string.Empty);
+            bool shouldRevealViewImageSnippetButton = SquizManager.Instance.ImageQExists();
             viewImageButton.Visible = shouldRevealViewImageSnippetButton;
         }
 
