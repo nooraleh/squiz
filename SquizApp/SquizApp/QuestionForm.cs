@@ -19,10 +19,10 @@ namespace SquizApp
             questionLabel.Text = SquizManager.Instance.Question();
             this.Text = SquizManager.Instance.Index();
             SetViewQuestionSnippetButton();
-            SetViewImagineSnippetButton();
+            SetViewImageSnippetButton();
         }
 
-        private void SetViewImagineSnippetButton()
+        private void SetViewImageSnippetButton()
         {
             bool shouldRevealViewImageSnippetButton = !(SquizManager.Instance.ImageQ() == string.Empty);
             viewImageButton.Visible = shouldRevealViewImageSnippetButton;
