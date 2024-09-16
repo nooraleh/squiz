@@ -156,6 +156,35 @@ namespace QNALibrary
             }
         }
 
+        public string ImageQ()
+        {
+            string tryValue;
+            if (CurrentQNA.TryGetValue("imgQ", out tryValue))
+            {
+                string[] path = new string[] { AppContext.BaseDirectory, Title, tryValue };
+                return Path.Combine(path);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public string ImageA()
+        {
+            string tryValue;
+            if (CurrentQNA.TryGetValue("imgA", out tryValue))
+            {
+                string[] path = new string[] { AppContext.BaseDirectory , Title, tryValue };
+                return Path.Combine(path);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+
 
         public string ModelAnswer()
         {
