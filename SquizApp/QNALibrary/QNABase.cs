@@ -1,7 +1,7 @@
 ﻿namespace QNALibrary;
 using QNAMappingType = Dictionary<int, Dictionary<string, string>>;
 
-public class QNABase
+public class QNABase : IQNA
 {
     public QNABase(string title, QNACategory category, QNAMappingType qnaMapping)
     {
