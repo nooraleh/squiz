@@ -33,6 +33,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {2, new Dictionary<string, string>()
@@ -47,6 +53,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -65,6 +77,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {4, new Dictionary<string, string>()
@@ -79,6 +97,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -97,6 +121,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {6, new Dictionary<string, string>()
@@ -111,6 +141,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -129,6 +165,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {8, new Dictionary<string, string>()
@@ -143,6 +185,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -161,6 +209,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {10, new Dictionary<string, string>()
@@ -175,6 +229,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -193,6 +253,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {12, new Dictionary<string, string>()
@@ -207,6 +273,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -225,6 +297,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {14, new Dictionary<string, string>()
@@ -239,6 +317,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -257,6 +341,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {16, new Dictionary<string, string>()
@@ -271,6 +361,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -289,6 +385,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {18, new Dictionary<string, string>()
@@ -303,6 +405,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -321,6 +429,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {20, new Dictionary<string, string>()
@@ -335,6 +449,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -353,6 +473,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {22, new Dictionary<string, string>()
@@ -367,6 +493,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -385,6 +517,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {24, new Dictionary<string, string>()
@@ -399,6 +537,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -417,6 +561,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {26, new Dictionary<string, string>()
@@ -431,6 +581,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -449,6 +605,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {28, new Dictionary<string, string>()
@@ -463,6 +625,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -481,6 +649,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {30, new Dictionary<string, string>()
@@ -495,6 +669,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -513,6 +693,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {32, new Dictionary<string, string>()
@@ -527,6 +713,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -545,6 +737,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {34, new Dictionary<string, string>()
@@ -559,6 +757,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -577,6 +781,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {36, new Dictionary<string, string>()
@@ -591,6 +801,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -609,6 +825,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {38, new Dictionary<string, string>()
@@ -623,6 +845,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -641,6 +869,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {40, new Dictionary<string, string>()
@@ -655,6 +889,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -673,6 +913,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {42, new Dictionary<string, string>()
@@ -687,6 +933,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -705,6 +957,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {44, new Dictionary<string, string>()
@@ -719,6 +977,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -737,6 +1001,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {46, new Dictionary<string, string>()
@@ -751,6 +1021,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -769,6 +1045,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {48, new Dictionary<string, string>()
@@ -783,6 +1065,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -801,6 +1089,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {50, new Dictionary<string, string>()
@@ -815,6 +1109,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -833,6 +1133,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {52, new Dictionary<string, string>()
@@ -847,6 +1153,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -865,6 +1177,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {54, new Dictionary<string, string>()
@@ -879,6 +1197,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -897,6 +1221,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {56, new Dictionary<string, string>()
@@ -911,6 +1241,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -929,6 +1265,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {58, new Dictionary<string, string>()
@@ -943,6 +1285,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -961,6 +1309,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {60, new Dictionary<string, string>()
@@ -975,6 +1329,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -993,6 +1353,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {62, new Dictionary<string, string>()
@@ -1007,6 +1373,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1025,6 +1397,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {64, new Dictionary<string, string>()
@@ -1039,6 +1417,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1057,6 +1441,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {66, new Dictionary<string, string>()
@@ -1071,6 +1461,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1089,6 +1485,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {68, new Dictionary<string, string>()
@@ -1103,6 +1505,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1121,6 +1529,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {70, new Dictionary<string, string>()
@@ -1135,6 +1549,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1153,6 +1573,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {72, new Dictionary<string, string>()
@@ -1167,6 +1593,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1185,6 +1617,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {74, new Dictionary<string, string>()
@@ -1199,6 +1637,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1217,6 +1661,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {76, new Dictionary<string, string>()
@@ -1231,6 +1681,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1249,6 +1705,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {78, new Dictionary<string, string>()
@@ -1263,6 +1725,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1281,6 +1749,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {80, new Dictionary<string, string>()
@@ -1295,6 +1769,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1313,6 +1793,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {82, new Dictionary<string, string>()
@@ -1327,6 +1813,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1345,6 +1837,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {84, new Dictionary<string, string>()
@@ -1359,6 +1857,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1377,6 +1881,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {86, new Dictionary<string, string>()
@@ -1391,6 +1901,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1409,6 +1925,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {88, new Dictionary<string, string>()
@@ -1423,6 +1945,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1441,6 +1969,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {90, new Dictionary<string, string>()
@@ -1455,6 +1989,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1473,6 +2013,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {92, new Dictionary<string, string>()
@@ -1487,6 +2033,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1505,6 +2057,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {94, new Dictionary<string, string>()
@@ -1519,6 +2077,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1537,6 +2101,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {96, new Dictionary<string, string>()
@@ -1551,6 +2121,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1569,6 +2145,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {98, new Dictionary<string, string>()
@@ -1583,6 +2165,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1601,6 +2189,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {100, new Dictionary<string, string>()
@@ -1615,6 +2209,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1633,6 +2233,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {102, new Dictionary<string, string>()
@@ -1647,6 +2253,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1665,6 +2277,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {104, new Dictionary<string, string>()
@@ -1679,6 +2297,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1697,6 +2321,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {106, new Dictionary<string, string>()
@@ -1711,6 +2341,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1729,6 +2365,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {108, new Dictionary<string, string>()
@@ -1743,6 +2385,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1761,6 +2409,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {110, new Dictionary<string, string>()
@@ -1775,6 +2429,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1793,6 +2453,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {112, new Dictionary<string, string>()
@@ -1807,6 +2473,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1825,6 +2497,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {114, new Dictionary<string, string>()
@@ -1839,6 +2517,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1857,6 +2541,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {116, new Dictionary<string, string>()
@@ -1871,6 +2561,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1889,6 +2585,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {118, new Dictionary<string, string>()
@@ -1903,6 +2605,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1921,6 +2629,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {120, new Dictionary<string, string>()
@@ -1935,6 +2649,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1953,6 +2673,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {122, new Dictionary<string, string>()
@@ -1967,6 +2693,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -1985,6 +2717,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {124, new Dictionary<string, string>()
@@ -1999,6 +2737,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2017,6 +2761,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {126, new Dictionary<string, string>()
@@ -2031,6 +2781,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2049,6 +2805,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {128, new Dictionary<string, string>()
@@ -2063,6 +2825,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2081,6 +2849,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {130, new Dictionary<string, string>()
@@ -2095,6 +2869,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2113,6 +2893,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {132, new Dictionary<string, string>()
@@ -2127,6 +2913,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2145,6 +2937,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {134, new Dictionary<string, string>()
@@ -2159,6 +2957,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2177,6 +2981,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {136, new Dictionary<string, string>()
@@ -2191,6 +3001,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2209,6 +3025,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {138, new Dictionary<string, string>()
@@ -2223,6 +3045,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2241,6 +3069,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {140, new Dictionary<string, string>()
@@ -2255,6 +3089,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2273,6 +3113,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {142, new Dictionary<string, string>()
@@ -2287,6 +3133,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2305,6 +3157,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {144, new Dictionary<string, string>()
@@ -2319,6 +3177,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2337,6 +3201,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {146, new Dictionary<string, string>()
@@ -2351,6 +3221,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2369,6 +3245,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {148, new Dictionary<string, string>()
@@ -2383,6 +3265,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2401,6 +3289,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {150, new Dictionary<string, string>()
@@ -2415,6 +3309,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2433,6 +3333,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {152, new Dictionary<string, string>()
@@ -2447,6 +3353,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2465,6 +3377,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {154, new Dictionary<string, string>()
@@ -2479,6 +3397,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2497,6 +3421,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {156, new Dictionary<string, string>()
@@ -2511,6 +3441,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2529,6 +3465,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {158, new Dictionary<string, string>()
@@ -2543,6 +3485,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2561,6 +3509,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {160, new Dictionary<string, string>()
@@ -2575,6 +3529,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2593,6 +3553,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {162, new Dictionary<string, string>()
@@ -2607,6 +3573,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2625,6 +3597,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {164, new Dictionary<string, string>()
@@ -2639,6 +3617,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2657,6 +3641,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {166, new Dictionary<string, string>()
@@ -2671,6 +3661,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2689,6 +3685,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {168, new Dictionary<string, string>()
@@ -2703,6 +3705,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2721,6 +3729,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {170, new Dictionary<string, string>()
@@ -2735,6 +3749,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2753,6 +3773,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {172, new Dictionary<string, string>()
@@ -2767,6 +3793,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2785,6 +3817,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {174, new Dictionary<string, string>()
@@ -2799,6 +3837,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2817,6 +3861,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {176, new Dictionary<string, string>()
@@ -2831,6 +3881,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2849,6 +3905,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {178, new Dictionary<string, string>()
@@ -2863,6 +3925,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2881,6 +3949,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {180, new Dictionary<string, string>()
@@ -2895,6 +3969,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2913,6 +3993,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {182, new Dictionary<string, string>()
@@ -2927,6 +4013,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2945,6 +4037,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {184, new Dictionary<string, string>()
@@ -2959,6 +4057,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -2977,6 +4081,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {186, new Dictionary<string, string>()
@@ -2991,6 +4101,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3009,6 +4125,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {188, new Dictionary<string, string>()
@@ -3023,6 +4145,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3041,6 +4169,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {190, new Dictionary<string, string>()
@@ -3055,6 +4189,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3073,6 +4213,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {192, new Dictionary<string, string>()
@@ -3087,6 +4233,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3105,6 +4257,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {194, new Dictionary<string, string>()
@@ -3119,6 +4277,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3137,6 +4301,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {196, new Dictionary<string, string>()
@@ -3151,6 +4321,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3169,6 +4345,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {198, new Dictionary<string, string>()
@@ -3183,6 +4365,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
@@ -3201,6 +4389,12 @@ namespace QNALibrary.mappings.Template
                     {"snippetA", @"
 "
                     },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
                 }
             },
             {200, new Dictionary<string, string>()
@@ -3215,6 +4409,12 @@ namespace QNALibrary.mappings.Template
 "
                     },
                     {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
 "
                     },
                 }
