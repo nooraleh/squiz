@@ -26,6 +26,8 @@ def convert_to_csharp(dictionary):
         # Add additional Dictionary<string, string> items for "snippetQ" and "snippetA"
         csharp_code += '\t\t{"snippetQ", @""},\n'
         csharp_code += '\t\t{"snippetA", @""},\n'
+        csharp_code += '\t\t{"imgQ", @""},\n'
+        csharp_code += '\t\t{"imgA", @""},\n'
 
         csharp_code += "\t}},\n"
     csharp_code += "};"
