@@ -18,18 +18,4 @@ public class QNABase
 
     public int Count { get { return QNAMapping.Count; } }
 
-    public List<Dictionary<string, string>> BuildRandomMode(int qnaSize = 10)
-    {
-        List<int> keyList = new(QNAMapping.Keys);
-        Random randomizer = new();
-
-        List<Dictionary<string, string>> returnList = new();
-
-        for (int i = 0; i < qnaSize; ++i)
-        {
-            returnList.Add(QNAMapping[randomizer.Next(keyList.Count)]);
-        }
-
-        return returnList;
-    }
 }
