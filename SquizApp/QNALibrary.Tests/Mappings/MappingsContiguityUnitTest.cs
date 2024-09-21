@@ -1,15 +1,12 @@
-﻿using QNALibrary.mappings.C;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentAssertions;
+using QNALibrary.mappings.C;
+
 
 namespace QNALibrary.Tests.Mappings
 {
     public class MappingsContiguityUnitTest
     {
-        public static List<int> GetMissingKeys(QNABase qnaBase)
+        public static IEnumerable<int> GetMissingKeys(QNABase qnaBase)
         {
             List<int> missingKeys = new List<int>();
 
@@ -28,13 +25,14 @@ namespace QNALibrary.Tests.Mappings
             return missingKeys;
         }
 
-
         [Fact]
         public void QNALibrary_mappings_C_CBasics()
         {
-            CBasics cBasisQNABase = new();
+            var result = MappingsContiguityUnitTest.GetMissingKeys(new CBasics());
 
-
+            result.Should().BeEmpty();
         }
+
+
     }
 }
