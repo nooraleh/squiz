@@ -105,7 +105,10 @@ namespace SquizApp
         private async void startQuizButton_Click(object sender, EventArgs e)
         {
             Initiate_squizSetupProgressBar();
-            await Task.Run(() => Impl_startQuizButton_Click());
+
+            (int startRange, int endRange, string selectedDropdown, QNACollection qnaCollection) = DetermineSquizSetupArguments();
+            await Task.Run(() => Impl_startQuizButton_Click(startRange, endRange, selectedDropdown, qnaCollection));
+            
             End_squizSetupProgressBar();
 
             this.FormClosed += (sender, e) => CleanSnippetsDirectory();
@@ -117,21 +120,36 @@ namespace SquizApp
             questionForm.Show();
         }
 
-        private void Impl_startQuizButton_Click()
+        private void Impl_startQuizButton_Click(int startRange, int endRange, string selectedDropdown, QNACollection qnaCollection)
         {
+            SquizManager.Instance.ManualSetup(startRange, endRange, selectedDropdown, qnaCollection);
+        }
+
+        private (int startRange, int endRange, string selectedDropdown, QNACollection qnaCollection) DetermineSquizSetupArguments()
+        {
+            int startRange; 
+            int endRange;
+            string selectedDropdown; ;
+            QNACollection qnaCollection;
+
             if (useTestQNACheckBox.Checked)
             {
-                int startRange = Int32.Parse(testQNAStartRangeNumericUpDown.Text);
-                int endRange = Int32.Parse(testQNAEndRangeNumericUpDown.Text);
-                SquizManager.Instance.ManualSetup(startRange, endRange, testQNADropdownComboBox.Text, new QNATestCollection());
+                startRange = Int32.Parse(testQNAStartRangeNumericUpDown.Text);
+                endRange = Int32.Parse(testQNAEndRangeNumericUpDown.Text);
+                selectedDropdown = testQNADropdownComboBox.Text;
+                qnaCollection = new QNATestCollection();
             }
             else
             {
-                int startRange = Int32.Parse(qnaStartRangeNumericUpDown.Text);
-                int endRange = Int32.Parse(qnaEndRangeNumericUpDown.Text);
-                SquizManager.Instance.ManualSetup(startRange, endRange, qnaDropdownComboBox.Text, new QNACollection());
+                startRange = Int32.Parse(qnaStartRangeNumericUpDown.Text);
+                endRange = Int32.Parse(qnaEndRangeNumericUpDown.Text);
+                selectedDropdown = qnaDropdownComboBox.Text;
+                qnaCollection = new();
             }
+
+            return (startRange, endRange, selectedDropdown, qnaCollection);
         }
+
 
         private void qnaDropdownComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
