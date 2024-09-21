@@ -145,7 +145,7 @@ ${0}$
             string logsDirectory = Path.Combine(
             Environment.GetFolderPath(
                 Environment.SpecialFolder.LocalApplicationData),
-                Assembly.GetExecutingAssembly().GetName().Name,
+                Assembly.GetEntryAssembly().GetName().Name,
                 "Logs"
             );
 
