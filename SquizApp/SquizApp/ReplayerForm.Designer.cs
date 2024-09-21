@@ -49,7 +49,7 @@
             qnaLogsDropdownComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             qnaLogsDropdownComboBox.FormattingEnabled = true;
             qnaLogsDropdownComboBox.Items.AddRange(new object[] { "MockQNA1", "MockQNA2", "Gregoire", "TestLatexSnippetLogic" });
-            qnaLogsDropdownComboBox.Location = new Point(271, 79);
+            qnaLogsDropdownComboBox.Location = new Point(123, 132);
             qnaLogsDropdownComboBox.Name = "qnaLogsDropdownComboBox";
             qnaLogsDropdownComboBox.Size = new Size(502, 29);
             qnaLogsDropdownComboBox.TabIndex = 8;

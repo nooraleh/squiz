@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QNALibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,28 @@ namespace SquizApp
         public ReplayerForm()
         {
             InitializeComponent();
+            Populate_qnaLogsDropdownComboBox();
         }
+
+        private void Populate_qnaLogsDropdownComboBox()
+        {
+            string logsDirectory = Utility.LogsDirectory();
+
+            string[] logFiles = Directory.GetFiles(logsDirectory, "*.json");
+
+            if (logFiles.Length != 0)
+            {
+                foreach (var logFile in logFiles)
+                {
+                    qnaLogsDropdownComboBox.Items.Add(Path.GetFileName(logFile));
+                }
+            }
+            else
+            {
+                qnaLogsLabel.Text = "No logs for the failed QNA - nothing to replay!";
+                qnaLogsDropdownComboBox.Visible = false;
+            }
+        }
+
     }
 }
