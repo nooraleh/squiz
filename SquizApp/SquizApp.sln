@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquizApp", "SquizApp\SquizApp.csproj", "{53DC4BDA-353D-4F36-8B8F-41BF0AFAFAAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquizApp", "SquizApp\SquizApp.csproj", "{53DC4BDA-353D-4F36-8B8F-41BF0AFAFAAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QNALibrary", "QNALibrary\QNALibrary.csproj", "{65B68299-4C3A-4C8C-A706-2A3782199B5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QNALibrary", "QNALibrary\QNALibrary.csproj", "{65B68299-4C3A-4C8C-A706-2A3782199B5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QNALibrary.Tests", "QNALibrary.Tests\QNALibrary.Tests.csproj", "{1BDDD6CF-4D7A-4DD0-B958-8632C160615B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B68299-4C3A-4C8C-A706-2A3782199B5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BDDD6CF-4D7A-4DD0-B958-8632C160615B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BDDD6CF-4D7A-4DD0-B958-8632C160615B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BDDD6CF-4D7A-4DD0-B958-8632C160615B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BDDD6CF-4D7A-4DD0-B958-8632C160615B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
