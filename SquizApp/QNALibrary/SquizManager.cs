@@ -1,7 +1,9 @@
-﻿using System;
+﻿using QNALibrary.mappings.CPP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace QNALibrary
@@ -56,6 +58,7 @@ namespace QNALibrary
         public void ManualSetup(int startRange, int endRange, string qnaKey, QNACollection qnaCollection)
         {
             QNASubmapping = qnaCollection.GetManualSubcollection(startRange, endRange, qnaKey);
+            FailedQNAMappingQueue = new();
             Title = qnaKey;
             Category = qnaCollection.GetQNACategory(qnaKey);
 
@@ -232,10 +235,21 @@ namespace QNALibrary
 
         public void CurrentQNAFail()
         {
-            FailedQNAMappingQueue.Enqueue(CurrentQNA);
+            EnqueueFailedQNAMappingQueue();
 
             NextQNA(false);
         }
+
+        private void EnqueueFailedQNAMappingQueue()
+        {
+            // don't want to log duplicate QNA - since we already have 
+            // a mechanism for repeating failed qna intra-squiz
+            if (!FailedQNAMappingQueue.Contains(CurrentQNA))
+            {
+                FailedQNAMappingQueue.Enqueue(CurrentQNA);
+            }
+        }
+
 
         private void NextQNA(bool pass)
         {
@@ -252,6 +266,22 @@ namespace QNALibrary
                 NextQNA();
             }
         }
+
+        public void LogFailedQNA()
+        {
+            string logFileName = $"{Title}-{DateTime.Now.ToString("yyyyMMdd-HHmm")}.json";
+            string logFilePath = Path.Combine(Utility.LogsDirectory(), logFileName);
+            
+            string failedQNAJSON = JsonSerializer.Serialize(FailedQNAMappingQueue);
+
+            File.WriteAllText(logFilePath, failedQNAJSON);
+        }
+
+        public void LoadFailedQNA(string logFileName)
+        {
+            // TODO: implement
+        }
+
 
         private void NextQNA()
         {
