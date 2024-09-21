@@ -1,4 +1,4 @@
-﻿namespace QNALibrary.Gregoire;
+﻿namespace QNALibrary.mappings.CPP;
 
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Runtime.Intrinsics.X86;
