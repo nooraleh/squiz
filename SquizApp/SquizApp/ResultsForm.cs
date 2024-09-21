@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QNALibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,40 @@ namespace SquizApp
             RandomModeForm mainForm = new();
             mainForm.Show();
             this.Close();
+        }
+
+        private async void ResultsForm_Load(object sender, EventArgs e)
+        {
+            if (SquizManager.Instance.FailedQNAMappingQueue.Count > 0)
+            {
+                InitiateProgressBarAndStatusLabel();
+                await Task.Run(() => LogFailedQNA());
+                EndProgressBarAndStatusLabel();
+            }
+            else
+            {
+                loggingStatusLabel.Text = "";
+            }
+
+        }
+
+        private void LogFailedQNA()
+        {
+            SquizManager.Instance.LogFailedQNA();
+        }
+
+        private void InitiateProgressBarAndStatusLabel()
+        {
+            loggingStatusLabel.Text = "Logging Failed QNA...";
+            failedQNALoggingProgressBar.Style = ProgressBarStyle.Marquee;
+            failedQNALoggingProgressBar.MarqueeAnimationSpeed = 30;
+        }
+
+        private void EndProgressBarAndStatusLabel()
+        {
+            loggingStatusLabel.Text = "Failed QNA logged!";
+            failedQNALoggingProgressBar.Style = ProgressBarStyle.Blocks;
+            failedQNALoggingProgressBar.Value = 100;
         }
     }
 }

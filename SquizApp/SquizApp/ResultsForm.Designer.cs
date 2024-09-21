@@ -31,6 +31,8 @@
             amountCorrectFirstTryLabel = new Label();
             amountCorrectFirstTryTextBox = new TextBox();
             backToMainFormButton = new Button();
+            failedQNALoggingProgressBar = new ProgressBar();
+            loggingStatusLabel = new Label();
             SuspendLayout();
             // 
             // amountCorrectFirstTryLabel
@@ -52,25 +54,44 @@
             // backToMainFormButton
             // 
             backToMainFormButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            backToMainFormButton.Location = new Point(232, 208);
+            backToMainFormButton.Location = new Point(123, 139);
             backToMainFormButton.Name = "backToMainFormButton";
-            backToMainFormButton.Size = new Size(239, 110);
+            backToMainFormButton.Size = new Size(283, 50);
             backToMainFormButton.TabIndex = 2;
             backToMainFormButton.TabStop = false;
             backToMainFormButton.Text = "Back to Main Page";
             backToMainFormButton.UseVisualStyleBackColor = true;
             backToMainFormButton.Click += backToMainFormButton_Click;
             // 
+            // failedQNALoggingProgressBar
+            // 
+            failedQNALoggingProgressBar.Location = new Point(123, 335);
+            failedQNALoggingProgressBar.Name = "failedQNALoggingProgressBar";
+            failedQNALoggingProgressBar.Size = new Size(432, 23);
+            failedQNALoggingProgressBar.TabIndex = 11;
+            // 
+            // loggingStatusLabel
+            // 
+            loggingStatusLabel.AutoSize = true;
+            loggingStatusLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            loggingStatusLabel.Location = new Point(123, 295);
+            loggingStatusLabel.Name = "loggingStatusLabel";
+            loggingStatusLabel.Size = new Size(0, 21);
+            loggingStatusLabel.TabIndex = 12;
+            // 
             // ResultsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(907, 530);
+            Controls.Add(loggingStatusLabel);
+            Controls.Add(failedQNALoggingProgressBar);
             Controls.Add(backToMainFormButton);
             Controls.Add(amountCorrectFirstTryTextBox);
             Controls.Add(amountCorrectFirstTryLabel);
             Name = "ResultsForm";
             Text = "ResultsForm";
+            Load += ResultsForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -80,5 +101,7 @@
         private Label amountCorrectFirstTryLabel;
         private TextBox amountCorrectFirstTryTextBox;
         private Button backToMainFormButton;
+        private ProgressBar failedQNALoggingProgressBar;
+        private Label loggingStatusLabel;
     }
 }
