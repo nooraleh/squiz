@@ -21,7 +21,7 @@ namespace SquizApp
         {
             this.Hide();
 
-            // create and display RandomModeForms
+            // create and display RandomModeForm
             RandomModeForm randomModeForm = new();
             randomModeForm.FormClosed += (sender, e) => this.Close();
             randomModeForm.Show();
@@ -31,10 +31,20 @@ namespace SquizApp
         {
             this.Hide();
 
-            // create and display RandomModeForms
+            // create and display ManualModeForm
             ManualModeForm manualModeForm = new();
             manualModeForm.FormClosed += (sender, e) => this.Close();
             manualModeForm.Show();
+        }
+
+        private void replayerModeButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            // create and display ReplayerModeForm
+            ReplayerForm replayerModeForm = new();
+            replayerModeForm.FormClosed += (sender, e) => this.Close();
+            replayerModeForm.Show();
         }
     }
 }

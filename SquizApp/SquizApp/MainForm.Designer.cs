@@ -31,6 +31,7 @@
             randomModeButton = new Button();
             manualModeButton = new Button();
             welcomeLabel = new Label();
+            replayerModeButton = new Button();
             SuspendLayout();
             // 
             // randomModeButton
@@ -63,11 +64,22 @@
             welcomeLabel.TabIndex = 7;
             welcomeLabel.Text = "Which mode are we picking?";
             // 
+            // replayerModeButton
+            // 
+            replayerModeButton.Location = new Point(70, 271);
+            replayerModeButton.Name = "replayerModeButton";
+            replayerModeButton.Size = new Size(250, 56);
+            replayerModeButton.TabIndex = 8;
+            replayerModeButton.Text = "Replayer Mode";
+            replayerModeButton.UseVisualStyleBackColor = true;
+            replayerModeButton.Click += replayerModeButton_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(replayerModeButton);
             Controls.Add(welcomeLabel);
             Controls.Add(manualModeButton);
             Controls.Add(randomModeButton);
@@ -82,5 +94,6 @@
         private Button randomModeButton;
         private Button manualModeButton;
         private Label welcomeLabel;
+        private Button replayerModeButton;
     }
 }
