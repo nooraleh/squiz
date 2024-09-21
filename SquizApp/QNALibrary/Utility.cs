@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,6 +140,20 @@ ${0}$
             return isDebug;
         }
 
+        public static string LogsDirectory()
+        {
+            string logsDirectory = Path.Combine(
+            Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData),
+                Assembly.GetExecutingAssembly().GetName().Name,
+                "Logs"
+            );
+
+            // ensure directory exists
+            Directory.CreateDirectory(logsDirectory);
+
+            return logsDirectory;
+        }
 
     }
 }
