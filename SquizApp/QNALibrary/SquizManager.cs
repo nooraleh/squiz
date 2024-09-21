@@ -29,6 +29,8 @@ namespace QNALibrary
 
         public Queue<Dictionary<string, string>> QNASubmapping { get; set; }
 
+        public Queue<Dictionary<string, string>> FailedQNAMappingQueue { get; set; }
+
         public Dictionary<string, string> CurrentQNA { get; set; }
 
         public void CurrentQNAPass()
@@ -40,6 +42,7 @@ namespace QNALibrary
         {
             NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
+            FailedQNAMappingQueue = new();
             Title = qnaKey;
             Category = qnaCollection.GetQNACategory(qnaKey);
 
@@ -229,7 +232,7 @@ namespace QNALibrary
 
         public void CurrentQNAFail()
         {
-            // TODO: Implement (calls .Next() to move the CurrentQNA along)
+            FailedQNAMappingQueue.Enqueue(CurrentQNA);
 
             NextQNA(false);
         }
