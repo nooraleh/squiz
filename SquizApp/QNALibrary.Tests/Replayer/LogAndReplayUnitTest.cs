@@ -20,7 +20,23 @@ namespace QNALibrary.Tests.Replayer
 
 
         [Theory]
+        [InlineData(12, 45, "CBasics")]
+        [InlineData(24, 34, "BoostAsio")]
+        [InlineData(19, 37, "CiscoAdvancedCPP")]
+        [InlineData(19, 37, "CPPBasics")]
+        [InlineData(2, 45, "CPPConcurrency")]
+        [InlineData(45, 74, "CPPYouTube")]
+        [InlineData(3, 7, "DesignPatternsCPP20")]
+        [InlineData(37, 65, "EffectiveCPP11_14")]
         [InlineData(50, 73, "Gregoire")]
+        [InlineData(5, 24, "CPPSTL")]
+        [InlineData(45, 82, "CS11DotNet7")]
+        [InlineData(13, 27, "CSharpIntermediate")]
+        [InlineData(1, 21, "DotNetMaui")]
+        [InlineData(29, 54, "KeyFinancialMarketsConcepts")]
+        [InlineData(32, 96, "OptionsFuturesOtherDerivatives")]
+        [InlineData(4, 39, "PracticalCPP20Finance")]
+        [InlineData(43, 45, "NetworkProgramming")]
         public void SquizManager_Logs_QNACollection_RoundTrips(int startRange, int endRange, string selectedDropdown)
         {
             /*
