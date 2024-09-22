@@ -47,46 +47,30 @@ namespace QNALibrary
         {
             NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
-            FailedQNAMappingQueue = new();
-            Title = qnaKey;
-            Category = qnaCollection.GetQNACategory(qnaKey);
-
-            // assign first QNA to `CurrentQNA`
-            NextQNA();
-
-            // compile relevant snippets into LaTeX pdf files
-            CompileSubmappingSnippetsLaTeX( QNASubmapping);
-
-            // QNATestCollection component classes should not be logged
-            ShouldLogFailedQNA = qnaCollection.ShouldLogFailedQNA;
+            SharedSetup(qnaCollection, qnaKey);
         }
 
         public void ManualSetup(int startRange, int endRange, string qnaKey, QNACollection qnaCollection)
         {
             QNASubmapping = qnaCollection.GetManualSubcollection(startRange, endRange, qnaKey);
-            FailedQNAMappingQueue = new();
-            Title = qnaKey;
-            Category = qnaCollection.GetQNACategory(qnaKey);
-
-            // assign first QNA to `CurrentQNA`
-            NextQNA();
-
-            // compile relevant snippets into LaTeX pdf files
-            CompileSubmappingSnippetsLaTeX(QNASubmapping);
-
-            // QNATestCollection component classes should not be logged
-            ShouldLogFailedQNA = qnaCollection.ShouldLogFailedQNA;
+            SharedSetup(qnaCollection, qnaKey);
         }
 
         public void ReplayerSetup(string fullPathToLogFile)
         {
             QNASubmapping = LoadFailedQNA(fullPathToLogFile);
-            FailedQNAMappingQueue = new();
-
-            QNACollection qnaCollection = new();
 
             // since the formatting of the filename is $"{Title}-{DateTime.Now.ToString("yyyyMMdd-HHmm")}.json"
             string qnaKey = Path.GetFileName(fullPathToLogFile).Split('-')[0];
+
+            QNACollection qnaCollection = new();
+            SharedSetup(qnaCollection, qnaKey);
+        }
+
+        private void SharedSetup(QNACollection qnaCollection, string qnaKey)
+        {
+            FailedQNAMappingQueue = new();
+
             Title = qnaKey;
             Category = qnaCollection.GetQNACategory(qnaKey);
 
@@ -99,6 +83,7 @@ namespace QNALibrary
             // QNATestCollection component classes should not be logged
             ShouldLogFailedQNA = qnaCollection.ShouldLogFailedQNA;
         }
+
 
 
         public void CompileSubmappingSnippetsLaTeX(Queue<Dictionary<string, string>> qnaSubMapping)
