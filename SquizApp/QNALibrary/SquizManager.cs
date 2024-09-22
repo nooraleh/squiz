@@ -72,8 +72,7 @@ namespace QNALibrary
 
         public void ReplayerSetup(string fullPathToLogFile)
         {
-            string jsonQNA = File.ReadAllText(fullPathToLogFile);
-            QNASubmapping = JsonSerializer.Deserialize<Queue<Dictionary<string, string>>>(jsonQNA);
+            QNASubmapping = LoadFailedQNA(fullPathToLogFile);
             FailedQNAMappingQueue = new();
 
             QNACollection qnaCollection = new();
@@ -298,20 +297,18 @@ namespace QNALibrary
             File.WriteAllText(logFilePath, failedQNAJSON);
         }
 
-        public void LoadFailedQNA(string logFileName)
+        public Queue<Dictionary<string, string>> LoadFailedQNA(string fullPathToLogFile)
         {
-            // TODO: implement
+            string jsonQNA = File.ReadAllText(fullPathToLogFile);
+            return JsonSerializer.Deserialize<Queue<Dictionary<string, string>>>(jsonQNA);
         }
-
 
         private void NextQNA()
         {
-
             if (!IsEmpty())
             {
                 CurrentQNA = QNASubmapping.Peek();
             }
-
 
             string nAttemptsTryValue = "0";
             if (!CurrentQNA.TryAdd("nAttempts", nAttemptsTryValue))
