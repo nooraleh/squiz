@@ -32,6 +32,7 @@
             qnaLogsDropdownComboBox = new ComboBox();
             startQuizButton = new Button();
             squizSetupProgressBar = new ProgressBar();
+            backToMainFormButton = new Button();
             SuspendLayout();
             // 
             // qnaLogsLabel
@@ -71,17 +72,30 @@
             squizSetupProgressBar.Size = new Size(718, 23);
             squizSetupProgressBar.TabIndex = 10;
             // 
+            // backToMainFormButton
+            // 
+            backToMainFormButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            backToMainFormButton.Location = new Point(597, 368);
+            backToMainFormButton.Name = "backToMainFormButton";
+            backToMainFormButton.Size = new Size(244, 64);
+            backToMainFormButton.TabIndex = 11;
+            backToMainFormButton.Text = "Back to Main";
+            backToMainFormButton.UseVisualStyleBackColor = true;
+            backToMainFormButton.Click += backToMainFormButton_Click;
+            // 
             // ReplayerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(956, 551);
+            Controls.Add(backToMainFormButton);
             Controls.Add(squizSetupProgressBar);
             Controls.Add(startQuizButton);
             Controls.Add(qnaLogsDropdownComboBox);
             Controls.Add(qnaLogsLabel);
             Name = "ReplayerForm";
             Text = "ReplayerForm";
+            FormClosed += ReplayerForm_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -92,5 +106,6 @@
         private ComboBox qnaLogsDropdownComboBox;
         private Button startQuizButton;
         private ProgressBar squizSetupProgressBar;
+        private Button backToMainFormButton;
     }
 }

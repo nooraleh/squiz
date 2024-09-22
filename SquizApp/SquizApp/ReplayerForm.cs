@@ -13,11 +13,16 @@ namespace SquizApp
 {
     public partial class ReplayerForm : Form
     {
-        public ReplayerForm()
+        public ReplayerForm(MainForm mainForm)
         {
             InitializeComponent();
             Populate_qnaLogsDropdownComboBox();
+
+            // store a reference to the mainForm for going back
+            _mainForm = mainForm;
         }
+
+        private MainForm _mainForm;
 
         private void Populate_qnaLogsDropdownComboBox()
         {
@@ -93,10 +98,20 @@ namespace SquizApp
             return string.Empty;
         }
 
-
         private void Impl_startQuizButton_Click(string fullPathToLogFile)
         {
             SquizManager.Instance.ReplayerSetup(fullPathToLogFile);
+        }
+
+        private void backToMainFormButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.Show();
+            this.Hide();
+        }
+
+        private void ReplayerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _mainForm.Show();
         }
     }
 }
