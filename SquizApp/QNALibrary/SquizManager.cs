@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -59,6 +60,26 @@ namespace QNALibrary
         {
             QNASubmapping = qnaCollection.GetManualSubcollection(startRange, endRange, qnaKey);
             FailedQNAMappingQueue = new();
+            Title = qnaKey;
+            Category = qnaCollection.GetQNACategory(qnaKey);
+
+            // assign first QNA to `CurrentQNA`
+            NextQNA();
+
+            // compile relevant snippets into LaTeX pdf files
+            CompileSubmappingSnippetsLaTeX(QNASubmapping);
+        }
+
+        public void ReplayerSetup(string fullPathToLogFile)
+        {
+            string jsonQNA = File.ReadAllText(fullPathToLogFile);
+            QNASubmapping = JsonSerializer.Deserialize<Queue<Dictionary<string, string>>>(jsonQNA);
+            FailedQNAMappingQueue = new();
+
+            QNACollection qnaCollection = new();
+
+            // since the formatting of the filename is $"{Title}-{DateTime.Now.ToString("yyyyMMdd-HHmm")}.json"
+            string qnaKey = Path.GetFileName(fullPathToLogFile).Split('-')[0];
             Title = qnaKey;
             Category = qnaCollection.GetQNACategory(qnaKey);
 
