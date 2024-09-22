@@ -298,17 +298,22 @@ namespace QNALibrary
             }
         }
 
-        public void LogFailedQNA()
+        public string LogFailedQNA()
         {
+            string logFilePath = string.Empty;
+
             if (ShouldLogFailedQNA)
             {
                 string logFileName = $"{Title}-{DateTime.Now.ToString("yyyyMMdd-HHmm")}.json";
-                string logFilePath = Path.Combine(Utility.LogsDirectory(), logFileName);
+                logFilePath = Path.Combine(Utility.LogsDirectory(), logFileName);
 
                 string failedQNAJSON = JsonSerializer.Serialize(FailedQNAMappingQueue);
 
                 File.WriteAllText(logFilePath, failedQNAJSON);
+
             }
+
+            return logFilePath;
         }
 
         public Queue<Dictionary<string, string>> LoadFailedQNA(string fullPathToLogFile)
