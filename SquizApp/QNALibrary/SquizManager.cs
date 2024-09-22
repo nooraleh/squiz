@@ -30,6 +30,8 @@ namespace QNALibrary
 
         public int NQuestions { get; set;}
 
+        private bool ShouldLogFailedQNA { get; set; }
+
         public Queue<Dictionary<string, string>> QNASubmapping { get; set; }
 
         public Queue<Dictionary<string, string>> FailedQNAMappingQueue { get; set; }
@@ -54,6 +56,9 @@ namespace QNALibrary
 
             // compile relevant snippets into LaTeX pdf files
             CompileSubmappingSnippetsLaTeX( QNASubmapping);
+
+            // QNATestCollection component classes should not be logged
+            ShouldLogFailedQNA = qnaCollection.ShouldLogFailedQNA;
         }
 
         public void ManualSetup(int startRange, int endRange, string qnaKey, QNACollection qnaCollection)
@@ -68,6 +73,9 @@ namespace QNALibrary
 
             // compile relevant snippets into LaTeX pdf files
             CompileSubmappingSnippetsLaTeX(QNASubmapping);
+
+            // QNATestCollection component classes should not be logged
+            ShouldLogFailedQNA = qnaCollection.ShouldLogFailedQNA;
         }
 
         public void ReplayerSetup(string fullPathToLogFile)
@@ -87,6 +95,9 @@ namespace QNALibrary
 
             // compile relevant snippets into LaTeX pdf files
             CompileSubmappingSnippetsLaTeX(QNASubmapping);
+
+            // QNATestCollection component classes should not be logged
+            ShouldLogFailedQNA = qnaCollection.ShouldLogFailedQNA;
         }
 
 
@@ -289,12 +300,15 @@ namespace QNALibrary
 
         public void LogFailedQNA()
         {
-            string logFileName = $"{Title}-{DateTime.Now.ToString("yyyyMMdd-HHmm")}.json";
-            string logFilePath = Path.Combine(Utility.LogsDirectory(), logFileName);
-            
-            string failedQNAJSON = JsonSerializer.Serialize(FailedQNAMappingQueue);
+            if (ShouldLogFailedQNA)
+            {
+                string logFileName = $"{Title}-{DateTime.Now.ToString("yyyyMMdd-HHmm")}.json";
+                string logFilePath = Path.Combine(Utility.LogsDirectory(), logFileName);
 
-            File.WriteAllText(logFilePath, failedQNAJSON);
+                string failedQNAJSON = JsonSerializer.Serialize(FailedQNAMappingQueue);
+
+                File.WriteAllText(logFilePath, failedQNAJSON);
+            }
         }
 
         public Queue<Dictionary<string, string>> LoadFailedQNA(string fullPathToLogFile)

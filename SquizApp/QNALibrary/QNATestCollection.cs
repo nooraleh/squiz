@@ -13,6 +13,8 @@ public class QNATestCollection : QNACollection
         PopuplateQNACollectionMapping();
     }
 
+    public override bool ShouldLogFailedQNA { get; } = false;
+
     protected override void PopuplateQNACollectionMapping()
     {
         qnaCollectionMapping.Clear();

@@ -25,6 +25,10 @@ public class QNACollection
         Add(new QNALibrary.mappings.CPP.CPPSTL());
     }
 
+    // tells the SquizManager whether the QNABase objects in the collection
+    // should log failed QNA
+    public virtual bool ShouldLogFailedQNA { get; } = true;
+
     protected void Add(QNABase qnaBase)
     {
         qnaCollectionMapping.TryAdd(qnaBase.ToString(), qnaBase);
