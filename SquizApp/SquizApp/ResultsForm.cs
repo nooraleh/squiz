@@ -21,9 +21,9 @@ namespace SquizApp
 
         private void backToMainFormButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            RandomModeForm mainForm = new();
-            mainForm.Show();
+            // Since a reshowing of `MainForm` instance is linked to the closing of a [Manual|Random|Replayer]Form,
+            // which is turn linked to the closing of a CompareAnswerForm and furthermore this form, simply
+            // closing `this` will cause the MainForm instance that was hidden to reappear
             this.Close();
         }
 
