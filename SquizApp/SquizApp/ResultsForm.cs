@@ -17,6 +17,7 @@ namespace SquizApp
         public ResultsForm()
         {
             InitializeComponent();
+            Display_amountCorrectFirstTryTextBox();
         }
 
         private void backToMainFormButton_Click(object sender, EventArgs e)
@@ -39,8 +40,15 @@ namespace SquizApp
             {
                 loggingStatusLabel.Text = "";
             }
-
         }
+
+        private void Display_amountCorrectFirstTryTextBox()
+        {
+            int amountFailed = SquizManager.Instance.FailedQNAMappingQueue.Count;
+            int totalQuestions = SquizManager.Instance.NQuestions;
+            amountCorrectFirstTryTextBox.Text = $"{amountFailed}/{totalQuestions}";
+        }
+
 
         private void LogFailedQNA()
         {

@@ -36,6 +36,9 @@ namespace QNALibrary
 
         public Queue<Dictionary<string, string>> FailedQNAMappingQueue { get; set; }
 
+        // full path include filename for failed qna in this squiz managed session
+        public string FailedQNALogPath { get; set; } = string.Empty;
+
         public Dictionary<string, string> CurrentQNA { get; set; }
 
         public void CurrentQNAPass()
@@ -115,11 +118,8 @@ namespace QNALibrary
             }
         }
 
-
         public string Title { get; set; }
-
         public QNACategory Category { get; set; }
-
         public void AddUserAnswer(string userAnswer)
         {
             // if we can't add it then it already exists
