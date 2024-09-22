@@ -267,7 +267,6 @@ namespace QNALibrary
             }
         }
 
-
         private void NextQNA(bool pass)
         {
             // pops the currentQNA to the back of the list if false, removes if true
@@ -298,6 +297,8 @@ namespace QNALibrary
                 File.WriteAllText(logFilePath, failedQNAJSON);
 
             }
+
+            FailedQNALogPath = logFilePath;
 
             return logFilePath;
         }
