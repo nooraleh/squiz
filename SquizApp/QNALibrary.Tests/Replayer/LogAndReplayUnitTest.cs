@@ -19,8 +19,9 @@ namespace QNALibrary.Tests.Replayer
         }
 
 
-        [Fact]
-        public void SquizManager_Logs_RoundTrips_Gregory() // TODO: Could be a thoery with inline data being the ManualSetup arguments
+        [Theory]
+        [InlineData(50, 73, "Gregoire")]
+        public void SquizManager_Logs_QNACollection_RoundTrips(int startRange, int endRange, string selectedDropdown)
         {
             /*
              Testing summary:
@@ -32,9 +33,7 @@ namespace QNALibrary.Tests.Replayer
                   loaded from .json
              */
 
-            (int startRange, int endRange, string selectedDropdown, QNACollection qnaCollection) = (50, 73, "Gregoire", new QNACollection());
-
-            SquizManager.Instance.ManualSetup(startRange, endRange, selectedDropdown, qnaCollection);
+            SquizManager.Instance.ManualSetup(startRange, endRange, selectedDropdown, new QNACollection());
 
             Queue<Dictionary<string, string>> expectedQNAMapping = SquizManager.Instance.QNASubmapping;
 
@@ -44,9 +43,27 @@ namespace QNALibrary.Tests.Replayer
 
             Queue<Dictionary<string, string>> resultQNAMapping = SquizManager.Instance.LoadFailedQNA(fullPathToLogFile);
 
-
             expectedQNAMapping.Should().BeEquivalentTo(resultQNAMapping);
         }
 
+
+        [Theory]
+        [InlineData(0, 3, "TestLatexSnippetLogic")]
+        [InlineData(0, 1, "TestImageDisplay")]
+        public void SquizManager_Logs_QNATestCollection_NoLogs(int startRange, int endRange, string selectedDropdown)
+        {
+            /*
+             Unit tests confirming that component QNA of `QNATestCollection` do not log failed QNA (or at all).
+             */
+
+            SquizManager.Instance.ManualSetup(startRange, endRange, selectedDropdown, new QNATestCollection());
+
+            LogAndReplayUnitTest.SimulateFailedQNA();
+
+            string fullPathToLogFile = SquizManager.Instance.LogFailedQNA();
+
+            // `fullPathToLogFile` as there should be no log file, hence no logging
+            fullPathToLogFile.Should().BeEmpty();
+        }
     }
 }
