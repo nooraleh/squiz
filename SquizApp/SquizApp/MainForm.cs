@@ -22,8 +22,7 @@ namespace SquizApp
             this.Hide();
 
             // create and display RandomModeForm
-            RandomModeForm randomModeForm = new();
-            randomModeForm.FormClosed += (sender, e) => this.Close();
+            RandomModeForm randomModeForm = new(this);
             randomModeForm.Show();
         }
 

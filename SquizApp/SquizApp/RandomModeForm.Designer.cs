@@ -37,6 +37,7 @@
             testQNADropdownLabel = new Label();
             testQNADropdownComboBox = new ComboBox();
             useTestQNACheckBox = new CheckBox();
+            backToMainFormButton = new Button();
             ((System.ComponentModel.ISupportInitialize)numberOfQuestionsAskedNumericUpDown).BeginInit();
             SuspendLayout();
             // 
@@ -126,11 +127,23 @@
             useTestQNACheckBox.Text = "Use Test QNA";
             useTestQNACheckBox.UseVisualStyleBackColor = true;
             // 
+            // backToMainFormButton
+            // 
+            backToMainFormButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            backToMainFormButton.Location = new Point(685, 214);
+            backToMainFormButton.Name = "backToMainFormButton";
+            backToMainFormButton.Size = new Size(244, 64);
+            backToMainFormButton.TabIndex = 12;
+            backToMainFormButton.Text = "Back to Main";
+            backToMainFormButton.UseVisualStyleBackColor = true;
+            backToMainFormButton.Click += backToMainFormButton_Click;
+            // 
             // RandomModeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1171, 702);
+            Controls.Add(backToMainFormButton);
             Controls.Add(useTestQNACheckBox);
             Controls.Add(testQNADropdownComboBox);
             Controls.Add(testQNADropdownLabel);
@@ -142,6 +155,7 @@
             Controls.Add(qnaDropdownComboBox);
             Name = "RandomModeForm";
             Text = "Squiz";
+            FormClosed += RandomModeForm_FormClosed;
             ((System.ComponentModel.ISupportInitialize)numberOfQuestionsAskedNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -158,5 +172,6 @@
         private Label testQNADropdownLabel;
         private ComboBox testQNADropdownComboBox;
         private CheckBox useTestQNACheckBox;
+        private Button backToMainFormButton;
     }
 }

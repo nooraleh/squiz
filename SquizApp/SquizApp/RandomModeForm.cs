@@ -4,13 +4,16 @@ namespace SquizApp
 {
     public partial class RandomModeForm : Form
     {
-        public RandomModeForm()
+        public RandomModeForm(MainForm mainForm)
         {
             InitializeComponent();
 
             Populate_qnaDropdownComboBox();
             Populate_testQNADropdownComboBox();
+            _mainForm = mainForm;
         }
+
+        private MainForm _mainForm;
 
         private void Populate_qnaDropdownComboBox()
         {
@@ -38,7 +41,7 @@ namespace SquizApp
             }
         }
 
-        private async  void startQuizButton_Click(object sender, EventArgs e)
+        private async void startQuizButton_Click(object sender, EventArgs e)
         {
             Initiate_squizSetupProgressBar();
             await Task.Run(() => Impl_startQuizButton_Click());
@@ -85,6 +88,17 @@ namespace SquizApp
             {
                 Directory.Delete(snippetsDirectory, true);
             }
+        }
+
+        private void backToMainFormButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.Show();
+            this.Hide();
+        }
+
+        private void RandomModeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _mainForm.Show();
         }
     }
 }
