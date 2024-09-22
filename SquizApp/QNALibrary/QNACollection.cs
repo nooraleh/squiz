@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-namespace QNALibrary;
+﻿namespace QNALibrary;
 
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using QNACollectionMapping = Dictionary<string, QNABase>;
@@ -21,8 +13,23 @@ public class QNACollection
 
     protected virtual void PopuplateQNACollectionMapping()
     {
+        Add(new QNALibrary.mappings.C.CBasics());
+        Add(new QNALibrary.mappings.CPP.BoostAsio());
+        Add(new QNALibrary.mappings.CPP.CiscoAdvancedCPP());
+        Add(new QNALibrary.mappings.CPP.CPPBasics());
+        Add(new QNALibrary.mappings.CPP.CPPConcurrency());
+        Add(new QNALibrary.mappings.CPP.CPPYouTube());
+        Add(new QNALibrary.mappings.CPP.DesignPatternsCPP20());
+        Add(new QNALibrary.mappings.CPP.EffectiveCPP11_14());
         Add(new QNALibrary.mappings.CPP.Gregoire());
         Add(new QNALibrary.mappings.CPP.CPPSTL());
+        Add(new QNALibrary.mappings.CSharp.CS11DotNet7());
+        Add(new QNALibrary.mappings.CSharp.CSharpIntermediate());
+        Add(new QNALibrary.mappings.CSharp.DotNetMaui());
+        Add(new QNALibrary.mappings.Finance.KeyFinancialMarketsConcepts());
+        Add(new QNALibrary.mappings.Finance.OptionsFuturesOtherDerivatives());
+        Add(new QNALibrary.mappings.Finance.PracticalCPP20Finance());
+        Add(new QNALibrary.mappings.Software.NetworkProgramming());
     }
 
     // tells the SquizManager whether the QNABase objects in the collection
