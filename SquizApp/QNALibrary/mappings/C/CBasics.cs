@@ -245,6 +245,25 @@ namespace QNALibrary.mappings.C
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
+    {35, new Dictionary<string, string>() {
+        {"q", @"Name the three storage classes and what they each represent:
+		
+		1) extern: 
+		
+		2) static: 
+		
+		3) register:"},
+        {"a", @"1) extern: 
+		
+		2) static: variable is brought to life when the function starts and is destroyed when the program finishes.
+			It does not allow the scope of the variable to be extended beyond the parent module
+			i.e. it's not going to be accessible in other modules.
+		
+		3) register: qualifier to not store data in conventional memory, instead in registers.
+			Variables with this declaration cannot be used as an argument to address-of &, since they have no address."},
+        {"snippetQ", @""},
+        {"snippetA", @""},
+    }},
     {37, new Dictionary<string, string>() {
         {"q", @"What is the custom for struct tag naming?"},
         {"a", @"Using capital letters."},
@@ -446,25 +465,6 @@ namespace QNALibrary.mappings.C
 		
 		How would we define it from command line and therefore include any code within the ifdef/endif block?"},
         {"a", @"gcc -D DEBUG prog.c"},
-        {"snippetQ", @""},
-        {"snippetA", @""},
-    }},
-    {64, new Dictionary<string, string>() {
-        {"q", @"Name the three storage classes and what they each represent:
-		
-		1) extern: 
-		
-		2) static: 
-		
-		3) register:"},
-        {"a", @"1) extern: 
-		
-		2) static: variable is brought to life when the function starts and is destroyed when the program finishes.
-			It does not allow the scope of the variable to be extended beyond the parent module
-			i.e. it's not going to be accessible in other modules.
-		
-		3) register: qualifier to not store data in conventional memory, instead in registers.
-			Variables with this declaration cannot be used as an argument to address-of &, since they have no address."},
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
