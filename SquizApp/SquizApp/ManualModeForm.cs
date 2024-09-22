@@ -17,10 +17,10 @@ namespace SquizApp
         {
             InitializeComponent();
 
-            Imply_ManualModeForm_Logic();
+            Impl_ManualModeForm_Logic();
         }
 
-        private void Imply_ManualModeForm_Logic()
+        private void Impl_ManualModeForm_Logic()
         {
             Populate_qnaDropdownComboBox();
             Populate_testQNADropdownComboBox();
