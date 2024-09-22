@@ -45,7 +45,6 @@ namespace QNALibrary
 
         public void RandomSetup(int nQNA, string qnaKey, QNACollection qnaCollection)
         {
-            NQuestions = nQNA;
             QNASubmapping = qnaCollection.GetRandomSubcollection(nQNA, qnaKey);
             SharedSetup(qnaCollection, qnaKey);
         }
@@ -69,6 +68,8 @@ namespace QNALibrary
 
         private void SharedSetup(QNACollection qnaCollection, string qnaKey)
         {
+            NQuestions = QNASubmapping.Count;
+
             FailedQNAMappingQueue = new();
 
             Title = qnaKey;
