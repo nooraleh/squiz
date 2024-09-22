@@ -62,6 +62,7 @@
             startQuizButton.TabIndex = 9;
             startQuizButton.Text = "Start Quiz!";
             startQuizButton.UseVisualStyleBackColor = true;
+            startQuizButton.Click += startQuizButton_Click;
             // 
             // squizSetupProgressBar
             // 
