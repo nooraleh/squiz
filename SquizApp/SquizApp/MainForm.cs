@@ -42,8 +42,7 @@ namespace SquizApp
             this.Hide();
 
             // create and display ReplayerModeForm
-            ReplayerForm replayerModeForm = new();
-            replayerModeForm.FormClosed += (sender, e) => this.Close();
+            ReplayerForm replayerModeForm = new(this);
             replayerModeForm.Show();
         }
     }
