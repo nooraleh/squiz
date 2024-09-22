@@ -13,12 +13,15 @@ namespace SquizApp
 {
     public partial class ManualModeForm : Form
     {
-        public ManualModeForm()
+        public ManualModeForm(MainForm mainForm)
         {
             InitializeComponent();
 
             Impl_ManualModeForm_Logic();
+            _mainForm = mainForm;
         }
+
+        private MainForm _mainForm;
 
         private void Impl_ManualModeForm_Logic()
         {
@@ -108,7 +111,7 @@ namespace SquizApp
 
             (int startRange, int endRange, string selectedDropdown, QNACollection qnaCollection) = DetermineSquizSetupArguments();
             await Task.Run(() => Impl_startQuizButton_Click(startRange, endRange, selectedDropdown, qnaCollection));
-            
+
             End_squizSetupProgressBar();
 
             this.FormClosed += (sender, e) => CleanSnippetsDirectory();
@@ -127,7 +130,7 @@ namespace SquizApp
 
         private (int startRange, int endRange, string selectedDropdown, QNACollection qnaCollection) DetermineSquizSetupArguments()
         {
-            int startRange; 
+            int startRange;
             int endRange;
             string selectedDropdown; ;
             QNACollection qnaCollection;
@@ -169,6 +172,17 @@ namespace SquizApp
             {
                 Directory.Delete(snippetsDirectory, true);
             }
+        }
+
+        private void backToMainFormButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.Show();
+            this.Hide();
+        }
+
+        private void ManualModeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _mainForm.Show();
         }
     }
 }

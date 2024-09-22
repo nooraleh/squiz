@@ -31,8 +31,7 @@ namespace SquizApp
             this.Hide();
 
             // create and display ManualModeForm
-            ManualModeForm manualModeForm = new();
-            manualModeForm.FormClosed += (sender, e) => this.Close();
+            ManualModeForm manualModeForm = new(this);
             manualModeForm.Show();
         }
 

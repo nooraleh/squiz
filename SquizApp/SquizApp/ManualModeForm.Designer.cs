@@ -41,6 +41,7 @@
             endRangeLabel = new Label();
             startQuizButton = new Button();
             squizSetupProgressBar = new ProgressBar();
+            backToMainFormButton = new Button();
             ((System.ComponentModel.ISupportInitialize)testQNAStartRangeNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)testQNAEndRangeNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)qnaStartRangeNumericUpDown).BeginInit();
@@ -169,11 +170,23 @@
             squizSetupProgressBar.Size = new Size(718, 23);
             squizSetupProgressBar.TabIndex = 19;
             // 
+            // backToMainFormButton
+            // 
+            backToMainFormButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            backToMainFormButton.Location = new Point(609, 201);
+            backToMainFormButton.Name = "backToMainFormButton";
+            backToMainFormButton.Size = new Size(244, 64);
+            backToMainFormButton.TabIndex = 20;
+            backToMainFormButton.Text = "Back to Main";
+            backToMainFormButton.UseVisualStyleBackColor = true;
+            backToMainFormButton.Click += backToMainFormButton_Click;
+            // 
             // ManualModeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1050, 637);
+            Controls.Add(backToMainFormButton);
             Controls.Add(squizSetupProgressBar);
             Controls.Add(startQuizButton);
             Controls.Add(endRangeLabel);
@@ -189,6 +202,7 @@
             Controls.Add(testQNADropdownLabel);
             Name = "ManualModeForm";
             Text = "ManualModeForm";
+            FormClosed += ManualModeForm_FormClosed;
             ((System.ComponentModel.ISupportInitialize)testQNAStartRangeNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)testQNAEndRangeNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)qnaStartRangeNumericUpDown).EndInit();
@@ -212,5 +226,6 @@
         private Label endRangeLabel;
         private Button startQuizButton;
         private ProgressBar squizSetupProgressBar;
+        private Button backToMainFormButton;
     }
 }
