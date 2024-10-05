@@ -23,6 +23,7 @@ public class QNACollection
         Add(new QNALibrary.mappings.CPP.EffectiveCPP11_14());
         Add(new QNALibrary.mappings.CPP.Gregoire());
         Add(new QNALibrary.mappings.CPP.CPPSTL());
+        Add(new QNALibrary.mappings.CPP.ExpertCpp());
         Add(new QNALibrary.mappings.CSharp.CS11DotNet7());
         Add(new QNALibrary.mappings.CSharp.CSharpIntermediate());
         Add(new QNALibrary.mappings.CSharp.DotNetMaui());
