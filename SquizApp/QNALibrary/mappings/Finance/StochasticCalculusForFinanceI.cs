@@ -20,15 +20,22 @@ namespace QNALibrary.mappings.Finance
 
         static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>()
         {
-            {1, new Dictionary<string, string>()
+            {1, new Dictionary<string, string>() // Chapter1: The Binomial No-Arbitrage Pricing Model
                 {
                     { "q", @"
-
+                    a) How does this book define arbitrage?
+                    b) True or false:
+                            A mathematical model that admits arbitrage cannot be used for analysis.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+                    a) As a trading strategy that:
+                        - begins with no money
+                        - has zero probability of losing money
+                        - has positive probability of making money
 
+                    b) True.
 "
                     },
                     {"snippetA", @"
@@ -45,12 +52,49 @@ namespace QNALibrary.mappings.Finance
             {2, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+                    d be a down factor
+                    u be the up factor
+                    r be the risk-free rate of interest
+            
+                    In the one-period binomial model, to rule out arbitrage we must assume:
+                        0 < d < 1 + r < u
+                    explain what would happen if any of the following hold:
+                        a) d <= 0
+                        b) d >= 1 + r
+                        c) u <= 1 + r
+        
 "                   },
                     {"snippetQ", @"
+                    
 "},
                     { "a", @"
+                    a) d > 0 follows from the positivity of stock prices. If we have S_0 at time 0 and d_0*s_0 at time 1
+                    such that:
+                        S_0 > d * S_1 > 0
+                    then we have:
+                        (S_0 / S_1) > d > 0
 
+                    b) If d >= 1 + r  - we can employ the strategy:
+                    Time t=0:
+                        - start off with zero wealth
+                        - borrow from the money market in order to buy S (at S_0)
+                    Time t=1:
+                        - Worse can scenario the value of S (S_1) would be equal to your debt 1+r
+                        - in the alternative scenario S_1 is worth more than your debt - yield a profit
+
+                    The inequality d >= 1 + r thus presents an arbitrage opportunity.
+
+                    c) If u <= 1 + r  - we can employ the strategy:
+                    Time t=0:
+                            - Sell the stock short (for S_0)
+                            - Invest the proceeds in the money market at r
+                    Time t=1:
+                        - In the 'up' case, the case of covering the short position will be equal
+                            to the return earned on the money market investment at r.
+                        - There is a positive probability that the cost of covering the short position will be less
+                            than the money market investment (the 'down' case) - since d < u <= 1+r in this world.
+
+                    The inequality u <= 1 + r thus presents an arbitrage opportunity.
 "
                     },
                     {"snippetA", @"
@@ -67,7 +111,7 @@ namespace QNALibrary.mappings.Finance
             {3, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+                        
 "                   },
                     {"snippetQ", @"
 "},
