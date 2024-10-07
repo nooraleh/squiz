@@ -19,15 +19,17 @@ namespace QNALibrary.mappings.CPP
 
         static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>()
         {
-            {1, new Dictionary<string, string>()
+            {1, new Dictionary<string, string>() // Chapter 1: Building C++ Applications
                 {
                     { "q", @"
-
+The C++ application-building process consists of three major steps, state them.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1. Preprocessing
+2. Compiling
+3. Linking
 "
                     },
                     {"snippetA", @"
@@ -44,12 +46,19 @@ namespace QNALibrary.mappings.CPP
             {2, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following statement:
+    As a rule of thumb, avoid using macro definitions. 
 
+Explain the reasoning behind this statement.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Reasoning:
+    1) Macros are error-prone
+    2) (Modern) C++ provides a set of constructs that make the use of macros obselete (e.g. `constexpr`, `consteval` specifiers)
+       that allow for compile-time evaluation.
+        
 "
                     },
                     {"snippetA", @"
@@ -66,15 +75,23 @@ namespace QNALibrary.mappings.CPP
             {3, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+C++17 introduces the __has_include preprocessor constant expression. What does it do?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Evaluates to 1 if the file with the specified name is found and 0 if not
 "
                     },
                     {"snippetA", @"
+#if __has_include(""custom_io_stream.hpp"")
+#include ""custom_io_stream.hpp""
+#define HAS_INCLUDE_RESULT ""custom_io_stream.hpp exists"" 
+#else
+#include <iostream>
+#define HAS_INCLUDE_RESULT ""custom_io_stream.hpp does not exist"" 
+#endif
+
 "
                     },
                     {"imgQ", @"
@@ -88,12 +105,17 @@ namespace QNALibrary.mappings.CPP
             {4, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the 6 phases of compilation.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) Tokenizationon
+2) Syntax analysis
+3) Semantic analysis
+4) Intermediate code generation
+5) Optimization
+6) Machine code generation
 "
                     },
                     {"snippetA", @"
@@ -110,15 +132,21 @@ namespace QNALibrary.mappings.CPP
             {5, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of programming language compilation, differentiate the terms 'syntax' and 'semantics'.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Syntax:
+    - structure of the code
+    - defines the rules by which structural tokens make sense.
+Semantics:
+    - concerns the actual meaning of the code
 "
                     },
                     {"snippetA", @"
+int b = a + 0; // syntactically correct - tokens OK. Semantically speaking, + 0 is meaningless
+int b = a + 0 // syntactically incorrect - missing semi-colon => compiler error
 "
                     },
                     {"imgQ", @"
@@ -132,12 +160,14 @@ namespace QNALibrary.mappings.CPP
             {6, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is a compilation unit?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+A compilation unit is the resultant file of preprocessing the .cpp source file, along with:
+    - all the headers that are included via the `#include` directive and;
+    - any macros defined by #define 
 "
                     },
                     {"snippetA", @"
@@ -154,12 +184,12 @@ namespace QNALibrary.mappings.CPP
             {7, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the one main difference between a library and an executable file?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+A library does not have a `main()` function, which means it cannot be invoked as a regular program.
 "
                     },
                     {"snippetA", @"
@@ -176,12 +206,20 @@ namespace QNALibrary.mappings.CPP
             {8, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Libraries can be linked with the executable file either as static or dynamic libraries.
+Outline what:
+    1) static library linking
+    2) dynamic library linking
+entails.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Static linking:
+    - The library becomes part of the final executable (i.e. part and parcel of the .exe)
+Dynamic linking:
+    - Separate file (.dll) which is loaded into memory by the OS with the ability to call
+        the libraries functions.
 "
                     },
                     {"snippetA", @"
@@ -198,15 +236,35 @@ namespace QNALibrary.mappings.CPP
             {9, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+What does the `envp` variable hold?
 "                   },
                     {"snippetQ", @"
+int main(int argc, char** argv, char** envp)
+{
+	std::cout << envp[0] << '\n';
+	std::cout << envp[1] << '\n';
+	std::cout << envp[2] << '\n';
+	std::cout << envp[3] << '\n';
+	std::cout << envp[4] << '\n';
+	std::cout << envp[5] << '\n';
+	return 0;
+}
 "},
                     { "a", @"
-
+envp is:
+    - Microsoft-specific (i.e. not standardized but widely supported)
+    - an array of points to environment variables. For example, The output to snippetQ can be seen in snippetA.
+    
 "
                     },
                     {"snippetA", @"
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Users\$(USERNAME)\AppData\Roaming
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
 "
                     },
                     {"imgQ", @"
@@ -220,15 +278,58 @@ namespace QNALibrary.mappings.CPP
             {10, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    i) Line (1) will cause a compilation error
+    ii) Line (2) will cause a compilation error
+
+Explain the reasoning of your answers
 "                   },
                     {"snippetQ", @"
+struct BeforeMain
+{
+public:
+	BeforeMain()
+	{
+		std::print(""BeforeMain ctor\n"");
+	}
+
+	void test()
+	{
+		std::print(""Test function\n"");
+	}
+};
+
+BeforeMain b;  // (1)
+b.test();      // (2)
+
+int main(int argc, char** argv, char** envp)
+{
+	std::print(""Calling main:\n"");
+
+	return 0;
+}
 "},
                     { "a", @"
+i) False
+ii) True
 
+Explanation:
+    Main is not the true starting point of a program. The actual starting function of the program
+prepares the environment which includes:
+    - collecting the arguments that were passed to the program
+    - global and static object initialization (Line 1)
+
+See the snippet for an abstraction of what the code execution would look like under-the-hood.
 "
                     },
                     {"snippetA", @"
+void __libc_start_main() { // before calling `main()` entry point
+     BeforeMain b;
+     main();
+}
+__libc_start_main(); // call the `main()` entry point
 "
                     },
                     {"imgQ", @"
@@ -242,12 +343,15 @@ namespace QNALibrary.mappings.CPP
             {11, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    Though recursion provides more elegant solutions to a problem, try to avoid recursion
+    in your programs and use the iterative approach (loops)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True. In mission-critical systems such as the navigation system of a Mars rover, using
+recursion is completely prohibited.
 "
                     },
                     {"snippetA", @"
@@ -264,12 +368,19 @@ namespace QNALibrary.mappings.CPP
             {12, new Dictionary<string, string>()
                 {
                     { "q", @"
+Fill in the blank.
 
+When we compile a program, the compiler stores the final executable file in the ___1___.
+To run the executable file, its instructions are loaded into the ___2___, which in turn,
+maps its contents to the ___3___ and are then executed by the ___4___ one-by-one.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) Hard drive
+2) Virtual memory
+3) RAM
+4) CPU
 "
                     },
                     {"snippetA", @"
@@ -286,12 +397,19 @@ namespace QNALibrary.mappings.CPP
             {13, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the difference between volatile and non-volatile memory? What are they each used for?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Volatile memory:
+    - requires power to maintain the stored data
+    - i.e. once the power is turned off, the data is lost
+    - used for temporary storage, typically holding data and programs that the CPU actively 
+      needs to perform tasks
+Non-volatile memory:
+    - retains its data even when the power is turned off
+    - used for long term data storage, such as your operating system, programs, and files
 "
                     },
                     {"snippetA", @"
@@ -308,12 +426,18 @@ namespace QNALibrary.mappings.CPP
             {14, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+The C++ type system classifies types into two major categories - state them and give a few examples:
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) Fundamental types (a.k.a primitive/build-in types):
+    Examples: int, double, char, void
 
+2) Compound tyoes
+    Examples: pointers, arrays, classes
+
+Note that these can be determined with the type traits header (see snippet)
 "
                     },
                     {"snippetA", @"
@@ -330,12 +454,14 @@ namespace QNALibrary.mappings.CPP
             {15, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    When the program is run, the OS provides the fixed size of the stack.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True. Note that the stack can grow in size and if it grows to the extent that no more space
+is left, it crashes because of the stack overflow.
 "
                     },
                     {"snippetA", @"
@@ -352,12 +478,14 @@ namespace QNALibrary.mappings.CPP
             {16, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What are registers?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+- You can think of registers as temporary variables of the CPU
+- Registers are physical memory units located within the CPU so that access is much faster compared
+    to access to the RAM.
 "
                     },
                     {"snippetA", @"
@@ -374,12 +502,32 @@ namespace QNALibrary.mappings.CPP
             {17, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Why is the size of the `Product` struct (56) greater than the sum of the sizes of the members
+of the `Product` struct (53)?
 "                   },
                     {"snippetQ", @"
+struct Product
+{
+public:
+	std::string m_name;
+	double m_price;
+	int m_rating;
+	bool m_available;
+};
+
+
+void for_main1()
+{
+	std::print(""sizeof(Product): {}\n"", sizeof(Product)); // output: 56
+	auto sum_of_individual_members = sizeof(std::string) + sizeof(double) + sizeof(int) + sizeof(bool);
+	std::print(""sum_of_individual_members: {}\n"", sum_of_individual_members); // output: 53
+}
 "},
                     { "a", @"
-
+The additional bytes are the result of 'padding' of the struct - a technique practiced by the 
+compiler to optimize CPU access to individual members of the object.
 "
                     },
                     {"snippetA", @"
@@ -396,12 +544,15 @@ namespace QNALibrary.mappings.CPP
             {18, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is a 'word-aligned address'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+A word-aligned address refers to a memory address that is a multiple of the size of the CPU's word.
+A word is a fixed unit of data used by the CPU:
+    - 4 bytes on the x86 platform
+    - 8 bytes on the x64 platform
 "
                     },
                     {"snippetA", @"
@@ -418,18 +569,29 @@ namespace QNALibrary.mappings.CPP
             {19, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the image:
 
+What is the distinction between aggregation and composition?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Aggregation:
+    - implies a 'can-have-a' relationship
+    - implies the member class (in this case 'Person') can exist outside of 'Car'
+    - 'weak containment'
 
+Composition:
+    - implies 'has-a' relationship
+    - implies the member class (in this case 'Engine') cannot exist outside of 'Car'
+    - 'strong containment'
 "
                     },
                     {"snippetA", @"
 "
                     },
                     {"imgQ", @"
+19-aggregation-composition.png
 "
                     },
                     {"imgA", @"
