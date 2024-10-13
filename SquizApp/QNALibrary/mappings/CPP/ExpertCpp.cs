@@ -599,15 +599,29 @@ Composition:
                     },
                 }
             },
-            {20, new Dictionary<string, string>()
+            {20, new Dictionary<string, string>() // Chapter 2: Beyond Object-Oriented Programming
                 {
                     { "q", @"
-
+What is an Abstract Data Type (ADT)? Give a few examples of ADTs.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+An abstract data type:
+    - is a theoretical concept
+    - defines a data structure solely by the operations that can be performed on it,
+        and the behaviour those operations exhibit.
+    - does not specify how the data structure (and associated operations) are implemented.
 
+Examples include:
+    1) Stack:
+        operations: push, pop, peek (LIFO)
+    2) Queue:
+        operations: enqueue, dequeue, front (FIFO)
+    3) List:
+        operations: insert, remove, get (indexed collection of elements)
+    4) Tree:
+        operations: insert, delete, search (heirarchical structure)
 "
                     },
                     {"snippetA", @"
@@ -624,12 +638,15 @@ Composition:
             {21, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    When a compiler compiles a class, it translates the class into a struct and moves class
+    member functions into the global scope, which each member function taking a pointer to the class
+    as its first parameter.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True.
 "
                     },
                     {"snippetA", @"
@@ -646,12 +663,14 @@ Composition:
             {22, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of automatic memory allocation, why are the destructors of objects
+called in the reverse order of their declaration?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Because the automatic memory allocation is managed by a stack, which is a data structure adapter
+that follows the 'last in, first out' LIFO rule.
 "
                     },
                     {"snippetA", @"
@@ -668,15 +687,41 @@ Composition:
             {23, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+    a) Explain why the snippet will not compile.
+    b) What changes need to be made to line (b) to get the snippet to compile? 
 "                   },
                     {"snippetQ", @"
+int get_it()
+{
+	int it{ 42 };
+	return it;
+}
+
+int main()
+{
+	int& bind_to_me{ get_it() };  // (b)
+	return EXIT_SUCCESS;
+}
 "},
                     { "a", @"
-
+a) The result of `get_it()` is a temporary and temporaries (including literal values) cannot be bound to l-value references.
+b) Convert `bind_to_me` to an r-value reference (see snippet)
 "
                     },
                     {"snippetA", @"
+int get_it()
+{
+	int it{ 42 };
+	return it;
+}
+
+int main()
+{
+	int&& bind_to_me{ get_it() };  // (b)
+	return EXIT_SUCCESS;
+}
 "
                     },
                     {"imgQ", @"
@@ -690,12 +735,12 @@ Composition:
             {24, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+A setter function, which modifies the value of a `private` member is also known as?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+A mutator function.
 "
                     },
                     {"snippetA", @"
@@ -712,12 +757,17 @@ Composition:
             {25, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State five expectations related to behavioural subtyping (Liskov Substitution Principle).
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Behaviourial subtyping includes the following expectations:
+    1) Contravariance of method arguments in a subtype
+    2) Covariance of return types in a subtype
+    3) Preconditions cannot be strengthened in a subtype
+    4) Postconditions cannot be weakened in a subtype
+    5) Invariants of the super type must be preserved in a subtype
 "
                     },
                     {"snippetA", @"
@@ -734,12 +784,12 @@ Composition:
             {26, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the Robert C. Martin definition of the Tnterface Segregation Principle.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Clients should not be forced to depend on methods that they do not use.
 "
                     },
                     {"snippetA", @"
@@ -756,12 +806,17 @@ Composition:
             {27, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the Robert C. Martin definition of the Dependency Inversion Principle.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+The Dependency Inversion Principle (DIP) tells us that the most flexible systems are those in which
+source code dependencies refer to abstractions, not to concretions.
 
+The above explanation can be further refined with the following:
+    a) High-level modules should not depend on low-level modules. Both should depend on abstractions.
+    b) Abstractions should not depend on details. Details should depend on abstractions.
 "
                     },
                     {"snippetA", @"
