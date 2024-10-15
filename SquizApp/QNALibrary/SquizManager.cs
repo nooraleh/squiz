@@ -106,12 +106,13 @@ namespace QNALibrary
 
         private void CompileQNA(Dictionary<string, string> qnaItem)
         {
-            if (qnaItem["snippetA"] != string.Empty)
+            if (!string.IsNullOrWhiteSpace(qnaItem["snippetA"]))
             {
                 string texFileName = $@"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetA.tex";
                 Utility.GenerateAndCompileLatexDocumentToPDF(texFileName, qnaItem["snippetA"], Category);
             }
-            else if (qnaItem["snippetQ"] != string.Empty)
+
+            if (!string.IsNullOrWhiteSpace(qnaItem["snippetQ"]))
             {
                 string texFileName = $"{Title}-{qnaItem["ID"]}-{qnaItem["index"]}-snippetQ.tex";
                 Utility.GenerateAndCompileLatexDocumentToPDF(texFileName, qnaItem["snippetQ"], Category);
@@ -158,7 +159,8 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("snippetA", out tryValue))
             {
-                return tryValue;
+                string tryGetValueTrimmed = tryValue.Trim();
+                return tryGetValueTrimmed;
             }
             else
             {
@@ -171,7 +173,8 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("snippetQ", out tryValue))
             {
-                return tryValue;
+                string tryGetValueTrimmed = tryValue.Trim();
+                return tryGetValueTrimmed;
             }
             else
             {
@@ -184,7 +187,8 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("imgQ", out tryValue))
             {
-                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryValue };
+                string tryGetValueTrimmed = tryValue.Trim();
+                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryGetValueTrimmed };
                 return Path.Combine(path);
             }
             else
@@ -198,7 +202,8 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("imgA", out tryValue))
             {
-                string[] path = new string[] { AppContext.BaseDirectory , "Images", Title, tryValue };
+                string tryGetValueTrimmed = tryValue.Trim();
+                string[] path = new string[] { AppContext.BaseDirectory , "Images", Title, tryGetValueTrimmed };
                 return Path.Combine(path);
             }
             else
@@ -211,7 +216,8 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("imgQ", out tryValue))
             {
-                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryValue };
+                string trimmedTryValue = tryValue.Trim();
+                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, trimmedTryValue };
                 return File.Exists(Path.Combine(path));
             }
             else
@@ -225,7 +231,8 @@ namespace QNALibrary
             string tryValue;
             if (CurrentQNA.TryGetValue("imgA", out tryValue))
             {
-                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, tryValue };
+                string trimmedTryValue = tryValue.Trim();
+                string[] path = new string[] { AppContext.BaseDirectory, "Images", Title, trimmedTryValue };
                 return File.Exists(Path.Combine(path));
             }
             else
