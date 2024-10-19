@@ -1,35 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QNALibrary.mappings.CPP
+﻿namespace QNALibrary.mappings.Software
 {
-    public class ExpertCpp : QNABase
+    public partial class DevelopersGuideToLinux : QNABase
     {
-        public ExpertCpp()
-        : base(title: "Expert C++", category: QNACategory.CPP, qnaMapping: qnaMapping_)
+        public DevelopersGuideToLinux()
+        : base(title: "David Cohen's 'Software Developer's Guide to Linux'", category: QNACategory.Software, qnaMapping: qnaMapping_)
         { }
+
 
         public override string ToString()
         {
-            return "ExpertCpp";
+            return "DevelopersGuideToLinux";
         }
 
         static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>()
         {
-            {1, new Dictionary<string, string>() // Chapter 1: Building C++ Applications
+            {1, new Dictionary<string, string>() // Chapter 1 - How the Command Line Works
                 {
                     { "q", @"
-The C++ application-building process consists of three major steps, state them.
+What is a command-line interface?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-1. Preprocessing
-2. Compiling
-3. Linking
+A command-line interface is a text-based environment for interacting with your computer that:
+    1) Reads some input from you
+    2) Evaluates (or processes) that input
+    3) prints some output to the screen in response, and then
+    4) Loops back to (1) to repeat that process.
+
+Steps (1) - (4) are known as REPL
 "
                     },
                     {"snippetA", @"
@@ -46,602 +45,11 @@ The C++ application-building process consists of three major steps, state them.
             {2, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following statement:
-    As a rule of thumb, avoid using macro definitions. 
-
-Explain the reasoning behind this statement.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-Reasoning:
-    1) Macros are error-prone
-    2) (Modern) C++ provides a set of constructs that make the use of macros obselete (e.g. `constexpr`, `consteval` specifiers)
-       that allow for compile-time evaluation.
-        
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {3, new Dictionary<string, string>()
-                {
-                    { "q", @"
-C++17 introduces the __has_include preprocessor constant expression. What does it do?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-Evaluates to 1 if the file with the specified name is found and 0 if not
-"
-                    },
-                    {"snippetA", @"
-#if __has_include(""custom_io_stream.hpp"")
-#include ""custom_io_stream.hpp""
-#define HAS_INCLUDE_RESULT ""custom_io_stream.hpp exists"" 
-#else
-#include <iostream>
-#define HAS_INCLUDE_RESULT ""custom_io_stream.hpp does not exist"" 
-#endif
-
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {4, new Dictionary<string, string>()
-                {
-                    { "q", @"
-State the 6 phases of compilation.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-1) Tokenizationon
-2) Syntax analysis
-3) Semantic analysis
-4) Intermediate code generation
-5) Optimization
-6) Machine code generation
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {5, new Dictionary<string, string>()
-                {
-                    { "q", @"
-In the context of programming language compilation, differentiate the terms 'syntax' and 'semantics'.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-Syntax:
-    - structure of the code
-    - defines the rules by which structural tokens make sense.
-Semantics:
-    - concerns the actual meaning of the code
-"
-                    },
-                    {"snippetA", @"
-int b = a + 0; // syntactically correct - tokens OK. Semantically speaking, + 0 is meaningless
-int b = a + 0 // syntactically incorrect - missing semi-colon => compiler error
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {6, new Dictionary<string, string>()
-                {
-                    { "q", @"
-What is a compilation unit?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-A compilation unit is the resultant file of preprocessing the .cpp source file, along with:
-    - all the headers that are included via the `#include` directive and;
-    - any macros defined by #define 
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {7, new Dictionary<string, string>()
-                {
-                    { "q", @"
-What is the one main difference between a library and an executable file?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-A library does not have a `main()` function, which means it cannot be invoked as a regular program.
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {8, new Dictionary<string, string>()
-                {
-                    { "q", @"
-Libraries can be linked with the executable file either as static or dynamic libraries.
-Outline what:
-    1) static library linking
-    2) dynamic library linking
-entails.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-Static linking:
-    - The library becomes part of the final executable (i.e. part and parcel of the .exe)
-Dynamic linking:
-    - Separate file (.dll) which is loaded into memory by the OS with the ability to call
-        the libraries functions.
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {9, new Dictionary<string, string>()
-                {
-                    { "q", @"
-Consider the following snippet:
-
-What does the `envp` variable hold?
-"                   },
-                    {"snippetQ", @"
-int main(int argc, char** argv, char** envp)
-{
-	std::cout << envp[0] << '\n';
-	std::cout << envp[1] << '\n';
-	std::cout << envp[2] << '\n';
-	std::cout << envp[3] << '\n';
-	std::cout << envp[4] << '\n';
-	std::cout << envp[5] << '\n';
-	return 0;
-}
-"},
-                    { "a", @"
-envp is:
-    - Microsoft-specific (i.e. not standardized but widely supported)
-    - an array of points to environment variables. For example, The output to snippetQ can be seen in snippetA.
-    
-"
-                    },
-                    {"snippetA", @"
-ALLUSERSPROFILE=C:\ProgramData
-APPDATA=C:\Users\$(USERNAME)\AppData\Roaming
-CommonProgramFiles=C:\Program Files\Common Files
-CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
-CommonProgramW6432=C:\Program Files\Common Files
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {10, new Dictionary<string, string>()
-                {
-                    { "q", @"
-Consider the following snippet:
-
 True or false:
-    i) Line (1) will cause a compilation error
-    ii) Line (2) will cause a compilation error
+    In the context of the command-line, some programs might accept short and long versions
+    of a parameter, usually denoted by single- vs. double-hyphenation,
 
-Explain the reasoning of your answers
-"                   },
-                    {"snippetQ", @"
-struct BeforeMain
-{
-public:
-	BeforeMain()
-	{
-		std::print(""BeforeMain ctor\n"");
-	}
-
-	void test()
-	{
-		std::print(""Test function\n"");
-	}
-};
-
-BeforeMain b;  // (1)
-b.test();      // (2)
-
-int main(int argc, char** argv, char** envp)
-{
-	std::print(""Calling main:\n"");
-
-	return 0;
-}
-"},
-                    { "a", @"
-i) False
-ii) True
-
-Explanation:
-    Main is not the true starting point of a program. The actual starting function of the program
-prepares the environment which includes:
-    - collecting the arguments that were passed to the program
-    - global and static object initialization (Line 1)
-
-See the snippet for an abstraction of what the code execution would look like under-the-hood.
-"
-                    },
-                    {"snippetA", @"
-void __libc_start_main() { // before calling `main()` entry point
-     BeforeMain b;
-     main();
-}
-__libc_start_main(); // call the `main()` entry point
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {11, new Dictionary<string, string>()
-                {
-                    { "q", @"
-True or false:
-    Though recursion provides more elegant solutions to a problem, try to avoid recursion
-    in your programs and use the iterative approach (loops)
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-True. In mission-critical systems such as the navigation system of a Mars rover, using
-recursion is completely prohibited.
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {12, new Dictionary<string, string>()
-                {
-                    { "q", @"
-Fill in the blank.
-
-When we compile a program, the compiler stores the final executable file in the ___1___.
-To run the executable file, its instructions are loaded into the ___2___, which in turn,
-maps its contents to the ___3___ and are then executed by the ___4___ one-by-one.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-1) Hard drive
-2) Virtual memory
-3) RAM
-4) CPU
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {13, new Dictionary<string, string>()
-                {
-                    { "q", @"
-What is the difference between volatile and non-volatile memory? What are they each used for?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-Volatile memory:
-    - requires power to maintain the stored data
-    - i.e. once the power is turned off, the data is lost
-    - used for temporary storage, typically holding data and programs that the CPU actively 
-      needs to perform tasks
-Non-volatile memory:
-    - retains its data even when the power is turned off
-    - used for long term data storage, such as your operating system, programs, and files
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {14, new Dictionary<string, string>()
-                {
-                    { "q", @"
-The C++ type system classifies types into two major categories - state them and give a few examples:
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-1) Fundamental types (a.k.a primitive/build-in types):
-    Examples: int, double, char, void
-
-2) Compound tyoes
-    Examples: pointers, arrays, classes
-
-Note that these can be determined with the type traits header (see snippet)
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {15, new Dictionary<string, string>()
-                {
-                    { "q", @"
-True or false:
-    When the program is run, the OS provides the fixed size of the stack.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-True. Note that the stack can grow in size and if it grows to the extent that no more space
-is left, it crashes because of the stack overflow.
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {16, new Dictionary<string, string>()
-                {
-                    { "q", @"
-What are registers?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-- You can think of registers as temporary variables of the CPU
-- Registers are physical memory units located within the CPU so that access is much faster compared
-    to access to the RAM.
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {17, new Dictionary<string, string>()
-                {
-                    { "q", @"
-Consider the following snippet:
-
-Why is the size of the `Product` struct (56) greater than the sum of the sizes of the members
-of the `Product` struct (53)?
-"                   },
-                    {"snippetQ", @"
-struct Product
-{
-public:
-	std::string m_name;
-	double m_price;
-	int m_rating;
-	bool m_available;
-};
-
-
-void for_main1()
-{
-	std::print(""sizeof(Product): {}\n"", sizeof(Product)); // output: 56
-	auto sum_of_individual_members = sizeof(std::string) + sizeof(double) + sizeof(int) + sizeof(bool);
-	std::print(""sum_of_individual_members: {}\n"", sum_of_individual_members); // output: 53
-}
-"},
-                    { "a", @"
-The additional bytes are the result of 'padding' of the struct - a technique practiced by the 
-compiler to optimize CPU access to individual members of the object.
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {18, new Dictionary<string, string>()
-                {
-                    { "q", @"
-What is a 'word-aligned address'?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-A word-aligned address refers to a memory address that is a multiple of the size of the CPU's word.
-A word is a fixed unit of data used by the CPU:
-    - 4 bytes on the x86 platform
-    - 8 bytes on the x64 platform
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {19, new Dictionary<string, string>()
-                {
-                    { "q", @"
-Consider the image:
-
-What is the distinction between aggregation and composition?
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-Aggregation:
-    - implies a 'can-have-a' relationship
-    - implies the member class (in this case 'Person') can exist outside of 'Car'
-    - 'weak containment'
-
-Composition:
-    - implies 'has-a' relationship
-    - implies the member class (in this case 'Engine') cannot exist outside of 'Car'
-    - 'strong containment'
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-19-aggregation-composition.png
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {20, new Dictionary<string, string>() // Chapter 2: Beyond Object-Oriented Programming
-                {
-                    { "q", @"
-What is an Abstract Data Type (ADT)? Give a few examples of ADTs.
-"                   },
-                    {"snippetQ", @"
-"},
-                    { "a", @"
-An abstract data type:
-    - is a theoretical concept
-    - defines a data structure solely by the operations that can be performed on it,
-        and the behaviour those operations exhibit.
-    - does not specify how the data structure (and associated operations) are implemented.
-
-Examples include:
-    1) Stack:
-        operations: push, pop, peek (LIFO)
-    2) Queue:
-        operations: enqueue, dequeue, front (FIFO)
-    3) List:
-        operations: insert, remove, get (indexed collection of elements)
-    4) Tree:
-        operations: insert, delete, search (heirarchical structure)
-"
-                    },
-                    {"snippetA", @"
-"
-                    },
-                    {"imgQ", @"
-"
-                    },
-                    {"imgA", @"
-"
-                    },
-                }
-            },
-            {21, new Dictionary<string, string>()
-                {
-                    { "q", @"
-True or false:
-    When a compiler compiles a class, it translates the class into a struct and moves class
-    member functions into the global scope, which each member function taking a pointer to the class
-    as its first parameter.
+    E.g -l and --long might do the same thing.
 "                   },
                     {"snippetQ", @"
 "},
@@ -660,17 +68,532 @@ True.
                     },
                 }
             },
-            {22, new Dictionary<string, string>()
+            {3, new Dictionary<string, string>()
                 {
                     { "q", @"
-In the context of automatic memory allocation, why are the destructors of objects
-called in the reverse order of their declaration?
+Outline the difference between:
+    1) The command line environment
+    2) The shell
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-Because the automatic memory allocation is managed by a stack, which is a data structure adapter
-that follows the 'last in, first out' LIFO rule.
+Command line environment:
+    - Any text-based environment that acts as a kind of REPL, specifically for interacting
+        with the operating system
+The shell:
+    - specific program that implements this command-line environment and lets you give it
+        text commands
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {4, new Dictionary<string, string>()
+                {
+                    { "q", @"
+State two commands which can be used to find the location/origin of a command e.g `ls`?
+"                   },
+                    {"snippetQ", @"
+1) which ls
+2) command -v ls
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {5, new Dictionary<string, string>()
+                {
+                    { "q", @"
+a) What does POSIX stand for?
+b) What is POSIX
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+a) POSIX = the portable operating system interface
+b) Practically speaking, POSIX is an attempt at defining some common standards between Unix systems
+    e.g. 'every POSIX-compatible OS should have a list command called ls'
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {6, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the 'ls' command, what happens when you:
+    a) Run 'ls' without any arguments?
+    b) Run 'ls' with a path (absolute or relate) passed in as an argument (e.g. 'ls /var/logs')?
+    c) Run 'ls' with -l?
+    d) Run 'ls' with -h?
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+a) List the files and directories in your current directory
+b) List the files and directories in the directory that you passed in
+c) Same as (a) and (b) but will show a detailed view of permissions, modification dates etc
+h) Will be listed in human-readable format
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {7, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the file permissions '-rw-r--r--' - the first character '-' corresponds to the file type:
+State the file types represented by the following characters:
+
+a) '-'
+b) 'd'
+c) 'l'
+d) 'b'
+e) 'c'
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+a) A regular file
+b) Directory
+c) Symbolic link
+d) Block device
+e) Character device
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {8, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Breakdown and interpret the following file permissions sequence:
+    -rwxr-xr-x
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+The first char '-' is the file type - and the '-' indicates that it is a regular file.
+
+Next three chars 'rwx' repesent the 'owner' permissions, in this case they can
+read, write and execute the file.
+
+The following three chars 'r-x' represent the 'group' permissions, in this case they can
+read, not write, but execute the file.
+
+The final three chars represent 'others' permissions, they too can
+read, not write, but execute the file.
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {9, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the following, which is an extract of the output of running 'ls -l' in bash:
+    -rwxrwxrwx 1 noorudinburaleh noorudinburaleh  282 Apr  6  2023  desktop.ini
+
+Breakdown what each of the columns represent.
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+Column 1:
+    - File permissions
+    - first char is the file type
+    - next three chars are the owner permissions
+    - following three chars are the group permissions
+    - final three chars are the 'others' permissions
+
+Column 2:
+    - Number of references (hard links) to the file
+    - In this case it is 1 which indiciates there's only one instance of this file
+    
+Column 3:
+    - owner (username of the file's owner)
+
+Column 4:
+    - group (group that owns the file)
+
+Column 5:
+    - file size in bytes
+
+Column 6:
+    - Last modification date
+
+Column 7:
+    - File name
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {10, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Breakdown the following commands:
+    a) find . -type f -name tutorial.yml
+    b) find . -type d -name learning
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+a) Find in this current working directory (and any subdirectories) a file with the name 'tutorial.yml'
+b) Find in this current working directory (and any subdirectories) a directory with the name 'learning'
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {11, new Dictionary<string, string>()
+                {
+                    { "q", @"
+State the command that allows you to read a file, one 'page'
+(based on the size of your terminal window) at a time. 
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+less ${filename}
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {12, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Fill in the blanks - all blanks refer to keyboard input.
+
+    Running `less` will open the file and allow you to scroll through it, one line (__1___)
+    or one page (___2___) at a time.
+
+    To search inside the file type ___3___, followed by your search string, and hit ___4____.
+    Navigate matchings with ___5___ (for next) and ___6___ (previous).
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+1) up/down arrow keys
+2) spacebar
+3) /
+4) Enter
+5) n
+6) shift+n
+
+BONUS: 'b' will do the opposite of spacebar i.e. take you one page back.
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {13, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Assume your pwd is in ~.
+
+Give the command for making the '/var/log/myapp/error' directory.
+Assume '/var/log/myapp' parent directory does not exist.
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+mkdir -p /var/log/myapp/error
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {14, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the command:
+    rm –rf /path/to/directory
+
+Explain what each of the following flags do:
+    1) -r
+    2) -f
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+1) -r 
+    - 'recursive'
+    - applies removals recursively (i.e. to all directories contained by the one 
+        you're deleting).
+
+2) -f
+    - 'force'
+    - forces deletion without a confirmation for each file and directory.
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {15, new Dictionary<string, string>() // Chapter 2: Working with Processes
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {16, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {17, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {18, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {19, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {20, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {21, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {22, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
 "
                     },
                     {"snippetA", @"
@@ -687,41 +610,15 @@ that follows the 'last in, first out' LIFO rule.
             {23, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following snippet:
 
-    a) Explain why the snippet will not compile.
-    b) What changes need to be made to line (b) to get the snippet to compile? 
 "                   },
                     {"snippetQ", @"
-int get_it()
-{
-	int it{ 42 };
-	return it;
-}
-
-int main()
-{
-	int& bind_to_me{ get_it() };  // (b)
-	return EXIT_SUCCESS;
-}
 "},
                     { "a", @"
-a) The result of `get_it()` is a temporary and temporaries (including literal values) cannot be bound to l-value references.
-b) Convert `bind_to_me` to an r-value reference (see snippet)
+
 "
                     },
                     {"snippetA", @"
-int get_it()
-{
-	int it{ 42 };
-	return it;
-}
-
-int main()
-{
-	int&& bind_to_me{ get_it() };  // (b)
-	return EXIT_SUCCESS;
-}
 "
                     },
                     {"imgQ", @"
@@ -735,12 +632,12 @@ int main()
             {24, new Dictionary<string, string>()
                 {
                     { "q", @"
-A setter function, which modifies the value of a `private` member is also known as?
+
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-A mutator function.
+
 "
                     },
                     {"snippetA", @"
@@ -757,17 +654,12 @@ A mutator function.
             {25, new Dictionary<string, string>()
                 {
                     { "q", @"
-State five expectations related to behavioural subtyping (Liskov Substitution Principle).
+
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-Behaviourial subtyping includes the following expectations:
-    1) Contravariance of method arguments in a subtype
-    2) Covariance of return types in a subtype
-    3) Preconditions cannot be strengthened in a subtype
-    4) Postconditions cannot be weakened in a subtype
-    5) Invariants of the super type must be preserved in a subtype
+
 "
                     },
                     {"snippetA", @"
@@ -784,12 +676,12 @@ Behaviourial subtyping includes the following expectations:
             {26, new Dictionary<string, string>()
                 {
                     { "q", @"
-State the Robert C. Martin definition of the Interface Segregation Principle.
+
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-Clients should not be forced to depend on methods that they do not use.
+
 "
                     },
                     {"snippetA", @"
@@ -806,17 +698,12 @@ Clients should not be forced to depend on methods that they do not use.
             {27, new Dictionary<string, string>()
                 {
                     { "q", @"
-State the Robert C. Martin definition of the Dependency Inversion Principle.
+
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-The Dependency Inversion Principle (DIP) tells us that the most flexible systems are those in which
-source code dependencies refer to abstractions, not to concretions.
 
-The above explanation can be further refined with the following:
-    a) High-level modules should not depend on low-level modules. Both should depend on abstractions.
-    b) Abstractions should not depend on details. Details should depend on abstractions.
 "
                     },
                     {"snippetA", @"
@@ -830,45 +717,15 @@ The above explanation can be further refined with the following:
                     },
                 }
             },
-            {28, new Dictionary<string, string>() // Chapter 3 - Understanding and Designing Templates
+            {28, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following snippet.
 
-Am I able to create an instance of Stack<T> where T is not compatible with std::cout? I.e. a T where
-the compiler cannot access:
-    std::cout& operator<<(std::cout&, const T&);
 "                   },
                     {"snippetQ", @"
-template<typename T>
-class Stack
-{
-public:
-	Stack();
-	void push(const T&);
-	T pop();
-	T top() const;
-	bool empty() const
-	{
-		return elements_T.empty();
-	}
-
-	void print() const
-	{
-		for (const T& elem : elements_T)
-		{
-			std::cout << elem << ' ';
-		}
-		std::cout << '\n';
-	}
-
-private:
-	std::vector<T> elements_T;
-};
 "},
                     { "a", @"
-Yes, as long as your instance of Stack<T> doesn't call Stack<T>::print - the generic member functions
-are only instantiated if used.
+
 "
                     },
                     {"snippetA", @"
@@ -885,25 +742,12 @@ are only instantiated if used.
             {29, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following snippet:
 
-Let std::vector<T> be the deduced type for `v1` and `v2` (ignore allocator for now)
-
-State T for:
-    1) `v1`
-    2) `v2`
 "                   },
                     {"snippetQ", @"
-#include <vector>
-
-std::vector v1{ ""all"", ""right"" };   // (1)
-std::vector v2{ v1.begin(), v1.end() }; // (2)
 "},
                     { "a", @"
-1) T = const char*
-2) T = std::vector<const char*>::iterator
 
-Lesson: Don't use CTAD unless the deduced type is obvious.
 "
                     },
                     {"snippetA", @"
@@ -920,32 +764,12 @@ Lesson: Don't use CTAD unless the deduced type is obvious.
             {30, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following snippet which depicts the use of a variadic template function
-along with it's base case (single template argument).
 
-True or false:
-    The types of the variadic argument `Ts` must all be the same type. I.e. 
-    Calling `print_nb(""Hello"", 2, ""World"");` would be illegal since 2 and string World
-    are not the same type.
 "                   },
                     {"snippetQ", @"
-#include <print>
-
-template<typename T>
-void print_nb(T base_arg)
-{
-	std::println(""{} "", base_arg);
-}
-
-template<typename T, typename... Ts>
-void print_nb(T first_arg, Ts... args)
-{
-	std::println(""{} "", first_arg);
-	print_nb(args...);
-}
 "},
                     { "a", @"
-False.
+
 "
                     },
                     {"snippetA", @"
@@ -962,34 +786,15 @@ False.
             {31, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following snippet:
 
-Provide the custom concepts 'push_backable' and 'insertable'
 "                   },
                     {"snippetQ", @"
-/*
-Using `auto` in the function parameters is called an ""abbreviated function template""
-*/
-void add(push_backable auto& coll, const auto& val)
-{
-	coll.push_back(val);
-}
-
-void add(insertable auto& coll, const auto& val)
-{
-	coll.insert(val);
-}
 "},
                     { "a", @"
-See snippet
+
 "
                     },
                     {"snippetA", @"
-template<typename Coll>
-concept push_backable = requires (Coll collection, Coll::value_type value) { collection.push_back(value); };
-
-template<typename Coll>
-concept insertable = requires(Coll collection, Coll::value_type value) { collection.insert(value); };
 "
                     },
                     {"imgQ", @"
@@ -1003,25 +808,12 @@ concept insertable = requires(Coll collection, Coll::value_type value) { collect
             {32, new Dictionary<string, string>()
                 {
                     { "q", @"
-Consider the following generalized ways of defining function templates.
 
-Way 1:
-    template<typename T1, typename T2, ..., typename TN>
-    function_declaration;
-
-Way 2:
-    template<class C1, class C2, ..., class CN>
-    function_declaration;
-
-a) What is the difference between the use of 'class' and 'template' for defining function templates?
-b) Why was the 'typename' keyword introduced?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-a) Almost virtually no difference (esoteric case can be found but negligible for our purposes)
-b) The 'typename' keyword was introduced to avoid confusion when templatizing fundamental/primitive non-class types
-    like int, float, double.
+
 "
                     },
                     {"snippetA", @"
@@ -1038,24 +830,12 @@ b) The 'typename' keyword was introduced to avoid confusion when templatizing fu
             {33, new Dictionary<string, string>()
                 {
                     { "q", @"
-Outline the terms:
-    a) Function template
-    b) Template function
-    c) Template instantiation
+
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-a) Function template:
-    - Refers to a kind of template that's used to generate functions by a compiler, so the compiler doesn't generate
-      any object code for it.
 
-b) Template function:
-    - An instance from a function template
-    - It is an actual function, so the corresponding object code is generated by the compiler.
-
-c) Template instantiation
-    - The process of creating a template function from a function template
 "
                     },
                     {"snippetA", @"
@@ -4745,6 +4525,5 @@ c) Template instantiation
             },
 
         };
-
     }
 }

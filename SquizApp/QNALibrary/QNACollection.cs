@@ -31,6 +31,7 @@ public class QNACollection
         Add(new QNALibrary.mappings.Finance.OptionsFuturesOtherDerivatives());
         Add(new QNALibrary.mappings.Finance.PracticalCPP20Finance());
         Add(new QNALibrary.mappings.Software.NetworkProgramming());
+        Add(new QNALibrary.mappings.Software.DevelopersGuideToLinux());
     }
 
     // tells the SquizManager whether the QNABase objects in the collection
