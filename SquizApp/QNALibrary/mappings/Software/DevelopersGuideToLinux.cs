@@ -434,12 +434,15 @@ Explain what each of the following flags do:
             {15, new Dictionary<string, string>() // Chapter 2: Working with Processes
                 {
                     { "q", @"
-
+What does the term 'process' refer to in linux?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+The term 'process' in linux refers to the operating system's internal model of what exactly 
+a running program is.
 
+It is a ge
 "
                     },
                     {"snippetA", @"
@@ -456,12 +459,12 @@ Explain what each of the following flags do:
             {16, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Which command can you run to get a listing of all system processes that your user is allowed to see?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+ps aux
 "
                     },
                     {"snippetA", @"
@@ -478,12 +481,15 @@ Explain what each of the following flags do:
             {17, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    All processes (except the init process, PID=1) are spawned by a parent.
+    If the parent process dies while the child is alive, the child becomes an 'orphan'.
+    Orphaned processes are re-parented to init (PID=1).
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True.
 "
                     },
                     {"snippetA", @"
@@ -500,12 +506,15 @@ Explain what each of the following flags do:
             {18, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Each process has a current working directory. How can you get the current working directory of a given process.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Step 1:
+    - get the process id out from the output of e.g. 'ps aux'
+Step 2:
+    - Once you have the process id, run 'pwdx $PROCESS_ID'
 "
                     },
                     {"snippetA", @"
@@ -522,12 +531,16 @@ Explain what each of the following flags do:
             {19, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Consider the ps command which shows processes on the system. Which flags should you use if
+    1) You want to show thread information for the processes
+    2) You want to see the relationships between parent and child processes visually
+        (chldren are indented under their parents)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) ps -eLf
+2) ps -ejH
 "
                     },
                     {"snippetA", @"
@@ -544,12 +557,21 @@ Explain what each of the following flags do:
             {20, new Dictionary<string, string>()
                 {
                     { "q", @"
+State the command you would run if you would like:
+    1) An interactive program that polls all processes (once a second by default)
+       and outputs a sorted list of resource usage (by default).
 
+    2) An interactive program that polls all processes and sorts for disk I/O.
+       This program is useful for finding IO-hungry processes.
+
+    3) Like (1),but for network I/O
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) top
+2) sudo iotop (requires 'sudo apt install iotop')
+3) sudo nethogs (requires 'sudo apt install nethogs')
 "
                     },
                     {"snippetA", @"
@@ -566,12 +588,14 @@ Explain what each of the following flags do:
             {21, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of Unix and Linux, what is a 'signal'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Signals are numerical messages that can be sent between programs. They're a way
+for processes to communicate with each other and with the operating system, allowing processes
+to send and receive specific messages.
 "
                     },
                     {"snippetA", @"
@@ -588,12 +612,12 @@ Explain what each of the following flags do:
             {22, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+If the process you'd like to terminate has PID 2600, what would you run?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+kill 2600
 "
                     },
                     {"snippetA", @"
@@ -610,12 +634,15 @@ Explain what each of the following flags do:
             {23, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the following signal represent:
+    SIGHUP (1)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+SIGHUP (1):
+    - 'hangup'
+    - interpreted by many applications as 're-read your configuration because I've made changes to it'
 "
                     },
                     {"snippetA", @"
@@ -632,12 +659,15 @@ Explain what each of the following flags do:
             {24, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the following signal represent:
+    SIGINT (2)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+SIGINT (2):
+    - 'interrupt'
+    - equivalent to 'CTRL+c'
 "
                     },
                     {"snippetA", @"
@@ -654,12 +684,16 @@ Explain what each of the following flags do:
             {25, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the following signal represent:
+    SIGTERM (15)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+SIGTERM (15):
+    - 'terminate'
+    - nicely asks a process to shutdown
+    - this is the default signal when 'kill $PID' is called without a signal specified.
 "
                     },
                     {"snippetA", @"
@@ -676,12 +710,16 @@ Explain what each of the following flags do:
             {26, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What do the following signals represent:
+    - SIGUSR1 (30)
+    - SIGUSR2 (31)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+These signals are sometimes used for application-defined messaging.
 
+E.g. SIGUSR1 asks nginx to re-open the log files it's writing to.
 "
                     },
                     {"snippetA", @"
@@ -698,12 +736,17 @@ Explain what each of the following flags do:
             {27, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the following signal represent:
+    SIGKILL (9)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+SIGKILL (9):
+    - cannot be trapped and handled by processes.
+    - if this signal is sent to a program, the operating system will kill that program immediately.
+    - any cleanup code, like flushing writes or safe shutdown is not performed
+    - considered a last resort, since it could lead to data corruption
 "
                     },
                     {"snippetA", @"
@@ -742,12 +785,12 @@ Explain what each of the following flags do:
             {29, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What command would I run if I want a list of files that a process (say 1589) has open?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+lsof -p 1589
 "
                     },
                     {"snippetA", @"
@@ -761,7 +804,7 @@ Explain what each of the following flags do:
                     },
                 }
             },
-            {30, new Dictionary<string, string>()
+            {30, new Dictionary<string, string>() // Chapter 3 - Service Management with systemd
                 {
                     { "q", @"
 
