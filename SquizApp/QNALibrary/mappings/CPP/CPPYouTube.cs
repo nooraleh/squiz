@@ -1310,6 +1310,2449 @@ namespace QNALibrary.mappings.CPP
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
+    {92, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the following snippet:
+
+True or false:
+    Non-static constexpr data members are not valid. I.e lines (1) and (2)
+    will not compile if the 'static' is removed.
+"                   },
+                    {"snippetQ", @"
+struct MyStruct
+{
+public:
+	static constexpr char who[] = ""John Doe""; // (1)
+	static_assert(who[0] == 'J', ""pass"");
+	static constexpr const char* o = &who[1]; // (2)
+	static_assert(*o == 'o', ""pass"");
+};
+"},
+                    { "a", @"
+True
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {93, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the following snippet:
+
+True or false:
+    Casting away the const of a `constexpr` value leads to undefined behaviour.
+"                   },
+                    {"snippetQ", @"
+constexpr int my_constrxpr_value = 100;
+
+void for_main() try
+{
+	int& ref = const_cast<int&>(my_constrxpr_value);
+
+	ref = 200; // (1)
+
+	std::println(""{}"", my_constrxpr_value);
+	std::println(""{}"", ref);
+}
+catch (std::exception e)
+{
+	std::println(""{}"",e.what());
+}
+"},
+                    { "a", @"
+True - the snippet example leads to a segmentation fault (access violation) at line (1).
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {94, new Dictionary<string, string>()
+                {
+                    { "q", @"
+Consider the following snippet:
+
+Why would we prefer to throw an exception within a constexpr function
+as opposed to using a static_assert to validate the pre-conditions?
+"                   },
+                    {"snippetQ", @"
+#include <cmath>
+#include <stdexcept>
+
+
+constexpr double constexpr_pow_int(double base, int exp)
+{
+	return (exp > 100) || (exp < -100) ?
+		throw std::range_error(""abs(exp) exceeds 100"") :
+		exp >= 0 ? std::pow(base, exp) : std::pow(base, -exp);
+}
+"},
+                    { "a", @"
+The throw idiom for constexpr errors has the benefit of evaluating at both:
+    - compile-time (will be a compiler error for compile time-evaluated calls)
+    - run-time (will throw std::range_error for runtime-evaluated calls)
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {95, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {96, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {97, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {98, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {99, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {100, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {101, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {102, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {103, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {104, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {105, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {106, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {107, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {108, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {109, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {110, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {111, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {112, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {113, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {114, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {115, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {116, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {117, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {118, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {119, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {120, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {121, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {122, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {123, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {124, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {125, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {126, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {127, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {128, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {129, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {130, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {131, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {132, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {133, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {134, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {135, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {136, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {137, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {138, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {139, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {140, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {141, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {142, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {143, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {144, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {145, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {146, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {147, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {148, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {149, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {150, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {151, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {152, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {153, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {154, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {155, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {156, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {157, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {158, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {159, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {160, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {161, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {162, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {163, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {164, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {165, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {166, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {167, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {168, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {169, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {170, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {171, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {172, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {173, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {174, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {175, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {176, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {177, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {178, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {179, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {180, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {181, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {182, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {183, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {184, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {185, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {186, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {187, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {188, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {189, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {190, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {191, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {192, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {193, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {194, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {195, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {196, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {197, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {198, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {199, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
+            {200, new Dictionary<string, string>()
+                {
+                    { "q", @"
+
+"                   },
+                    {"snippetQ", @"
+"},
+                    { "a", @"
+
+"
+                    },
+                    {"snippetA", @"
+"
+                    },
+                    {"imgQ", @"
+"
+                    },
+                    {"imgA", @"
+"
+                    },
+                }
+            },
 };
     }
 }
