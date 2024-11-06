@@ -1424,15 +1424,62 @@ The throw idiom for constexpr errors has the benefit of evaluating at both:
             {95, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Which is preferable `use_value_A` or `use_value_B`?
 "                   },
                     {"snippetQ", @"
+std::string get_value()
+{
+	return std::string{ ""get_value"" };
+}
+
+void use_value_A(int count)
+{
+	std::string value;
+	for (int i = 0; i < count; ++i)
+	{
+		value = get_value();
+	}
+}
+
+void use_value_B(int count)
+{
+	for (int i = 0; i < count; ++i)
+	{
+		std::string value = get_value();
+	}
+}
+
 "},
                     { "a", @"
-
+use_value_B is preferable due to:
+    a) `value` variable being contained within the for loop (if it is not needed outside)
+    b) Reasons outlined in snippet comments
 "
                     },
                     {"snippetA", @"
+std::string get_value()
+{
+	return std::string{ ""get_value"" };
+}
+
+void use_value_A(int count)
+{
+	std::string value;                    // default ctor
+	for (int i = 0; i < count; ++i)
+	{
+		value = get_value();              // copy/move assignment
+	}
+}
+
+void use_value_B(int count)
+{
+	for (int i = 0; i < count; ++i)
+	{
+		std::string value = get_value();  // direct-init/RVO
+	}
+}
 "
                     },
                     {"imgQ", @"
@@ -1446,12 +1493,55 @@ The throw idiom for constexpr errors has the benefit of evaluating at both:
             {96, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet::
 
+a) What does std::remove_all_extents do?
+b) State the expected output types passed into the `info` function calls.
 "                   },
                     {"snippetQ", @"
+#include <iostream>
+#include <type_traits>
+#include <typeinfo>
+ 
+template<class A>
+void info(const A&)
+{
+    typedef typename std::remove_all_extents<A>::type Type;
+    std::cout << ""underlying type: "" << typeid(Type).name() << '\n';
+}
+ 
+int main()
+{
+    float a0;
+    float a1[1][2][3];
+    float a2[1][1][1][1][2];
+    float* a3;
+    int a4[3][2];
+    double a5[2][3];
+    struct X { int m; } x0[3][3];
+ 
+    info(a0); // (A)
+    info(a1); // (B)
+    info(a2); // (C)
+    info(a3); // (D)
+    info(a4); // (E)
+    info(a5); // (F)
+    info(x0); // (G)
+}
 "},
                     { "a", @"
+a) For std::remove_all_extents<T>:
+    If T is a multidimension C-style array of type X, then the `typedef type` member is equal to X
+    Else:
+        T
 
+b)  1) float
+    2) float
+    3) float
+    4) float*
+    5) int
+    6) double
+    7) main::X (although compiler-dependent due to `typeid(T).name`)
 "
                     },
                     {"snippetA", @"

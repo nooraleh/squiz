@@ -807,12 +807,18 @@ lsof -p 1589
             {30, new Dictionary<string, string>() // Chapter 3 - Service Management with systemd
                 {
                     { "q", @"
-
+a) What are services (also frequently called daemons)?
+b) Give a few examples of services/daemons.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) Services/daemons are long-running processes that run in the background.
+b) Examples of services/daemons include:
+    1) Databases
+    2) Web servers
+    3) Network manager
+    
 "
                     },
                     {"snippetA", @"
@@ -829,12 +835,12 @@ lsof -p 1589
             {31, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+How are services/daemons typically started and controlled?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Via an init system such as systemd
 "
                     },
                     {"snippetA", @"
@@ -851,12 +857,13 @@ lsof -p 1589
             {32, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is an `init` system?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+An `init` system refers to the first process your operating system kernel starts, and it is the 
+job of this process to take care of starting any other processes.
 "
                     },
                     {"snippetA", @"
@@ -873,11 +880,15 @@ lsof -p 1589
             {33, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is `systemctl`?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+`systemctl` is a commandline utility for:
+    - controlling systemd services.
+    - e.g. start/stop/restart a service that's been misbehaving or to reload one
+        whose configuration has changed.
 
 "
                     },
@@ -895,12 +906,15 @@ lsof -p 1589
             {34, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Outline the two tools you'll use to interact with systemd.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) systemctl:
+    - controls services (called 'units' in systemd nomenclature)
+2) journalctl:
+    - lets you work with systems logs. 
 "
                     },
                     {"snippetA", @"
@@ -917,12 +931,13 @@ lsof -p 1589
             {35, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of service management, what is meant by a 'unit file'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Sservices are defined by a unit file, which specifies exactly how the service should be managed
+by systemd.
 "
                     },
                     {"snippetA", @"
@@ -939,12 +954,20 @@ lsof -p 1589
             {36, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Let a systemd service be called <service> - how would you use systemd to:
+    1) Start the service
+    2) Stop the service
+    3) Restart the service
+    4) Display the current status of the service
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
 
+    systemctl start <service>
+    systemctl stop <service>
+    systemctl restart <service>
+    systemctl status <service>
 "
                     },
                     {"snippetA", @"
@@ -961,12 +984,23 @@ lsof -p 1589
             {37, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Let's talk about the common `init` term in Linux:
+    a) What is the process ID of init
+    b) What is init responsible for?
+    c) Aside from systemd, what other init systems exist?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) PID 1
+b) init is responsible for:
+    - managing the boot process
+    - starting all other processes and services that have been configured to run on the system
+    - re-parenting orphaned processes (i.e. processes whose original parents have died) and keeping
+      them as its own children
+c) Other init systems:
+    - SysV
+    - OpenTC
 "
                     },
                     {"snippetA", @"
@@ -983,12 +1017,20 @@ lsof -p 1589
             {38, new Dictionary<string, string>()
                 {
                     { "q", @"
+'A service adds convenient features to how a program (and the resulting process spawned by that program)
+is handled by the system'.
 
+Give a few examples of this.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+For example, a service:
+    - lets you define dependencies between different processes
+    - control startup order
+    - add environment variables for the process to start with
+    - limit resource usage
+    - control permissions
 "
                     },
                     {"snippetA", @"
