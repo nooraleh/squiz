@@ -964,10 +964,13 @@ Let a systemd service be called <service> - how would you use systemd to:
 "},
                     { "a", @"
 
-    systemctl start <service>
-    systemctl stop <service>
-    systemctl restart <service>
-    systemctl status <service>
+1) systemctl start <service>
+   - if the service was already running, this command would have no effect.
+2) systemctl stop <service>
+   - if the service wasn't running, this command would have no effect
+3) systemctl restart <service>
+    - equivalent to 'systemctl stop <service>; systemctl start <service>'
+4) systemctl status <service>
 "
                     },
                     {"snippetA", @"
@@ -1047,12 +1050,57 @@ For example, a service:
             {39, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet, which is the output of 'systemctl status ssh':
 
+Describe the each of the components in the output:
+    a) Service name
+    b) Load state
+    c) Active state
+    d) Docs
+    e) Main PID and child processes
+    f) Resource usage
+    g) CGroup
+    h) Log preview
 "                   },
                     {"snippetQ", @"
+systemctl status ssh
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2024-11-06 07:07:07 GMT; 21min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 259 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 278 (sshd)
+      Tasks: 1 (limit: 9421)
+     Memory: 3.2M
+     CGroup: /system.slice/ssh.service
+             └─278 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+Nov 06 07:07:07 DESKTOP-OV0ATLK systemd[1]: Starting OpenBSD Secure Shell server...
+Nov 06 07:07:07 DESKTOP-OV0ATLK sshd[278]: Server listening on 0.0.0.0 port 22.
+Nov 06 07:07:07 DESKTOP-OV0ATLK sshd[278]: Server listening on :: port 22.
+Nov 06 07:07:07 DESKTOP-OV0ATLK systemd[1]: Started OpenBSD Secure Shell server.
 "},
                     { "a", @"
-
+a) Service name
+    - the name of the service as defined in its unit file, in this case 'ssh.service'
+b) Load state
+    - whether the service unit file has been successfully loaded and is ready to be started
+c) Active state
+    - current state of the service (can be either running, inactive, or failed) and how long
+      the service has been in the current state (in this case 21 minutes)
+d) Docs
+    - the main page where you can find relevant documentation if it's been installed
+e) Main PID and child processes
+    - in this case the main PID is 278 and a child process 259 exists
+f) Resource usage
+    - 'Memory' is the RAM usage
+    - a 'CPU' label will show the CPU time
+g) CGroup
+    - Details about the control group to which this process belongs
+h) Log preview
+    - Last four lines show a few loglines from the service's output, to give you an
+    idea of what's happening.
 "
                     },
                     {"snippetA", @"
@@ -1069,12 +1117,28 @@ For example, a service:
             {40, new Dictionary<string, string>()
                 {
                     { "q", @"
+Let <service> be a service/daemon with a configuration file.
 
+a) Why should you be careful of the command 'systemctl restart <service>'
+b) What should you do to mitigate the risk in the answer of (a)?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) If:
+    - the service's configuration file has changed on disk since it was started
+    - that config file now has a bug that prevents the program from sucessfully starting 
+    
+b) You can mitigate the risk by:
+    1) testing the configuration on disk before restarting, e.g.
+       for nginx you can run 'nginx -t' to test the configuration on disk.
 
+    2)  - preferring 'reload' over restart i.e. 'systemctl reload <service>'
+        - reload re-checks the configuration on disk to ensure the configuration is valid
+        - reload re-reads the configuration into memory without interrupting the running process, if possible
+        - reload restarts the process only after validating the config and making sure the process will start
+          successfully after being stopped
+        - note although that not all services support 'systemctl reload'
 "
                     },
                     {"snippetA", @"
@@ -1091,12 +1155,17 @@ For example, a service:
             {41, new Dictionary<string, string>()
                 {
                     { "q", @"
+Given a service <service> what command should I run if:
 
+    a) I want <service> to start automatically on boot.
+    b) <service> is currently configured to start automatically on boot, but I want to disable that
+        and turn <service> into a manually managed service
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) systemctl enable <service>
+b) systemctl disable <service>
 "
                     },
                     {"snippetA", @"
@@ -1113,12 +1182,16 @@ For example, a service:
             {42, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Why is `systemctl` generally not used in Docker containers?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+- Due to the container's isolated and self-contained nature.
+- Docker containers ideally run a single process and therefore don't require a complex
+  boot phase or process management
+- The container, is essence, is the process and doesn't have access to the host system's
+  init system (including systemd)
 "
                     },
                     {"snippetA", @"
@@ -1132,9 +1205,9 @@ For example, a service:
                     },
                 }
             },
-            {43, new Dictionary<string, string>()
+            {43, new Dictionary<string, string>() // Chapter 4 - Using Shell History
                 {
-                    { "q", @"
+                    { "q", @" 
 
 "                   },
                     {"snippetQ", @"
