@@ -1208,12 +1208,22 @@ Why is `systemctl` generally not used in Docker containers?
             {43, new Dictionary<string, string>() // Chapter 4 - Using Shell History
                 {
                     { "q", @" 
+Status the name of the shell configuration file associated with the given description:
 
+a)  - for interactive sessions, such as the one you get frrom opening a new terminal window in your graphical environment
+    - this is the file you want to modify if you're changing the configuration on your work machine
+
+b)  - for login shells
+    - this might be a local login, but also what you get if you log in over SSH
+
+c)  - the Z shell
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) ~/.bashrc
+c) ~/.bash_profile
+c) ~/.zshrc
 "
                     },
                     {"snippetA", @"
@@ -1230,12 +1240,14 @@ Why is `systemctl` generally not used in Docker containers?
             {44, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is the full path to Bash's default history file (i.e. the file where previous inputs from the user have been entered)?
+b) Provide the echo command you would run if you want the answer to (a)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) ~/.bash_history
+b) echo $HISTFILE
 "
                     },
                     {"snippetA", @"
@@ -1252,12 +1264,15 @@ Why is `systemctl` generally not used in Docker containers?
             {45, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the configuration options which:
+    a) Defines the maximum number of commands stored in the shell's active memory (session-specific)
+    b) Defines the maximum number of commands saved permanently in the history file across sessions (affecting ~/.bash_history)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+    a) HISTSIZE
+    b) HISTFILESIZE
 "
                     },
                     {"snippetA", @"
@@ -1274,12 +1289,20 @@ Why is `systemctl` generally not used in Docker containers?
             {46, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+How would you quickly get this working without rewriting the entire command again?
 "                   },
                     {"snippetQ", @"
+apt-get update
+Reading package lists... Done
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Unable to lock directory /var/lib/apt/lists/
+W: Problem unlinking the file /var/cache/apt/pkgcache.bin - RemoveCaches (13: Permission denied)
+W: Problem unlinking the file /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Permission denied)
 "},
                     { "a", @"
-
+sudo !!
 "
                     },
                     {"snippetA", @"
@@ -1318,12 +1341,15 @@ Why is `systemctl` generally not used in Docker containers?
             {48, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the shortcuts for:
+    a) Jumping to the beginning of a line when in an interactive shell session
+    b) Jumping to the end of a line when in an interactive shell session
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) CTRL+A
+b) CTRL+E
 "
                     },
                     {"snippetA", @"
@@ -1337,7 +1363,7 @@ Why is `systemctl` generally not used in Docker containers?
                     },
                 }
             },
-            {49, new Dictionary<string, string>()
+            {49, new Dictionary<string, string>() // Chapter 5 - Introducing Files
                 {
                     { "q", @"
 
