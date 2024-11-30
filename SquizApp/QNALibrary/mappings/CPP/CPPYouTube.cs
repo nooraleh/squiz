@@ -1615,12 +1615,23 @@ NOTE: That this is a non-binding request (meaning it is a suggestion, not an obl
             {99, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is the C++ symbol table? 
+b) What is the C++ symbol table used for?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) The C++ symbol table is:
+    - a key component in the compiler's semantic analysis phase
+    - a multi-level (hierarchical) data structure:
+        - global (scope) symbol table
+        - local (scope) symbol table
+        - class/namespace (scope) symbol table
 
+b) The C++ symbol table is a key component in the compiler's semantic analysis phase.
+    The C++ symbol table is also used for:
+    - keeping track of storage details (name, data type, scope, linkage (internal/external), memory location)
+    - handling overloading and templates
 "
                     },
                     {"snippetA", @"
@@ -1637,12 +1648,20 @@ NOTE: That this is a non-binding request (meaning it is a suggestion, not an obl
             {100, new Dictionary<string, string>()
                 {
                     { "q", @"
+a) True or false:
+    If you put a class into a namespace, you should put all adjacent entities:
+        - free functions that are supplied with an instance of a class
+        - other entities that reference/make user of the class
 
+    Into that same namespace
+
+b) BONUS: What is the above guideline called and who invented it?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) Interface principle, Herb Sutter
 "
                     },
                     {"snippetA", @"
@@ -1659,12 +1678,52 @@ NOTE: That this is a non-binding request (meaning it is a suggestion, not an obl
             {101, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) What gets printed on line (1)?
+b) What gets printed on line (2)?
 "                   },
                     {"snippetQ", @"
+#include <cstring>
+#include <print>
+
+// function template
+template<typename T>
+const T& max(const T& a, const T& b)
+{
+	// implementation
+	std::println(""1"");
+	return (a > b) ? a : b;
+}
+
+// non-template free function
+char const* max(const char* a, const char* b)
+{
+	std::println(""2"");
+	return std::strcmp(a, b) ? a : b;
+}
+
+
+// template specialization
+template <>
+const char* const& max(const char* const& a, const char* const& b)
+{
+	std::println(""3"");
+	return (std::strcmp(a, b) > 0) ? a : b;
+}
+
+
+void for_main()
+{
+	const char* a = ""a"";
+	const char* b = ""b"";
+	auto c = max(a, b);					// line (1)
+	auto d = max<const char *>(a, b);	// line (2)
+}
 "},
                     { "a", @"
-
+a) 2
+b) 3
 "
                     },
                     {"snippetA", @"
