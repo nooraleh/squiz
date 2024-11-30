@@ -1558,12 +1558,22 @@ b)  1) float
             {97, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+When should you prefer allocating data on the:
+    1) Stack
+    2) Heap
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) Stack when:
+    - The data is small
+    - The data doesn't need to persist beyond the scope within which the data is allocated
+    - You want speed
 
+2) Heap when:
+    - The data is large
+    - The data needs to persist beyond the scope within which the data is allocated
+    - The data is required to be flexible (i.e. resizing)
 "
                     },
                     {"snippetA", @"
@@ -1580,12 +1590,15 @@ b)  1) float
             {98, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+If I have an instance of std::vector, where the capacity is far greater than the size, which member
+function should I call to suggest the capacity to be reduced to the size?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+std::vector::shrink_to_fit
 
+NOTE: That this is a non-binding request (meaning it is a suggestion, not an obligation, to the C++ STL implementors)
 "
                     },
                     {"snippetA", @"
