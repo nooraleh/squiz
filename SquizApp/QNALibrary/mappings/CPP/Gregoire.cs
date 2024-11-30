@@ -404,7 +404,7 @@ public partial class Gregoire : QNABase
     }},
     {44, new Dictionary<string, string>() {
         {"q", @"Which operator is not defined between an std::string and std::string_view?"},
-        {"a", @"Concatenation (i.e the operator+ is not define for those operands."},
+        {"a", @"Concatenation (i.e the operator+ is not defined for those operands."},
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
@@ -426,7 +426,7 @@ public partial class Gregoire : QNABase
     {47, new Dictionary<string, string>() {
         {"q", @"Describe polymorphism."},
         {"a", @"Polymorphism is the notion that objects that adhere to a standard set of 
-		properties and methods can be used interchageably."},
+		properties and methods can be used interchangeably."},
         {"snippetQ", @""},
         {"snippetA", @""},
     }},
