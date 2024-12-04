@@ -1366,12 +1366,13 @@ b) CTRL+E
             {49, new Dictionary<string, string>() // Chapter 5 - Introducing Files
                 {
                     { "q", @"
-
+True or false:
+    In linux, everything is, or can be represented as - a file.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1388,12 +1389,14 @@ b) CTRL+E
             {50, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Plaintext files are NOW typically:
+    a) ASCII
+    b) UTF-8 encoded
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+b)
 "
                     },
                     {"snippetA", @"
@@ -1410,12 +1413,12 @@ b) CTRL+E
             {51, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the utility used to convert DOS/Windows line endings to UNIX line endings
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+dos2unix
 "
                     },
                     {"snippetA", @"
@@ -1432,12 +1435,16 @@ b) CTRL+E
             {52, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the Filesystem Hierarchy Standard (FHS)?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+The Filesystem Hierarchy Standard (FHS) described the conventional directory layout of Unix-like systems, including linux.
 
+The FHS is a standardized tree structure where every file and directory stems from the root (a directory simply named '/').
+
+Every single subdirectory inside of / has a specific purpose.
 "
                     },
                     {"snippetA", @"
@@ -1476,12 +1483,39 @@ b) CTRL+E
             {54, new Dictionary<string, string>()
                 {
                     { "q", @"
+Describe what is contained within the following directories:
 
+a) /etc
+b) /bin and /sbin
+c) /usr/bin and /usr/local/bin
+d) /var/log and /var/lib
+e) /var/lib/systemd
+f) /etc/systemd/system
+g) /dev
+h) /proc
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) /etc
+    - system and software configuration files
+b) /bin and /sbin
+    - system binaries
+c) /usr/bin and /usr/local/bin
+    - installed software and your own binaries are contained
+    - anyone on the system and see and execute them
+d) /var/log and /var/lib
+    - /var contains variable data, things that are prone to change while the system is running
+    - e.g. the application logs of /var/log
+    - e.g. the dynamic libraries of /var/lib
+e) /var/lib/systemd
+    - one of several places on the filesystem that contain systemd configuration
+f) /etc/systemd/system
+    - a good place for custom system unit files, if you're creating services
+g) /dev
+    - a special filesystem used to represent hardware devices
+h) /proc
+    - a special filesystem used to query or change system state
 "
                     },
                     {"snippetA", @"
@@ -1498,12 +1532,19 @@ b) CTRL+E
             {55, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following command:
+    touch filepath
 
+Explain what `touch` command will do in the case:
+    a) file `filepath` does not already exist
+    b) file `filepath` already exists
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) `touch` will create the file `filepath`
+b) `touch` will update the access and modification times for that file,
+    which can be shown with an 'ls -al filepath'
 "
                     },
                     {"snippetA", @"
@@ -1520,12 +1561,24 @@ b) CTRL+E
             {56, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider:
+    'less /etc/hosts'
 
+When viewing file content interactively within the 'less' program, how do you:
+    a) Scroll up or down, line by line
+    b) Scroll down a whole page
+    c) Search a particular pattern
+    d) Go to the next pattern match
+    e) quit the program
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) Either with your mouse wheel or arrow keys
+b) Spacebar
+c) type '/' and then your pattern and then hit ENTER
+d) n
+e) q
 "
                     },
                     {"snippetA", @"
@@ -1542,12 +1595,19 @@ b) CTRL+E
             {57, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the command:
+    'tail /var/log/live_streaming_logs.log'
 
+
+If /var/log/live_streaming_logs.log is indeed a logfile being updated in realtime
+what option would you add to view the tail in realtime also?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+tail -f /var/log/live_streaming_logs.log
 
+NOTE: -f stands for follow
 "
                     },
                     {"snippetA", @"
@@ -1564,12 +1624,15 @@ b) CTRL+E
             {58, new Dictionary<string, string>()
                 {
                     { "q", @"
+What command would you run if you want to create a nested directory in a single command?
 
+For example, to create a `Documents` directory that contains a `school` directory which in turn
+contains a `reports` directory?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+mkdir -p Documents/school/reports
 "
                     },
                     {"snippetA", @"
@@ -1586,12 +1649,34 @@ b) CTRL+E
             {59, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following file permissions:
+    a) In each case, what does the first letter stand for
+    b) Given your answer to (a) what is the file type used for?
 
+1) -rw-r--r--
+2) drwxr-xr-x
+3) brw-rw----
+4) crw-rw-rw-
+5) prw-r--r--
+6) lrwxrwxrwx
+7) srwxrwx---
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) Regular file:
+    - used for: containing text or binary data
+2) Directory:
+    - used for: organizing other files and directories
+3) Block special:
+    - used for: provides buffered access to hardware devices, which makes
+        them particularly useful for devices like hard disks where data is accessed in larged, fixed-size blocks
+    - would only work with these directly for when mounting filesystems
+4) Character special:
+    - Similar to block special files
+    - used for: procing unbuffered, raw access to hardware devices
+    - handle data one character at a time, in a continuous stream
+    - but they are designed for devices where data is not block-oriented, like keyboards or mice
 "
                     },
                     {"snippetA", @"
