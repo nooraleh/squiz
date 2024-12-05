@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QNALibrary.mappings.Template
+namespace QNALibrary.mappings.CPP
 {
-    public class Template : QNABase
+    public class ModernCMake : QNABase
     {
-        public Template()
-        : base(title: "TODO: Name Title", category: QNACategory.CPP, qnaMapping: qnaMapping_)
+        public ModernCMake()
+        : base(title: "Rafat Swidzinski's Modern CMake for C++", category: QNACategory.CPP, qnaMapping: qnaMapping_)
         { }
 
         public override string ToString()
         {
-            return "TODO: Template";
+            return "ModernCMake";
         }
 
         static Dictionary<int, Dictionary<string, string>> qnaMapping_ = new Dictionary<int, Dictionary<string, string>>()
@@ -4421,6 +4421,6 @@ namespace QNALibrary.mappings.Template
             },
 
         };
-        
+
     }
 }
