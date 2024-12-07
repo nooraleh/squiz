@@ -866,15 +866,16 @@ consumed by other systems, what two other concepts can be implemented via CMake?
                     },
                 }
             },
-            {29, new Dictionary<string, string>()
+            {29, new Dictionary<string, string>() // Chapter 2 - The CMake Language
                 {
                     { "q", @"
-
+True or false:
+    Everything in a CMake listfile is either a comment or a command invocation.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -891,12 +892,16 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {30, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Provide an example of a nested multiline comment in a .cmake listfile.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+#[=[
+    #[[
+        nested comment
+    #]]
+#]=]
 "
                     },
                     {"snippetA", @"
@@ -913,12 +918,21 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {31, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Consider the snippet of a .cmake listfile and determine if the statement is true or false:
+    Command names (e.g. `message`) are case-sensitive, so the call (1) is not necessarily the same
+    as call (2).
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.28)
+
+message(""hello"" world) (1)
+MESSAGE(""hello"" world) (2)
 "},
                     { "a", @"
+False. In .cmake list files command invocations aren't case-sensitive, so (1) and (2)
+will yield the same behaviour.
 
+Note: the convention is to prefer snake_case
 "
                     },
                     {"snippetA", @"
@@ -935,12 +949,13 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {32, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    In .cmake listfiles, each line of source code can only contain one command.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True.
 "
                     },
                     {"snippetA", @"
@@ -957,12 +972,30 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {33, new Dictionary<string, string>()
                 {
                     { "q", @"
+CMake commands can be categorized into two groups:
+    1) Scripting commands
+    2) Project commands
 
+For each category of the command state the:
+    a) scope
+    b) purpose
+    c) Give a few examples
+    d) impact on the build (direct or indirect?)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) Scripting commands:
+    a) scope:  always available (inside or outside a project)
+    b) purpose: control flow, variable manipulation and file handling
+    c) `set`, `if`, `foreach`, `file`, `include`
+    d) indirect impact (e.g., setting variables or manipulating files)
 
+2) Project commands:
+    a) scope: only relevant in the context of a project
+        (i.e. in a scope where 'project' command has been invoked already)
+    b) purpose: define and manage build targets, dependencies and tools
+    c) `project`, `add_executable`, `add_library`, `install`
 "
                     },
                     {"snippetA", @"
@@ -979,12 +1012,21 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {34, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+How many arguments are being passed in:
+    1) line (1)
+    2) line (2)
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.28)
+
+message(argu\ end\;1) # (1)
+message(arg;ume nts)  # (2)
 "},
                     { "a", @"
-
+1) 1
+2) 3
 "
                     },
                     {"snippetA", @"
@@ -1001,12 +1043,17 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {35, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following:
+    'project(myProject VERSION 1.2.3)'
 
+True or false:
+    Keywords in CMake are case-insensitive, i.e the above is equivalent to:
+    'project(myProject version 1.2.3)'
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+False - keywords such as 'VERSION' are case-sensitive.
 "
                     },
                     {"snippetA", @"
@@ -1023,12 +1070,16 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {36, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is meant by the phrase 'CMake run(s)'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+A 'CMake run' refers to the configuration step of the CMake process:
+    'cmake -S <source_tree> -B <build_tree>'
 
+This is when CMake reads the CMakeLists.txt file(s) and generates the buildsystem files
+in the specified build tree.
 "
                     },
                     {"snippetA", @"
@@ -1045,12 +1096,16 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {37, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    a) CMake variable names are case-sensitive and can include almost any character
+    b) All CMake variables are stored internally as strings, even if some commands can interpret them
+        as values of other data types (even lists!)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) true
+b) true
 "
                     },
                     {"snippetA", @"
@@ -1067,12 +1122,32 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {38, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the  snippet from a .cmake listfile.
 
+What would be printed on line:
+    a) 1
+    b) 2
+    c) 3
+    d) 4
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.28)
+set(MyString1 ""Text1"")
+set(Text1 ""Hello2"")
+
+message(${MyString1}) # (1)
+message(${Text1})     # (2)
+
+set(${MyString1} ""Changed"")
+message(${MyString1}) # (3)
+message(${Text1})     # (4)
+
 "},
                     { "a", @"
-
+a) Text1
+b) Hello2
+c) Text1
+d) Changed
 "
                     },
                     {"snippetA", @"
@@ -1089,12 +1164,17 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {39, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Provide the syntax used to REFERENCE:
+    a) normal or cache variables
+    b) environment variables
+    c) strictly cache variables
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) ${}
+b) $ENV{}
+c) $CACHE{}
 "
                     },
                     {"snippetA", @"
@@ -1111,12 +1191,25 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {40, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following documentation on how to set cache variables:
+    'set(<variable> <value> CACHE <type> <docstring> FORCE)'
 
+What does the FORCE option do?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+The FORCE option forces the cmake configuration process to override any values that may already be
+in the CMakeCache.txt.
 
+Without the FORCE option, variables that have already been set in CMakeCache will not change.
+
+Alternatively, you can use
+    'cmake -D<variable>=""<new_value>"" -L -S <source_tree> -B <build_tree>'
+
+To override a cache value, and -L for listing the values to the console during configuration.
+
+NOTE that the above was no affect when a cache variable is set to FORCE.
 "
                     },
                     {"snippetA", @"
@@ -1133,12 +1226,18 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {41, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+CMake has two kinds of variable scopes, state and outline them.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+CMake variable scopes:
+    1) File:
+        - used when blocks and custom functions are executed within a file.
 
+    2) Directory:
+        - used when the `add_subdirectory()` command is called to execute another
+            CMakeLists.txt listfile in a nested directory.
 "
                     },
                     {"snippetA", @"
@@ -1155,12 +1254,14 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {42, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    Conditional blocks, loop blocks and macros don't create separate
+    scopes in CMake.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True.
 "
                     },
                     {"snippetA", @"
@@ -1177,12 +1278,13 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {43, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the two command pairs that open a 'file variable scope' in CMake.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) block() and endblock()
+2) function() and endfunction()
 "
                     },
                     {"snippetA", @"
@@ -1199,12 +1301,17 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {44, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+For each of the following, give the if clause to check if the variable type if defined:
+    1) normal variable
+    2) cache variable
+    3) environment variable
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) 'if(DEFINED <name>)'
+2) 'if(DEFINED CACHE{<name>})'
+3) 'if(DEFINED ENV{<name>})'
 "
                     },
                     {"snippetA", @"
@@ -1221,12 +1328,24 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {45, new Dictionary<string, string>()
                 {
                     { "q", @"
+You can define your own command with either of the following commands:
+    1) macro()/endmacro()
+    2) function()/endfunction()
 
+State the difference between these two.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) macro() / endmacro()
+    - analagous to C-style preprocessor macros
+    - works more like find-and-replace than actual subroutine
+    - calling return() from a macro will return to the calling statement one level higher than the callee's
 
+2) function() / endfunction()
+    - analagous to actual C++ function
+    - creates a local scope for its variable, unlike macro() / endmacro()
+    - calling return() returns to the calling statement of the callee
 "
                     },
                     {"snippetA", @"
@@ -1243,12 +1362,13 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {46, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    You should prefer function() / endfunction() where possible over macro() / endmacro()
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1265,12 +1385,27 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {47, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Consider the following of the modes of the `message()`, indicating some kind of deficiency
+to the user - give an overview of each:
+    1) FATAL_ERROR
+    2) SEND_ERROR
+    3) WARNING
+    4) AUTHOR_WARNING
+    5) DEPRECATION
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) FATAL_ERROR:
+    - stops processing and buildsystem generation
+2) SEND_ERROR:
+    - continues processing but skips generation
+3) WARNING
+    - continues processing
+4) AUTHOR_WARNING:
+    - A CMake warning, continues processing
+5) DEPRECATION:
+    - works accordingly if CMAKE_ERROR_DEPRECATED or CMAKE_WARN_DEPRECATED is enabled.
 "
                     },
                     {"snippetA", @"
@@ -1287,12 +1422,34 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {48, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Consider the following of the modes of the `message()`,
+indicating some kind of logging severity to the user - give an overview of each:
+    1) NOTICE
+    2) STATUS
+    3) VERBOSE
+    4) DEBUG
+    5) TRACE
+    
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) NOTICE:
+    - the default
+    - prints a message to stderr to attract the user's attention
+2) STATUS:
+    - continues processing
+    - recommended for main messages to users
+3) VERBOSE:
+    - continues processing
+    - should be used for more detailed information that usually isn't very necessary
+4) DEBUG:
+    - continues processing
+    - contains fine details that might be helpful when there's an issue with a project
+5) TRACE:
+    - continues processing
+    - recommended to print TRACE messages during project development
+    - these sorts of messages should be removed before publishing the project
 "
                     },
                     {"snippetA", @"
@@ -1309,12 +1466,31 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {49, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet of 'message_context.cmake':
 
+What do I need to add to 'cmake -P message_context.cmake' to get the output
+below?
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.28)
+
+function(foo)
+    list(APPEND CMAKE_MESSAGE_CONTEXT ${CMAKE_CURRENT_FUNCTION})
+    message(""foo message"")
+endfunction()
+
+list(APPEND CMAKE_MESSAGE_CONTEXT ""global"")
+message(""before foo"")
+foo()
+message(""after foo"")
+
+output:
+# [global] before foo
+# [global.foo] foo message
+# [global] after foo
 "},
                     { "a", @"
-
+cmake -P message_context.cmake --log-context
 "
                     },
                     {"snippetA", @"
@@ -1331,9 +1507,16 @@ consumed by other systems, what two other concepts can be implemented via CMake?
             {50, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+When we include files that have side effects, we may want to restrict them
+so that they're only included once, state the command for:
+    a) when we want to include the .cmake listfile once per directory
+    b) when we want to include the .cmake listfile once per project
+    c) when we want to include a particular .cmake file, say utilities.cmake, once
 "                   },
                     {"snippetQ", @"
+a) include_guard() or include_guard(DIRECTORY)
+b) include_guard(GLOBAL)
+c) include_guard(utilities.cmake)
 "},
                     { "a", @"
 
