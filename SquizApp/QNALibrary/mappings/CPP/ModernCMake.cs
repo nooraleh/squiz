@@ -1559,15 +1559,18 @@ local toolchain.
                     },
                 }
             },
-            {52, new Dictionary<string, string>()
+            {52, new Dictionary<string, string>() // Chapter 4 - Setting Up Your First CMake Project
                 {
                     { "q", @"
-
+True or false:
+    The call to `cmake_minimum_required(VERSION <version>)` implicitly triggers
+    another command, cmake_policy(VERSION) - which specifies the policies to be used
+    for the project.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1584,12 +1587,13 @@ local toolchain.
             {53, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the primary purpose of CMake policies?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+To manage backward-incompatible changes - each policy enables the new behaviour
+associated with that backward-incompatible change.
 "
                     },
                     {"snippetA", @"
@@ -1606,12 +1610,13 @@ local toolchain.
             {54, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    It is recommended to put the `project()` command immeditately after `cmake_minimum_required()`.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True as doing so will ensure we have the right policies when configuring the project.
 "
                     },
                     {"snippetA", @"
@@ -1628,12 +1633,12 @@ local toolchain.
             {55, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the difference between CMAKE_PROJECT_NAME and PROJECT_NAME?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+CMAKE_PROJECT_NAME only applies to the project name of the top-level CMakeLists.txt
 "
                     },
                     {"snippetA", @"
@@ -1650,12 +1655,18 @@ local toolchain.
             {56, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider: 
+    'project(hello_world)'
 
+a) By default, which lanauges are enabled for a project in CMake?
+b) How can you enhance the above to only look for C++ compilers?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) C and C++
+b) You can specify C++ as the only language for the project by setting the LANGUAGES keyword:
+    'project(hello_world LANGUAGES CXX)'
 "
                     },
                     {"snippetA", @"
@@ -1672,12 +1683,16 @@ local toolchain.
             {57, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Breakdown the following comman:
+    'add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])'
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) add_subdirectory adds the 'source_dir' to our builds
+2) [binary_dir] is the optional location for a path that build files will be written to
+3) [EXCLUDE_FROM_ALL] keyword will disable the automatic building of targets defined in the subdirectory
+    (useful for separating parts of the project that aren't needed for the core functionality)
 "
                     },
                     {"snippetA", @"
@@ -1694,12 +1709,15 @@ local toolchain.
             {58, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State a few pros of using add_subdirectory
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) Variables are isolated to the nested scope
+2) The nested artifacts can be configured independently
+3) Modifying the nested CMakeLists.txt that is referenced in add_subdirectory
+    doesn't require building unrelated targets.
 "
                     },
                     {"snippetA", @"
@@ -1716,12 +1734,36 @@ local toolchain.
             {59, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the add_library command:
+    'add_library(<name> [<type>] [EXCLUDE_FROM_ALL] <sources>...)'
 
+For each of the following add_library <type> options, state the output (if any)
+and the purpose of the option:
+
+1) STATIC
+2) SHARED
+3) MODULE
+4) INTERFACE
+5) OBJECT
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) STATIC: 
+    output: static library (.a or .lib)
+    purpose: reusable, statically linked code
+2) SHARED:
+    output: shared library (.so, .dll)
+    purpose: dynamically linked, reusable code
+3) MODULE:
+    output: shared library for runtime (also .so, .dll)
+    purpose: plugins or dynamically loaded libraries
+4) INTERFACE:
+    output: no compiled output
+    purpose: for header-only or property-based library
+5) OBJECT:
+    output: object files (.o, .obj)
+    purpose: to share compiled object files across targets
 "
                     },
                     {"snippetA", @"
@@ -1738,15 +1780,29 @@ local toolchain.
             {60, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Which CMAKE_* variable would you turn to in order to support multiple target
+operating systems with a single CMake script.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+CMAKE_SYSTEM_NAME - see snippet
 "
                     },
                     {"snippetA", @"
+if(CMAKE_SYSTEM_NAME STREQUAL ""Linux"")
+# 1> [CMake] -- CURRENTLY USING CMAKE_SYSTEM_NAME = Linux
+	message_cmake_system_name(CMAKE_SYSTEM_NAME)
+elseif(CMAKE_SYSTEM_NAME STREQUAL ""Darwin"")
+	message_cmake_system_name(CMAKE_SYSTEM_NAME)
+elseif(CMAKE_SYSTEM_NAME STREQUAL ""Windows"")
+# 1> [CMake] -- CURRENTLY USING CMAKE_SYSTEM_NAME = Windows
+	message_cmake_system_name(CMAKE_SYSTEM_NAME)
+elseif(CMAKE_SYSTEM_NAME STREQUAL ""AIX"")
+	message_cmake_system_name(CMAKE_SYSTEM_NAME)
+else()
+	message(FATAL_ERROR ""UNHANDLED CASE CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}"")
+endif()
 "
                     },
                     {"imgQ", @"
@@ -1760,12 +1816,14 @@ local toolchain.
             {61, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    In 64-bit architecture, memory addresses, processor registers, processor instructions,
+    address buses, and data buses are 64 bits wide.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1782,12 +1840,20 @@ local toolchain.
             {62, new Dictionary<string, string>()
                 {
                     { "q", @"
+Say you are dealing with a project with the topmost CMakeLists.txt having:
+    'set(CMAKE_CXX_STANDARD 23)'
 
+a) Will this standard propagate to all downstream targets?
+b) If you have a downstream target (named <target>) which must compile with C++14, state the command
+    you would offer to achieve this.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) yes
+b) set_property(TARGET <target> PROPERTY CXX_STANDARD 14)
 
+Note: We override with 'CXX_STANDARD' and not 'CMAKE_CXX_STANDARD'
 "
                     },
                     {"snippetA", @"
@@ -1804,12 +1870,42 @@ local toolchain.
             {63, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) Explain what is going on?
+b) Outline the significance, pros and cons adding lines (1)-(4) to a CMakeLists.txt cmake listfile?
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.26)
+project(Structure CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+include(CheckIPOSupported)                               # (1)
+check_ipo_supported(RESULT ipo_supported)                # (2)
+message(STATUS ""IPO supported: ${ipo_supported}"")        # (3)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ${ipo_supported}) # (4)
+
+add_subdirectory(src bin)
+
 "},
                     { "a", @"
+a) (1) - include the .cmake logic to bring the check_ipo_supported in
+   (2) - setting the result of whether IPO is supported to variable `ipo_supported`
+   (3) - message for enduser purposes
+   (4) - setting the ipo option on depending on whether IPO is actually supported
 
+b) significance:
+    - interprocedural optimization at link time, a.k.a link-time optimization
+    - allows all compilation units to be optimized as a unified module
+
+   pro:
+    - in principle will achieve better (optimization) results
+
+   cons:
+    - slower builds, more memory consumption
 "
                     },
                     {"snippetA", @"
@@ -1826,12 +1922,18 @@ local toolchain.
             {64, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the snippet from a topmost CMakeLists.txt file:
 
+What is being guarding against exactly?
 "                   },
                     {"snippetQ", @"
+if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+
+    mesage(FATAL_ERROR ""Can't do this"")
+endif()
 "},
                     { "a", @"
-
+In-source builds
 "
                     },
                     {"snippetA", @"
