@@ -1514,12 +1514,11 @@ so that they're only included once, state the command for:
     c) when we want to include a particular .cmake file, say utilities.cmake, once
 "                   },
                     {"snippetQ", @"
+"},
+                    { "a", @"
 a) include_guard() or include_guard(DIRECTORY)
 b) include_guard(GLOBAL)
 c) include_guard(utilities.cmake)
-"},
-                    { "a", @"
-
 "
                     },
                     {"snippetA", @"
@@ -1533,15 +1532,20 @@ c) include_guard(utilities.cmake)
                     },
                 }
             },
-            {51, new Dictionary<string, string>()
+            {51, new Dictionary<string, string>() // Chapter 3 - Using CMake in Popular IDEs
                 {
                     { "q", @"
-
+a) What does cross-compilation involve?
+b) How does remote development differ from cross-compilation?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) Cross-compilation involves using a specialized toolchain that allows a compiler
+running on one platform (like Windows) to produce artifacts for another platform (like Linux).
 
+b) In remote development, you sesnd your code to the target machine and build it there using the
+local toolchain.
 "
                     },
                     {"snippetA", @"
