@@ -1947,15 +1947,16 @@ In-source builds
                     },
                 }
             },
-            {65, new Dictionary<string, string>()
+            {65, new Dictionary<string, string>() // Chapter 5 - Working with Targets
                 {
                     { "q", @"
-
+In software engineering, two components are said to be connascent if...?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Two components are said to be connascent if a change in one would require
+the other to be modified in order to maintain the overall correctness of the system.
 "
                     },
                     {"snippetA", @"
@@ -1972,12 +1973,16 @@ In-source builds
             {66, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What does a CMake target represent?
+b) True or false:
+    Targets can have dependencies on other targets, and their construction follows a 
+    declarative approach.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) Logical unit that focuses on a specific object
+b) True
 "
                     },
                     {"snippetA", @"
@@ -1994,12 +1999,18 @@ In-source builds
             {67, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following:
+    'target_sources(<target> [PRIVATE | PUBLIC | INTERFACE] <source1> [<source2> ...])'
 
+What is the purpose of 'target_sources'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+`target_sources` allows you to explicitly manage the files associated with a target
+in a modular and flexible way.
 
+E.g. adding Windows-specific files to the target if(CMAKE_SYSTEM_NAME == ""Windows"") / endif()
 "
                     },
                     {"snippetA", @"
@@ -2016,12 +2027,17 @@ In-source builds
             {68, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following:
+    'add_executable(<target_name> [WIN32] [MACOSX_BUNDLE] [EXCLUDE_FROM_ALL] [source1] [source2 ...])'
 
+What is the consequence of specifying the 'EXCLUDE_FROM_ALL' keyword?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+The 'EXCLUDE_FROM_ALL' keyword when specified, will prevent the executable target
+from being built in a regular, default build. Such a target will have to be explicitly called with
+    'cmake --build -t <target_name>'
 "
                     },
                     {"snippetA", @"
@@ -2038,12 +2054,19 @@ In-source builds
             {69, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What's the difference (in intention) between:
+    1) `target_link_libraries()`
+    2) `add_dependencies()`
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) `target_link_libraries()`:
+    - intended to be used with actual libraries
+    - allows you also to control property propagation
 
+2) `add_dependencies()`:
+    - meant to be used only with top-level targets to set their build order
 "
                     },
                     {"snippetA", @"
@@ -2060,12 +2083,27 @@ In-source builds
             {70, new Dictionary<string, string>()
                 {
                     { "q", @"
+a) Offer the command you would run to generate a .dot file to visualize
+the DAG dependency created in a CMake project.
 
+b) True or false:
+    custom targets are not visible by default
+
+c) If (b) is true, offer the property you would set to allow for custom targets
+    to be visualized.
+
+d) What would you use this link for? https://dreampuf.github.io/GraphvizOnline/?engine=dot
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) cmake --graphviz=test.dot <source_tree>
 
+b) True
+
+c) set(GRAPHVIZ_CUSTOM_TARGETS ON)
+
+d) Pop in the contents of your .dot file into that location to visualize the dependencies in your CMake project
 "
                     },
                     {"snippetA", @"
@@ -2082,12 +2120,19 @@ In-source builds
             {71, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is a pseudo target?
+b) State the three pseudo targets.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) pseudo targets:
+    - represent inputs such external dependencies, aliases or other non-build artifacts
+    - do not represent outputs of the buildsystem and are not represented in the generated buildsystem
+b)
+    1) imported targets
+    2) aliases
+    3) interface libraries
 "
                     },
                     {"snippetA", @"
@@ -2104,12 +2149,23 @@ In-source builds
             {72, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following:
+    'add_executable(<alias_name> ALIAS <existing_target>)
+    add_library(<alias_name> ALIAS <existing_target>)'
 
+True or false:
+    a) Properties of alias targets are read only
+    b) You cannot install aliases
+    c) You can export aliases
+    d) Aliases are visible in the generated buildsystem
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) True
+c) False - you cannot export (build) aliases
+d) False - aliases are not visible in the generated buildsystem
 "
                     },
                     {"snippetA", @"
@@ -2148,12 +2204,17 @@ In-source builds
             {74, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What are the two primary uses of interface libraries?
+b) Which command would we use to achieve both purposes?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a)
+    1) To represent header-only libraries
+    2) To bundle propagated properties into a single logical unit
 
+b) add_library
 "
                     },
                     {"snippetA", @"
@@ -2170,12 +2231,17 @@ In-source builds
             {75, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Which buildsystem target does CMake generate by default to contain all top-level listfile
+targets, such as executeables and libraries (not necessarily custom targets)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+ALL. <- this is run when we run the standard 'cmake --build <build_tree>'
 
+Note that (1) and (2) are equivalent:
+    'cmake --build <build_tree>' (1)
+    'cmake --build <build_tree> --target all' (2, note lowercase)
 "
                     },
                     {"snippetA", @"
@@ -2192,12 +2258,19 @@ In-source builds
             {76, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the 'add_custom_target' command.
 
+True or false:
+    a) By default, targets created with 'add_custom_target' are excluded from the ALL target
+    unless you explicitly add them with a ALL keyword.
+    b) In order for the `clean` target to work correctly, you need to manually specify any
+        files that your custom targets create as BYPRODUCTS.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) True
 "
                     },
                     {"snippetA", @"
