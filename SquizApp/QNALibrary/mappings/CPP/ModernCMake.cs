@@ -2284,15 +2284,20 @@ b) True
                     },
                 }
             },
-            {77, new Dictionary<string, string>()
+            {77, new Dictionary<string, string>() // Chapter 6 - Using Generator Expressions
                 {
                     { "q", @"
+As you know, CMake has three stages:
+    1) Configuration
+    2) Generation
+    3) Building
 
+At which stage are generator expressions / 'genexes' evaluated?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+You guessed it, (2) the generation stage.
 "
                     },
                     {"snippetA", @"
@@ -2309,12 +2314,14 @@ b) True
             {78, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What problem do generator expressions solve?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Generator expressions solve the ""chicken and egg"" paradox where data
+required in the configuration stage of CMake is only made available once the configuration
+stage is complete and the buildsystem is generated.
 "
                     },
                     {"snippetA", @"
@@ -2331,12 +2338,20 @@ b) True
             {79, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Outline what the following generator expressions return:
+    a) $<CONFIG>
+    b) $<CONFIG:config>
+    c) $<PLATFORM_ID>
+    d) $<PLATFORM_ID:platform>
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
 
+a) Returns the current configuration as a string i.e. 'Debug', 'Release'
+b) Returns true if `configs` contains the current build configuration (case-insensitive comparison)
+c) Returns the current platform ID as a string, 'Linux', 'Windows' or 'Darwin' for macOS
+d) Returns true if `platform` contains the current platform ID.
 "
                     },
                     {"snippetA", @"
@@ -2353,12 +2368,15 @@ b) True
             {80, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Outline what the following generator expressions return:
+    a) $<CXX_COMPILER_ID>
+    b) $<CXX_COMPILER_VERSION>
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) Returns CMake's compiler ID of the C++ compiler used
+b) Returns CMake's compiler version of the C++ compiler used
 "
                     },
                     {"snippetA", @"
@@ -2375,12 +2393,21 @@ b) True
             {81, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the difference between:
+    a) 'target_link_libraries(libA PRIVATE libB)'
+    b) 'target_link_libraries(libA PRIVATE $<LINK_ONLY:libB>)'
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a)
+    - Directly links libB to libA as a private dependency.
+    - All of libB's usage requirements (include directories, compile definitions) 
+      are propagated to libA
 
+b)  - libA has ability to resolve symbol references with libB
+    - libB's usage requirements (include directories, compile definitions) 
+      are NOT propagated to libA 
 "
                     },
                     {"snippetA", @"
@@ -2397,12 +2424,20 @@ b) True
             {82, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Offer the target query generator expression for the following cases:
+    a) returns true if the target exists
+    b) returns the target name if the target exists and an empty string otherwise
+    c) return the `prop` property value for the target
+    d) returns a list of object files for an object library target
+    
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) $<TARGET_EXISTS:target>
+b) $<TARGET_NAME_IF_EXISTS:target>
+c) $<TARGET_PROPERTY:target,prop>
+d) $<TARGET_OBJECTS:target>
 "
                     },
                     {"snippetA", @"
