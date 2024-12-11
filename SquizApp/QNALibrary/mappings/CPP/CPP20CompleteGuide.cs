@@ -485,15 +485,21 @@ public:
                     },
                 }
             },
-            {11, new Dictionary<string, string>()
+            {11, new Dictionary<string, string>() // Chapter 2 - Placeholder Types for Function Parameters
                 {
                     { "q", @"
+True or false:
+a) For functions with auto parameters, the whole implementation belongs in a header file so that they can
+    be used in multiple CPP files (otherwise, you have to explicitly instantiate the function in one translation unit).
 
+b) Functions with `auto` parameters (abbreviated function templates) do not need to be declared as inline
+    because function templates are always inline.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) True
 "
                     },
                     {"snippetA", @"
@@ -510,12 +516,26 @@ public:
             {12, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    Templates may be declared inside functions. Moreover, with member functions using `auto`
+    parameters, you can longer define the class or data structure locally inside a function.
 "                   },
                     {"snippetQ", @"
+void foo()
+{
+	struct Data
+	{
+		void mem(auto param) {}
+	};
+}
 "},
                     { "a", @"
+False - the snippetQ will not compile in C++20.
 
+Templates may NOT be declared inside functions. Moreover, with member functions using `auto`
+    parameters, you can NO longer define the class or data structure locally inside a function.
 "
                     },
                     {"snippetA", @"
@@ -532,15 +552,34 @@ public:
             {13, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+How would we go able calling `print_func1` and `print_func2` with
+the argument ""hello"" while also specifying the type 'std::string' explicitly.
 "                   },
                     {"snippetQ", @"
+#include <print>
+#include <string>
+
+void print_func1(const auto& arg)
+{
+	// abbreviated function template
+	std::println(""print_func1: {}"", arg);
+}
+
+auto print_func2 = [](const auto& arg)
+	{
+		// generic lamda
+		std::println(""print_func2: {}"", arg);
+	};
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+	print_func1<std::string>(""hello"");
+	print_func2.operator()<std::string>(""Hello"");
 "
                     },
                     {"imgQ", @"
