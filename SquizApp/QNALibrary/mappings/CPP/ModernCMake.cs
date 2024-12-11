@@ -256,7 +256,7 @@ What is meant by 'out-of-source builds'?
                     {"snippetQ", @"
 "},
                     { "a", @"
-An 'out-of-source build' is a dedicated directory for storing build artifacts. This directory (of named 'build')
+An 'out-of-source build' is a dedicated directory for storing build artifacts. This directory (often named 'build')
 is separate from the source tree.
 "
                     },
