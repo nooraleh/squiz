@@ -1072,12 +1072,38 @@ c) Template instantiation
             {34, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+What is the difference between lines (1) and (2)?
 "                   },
                     {"snippetQ", @"
+template <typename T>
+class V {
+public:
+    V( int n = 0) : m_nEle(n), m_buf(0) { }
+    ~V(){ }
+private:
+    int m_nEle;
+    T * m_buf;
+};
+
+// translation_unit1.cpp
+template class V<double>; // line (1)
+
+// translation_unit2.cpp
+V<double> v_double{};     // line (2)
 "},
                     { "a", @"
+Line (1):
+    - forces a COMPLETE instantion in the translation unit in which it is run
+    - i.e. all members, methods, and specializations for `double` are generated, regardless
+    of whether they are used
+    - ensure that no other translation unit generates it own version of V<double>, ensuring
+    ODR compliance
 
+Line (2):
+    - triggers on-demand instantiation (if on explicit instantiation exists)
+    - the compiler only generates the parts of the template that are needed for v_double to work
 "
                     },
                     {"snippetA", @"
@@ -1094,12 +1120,36 @@ c) Template instantiation
             {35, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+What is the consequence of specifying 'extern' in line (1)
 "                   },
                     {"snippetQ", @"
+// Header File (V.h)
+template <typename T>
+class V {
+public:
+    void doSomething();
+};
+
+// Source File 1 (V.cpp)
+#include ""V.h""
+template class V<double>; 
+
+// Source File 2 (main.cpp)
+#include ""V.h""
+extern template class V<double>; // line (1)
+
+int main() {
+    V<double> obj;
+    obj.doSomething();
+    return 0;
+}
 "},
                     { "a", @"
-
+The 'extern template class V<double>;' declares that the full instantiation
+for V<double> already exist in another translation unit - and the remaining code
+relies on the full instantiations symbols being resolved at link time.
 "
                     },
                     {"snippetA", @"
