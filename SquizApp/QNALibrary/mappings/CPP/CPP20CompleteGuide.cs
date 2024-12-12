@@ -590,18 +590,33 @@ See snippet
                     },
                 }
             },
-            {14, new Dictionary<string, string>()
+            {14, new Dictionary<string, string>() // Chapter 3 - Concepts, Requirements, and Constraints
                 {
                     { "q", @"
+Consider the function template in the snippet:
 
+How would you enhance this to guard against pointer types?
 "                   },
                     {"snippetQ", @"
+template<typename T>
+T max_value(T a, T b)
+{
+	return a < b ? b : a;
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <concepts>
+
+template<typename T>
+requires(!std::is_pointer_v<T>)
+T max_value(T a, T b)
+{
+	return a < b ? b : a;
+}
 "
                     },
                     {"imgQ", @"
@@ -615,15 +630,47 @@ See snippet
             {15, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Constrain pointer, non-pointer abbreviated functions 
+`max_value` with a standard concept to ensure that the two parameters
+can be compared with each other.
 "                   },
                     {"snippetQ", @"
+template<typename T>
+concept is_pointer = std::is_pointer_v<T>;
+
+template<typename T>
+concept is_not_pointer = !std::is_pointer_v<T>;
+
+auto max_value(is_not_pointer auto a, is_not_pointer auto b)
+{
+	return a > b ? a : b;
+}
+
+auto max_value(is_pointer auto a, is_pointer auto b)
+{
+	return max_value(*a, *b);
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+auto max_value(is_not_pointer auto a, is_not_pointer auto b)
+requires std::totally_ordered_with<decltype(a), decltype(b)>
+{
+	return a > b ? a : b;
+}
+
+
+auto max_value(is_pointer auto a, is_pointer auto b)
+requires std::totally_ordered_with<decltype(*a), decltype(*b)>
+{
+	return max_value(*a, *b);
+}
+
 "
                     },
                     {"imgQ", @"
@@ -659,15 +706,35 @@ See snippet
             {17, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Outline what each of the requires subexpressions specify.
 "                   },
                     {"snippetQ", @"
+#include <concepts>
+
+template<typename T>
+concept is_pointer = requires(T p)
+{
+	*p;
+	p == nullptr;
+	{ p < p } -> std::same_as<bool>;
+};
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <concepts>
+
+template<typename T>
+concept is_pointer = requires(T p)
+{
+	*p;									// operator * is valid
+	p == nullptr;						// can compare with nullptr NOTE: this is not saying ""equal to nullptr""
+	{ p < p } -> std::same_as<bool>;	// operator< returns a bool
+};
 "
                     },
                     {"imgQ", @"
@@ -681,15 +748,29 @@ See snippet
             {18, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) True or false:
+    It is possible to constrain templated in the manner demonstrated in snippetQ
+
+b) If (a) is a false, offer a concept implementation of `is_integral_val_type`
+    that satisfies both constraints.
 "                   },
                     {"snippetQ", @"
+// compiler error?
+template<std::ranges::sized_range T>
+concept is_integral_val_type = std::integral<>std::ranges::range_value_t<T>>;
 "},
                     { "a", @"
+a) false - you cannot constrain concepts
 
+b) See snippet A
 "
                     },
                     {"snippetA", @"
+// correct implementation 
+template<typename T>
+concept is_integral_val_type = std::ranges::sized_range<T> && std::integral<std::ranges::range_value_t<T>>;
 "
                     },
                     {"imgQ", @"
@@ -703,12 +784,16 @@ See snippet
             {19, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Consider the following statements regarding overload resolution's general rules and determine
+whether they are true or false:
+    a) Calls with no type conversion are preferred over calls having type conversion
+    b) Calls of ordinary functions are preferred over calls of function templates
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) True
 "
                     },
                     {"snippetA", @"
@@ -725,12 +810,44 @@ See snippet
             {20, new Dictionary<string, string>()
                 {
                     { "q", @"
+Carefully consider the following snippet:
 
+Which overload gets called in `for_main`
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <concepts>
+
+// overload 1
+template<typename COLLECTION>
+void add(COLLECTION& collection, const typename COLLECTION::value_type& value) // pass by const reference
+{
+	collection.push_back(value);
+}
+
+
+// overload 2
+template<typename COLLECTION>
+void add(COLLECTION& collection, typename COLLECTION::value_type value) // pass by value
+	requires std::floating_point<typename COLLECTION::value_type>
+{
+	collection.push_back(value);
+}
+
+
+void for_main()
+{
+	std::vector<double> double_vector;	// COLLECTION::value_type is a floating point
+	add(double_vector, 0.7);			// `0.7` is an r-value reference
+}
 "},
                     { "a", @"
+Trick question:
 
+Since the parameter value categories differ for the second argument - overload 2 is no longer
+a special case of overload 1.
+
+Therefore, we get an 'ambiguous call to overloaded function' compiler error. 
 "
                     },
                     {"snippetA", @"
@@ -747,12 +864,28 @@ See snippet
             {21, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet - which entails a custom concept.
 
+a) What is the term for the relation between our `ConvertsWithoutNarrowing` and the
+standard concept `std::convertible_to`?
+
+b) What impact does your answer to (a) have on overload resolution?
 "                   },
                     {"snippetQ", @"
+template<typename From, typename To>
+concept ConvertsWithoutNarrowing =
+std::convertible_to<From, To>&&
+	requires (From&& x) {
+		{ std::type_identity_t<To[]>{std::forward<From>(x)} } -> std::same_as<To[1]>;
+};
+
 "},
                     { "a", @"
+a) We say that `ConvertsWithoutNarrowing` SUBSUMES `std::convertible_to`.
 
+b) For overload resolution purposes a concept C1 that subsumes a concept C2 considered
+    more specialized - which means that a function constrained with C1 will rank higher than
+    a function constrained with C2 without ambiguity issues.
 "
                     },
                     {"snippetA", @"
@@ -769,15 +902,35 @@ See snippet
             {22, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet.
 
+Rewrite the concept to:
+    - only take the collection as a parameter in the requires clause
+    - use std::declval to infer the underlying element type within the collection and use 
+        in verifying that .push_back is supported
 "                   },
                     {"snippetQ", @"
+template<typename COLLECTION>
+concept supports_push_back = requires(COLLECTION collection, COLLECTION::value_type value)
+{
+	collection.push_back(value);
+};
 "},
                     { "a", @"
+See snippet
 
+Note: the reference  & is required as std::declval returns an r-value reference, and we want
+to leverage reference collapsing to include non-r-value references
 "
                     },
                     {"snippetA", @"
+#include <utility>
+
+template<typename COLLECTION>
+concept supports_push_back = requires(COLLECTION collection)
+{
+	collection.push_back(std::declval<typename COLLECTION::value_type&>());
+};
 "
                     },
                     {"imgQ", @"
@@ -791,12 +944,16 @@ See snippet
             {23, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does SFINAE:
+    a) stand for and;
+    b) what does it mean?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) Substituion failure is not an error
+b) It is a rule that we simply ignore generic code if its declaration is not well-formed
+    instead of raising a compile-time error.
 "
                     },
                     {"snippetA", @"
@@ -813,12 +970,20 @@ See snippet
             {24, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the difference between the standard concepts:
+    1) std::invocable
+    2) std::regular_invocable
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) std::invocable
+    - specifies that a callable function F can be called with a set of arguments Args...
 
+2) std::regular_invocable
+    - subsumes std::invocable
+    - requires the std::invoke expression to be equality-preserving
+    - not modify either the function object or the arguments (not side effects)
 "
                     },
                     {"snippetA", @"
@@ -835,12 +1000,14 @@ See snippet
             {25, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Explain the C++20 concept (not the keyword) of 'equality preservation'.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Equality preservation means:
+    - if the expression (a==b) evaluates to true
+    - then given a function f, the expression (f(a) == f(b)) must also evaluate to true
 "
                     },
                     {"snippetA", @"
