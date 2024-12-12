@@ -1021,15 +1021,25 @@ Equality preservation means:
                     },
                 }
             },
-            {26, new Dictionary<string, string>()
+            {26, new Dictionary<string, string>() // Chapter 4 - Concepts, Requirements, and Constraints in Detail
                 {
                     { "q", @"
+Consider the following snippet.
 
+Why should the use of || in requires clauses NOT be used casually?
 "                   },
                     {"snippetQ", @"
+template<typename T>
+requires std::integral<T> || std::floating_point<T>
+T power(T a, T b)
+{
+	// implementation ...
+}
 "},
                     { "a", @"
-
+The use of || in template constraints should NOT be used casually in requires
+clauses as the use may potentially tax compilation resources (i.e. make compilation
+noticeable slower).
 "
                     },
                     {"snippetA", @"
@@ -1046,15 +1056,22 @@ Equality preservation means:
             {27, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Use STL only objects to define a function `foo` with
+a requires clause that constrains on the following:
+    1) type T is a raw pointer, or;
+    2) type T is the type of nullptr
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+template<typename T>
+requires std::is_pointer_v<T> || std::same_as<T, std::nullptr_t>
+void foo()
+{ }
 "
                     },
                     {"imgQ", @"
@@ -1068,15 +1085,29 @@ Equality preservation means:
             {28, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the snippet which shows a basic template function.
 
+What's a quick way to disable this function (temporarily) so it doesn't
+show up in the overload set?
 "                   },
                     {"snippetQ", @"
+template<typename T>
+void print(const T&)
+{
+    // implementation ...
+}
 "},
                     { "a", @"
-
+Use requires clause 'requires false' (see snippet)
 "
                     },
                     {"snippetA", @"
+template<typename T>
+requires false
+void print(const T&)
+{
+    // implementation ...
+}
 "
                     },
                     {"imgQ", @"
@@ -1090,12 +1121,22 @@ Equality preservation means:
             {29, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    requires expression parameters are never replaced by arguments. Therefore,
+    it usually does not matter whether you declare them by value or by reference.
 "                   },
                     {"snippetQ", @"
+template<typename T>
+	requires requires(T x, T y) { x + y; }
+[[nodiscard]] T add(T x, T y)
+{
+	return x + y;
+}
 "},
                     { "a", @"
-
+True (although the 'usually' means that there may be some cases)
 "
                     },
                     {"snippetA", @"
@@ -1112,12 +1153,24 @@ Equality preservation means:
             {30, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the snippet.
 
+Outline what each of the lines are constraining on.
 "                   },
                     {"snippetQ", @"
+template<typename T1, typename T2>
+	requires requires(T1 t1, T2 t2)
+{
+	*t2;				// line (1)
+	t2[0];				// line (2)
+	t2->value();		// line (3)
+	*t2 > t1;			// line (4)
+	t2 == nullptr;		// line (5)
+}
+void foo() {}
 "},
                     { "a", @"
-
+See snippet.
 "
                     },
                     {"snippetA", @"
@@ -1134,15 +1187,38 @@ Equality preservation means:
             {31, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) True or false:
+    Line (1) does not that both expressions '*p > val' and 'p == nullptr' are possible
+b) If we the above is true, then rewrite the requirements such that we want either expressions
+    to be possible
 "                   },
                     {"snippetQ", @"
+template<typename T1, typename T2>
+	requires requires(T1 val, T2 p)
+{
+	*p > val || p == nullptr; // line (1)
+}
+void bar() {}
 "},
                     { "a", @"
-
+a) True - this infact is requiring that the result of the expressions can be operated with the || operator
+b) See snippet
 "
                     },
                     {"snippetA", @"
+template<typename T1, typename T2>
+requires
+	requires(T1 val, T2 p)
+	{
+		*p > val;
+	}
+	|| requires(T1 val, T2 p)
+	{
+		p == nullptr;
+	}
+void bar() {}
 "
                     },
                     {"imgQ", @"
@@ -1156,12 +1232,27 @@ Equality preservation means:
             {32, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+What, if any, is the difference in constraint in (1) and (2) in terms of overload resolution? 
 "                   },
                     {"snippetQ", @"
+#include <concepts>
+
+// constrained template function line (1)
+template<typename T>
+requires std::integral<T>
+void baz() {}
+
+// constrained template function (2)
+template<typename T>
+	requires requires {std::integral<T>; }
+void baz() {}
 "},
                     { "a", @"
-
+The first constrained template checks for integral types.
+The second constrained template checks if the expression 'std::integral<T>' is
+valid - which is true for all types (yielding false is still a valid result).
 "
                     },
                     {"snippetA", @"
@@ -1178,15 +1269,17 @@ Equality preservation means:
             {33, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Offer a concept that constrains on types T that are hashable with std::hash<T>
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+template<typename T>
+concept standard_hashable = requires {std::hash<T>{}; };
 "
                     },
                     {"imgQ", @"
@@ -1200,12 +1293,15 @@ Equality preservation means:
             {34, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    At both compile time and runtime, you can always use a concept where the value
+    of a Boolean expression is needed. However, you cannot take the address of a concept
+    because there is no object behind it (it is a pr-value)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True.
 "
                     },
                     {"snippetA", @"
