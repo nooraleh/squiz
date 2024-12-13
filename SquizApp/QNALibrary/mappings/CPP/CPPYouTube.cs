@@ -1740,12 +1740,30 @@ b) 3
             {102, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the snippet:
 
+Which of (1) or (2) is cheap/expensive to call? Why?
 "                   },
                     {"snippetQ", @"
+void for_main()
+{
+	std::vector<int> vec{ 0, 8, 15, 47, 11, 42 };
+	auto view1 = vec | std::views::drop(100);
+	auto pos = view1.begin();			// (1) - lazily evaluated .begin()
+
+	std::list<int> list{ 0, 8, 15, 47, 11, 42 };
+	auto view2 = list | std::views::drop(100);
+	auto pos2 = view2.begin();			// (2) - lazily evaluated .begin()
+}
 "},
                     { "a", @"
+(1) Cheap:
+    - std::vector is a random-access ranges (satisfies std::ranges::random_access_range)
+    - Calling begin after the drop of 100 is equivalent to .begin() + 100
 
+(2) Expensive:
+    - std::list is a linked list
+    - Calling .begin() after the drop of 100 is equivalent to calling .begin() then ++ 100 times
 "
                     },
                     {"snippetA", @"
@@ -1762,12 +1780,22 @@ b) 3
             {103, new Dictionary<string, string>()
                 {
                     { "q", @"
+Which of the following C++20 views cache begin?
 
+    a) filter
+    b) drop_while
+    c) split
+    d) drop
+    e) reverse
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) always
+b) always
+c) always
+d) sometimes (e.g. std::vector no, std::list yes)
+e) sometimes
 "
                     },
                     {"snippetA", @"
@@ -1784,12 +1812,53 @@ b) 3
             {104, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet with an emphasis on line (1)
 
+Example why line (1) causes a compiler error.
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <ranges>
+#include <iostream>
+#include <list>
+
+void print(const std::ranges::input_range auto range)
+{
+	for (const auto& element : range)
+	{
+		std::cout << element << ' ';
+	}
+	std::cout << '\n';
+}
+
+void for_main()
+{
+	std::vector<int> vector{ 0, 8, 1, 47, 11, 42, 2 };
+	std::list<int> list{ 0, 8, 1, 47, 11, 42, 2 };
+
+	print(vector);
+	print(list);
+
+	print(vector | std::views::take(3));
+	print(list | std::views::take(3));
+
+	print(vector | std::views::drop(3));
+	print(list | std::views::drop(3));     // line (1)
+
+	print(vector | std::views::reverse);
+	print(list | std::views::reverse);
+}
 "},
                     { "a", @"
+The drop view on std::list is expensive, calling ++ n times given std::views::drop(n).
 
+Since this call is expensive, under-the-hood the begin() value is cached to prevent the
+traversal happening again.
+
+This caching modifies the view - and since the print function was declared const it cannot
+compile.
+
+Not that caching logic happens within the for loop since views are lazily evaluated.
 "
                     },
                     {"snippetA", @"
@@ -1806,12 +1875,14 @@ b) 3
             {105, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    std::ranges::subrange is a view that stores/caches .begin() on 
+    initialization.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1828,12 +1899,42 @@ b) 3
             {106, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) What is the key difference between a 'ref_view' and an 'owning_view'?
+b) What is the consequence of this difference in C++20 (believe this is fixed in C++23)?
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <ranges>
+
+std::vector<int> get_vector()
+{
+	return { 1, 2, 3, 4, 5 };
+}
+
+void for_main()
+{
+	auto greater_than_9 = [](auto element) {return element > 9; };
+
+	std::vector<int> collection = get_vector();
+
+
+	// typeid(ref_view).name() == std::ranges::filter_view<std::ranges::ref_view<std::vector<int>>>
+	auto ref_view = collection | std::ranges::views::filter(greater_than_9);
+
+	// typeid(owning_view).name() == std::ranges::filter_view<std::ranges::owning_view<std::vector<int>>>
+	auto owning_view = get_vector() | std::views::filter(greater_than_9);
+}
 "},
                     { "a", @"
+a)
+    A ref_view has the underlying range to which the view refers to outside of the scope of
+    the view.
 
+    An owning view contains the underlying range as a member.
+
+b) ref_view does NOT propogate const, while owning_view does propagate const
 "
                     },
                     {"snippetA", @"
