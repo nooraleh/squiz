@@ -355,7 +355,7 @@ b) How can you determine whether a given generator is single-configuration vs. m
 "},
                     { "a", @"
 a) Single-configuration generators only support one build configuration per build directory.
-    Multi-configuration generators support multiple configurations int eh same build directory (build tree)
+    Multi-configuration generators support multiple configurations in the same build directory (build tree)
 
 b) Only single-configuration generators will have the CMAKE_BUILD_TYPE variable present or specified in 
     the CMakeCache.txt file.
@@ -446,7 +446,7 @@ Note: 'globbing_expression' supports the * (wildcard) and ? (any character) symb
                     {"snippetQ", @"
 "},
                     { "a", @"
-In this case, -U will remove any cache variables that satisfy the <globbing_express>.
+In this case, -U will remove any cache variables that satisfy the <globbing_expression>.
 Note that you should be careful with this as you may erase more variables than intended.
 "
                     },
