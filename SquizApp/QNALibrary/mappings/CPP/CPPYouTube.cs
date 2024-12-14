@@ -1951,12 +1951,27 @@ b) ref_view does NOT propogate const, while owning_view does propagate const
             {107, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    1) `big_class_type_0` subsumes the concepts `big_type`
+    2) `big_class_type_1` subsumes the concepts `big_type`
 "                   },
                     {"snippetQ", @"
+#include <type_traits>
+
+template<typename T>
+concept big_type = sizeof(T) > 8;
+
+template<typename T>
+concept big_class_type_0 = sizeof(T) > 8 && std::is_class_v<T>;
+
+template<typename T>
+concept big_class_type_1 = big_type<T> && std::is_class_v<T>;
 "},
                     { "a", @"
-
+1) False - only concept constraints are checked for subsumption
+2) True
 "
                     },
                     {"snippetA", @"
