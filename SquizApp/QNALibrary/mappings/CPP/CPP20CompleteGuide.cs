@@ -1315,15 +1315,16 @@ True.
                     },
                 }
             },
-            {35, new Dictionary<string, string>()
+            {35, new Dictionary<string, string>() // Chapter 6 - Ranges and Views
                 {
                     { "q", @"
-
+C++20 provieds a new way to deal with ranegs. Outline this new provision.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+- support for defining ranges and subranges as single objects
+- e.g. passing ranges (or subranges) as a whole as a single argument instead of dealing with two iterators.
 "
                     },
                     {"snippetA", @"
@@ -1340,12 +1341,15 @@ True.
             {36, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of C++20 ranges, what is a view?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+View:
+    - lightweight range
+    - refers to a subset of a range
+    - along with optional transformation of the values
 "
                     },
                     {"snippetA", @"
@@ -1362,12 +1366,13 @@ True.
             {37, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What was introduced in C++20 to enable a flexible way to compose
+the processing of ranges and views?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Pipeline syntax
 "
                     },
                     {"snippetA", @"
@@ -1384,12 +1389,13 @@ True.
             {38, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    std::views is just an alias for std::ranges::views
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1406,7 +1412,10 @@ True.
             {39, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    Despite some functionality contained in the std::ranges namespace being 
+    defined outside of <ranges> - you should always include the <ranges> header
+    anyway.
 "                   },
                     {"snippetQ", @"
 "},
@@ -1428,12 +1437,13 @@ True.
             {40, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the standard concept std::ranges::random_access_range require?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::ranges::random_access_range, when constraining type R, requires that R
+is a range that provides random-access iterators.
 "
                     },
                     {"snippetA", @"
@@ -1450,12 +1460,27 @@ True.
             {41, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the standard concept which satisfies the following:
+    a) Can be iterated from begin to end
+    b) Range of elements to write values to 
+    c) Range to read element values from
+    d) Range you can iterate over the elements multiple times
+    e) Range you can iterate over the elements forward and backward
+    f) Range with random access
+    g) Range with all elements in contiguous memory
+    h) Range with constant-time size
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) std::ranges::range
+b) std::ranges::output_range
+c) std::ranges::input_range
+d) std::ranges::forward_range
+e) std::ranges::bidirectional_range
+f) std::ranges::random_access_range
+g) std::ranges::contiguous_range
+h) std::ranges::sized_range
 "
                     },
                     {"snippetA", @"
@@ -1472,15 +1497,66 @@ True.
             {42, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet.
 
+Refactor the formulation logic for the construction of `custom_view`
+to use the pipeline syntax.
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <ranges>
+#include <numeric>
+#include <iostream>
+#include <algorithm>
+
+std::vector<int> generate_arithmetic_sequence_vector(int start, std::size_t reserve_size)
+{
+	std::vector<int> return_vector(reserve_size);
+	std::iota(return_vector.begin(), return_vector.end(), start);
+	return return_vector;
+}
+
+void for_main()
+{
+	auto collection = generate_arithmetic_sequence_vector(1, 13);
+
+	auto custom_view = std::views::take(
+		std::views::transform(
+			std::views::filter(collection,
+				[](auto elem) { return elem % 3 == 0; }),
+			[](auto elem) { return elem * elem; }),
+		3);
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <vector>
+#include <ranges>
+#include <numeric>
+#include <iostream>
+#include <algorithm>
+#include <string_view>
+
+std::vector<int> generate_arithmetic_sequence_vector(int start, std::size_t reserve_size)
+{
+	std::vector<int> return_vector(reserve_size);
+	std::iota(return_vector.begin(), return_vector.end(), start);
+	return return_vector;
+}
+
+
+void for_main()
+{
+	auto collection = generate_arithmetic_sequence_vector(1, 13);
+
+	auto custom_view = collection
+		| std::views::filter([](auto element) {return element % 3 == 0; })
+		| std::views::transform([](auto element) {return element * element; })
+		| std::views::take(3);
+}
 "
                     },
                     {"imgQ", @"
@@ -1494,15 +1570,76 @@ True.
             {43, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the snippet:
 
+Write a range-based for loop over `composes` and use pipeline sytax to:
+		- filter on composers born after 1700, then
+		- take the first three, then
+		- get a view of only the keys in this map
 "                   },
                     {"snippetQ", @"
+#include <map>
+#include <ranges>
+#include <string>
+#include <iostream>
+
+void for_main()
+{
+	// map of composers (name->year of birth)
+	std::map<std::string, int> composers{
+		{""Bach"", 1685},
+		{""Mozart"", 1756},
+		{""Beethoven"", 1770},
+		{""Tchaikovsky"", 1840},
+		{""Chopin"", 1810},
+		{""Vivaldi "", 1678},
+	};
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <map>
+#include <ranges>
+#include <string>
+#include <iostream>
+
+void for_main()
+{
+	// map of composers (name->year of birth)
+	std::map<std::string, int> composers{
+		{""Bach"", 1685},
+		{""Mozart"", 1756},
+		{""Beethoven"", 1770},
+		{""Tchaikovsky"", 1840},
+		{""Chopin"", 1810},
+		{""Vivaldi "", 1678},
+	};
+}
+
+void for_main()
+{
+	// map of composers (name->year of birth)
+	std::map<std::string, int> composers{
+		{""Bach"", 1685},
+		{""Mozart"", 1756},
+		{""Beethoven"", 1770},
+		{""Tchaikovsky"", 1840},
+		{""Chopin"", 1810},
+		{""Vivaldi "", 1678},
+	};
+
+	for (const auto& composer : composers
+		| std::ranges::views::filter([](auto element) {return element.second > 1700;})
+		| std::ranges::views::take(3)
+		| std::ranges::views::keys
+	)
+	{
+		std::cout << composer << '\n';
+	}
+}
 "
                     },
                     {"imgQ", @"
@@ -1516,12 +1653,14 @@ True.
             {44, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    Views on lvalues usually have reference semantics. This means that,
+    in principle, views can be used for both reading and writing.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1538,12 +1677,18 @@ True.
             {45, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is lazy evaluation?
+b) std::ranges::views are lazily evaluated. Outline the consequences of this.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) Lazy evaluation means that computations or evaluations are deferred until
+    their results are explicitly needed.
 
+b) For std::ranges::views, this means:
+    1) The elements of a range are not generated or computed upfront
+    2) Computation happens on demand when elements are accessed
 "
                     },
                     {"snippetA", @"
@@ -1560,12 +1705,15 @@ True.
             {46, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    It is strongly recommended to use views right before you need them.
+    Create views to use them ad hoc. If modifications happen between initializing
+    a view and using it, CARE HAS TO BE TAKEN.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1582,12 +1730,20 @@ True.
             {47, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is a sentinel?
+b) What is made possible by sentinels?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) A sentinel is:
+    - an abstract that represents the end of a range
+    - a generalization of the end iterator concept but does not necessarily need to
+        be of the same type as the iterator
 
+b) Sentinels make it possible to represent ranges where the end is not determined
+    by an actual iterator pointing to a specific location in memory but by some condition
+    or external construct.
 "
                     },
                     {"snippetA", @"
@@ -1604,12 +1760,15 @@ True.
             {48, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the difference between:
+    1) std::for_each
+    2) std::ranges::for_each
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::ranges::for_each does not require that the begin iterator and the sentinel (end iterator)
+have the same type.
 "
                     },
                     {"snippetA", @"
@@ -1626,12 +1785,19 @@ True.
             {49, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false, a range can be defined by:
+    a) a begin iterator and an end iterator of the same type
+    b) a begin iterator and a sentinel (an end marker of possible different type to begin iterator)
+    c) a begin iterator and a count 
+    d) arrays
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) true
+b) true
+c) true
+d) true
 "
                     },
                     {"snippetA", @"
@@ -1648,12 +1814,13 @@ True.
             {50, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the C++20 STL construct for a value that represents the ""end""
+of an endless range?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::unreachable_sentinel
 "
                     },
                     {"snippetA", @"
@@ -1670,15 +1837,29 @@ True.
             {51, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+How would you refactor line (1) to use projections with the stl ranges comparator for operator<? 
 "                   },
                     {"snippetQ", @"
+void for_main()
+{
+	auto iota_view = std::ranges::views::iota(-10, 11);
+	std::vector<int> vector{ iota_view.begin(), iota_view.end() };
+	std::ranges::sort(vector, [](const auto& lhs, const auto& rhs) {return std::abs(lhs) < std::abs(rhs); }); // line (1)
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+void for_main_qna()
+{
+	auto iota_view = std::ranges::views::iota(-10, 11);
+	std::vector<int> vector{ iota_view.begin(), iota_view.end() };
+	std::ranges::sort(vector, std::ranges::less{}, [](const auto& element) {return std::abs(element); });
+}
 "
                     },
                     {"imgQ", @"
@@ -1692,11 +1873,42 @@ True.
             {52, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) State whether line 1 and/or line 2 lead to compile errors
+b) 
+    i) What is a 'borrowed iterator' and;
+    ii) What problem do 'borrowed iterator's solve?
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <algorithm>
+#include <ranges>
+#include <print>
+#include <iostream>
+
+std::vector<int> get_data()
+{
+	auto iota_view = std::ranges::iota_view{ 30, 50 };
+	return { iota_view.begin(), iota_view.end() };
+}
+
+void for_main()
+{
+	auto pos = std::ranges::find(get_data(), 42);
+	std::println(""*pos: {}"", *pos);     // line (1)
+	std::cout << *pos;					// line (2)
+}
 "},
                     { "a", @"
+a) Both lines (1) and (2) are compile errors
+    Note also that type of `pos` is std::ranges::dangling
+
+b) i) A borrowed iterator is one that ensures that its lifetime does not
+    depend on a temporary object that might have been destroyed.
+
+   ii) Borrowed iterators solve for example the problem outlines in snippetQ.
+
 
 "
                     },
@@ -1714,15 +1926,28 @@ True.
             {53, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) Range types can claim that they are borrowed ranges. What is a borrowed range?
+b) All lvalue containers are borrowed ranges, what does this mean concretely?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) A borrowed range means that the range's iterators can still be used when the range
+itself no longer exists.
 
+b) The returned iterator cannot be dangling as long as the iterator exists in the same
+    scope or sub-scope of the range (see snippet).
 "
                     },
                     {"snippetA", @"
+void for_main1()
+{
+	std::vector<int> collection{ 0, 8, 15 };
+
+	// `pos8` exists in the scope of `collection`
+	auto pos8 = std::ranges::find(collection, 8);
+	std::cout << *pos8;
+}
 "
                     },
                     {"imgQ", @"
@@ -1736,12 +1961,20 @@ True.
             {54, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Outline the difference between a 'range adaptor' and a 'range factory', along with 
+examples of each.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Range adaptor:
+    - requires an existing range
+    - modifies or adapters the given range
+    - examples include: std::views:: transform, filter, take, drop
 
+Range factory:
+    - Does not require an existing range (creates one itself - finite or infinite)
+    - Examples include iota, single, repeat
 "
                     },
                     {"snippetA", @"
@@ -1758,12 +1991,56 @@ True.
             {55, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Why should you avoid (expensive) transformations before a filter?
 "                   },
                     {"snippetQ", @"
+#include <iostream>
+#include <format>
+#include <vector>
+#include <ranges>
+
+void for_main()
+{
+	std::vector<int> collection{ 8, 15, 7, 0, 9 };
+
+	auto view = collection
+		| std::views::transform([](auto element)
+			{
+				std::cout << std::format("" transform {}\n"", element);
+				return -element;
+			})
+		| std::views::filter([](auto element)
+			{
+				std::cout << std::format("" filter {}\n"", element);
+				return element % 3 == 0;
+			});
+
+	std::cout << ""*** collection | filter | transform: *** \n"";
+	for (const auto& element : view)
+	{
+		std::cout << std::format(""element: {}\n\n"", element);
+	}
+}
 "},
                     { "a", @"
+It's all to do with the 'pull model' of views.
 
+For example, given the following pipeline of transformations t1, t2, t3 and filters f1, f2
+
+    t1 | t2 | f1 | t3 | f2
+
+We have the following behaviour:
+
+1) If f1 yields false, we call:
+    - t1 t2 f1
+
+2) If f1 yields true but f2 yields false, we call:
+    - t1 t2 f1 t1 t2 t3 f2
+
+3) If f1 yields true and f2 yields true, we call
+    - t1 t2 f1 t1 t2 t3 f2 t1 t2 t3
 "
                     },
                     {"snippetA", @"
@@ -1780,15 +2057,53 @@ True.
             {56, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    Views should never modify a passed argument or call a non-const operation
+    for it. That way, views and their copies have the same behaviour for the same input.
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <algorithm>
+#include <ranges>
+
+void for_main()
+{
+	auto iota_view = std::views::iota(1, 11);
+	std::vector<int> collection{ iota_view.begin(), iota_view.end() };
+
+	collection | std::views::transform(
+		[](auto& value)
+		{
+			++value;
+			return value;
+		}
+	);
+}
 "},
                     { "a", @"
-
+True, see snippet
 "
                     },
                     {"snippetA", @"
+#include <vector>
+#include <algorithm>
+#include <ranges>
+
+void for_main()
+{
+	auto iota_view = std::views::iota(1, 11);
+	std::vector<int> collection{ iota_view.begin(), iota_view.end() };
+
+	collection | std::views::transform(
+		[](const auto& value) // better to use const auto&
+		{
+			//++value; //  modification now a compiler error
+			return value;
+		}
+	);
+}
 "
                     },
                     {"imgQ", @"
@@ -1802,12 +2117,20 @@ True.
             {57, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the snippet, which details the abbreviated function template
+for a print function of a readable range.
 
+Why is it prefered to pass by universal/forwarding reference instead of
+const auto&?
 "                   },
                     {"snippetQ", @"
+void print(std::ranges::input_range auto&& range);
 "},
                     { "a", @"
+Because some views do not support/propogate constness.
 
+In many cases (such as std::views::drop, std::views::filter) the begin() value is cached (meaning
+the view itself is modified) such a view cannot be passed as const.
 "
                     },
                     {"snippetA", @"
@@ -1824,12 +2147,42 @@ True.
             {58, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    Containers (e.g. std::vector, std::array) have 'deep constness'.
+    Because they have value semantics and own their elements,
+    they propogate any constness to their elements.
+    I.e., when a container is const, its elements are const.
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <iostream>
+#include <ranges>
+#include <utility>
+#include <type_traits>
+
+template<typename T>
+void f(T&& element) // universal references to preserve constness
+{
+    if constexpr (std::is_const_v<std::remove_reference_t<T>>)
+    {
+        std::cout << ""is const\n"";
+    }
+    else
+    {
+        std::cout << ""is NOT const\n"";
+    }
+}
+
+void for_main()
+{
+    const std::vector<int> vector = { 1, 2, 3 };
+    f(vector.at(1));
+}
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -1846,12 +2199,15 @@ True.
             {59, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false;
+    a) std::views with ref_view semantics propagate constness
+    b) std::views with owning_view semantics propagate constness
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) false - ref_view views have shallow constness
+b) true 
 "
                     },
                     {"snippetA", @"
