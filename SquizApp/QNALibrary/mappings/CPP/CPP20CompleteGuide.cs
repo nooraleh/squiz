@@ -2221,15 +2221,49 @@ b) true
                     },
                 }
             },
-            {60, new Dictionary<string, string>()
+            {60, new Dictionary<string, string>() // Chapter 7 - Utilities for Ranges and Views
                 {
                     { "q", @"
+For each of the following iterator categories state their:
+    a) ability
+    b) provider(s)
 
+1) Output
+2) Input
+3) Forward
+4) Bidirectional
+5) Random-acess
+6) Contiguous
+
+As of C++20.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) Output:
+    a) Writes forward
+    b) ostream_iterator, inserter
 
+2) Input:
+    a) Reads forward once
+    b) istream_iterator
+
+3) Forward:
+    a) Reads forward
+    b) std::forward_list<>, unordered containers
+
+4) Bidirectional
+    a) Reads forward and backward
+    b) std::list, std::set, std::multiset, std::map, std::multimmap
+
+5) Random-access
+    a) Reads with random access
+    b) std::deque<>
+
+6) Contiguous:
+    a) Reads elements stored in contiguous memory
+        subsumes random_access
+    b) std::array<>, std::vector<>, std::string, c-style array
 "
                     },
                     {"snippetA", @"
@@ -2246,12 +2280,24 @@ b) true
             {61, new Dictionary<string, string>()
                 {
                     { "q", @"
+a) State a few reason why you should prefer std::ranges:: free functions
+over the std:: equivalents?
 
+E.g.:
+    - std::ranges::begin over std::begin
+    - std::ranges::find over std::find
+
+b) State any drawbacks that std::ranges:: algorithms have compares to the std:: equivalent?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) 
+    1) std::ranges:: use concepts which will help to find problems and bugs
+        at compile time.
+    2) std::ranges:: fixes issues such as ADL and const-correctness which std:: can display
 
+b) Parallel execution policy not available for std::ranges:: (yet)
 "
                     },
                     {"snippetA", @"
@@ -2268,15 +2314,39 @@ b) true
             {62, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+State the type of the resulting expression in lines:
+    (1)
+    (2)
 "                   },
                     {"snippetQ", @"
+void for_main()
+{
+	std::vector vector{ 1, 2, 3, 4 };
+	auto pos = vector.begin();
+
+	decltype(pos)::iterator_category;  // (1)
+	decltype(pos)::iterator_concept;   // (2)
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+void for_main()
+{
+	std::vector vector{ 1, 2, 3, 4 };
+	auto pos = vector.begin();
+
+	decltype(pos)::iterator_category; 
+	decltype(pos)::iterator_concept; 
+
+	// below asserts compile
+	static_assert(std::same_as<decltype(pos)::iterator_category,std::random_access_iterator_tag>);
+	static_assert(std::same_as<decltype(pos)::iterator_concept, std::contiguous_iterator_tag>);
+}
 "
                     },
                     {"imgQ", @"
@@ -2290,15 +2360,60 @@ b) true
             {63, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+If we know (for a fact) that 42 belongs in the collection that we are 
+    running the find algorithm on, how would you refactor this to save on calls
+    which check against the .end() each time?
 "                   },
                     {"snippetQ", @"
+#include <ranges>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+std::vector<int> get_data()
+{
+	// we know for a fact that 42 resides in this collection
+	auto iota_view = std::views::iota(40, 50);
+	return { iota_view.begin(), iota_view.end() };
+}
+
+void for_main()
+{
+	auto collection = get_data();
+	auto pos42 = std::ranges::find(collection, 42);
+
+	std::cout << *pos42 << '\n';
+}
 "},
                     { "a", @"
-
+By using std::unreachable_sentinel, the compiler can optimize away 
+the comparison with .end(), which will always yield false (see snippet).
 "
                     },
                     {"snippetA", @"
+#include <ranges>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+std::vector<int> get_data()
+{
+	// we know for a fact that 42 resides in this collection
+	auto iota_view = std::views::iota(40, 50);
+	return { iota_view.begin(), iota_view.end() };
+}
+
+void for_main()
+{
+	auto collection = get_data();
+
+	//auto pos42 = std::ranges::find(collection, 42);
+	auto pos42 = std::ranges::find(collection.begin(), std::unreachable_sentinel, 42);
+
+	std::cout << *pos42 << '\n';
+}
 "
                     },
                     {"imgQ", @"
@@ -2312,12 +2427,14 @@ b) true
             {64, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is the difference between std::size and C++20's std::ssize?
+b) When would you want to std::ssize?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) std::ssize returns a signed type, std::size returns std::size_t (which is unsigned)
+b) If you have to use the result with other variables of signed type (e.g. arithmetic operation with int).
 "
                     },
                     {"snippetA", @"
@@ -2335,6 +2452,7 @@ b) true
                 {
                     { "q", @"
 
+    
 "                   },
                     {"snippetQ", @"
 "},
