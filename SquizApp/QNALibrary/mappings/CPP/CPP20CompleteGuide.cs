@@ -1935,6 +1935,10 @@ b) All lvalue containers are borrowed ranges, what does this mean concretely?
 a) A borrowed range means that the range's iterators can still be used when the range
 itself no longer exists.
 
+Another way of putting it is that the lifetime of the iterators does not depend on
+the lifetime of the underlying (e.g. span/range).
+
+
 b) The returned iterator cannot be dangling as long as the iterator exists in the same
     scope or sub-scope of the range (see snippet).
 "
@@ -2448,16 +2452,16 @@ b) If you have to use the result with other variables of signed type (e.g. arith
                     },
                 }
             },
-            {65, new Dictionary<string, string>()
+            {65, new Dictionary<string, string>() // Chapter 9 - Spans 
                 {
                     { "q", @"
-
-    
+True or false:
+    Spans are required to only refer to elements in contiguous memory.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True.
 "
                     },
                     {"snippetA", @"
@@ -2474,12 +2478,20 @@ b) If you have to use the result with other variables of signed type (e.g. arith
             {66, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is meant by the terms:
+    a) fixed extent span
+    b) dynamic extent span
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) Fixed extent span:
+    - A span with a specified number of elements
 
+b) Dynamic extent span:
+    - A span where the number of elements is not stable over its lifetime
+    - Specified with a pseudo size std::dynamic_extent
+        e.g. std::span<const std::string, std::dynamic_extent>
 "
                     },
                     {"snippetA", @"
@@ -2496,12 +2508,19 @@ b) If you have to use the result with other variables of signed type (e.g. arith
             {67, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What are the pros and cons of using std::span with a fixed vs a dynamic extent?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Fixed extent:
+    - specifying a fixed size enables compilers to detect size violatinos at runtime
+        or even at compile time
+    - require less memory than their dynamic counterpart as they do not need to have 
+        a member for the actual size (the size is part of their type)
 
+Dynamic extent:
+    - provides more flexibility.
 "
                     },
                     {"snippetA", @"
@@ -2518,12 +2537,27 @@ b) If you have to use the result with other variables of signed type (e.g. arith
             {68, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    Because spans are just a pointer and a size internally, it is
+    very cheap to copy them. For this reason, you should prefer passing spans
+    by value instead of passing them by const reference.
 "                   },
                     {"snippetQ", @"
+template<typename T, auto Sz>
+void print_span(std::span<T, Sz> span)
+	requires requires(T t) { std::cout << t; }
+{
+	for (const auto& element : span)
+	{
+		std::cout << std::quoted(element) << ' ';
+	}
+	std::cout << '\n';
+}
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -2540,12 +2574,35 @@ b) If you have to use the result with other variables of signed type (e.g. arith
             {69, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Does the static_assert compile? Why (not)?
 "                   },
                     {"snippetQ", @"
+#include <vector>
+#include <array>
+#include <concepts>
+#include <span>
+
+void for_main()
+{
+	std::array array{ 1, 2, 3, 4, 5 };
+	std::vector vector {1, 2, 3, 4, 5};
+
+	std::span<int> array_span_dyn{ array };
+	std::span<int> vector_span_dyn{ vector };
+
+	static_assert(std::same_as<decltype(array_span_dyn), decltype(vector_span_dyn)>);
+}
 "},
                     { "a", @"
+The snippet does compile.
 
+Because spans performs element access with raw pointers to the memory
+means that a span type erases the information of where the elements are stored.
+
+A std::span to the elements of a vector has the same type as a std::span
+to the elements of an array (provided they have the same extent).
 "
                     },
                     {"snippetA", @"
@@ -2562,12 +2619,13 @@ b) If you have to use the result with other variables of signed type (e.g. arith
             {70, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the major difference between std::span and std::ranges::subrange?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::span requires contiguous storage of the elements, while std::ranges::subrange
+does not.
 "
                     },
                     {"snippetA", @"
@@ -2584,15 +2642,25 @@ b) If you have to use the result with other variables of signed type (e.g. arith
             {71, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following function signature:
 
+Add a requirement that the dereference value of the collection's .begin()
+call, after removing references is const.
 "                   },
                     {"snippetQ", @"
+template<typename T>
+void ensure_readonly_element_access(const T& collection)
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+template<typename T>
+void ensure_readonly_element_access(const T& collection)
+	requires std::is_const_v<std::remove_reference_t<decltype(*collection.begin())>>
+{
+}
 "
                     },
                     {"imgQ", @"
