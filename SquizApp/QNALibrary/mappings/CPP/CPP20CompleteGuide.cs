@@ -2671,18 +2671,47 @@ void ensure_readonly_element_access(const T& collection)
                     },
                 }
             },
-            {72, new Dictionary<string, string>()
+            {72, new Dictionary<string, string>() // Chapter 10 - Formatted Output
                 {
                     { "q", @"
+Memory has to be allocated for the resulting string of std::format().
+To save time, you can use std::format_to_n(), which writes to a preallocated
+array of characters.
 
+Consider the following snippet:
+
+Use 'std::format_to_n' in a templated function for array of char of NTTP SIZE
+to allocate to a std::array of char.
+
+Hint: you'll need to assign to the member representing the position of the first
+    character not written.
 "                   },
                     {"snippetQ", @"
+void for_main()
+{
+	std::array<char, 64> buffer;
+    // create 'write_to_buffer'
+	write_to_buffer(buffer, ""test1"", ""test2"");
+	std::cout << buffer.data() << '\n'; 
+	// output: args: test1 and test2
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <array>
+#include <format>
+#include <iostream>
+
+template<auto SIZE>
+void write_to_buffer(std::array<char, SIZE>& buffer, const auto& arg1, const auto& arg2)
+{
+	auto ret = std::format_to_n(buffer.begin(), buffer.size() - 1, ""args: {} and {}"", arg1, arg2);
+	*(ret.out) = '\0';
+}
+
 "
                     },
                     {"imgQ", @"
@@ -2696,12 +2725,28 @@ void ensure_readonly_element_access(const T& collection)
             {73, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Will the output be 'true' or 'false'?
 "                   },
                     {"snippetQ", @"
+#include <string>
+#include <format>
+#include <iostream>
+
+void for_main1()
+{
+	std::string value1;
+	std::format_to(std::back_inserter(value1), ""test me: {}"", 42);
+
+	std::string value2{ std::format(""test me: {}"", 42) };
+
+	std::cout << std::boolalpha << (value1 == value2) << '\n';
+}
+
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -2718,15 +2763,32 @@ void ensure_readonly_element_access(const T& collection)
             {74, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Which free function in the <format> header should you turn to
+if you wish to know in advance how many characters would be written by 
+a formatted output (without actually writing any)?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+With std::formatted_size (see snippet)
 "
                     },
                     {"snippetA", @"
+void for_main3()
+{
+	std::string str{ ""imagine the size of this is determined at runtime"" };
+	std::size_t threshold{ 100 };
+
+	// if the size of the formatting output is above a certain amount...
+	if (auto sz = std::formatted_size(""String '{}' has '{}' chars"", str, str.size()); sz > threshold)
+	{
+		// then logic
+	}
+	else
+	{
+		// else logic
+	}
+}
 "
                     },
                     {"imgQ", @"
@@ -2740,12 +2802,15 @@ void ensure_readonly_element_access(const T& collection)
             {75, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false, compared to sprintf:
+    a) std::format should be as fast or even better than sprintf
+    b) std::format_to and std::format_to_n should be even better
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) True
 "
                     },
                     {"snippetA", @"
@@ -2762,15 +2827,38 @@ void ensure_readonly_element_access(const T& collection)
             {76, new Dictionary<string, string>()
                 {
                     { "q", @"
+a) True or false:
+    std::format(), std::format_to(), std::format_to_n()
+    require that the format string is a compile-time value.
 
+    In other words, the snippet will false to compile.
+
+b) If (a) is true, how would you fix snippetQ?
 "                   },
                     {"snippetQ", @"
+#include <iostream>
+#include <format>
+
+void for_main()
+{
+	const char* fmt1 = ""{}\n"";				// runtime format string
+	std::cout << std::format(fmt1, 42);
+}
 "},
                     { "a", @"
-
+a) True
+b) See snippet
 "
                     },
                     {"snippetA", @"
+#include <iostream>
+#include <format>
+
+void for_main()
+{
+	constexpr const char* fmt1 = ""{}\n"";				// compile-time format string
+	std::cout << std::format(fmt1, 42);
+}
 "
                     },
                     {"imgQ", @"
@@ -2784,15 +2872,40 @@ void ensure_readonly_element_access(const T& collection)
             {77, new Dictionary<string, string>()
                 {
                     { "q", @"
+In what circumstance would you prefer:
+    1) std::vformat
+    2) std::vformat_to
 
+Over:
+    3) std::format
+    4) std::format_to
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Use the v equivalents when you require computation of formatting details
+at runtime (see snippet)
 "
                     },
                     {"snippetA", @"
+#include <format>
+#include <iostream>
+
+int main(int argc, char** argv)
+{
+    if (argc == 2)
+    {
+        const char* fmt2 = ""filename (arg1): {}, arg2: {}\n"";
+
+        // line (1)
+        std::cout << std::vformat(fmt2, std::make_format_args(argv[0], argv[1]));
+
+        // line (2) - equivalent program functionality to line (1)
+        std::vformat_to(std::ostreambuf_iterator<char>{std::cout}, fmt2, std::make_format_args(argv[0], argv[1]));
+    }
+
+    return 0;
+}
 "
                     },
                     {"imgQ", @"
@@ -2806,12 +2919,24 @@ void ensure_readonly_element_access(const T& collection)
             {78, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    Format strings, and the arguments for them must have the same character type.
+    In snippetQ's case, both should be 'wchar_t'
 "                   },
                     {"snippetQ", @"
+void for_main2()
+{
+	std::wstring ws2 = std::format(
+		L""{}"",							// format string
+		L""K\u00F6ln""					// argumet for the format string
+	);
+	std::wcout << ws2;
+}
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -2828,12 +2953,20 @@ void ensure_readonly_element_access(const T& collection)
             {79, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) In the context of C++20 formatting, what is meant by a 'formatter'?
+b) Outside the two member functions need to be defined to satisfy a basic formatter
+    API.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) A formatter is a specialization of the class template std::formatter<> for your type.
 
+b) 
+    1) std::formatter<>::parse():
+        - to implement how to parse the format string specifiers for your type
+    2) std::formatter<>::format():
+        - to perform the actual formatting of the object/value of your type
 "
                     },
                     {"snippetA", @"
@@ -2850,15 +2983,82 @@ void ensure_readonly_element_access(const T& collection)
             {80, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+a) Write a formatter for the 'Always40' class.
+
+b) Furthermore, output a formatted message of an instance of 'Always40' to prove that it works.
 "                   },
                     {"snippetQ", @"
+class Always40
+{
+public:
+	int get_value() const
+	{
+		return 40;
+	}
+};
 "},
                     { "a", @"
+OK so the quickest/easiest way to approach this is to grab the example
+specialization from cppreference and customize accordingly.
 
+source: https://en.cppreference.com/w/cpp/utility/format/formatter
+
+See snippetA
 "
                     },
                     {"snippetA", @"
+#include <format>
+#include <sstream>
+#include <print>
+
+class Always40
+{
+public:
+	int get_value() const
+	{
+		return 40;
+	}
+};
+
+template<>
+struct std::formatter<Always40>
+{
+    template<class ParseContext>
+    constexpr ParseContext::iterator parse(ParseContext& ctx)
+    {
+        auto it = ctx.begin();
+
+        // if we're at '}'
+        if (it == ctx.end())
+        {
+            return it;
+        }
+
+        // validation
+        if (it != ctx.end() && *it != '}')
+        {
+            throw std::format_error(""Invalid format args for Always40."");
+        }
+
+        return it;
+    }
+
+
+    template<class FmtContext>
+    FmtContext::iterator format(const Always40& always40, FmtContext& ctx) const
+    {
+        return std::format_to(ctx.out(), ""Always40({})"", always40.get_value());
+    }
+};
+
+
+void for_main()
+{
+    // calls std::format under-the-hood
+    std::print(""{}"", Always40{});
+}
 "
                     },
                     {"imgQ", @"
