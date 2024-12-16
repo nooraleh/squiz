@@ -1988,12 +1988,14 @@ concept big_class_type_1 = big_type<T> && std::is_class_v<T>;
             {108, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Why is the c-style 'std::printf' not recommended (vs. C++20's std::format)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::printf is not recommended as it is:
+    - not type safe
+    - not extensible (only supports a fixed number of types)
 "
                     },
                     {"snippetA", @"
