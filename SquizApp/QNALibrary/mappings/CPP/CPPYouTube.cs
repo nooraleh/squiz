@@ -2012,12 +2012,21 @@ std::printf is not recommended as it is:
             {109, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State at least 5 calendrical types in <chrono>.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Any 5 of:
+    1) std::chrono::day
+    2) std::chrono::month
+    3) std::chrono::year
+    4) std::chrono::month_day
+    5) std::chrono::weekday
+    6) std::chrono::weekday_indexed
+    7) std::chrono::year_month_day
+    8) std::chrono::year_month_day_last
+    9) std::chrono::year_month_weekday_last
 "
                     },
                     {"snippetA", @"
@@ -2034,15 +2043,35 @@ std::printf is not recommended as it is:
             {110, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+
+Both 0 and 7 are valid for initializing calendrical type std::chrono::weekday
+to Sunday.
 "                   },
                     {"snippetQ", @"
+void for_main()
+{
+	std::chrono::weekday sunday1{ 0 };
+	std::chrono::weekday sunday1{ 7 };
+}
 "},
                     { "a", @"
-
+True - looks like we simply check for 7 in the ctor initializer list (see snippet).
 "
                     },
                     {"snippetA", @"
+_EXPORT_STD class weekday {
+public:
+	weekday() = default;
+	constexpr explicit weekday(unsigned int _Val) noexcept
+		: _Weekday{ static_cast<unsigned char>(_Val == 7 ? 0 : _Val) } {
+	}
+
+	// ....
+};
+
 "
                     },
                     {"imgQ", @"
@@ -2056,15 +2085,26 @@ std::printf is not recommended as it is:
             {111, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the calendrical type std::chrono::weekday_indexed represent?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+std::chrono::weekday_indexed represents a combination of:
+    1) a weekday i.e. a day of the week in the Gregorian calendar
+    2) an index range [1, 5] representing the weekday of the month (1st, .., 4th and so on)
 
+See the snippet
 "
                     },
                     {"snippetA", @"
+void for_main2()
+{
+	// represents the first Monday of the month
+	constexpr auto wdi = std::chrono::weekday_indexed{ std::chrono::Monday, 1 };
+	// represents the third Wednesday of the month
+	constexpr auto wdi2 = std::chrono::weekday_indexed{ std::chrono::Wednesday, 3 };
+}
 "
                     },
                     {"imgQ", @"
@@ -2078,15 +2118,33 @@ std::printf is not recommended as it is:
             {112, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Enhance this snippet to bring in the chrono suffix literals (e.g. 'd' and 'y')
+without exposing the entire std::chrono:: namespace.
 "                   },
                     {"snippetQ", @"
+#include <chrono>
+#include <iostream>
+
+void for_main()
+{
+	std::chrono::year_month_day ymd1{ std::chrono::October / 28d / 2021y };
+}
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <chrono>
+#include <iostream>
+
+void for_main()
+{
+	using namespace std::chrono_literals; // brings in literals 'd' and 'y'
+	std::chrono::year_month_day ymd1{ std::chrono::October / 28d / 2021y };
+}
 "
                     },
                     {"imgQ", @"
@@ -2100,15 +2158,40 @@ std::printf is not recommended as it is:
             {113, new Dictionary<string, string>()
                 {
                     { "q", @"
+Fun one:
 
+For a type T to qualify as a Clock, it must satisfy each of the following conditions:
+
+The following qualified-ids must be value and denote a type:
+    1) T::rep
+    2) T::period
+    3) T::duration
+    4) T::time_point
+
+The following expressions must be well-form when treated as an unevaluated operand:
+    5) T::is_steady
+    6) T::now()
+
+Write up the above requirements into a 'clock_concept' concept
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+See snippet (pretty much what MSVC implemented for 'is_clock_v')
 "
                     },
                     {"snippetA", @"
+template<typename T>
+concept clock_concept = requires
+{
+   typename T::rep;
+   typename T::period;
+   typename T::duration;
+   typename T::time_point;
+
+   T::is_steady;
+   T::now();
+};
 "
                     },
                     {"imgQ", @"
