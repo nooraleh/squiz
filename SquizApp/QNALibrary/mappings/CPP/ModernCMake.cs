@@ -821,9 +821,8 @@ State the two files that store CMake presets and explain their individual purpos
 1) CMakePresets.json:
     - meant for project authors to provide official presets.
 2) CMakeUserPresets.json:
-    - dedicated to individual users who want to customize the project configuration
-      to their liking
-    - should be added to .gitnore, any presets meant to be shared should be in CMakePresets.json
+    - dedicated to individual users who want to customize the project configuration to their liking
+    - should be added to .gitignore, any presets meant to be shared should be in CMakePresets.json
 "
                     },
                     {"snippetA", @"
