@@ -2205,12 +2205,38 @@ concept clock_concept = requires
             {114, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+What is C++23's 'auto(x)' and when shoud you use it.
 "                   },
                     {"snippetQ", @"
+#pragma once
+#include <concepts>
+#include <print>
+
+void for_main1()
+{
+    // auto(x) decays arrays to pointers
+ 	int arr[] = { 1, 2, 3 };
+	auto decayed_arr = auto(arr);  // line (1)
+
+    static_assert(std::same_as<decltype(decayed_arr), int*>);
+}
+
+void for_main2()
+{
+    auto value = auto(generate());  // line (2)
+    std::println(""{}"", value);
+}
+
+
+void for_main() {for_main2();}
 "},
                     { "a", @"
+auto(x) is a concise syntax for creating decayed prvalue copies of objects
+in C++23.
 
+You should use it when you need a type-decayed version of an object or expression.
 "
                     },
                     {"snippetA", @"
@@ -2227,15 +2253,34 @@ concept clock_concept = requires
             {115, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is variable shadowing?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Variable shadowing is when a variable in an inner scope is declared and initialized
+while a variable in an outerscope with the same name already exists.
 
+See snippet.
 "
                     },
                     {"snippetA", @"
+int func(int param)
+{
+    int i{param};
+    int sum{0};
+
+    for(
+        int i = param; // variable `i` shadowed, lifetime is for the entire duration of loop 
+        i > 0;
+        --i)
+    {
+        int sum{5}; // variable `sum` shadowed, lifetime is per-iteration of the loop
+        sum += i;
+    }
+
+    return sum;
+}
 "
                     },
                     {"imgQ", @"
