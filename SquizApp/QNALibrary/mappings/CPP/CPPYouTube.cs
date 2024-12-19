@@ -2294,12 +2294,16 @@ int func(int param)
             {116, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is lock-free programming?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Lock-free programming is a way of designing concurrent programs without using
+traditional locking mechanisms (e.g. std::mutex) to coordinate access to shared data.
 
+Instead, it relies on atomic operations that guarantee consistency and correctness
+without blocking threads.
 "
                     },
                     {"snippetA", @"
@@ -2316,12 +2320,25 @@ int func(int param)
             {117, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider and outline the key characteristics of lock-free programming:
 
+1) No blocking
+2) Atomicity
+3) No deadlocks
+4) Better performance
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) No blocking:
+    - Threads never wait on a lock, they can always make progress independently
+2) Atomicity
+    - Operations on shared data are performed atomically
+3) No deadlocks
+    - Because there are no locks, deadlocks (when threads are waiting on each other)
+        cannot occur.
+4) Better performance
+    - often faster in high concurrency scenarios, as threads are not stalled by waiting for locks.
 "
                     },
                     {"snippetA", @"
@@ -2338,12 +2355,21 @@ int func(int param)
             {118, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is a reentrant function?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+A reentrant function is one which can be interrupted during execution of a
+1st call and be able to be called a 2nd time before the 1st call completes.
 
+This interruption might be a:
+    1) hardware interrupt
+    2) signal - such as a segfault
+    3) an exception
+    4) another any mechanism which transfers control without the 1st call completing.
+
+The 1st function call must resume (from its interruption point) with correct execution.
 "
                     },
                     {"snippetA", @"
