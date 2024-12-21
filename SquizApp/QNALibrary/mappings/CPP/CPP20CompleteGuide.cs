@@ -554,7 +554,7 @@ Templates may NOT be declared inside functions. Moreover, with member functions 
                     { "q", @"
 Consider the following snippet:
 
-How would we go able calling `print_func1` and `print_func2` with
+How would we go about calling `print_func1` and `print_func2` with
 the argument ""hello"" while also specifying the type 'std::string' explicitly.
 "                   },
                     {"snippetQ", @"
@@ -3069,15 +3069,16 @@ void for_main()
                     },
                 }
             },
-            {81, new Dictionary<string, string>()
+            {81, new Dictionary<string, string>() // Chapter 12 - std::jthread and stop tokens
                 {
                     { "q", @"
-
+What is the severe design flaw in std::thread that std::jthread addresses?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::thread is not an RAII type. std::jthread is, which means it is automatically
+joined upon exited the scope of its creation.
 "
                     },
                     {"snippetA", @"
@@ -3094,15 +3095,48 @@ void for_main()
             {82, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does std::jthread provide additionally over std::thread other than
+joining on scope exit?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Additionally calls std::jthread::request_stop - which can be leveraged
+by the client by passing in a std::stop_token object in the argument of the callable
+passed to an instance of jthread (see snippet)
 "
                     },
                     {"snippetA", @"
+#pragma once
+#include <chrono>
+#include <thread>
+#include <ranges>
+#include <print>
+
+using namespace std::literals;
+
+void for_main()
+{
+	std::jthread jt0{ [](std::stop_token stop_token)
+		{
+			for (auto&& i : std::views::iota(0, 10))
+			{
+				std::println(""{}: printing value {}"", std::this_thread::get_id(), i);
+
+				if (stop_token.stop_requested())
+				{
+					return;
+				}
+				std::this_thread::sleep_for(1s);
+			}
+		}
+	};
+	auto jt0_id = jt0.get_id();
+	std::this_thread::sleep_for(5s);
+
+	jt0.request_stop();
+	std::println(""{}: stopped thread {}"", std::this_thread::get_id(), jt0_id);
+}
 "
                     },
                     {"imgQ", @"
@@ -3116,15 +3150,51 @@ void for_main()
             {83, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet.
+
+Instatiation a stop_callback which will simply print ""stop callback called""
+to the console upon jt0::~std::jthread().
 
 "                   },
                     {"snippetQ", @"
+void task(std::stop_token stop_token, std::string string, double value)
+{
+
+}
+
+void for_main()
+{
+	std::jthread jt0{ task, ""what am I going to do about it"", 0.0 };
+
+}
 "},
                     { "a", @"
-
+See snippet.
 "
                     },
                     {"snippetA", @"
+#include <thread>
+#include <chrono>
+#include <string>
+#include <print>
+
+using namespace std::literals;
+
+
+void task(std::stop_token stop_token, std::string string, double value)
+{
+	std::stop_callback stop_callback{
+		stop_token,                                 // pass in the stop_token 
+		[] {std::println(""stop callback called"");
+	}};
+}
+
+
+void for_main()
+{
+	std::jthread jt0{ task, ""what am I going to do about it"", 0.0 };
+
+}
 "
                     },
                     {"imgQ", @"
@@ -3138,15 +3208,51 @@ void for_main()
             {84, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does std::this_thread::yield do?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Provides a hint to the implementation to reschedule the execution of threads,
+allowing other threads to run.
 
+For toy examples, this is a stand in for 'std::this_yield::sleep_for'.
+
+See snippet
 "
                     },
                     {"snippetA", @"
+#include <chrono>
+#include <thread>
+#include <iostream>
+#include <format>
+
+using namespace std::literals;
+
+void little_sleep(std::chrono::microseconds us)
+{
+	auto start = std::chrono::high_resolution_clock::now();
+	auto end = start + us;
+
+	do
+	{
+		std::this_thread::yield();
+	} while (std::chrono::high_resolution_clock::now() < end);
+
+}
+
+void for_main()
+{
+	auto start = std::chrono::high_resolution_clock::now();
+	little_sleep(100us);
+	auto elapsed = std::chrono::high_resolution_clock::now() - start;
+
+	std::format_to(
+		std::ostreambuf_iterator<char>{std::cout},
+		""waited for {}us"",
+		std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()
+	);
+}
 "
                     },
                     {"imgQ", @"
@@ -3160,15 +3266,62 @@ void for_main()
             {85, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What difference, if any, is there between 'active polling'
+and 'busy waiting'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Busy waiting:
+    - occurs when a thread or process continuously checks for a condition
+      to become true without performaning any useful work in the meantime
+    - typically involves a tight loop that repeatedly checks a flag or condition,
+        consuming CPU cycles unnecessarily
 
+Active polling:
+    - broader term that encompasses any repetitive checking of a condition
+        (efficiently or inefficiently)
+    - may also include periodic sleep or control yielding between checks
+        reducing CPU usage compare to busy waiting
+
+See snippet
 "
                     },
                     {"snippetA", @"
+#pragma once
+#include <chrono>
+#include <thread>
+
+using namespace std::literals;
+
+bool g_flag{ false };
+
+void busy_waiting()
+{
+	while(!g_flag)
+	{
+		// no breaks - does nothing other than constantly check the flag
+		// leads to high CPU usage
+	}
+}
+
+void active_polling1()
+{
+	while (!g_flag)
+	{
+		// hint to the implementation to allow other threads to run
+		std::this_thread::yield();
+	}
+}
+
+void active_polling2()
+{
+	while (!g_flag)
+	{
+		// 10ms break each time
+		std::this_thread::sleep_for(10ms);
+	}
+}
 "
                     },
                     {"imgQ", @"
@@ -3182,12 +3335,16 @@ void for_main()
             {86, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is the difference between:
+    1) std::condition_variable_any
+    2) std::condition_variable
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::condition_variable only works on std::unique_lock<std::mutex>, while
+std::condition_variable_any can operate on any lock with meets the BasicLockable
+requirements.
 "
                     },
                     {"snippetA", @"
@@ -3204,12 +3361,14 @@ void for_main()
             {87, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of computing, what is the term used to describe when a thread
+wakes up from waiting on a condition variable and finds that the condition is
+still unsatisfied.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Spurious wakeup.
 "
                     },
                     {"snippetA", @"
@@ -3226,12 +3385,21 @@ void for_main()
             {88, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following operations and explain their effect
 
+1) std::condition_variable_any::wait(lock_guard, stop_token, pred)
+2) std::condition_variable_any::wait_for(lock_guard, duration, stop_token, pred)
+3) std::condition_variable_any::wait_until(lock_guard, timepoint, stop_token, pred)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) effect: waits for a notification with 'pred' being true OR stop requested
+    for 'stop_token'
+2) effect: waits at most duration 'duration' for notification with 'pred' being
+        true or a stop requested for 'stop_token'
+3) effect: waits until timepoint 'timepoint' for notification with 'pred' being
+        true or a stop requested for 'stop_token'
 "
                     },
                     {"snippetA", @"
@@ -3248,12 +3416,15 @@ void for_main()
             {89, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following requirement:
 
+You want different threads working on different tasks and the results
+need to be combined together by a main thread.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::future / std::promise
 "
                     },
                     {"snippetA", @"
