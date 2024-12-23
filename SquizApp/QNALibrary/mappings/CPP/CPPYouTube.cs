@@ -2386,12 +2386,21 @@ The 1st function call must resume (from its interruption point) with correct exe
             {119, new Dictionary<string, string>()
                 {
                     { "q", @"
+State which mutex wrapper you would reach for in the following use-case scenarios:
 
+1) Need simple, scope-based locking when no additional flexibility is required
+2) Need more control over locking and unlocking, or when integrating synchronization
+    primitives like std::condition_variable.
+3) Need to lock multiple mutexes safely and efficiently
+4) Need non-blocking attempts to lock one or more mutexes
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) std::lock_guard
+2) std::unique_lock
+3) std::scoped_lock
+4) std::try_lock
 "
                     },
                     {"snippetA", @"
@@ -2408,12 +2417,48 @@ The 1st function call must resume (from its interruption point) with correct exe
             {120, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet?
 
+Explain what is going on with respect to line (1) i.e. the initialization
+of the static 'ComplicatedObject' instance:
+    a) which thread will construct the object?
+    b) what is the other thread doing while that is going on?
 "                   },
                     {"snippetQ", @"
+#include <thread>
+#include <print>
+#include <string>
+
+struct ComplicatedObject
+{
+	std::string x;
+	std::string y;
+};
+
+void foo()
+{
+	static ComplicatedObject obj{ ""some"", ""data"" };     // line (1)
+	std::println(""{}: Hello from foo! obj.x={}, obj.y={}"", std::this_thread::get_id(), obj.x, obj.y);
+}
+
+void for_main()
+{
+	// which thread initializes 'obj'??
+	std::thread t1{ foo }, t2{ foo };
+
+	t1.join(); t2.join();
+}
 "},
                     { "a", @"
+The core C++ language is aware of threads (core-language-threading).
 
+a) The first thread to arrive will start initializing the static instance
+b) Any additional threads to arrive at line (1) will BLOCK AND WAIT until
+    the first thread either:
+    1) succeeds - unblocking them all
+    2) fails with an exception - unblocking one of them.
+
+This process is known as thread-safe static initialization.
 "
                     },
                     {"snippetA", @"
