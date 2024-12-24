@@ -2475,12 +2475,17 @@ This process is known as thread-safe static initialization.
             {121, new Dictionary<string, string>()
                 {
                     { "q", @"
+C++20 provides std::stop_source and std::stop_token to handle cooperative
+cancellation.
 
+True or false:
+    If the target task to be stopped doesn't check for a stop from the stop source
+    thread, nothing happens.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True - that is the essence of cooperative cancellation.
 "
                     },
                     {"snippetA", @"
@@ -2497,12 +2502,13 @@ This process is known as thread-safe static initialization.
             {122, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    Starting a std::jthread does not implicitly create a std::stop_source object.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+False - starting a std::jthread DOES implicitly create a std::stop_source object.
 "
                     },
                     {"snippetA", @"
@@ -2519,12 +2525,13 @@ This process is known as thread-safe static initialization.
             {123, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is a definition of a data race?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Unsynchronised access to a memory location from more than one thread, where at
+least one thread is writing.
 "
                     },
                     {"snippetA", @"
@@ -2541,12 +2548,19 @@ This process is known as thread-safe static initialization.
             {124, new Dictionary<string, string>()
                 {
                     { "q", @"
+Which STL synchronisation primitive matches the following description:
 
+- single-use counter that allows threads to wait for the count to reach 0
+- is constructed with a non-zero count
+- one or more threads may decrease the count
+- other threads may wait for this primitive to be signalled
+- when the count reaches 0 it is permanently signalled and all waiting threads
+    are awoken.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::latch
 "
                     },
                     {"snippetA", @"
@@ -2563,12 +2577,22 @@ This process is known as thread-safe static initialization.
             {125, new Dictionary<string, string>()
                 {
                     { "q", @"
+Which STL synchronisation primitive (SP) matches the following description:
 
+Synchronization is done in phases:
+
+- construct this SP with a non-zero count and a completion function
+- one or more threads arrive at this SP
+- some of these threads wait for the SP to be signalled
+- when the count reaches zero:
+    1) the SP is signalled
+    2) the completion function is called
+    3) the count is reset
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::barrier<>
 "
                     },
                     {"snippetA", @"
@@ -2585,12 +2609,16 @@ This process is known as thread-safe static initialization.
             {126, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State two differences between std::barrier and std::latch.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1. std::barrier, unlike std::latch, is reusable
+    i.e. once the group of arriving threads are unblocked, the barrier can be reused.
 
+2. std::barrier, unlike std::latch, executes a possibly empty callable 'completion function'
+    before unblocking threads.
 "
                     },
                     {"snippetA", @"
@@ -2607,12 +2635,19 @@ This process is known as thread-safe static initialization.
             {127, new Dictionary<string, string>()
                 {
                     { "q", @"
+Which part of the following, if at all, is false?
 
+    std::barrier<COMPLETION_FUNCTION> is great for loop synchronisation between
+    parallel tasks. The COMPLETION_FUNCTION allows you to do something between loops e.g.:
+        1) pass the result on to another step
+        2) write to a file
+
+    The COMPLETION_FUNCTION is run on one of the participating threads.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+No part of the excerpt is false.
 "
                     },
                     {"snippetA", @"
@@ -2629,15 +2664,37 @@ This process is known as thread-safe static initialization.
             {128, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does std::shared_future allow for?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::shared_future allows multiple threads to receive the same result (see snippet).
 "
                     },
                     {"snippetA", @"
+#include <chrono>
+#include <print>
+#include <future>
+#include <thread>
+
+void do_stuff(int i)
+{
+	std::println(""{}: do_stuff({})"", std::this_thread::get_id(), i);
+}
+
+void for_main()
+{
+	std::promise<int> int_promise;
+	std::shared_future int_shared_future = int_promise.get_future().share();
+
+	std::jthread jt0{
+		[int_promise = std::move(int_promise)]() mutable {int_promise.set_value(42); }
+	};
+
+	std::jthread jt1{ [int_shared_future] {do_stuff(int_shared_future.get());  } };
+	std::jthread jt2{ [int_shared_future] {do_stuff(int_shared_future.get());  } };
+}
 "
                     },
                     {"imgQ", @"
@@ -2651,15 +2708,24 @@ This process is known as thread-safe static initialization.
             {129, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider std::counting_semaphore<MAX_COUNT>.
 
+True or false:
+    std::binary_sempahore is an alias for std::counting_semaphore<2>.
+    
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+False.
 
+std::counting_semaphore<2> implies that the semaphore can be acquired up to two times
+while std::binary_semaphore can only be acquired once at any given time. See snippet
+for the MSVC alias.
 "
                     },
                     {"snippetA", @"
+_EXPORT_STD using binary_semaphore = counting_semaphore<1>;
 "
                     },
                     {"imgQ", @"
@@ -2673,15 +2739,38 @@ This process is known as thread-safe static initialization.
             {130, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+True or false:
+    The initial count of the semaphore must match the maximum count specified
+    in the non-type template parameter
 "                   },
                     {"snippetQ", @"
+#include <semaphore>
+
+void for_main()
+{
+	// non-type template parameter = 5 = max count 
+	// constructor argument passed = 5 = initial count of the semaphore
+	std::counting_semaphore<5> slots{ 5 };
+}
 "},
                     { "a", @"
+False.
 
+The constraint is: INITIAL_COUNT <= MAX_COUNT
+
+It is a runtime error to have INITIAL_COUNT > MAX_COUNT (see snippet)
 "
                     },
                     {"snippetA", @"
+#include <semaphore>
+
+void for_main()
+{
+	// initial count exceed max specified in the NTTP - runtime error!
+	std::counting_semaphore<5> slots{ 6 };
+}
 "
                     },
                     {"imgQ", @"
