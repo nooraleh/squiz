@@ -3438,15 +3438,18 @@ std::future / std::promise
                     },
                 }
             },
-            {90, new Dictionary<string, string>()
+            {90, new Dictionary<string, string>() // Chapter 13: Concurrency Features
                 {
                     { "q", @"
+True or false:
 
+std::barrier<COMPLETION_FUNCTION> requires the COMPLETION_FUNCTION to be marked
+as noexcept?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -3463,15 +3466,65 @@ std::future / std::promise
             {91, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet, which outputs characters to std::cout
+in an arbitrary order.
 
+How would you refactor this to ensure that concurrent output is synchronized (i.e
+no interleaving of characters from different threads in the output)
 "                   },
                     {"snippetQ", @"
+#include <iostream>
+#include <thread>
+#include <cmath>
+#include <syncstream>
+
+void print_square_roots(int num)
+{
+	for (int i{ 0 }; i < num; ++i)
+	{
+		std::cout << ""the square root of: "" << i << "" is "" << std::sqrt(i) << '\n';
+	}
+}
+
+void for_main()
+{
+	std::jthread jt0{ print_square_roots, 5 };
+	std::jthread jt1{ print_square_roots, 5 };
+	std::jthread jt2{ print_square_roots, 5 };
+}
 "},
                     { "a", @"
+By using C++20's <syncstream> facility (see snippet).
 
+Note that the order of the lines are still arbitrary, but you do not
+get character interleaving in this case.
 "
                     },
                     {"snippetA", @"
+#include <iostream>
+#include <thread>
+#include <cmath>
+#include <syncstream>
+
+auto sync_out(std::ostream& ostream = std::cout)
+{
+	return std::osyncstream{ ostream };
+}
+
+void print_square_roots(int num)
+{
+	for (int i{ 0 }; i < num; ++i)
+	{
+		sync_out() << ""the square root of: "" << i << "" is "" << std::sqrt(i) << '\n';
+	}
+}
+
+void for_main()
+{
+	std::jthread jt0{ print_square_roots, 5 };
+	std::jthread jt1{ print_square_roots, 5 };
+	std::jthread jt2{ print_square_roots, 5 };
+}
 "
                     },
                     {"imgQ", @"
@@ -3485,7 +3538,10 @@ std::future / std::promise
             {92, new Dictionary<string, string>()
                 {
                     { "q", @"
+State the synchronization primitive that is useful for scenarios like:
 
+    1) Limiting the number of threads accessing a shared resource
+    2) Controlling access to pools (e.g. a thread pool or a database connection pool)
 "                   },
                     {"snippetQ", @"
 "},
@@ -3507,12 +3563,16 @@ std::future / std::promise
             {93, new Dictionary<string, string>()
                 {
                     { "q", @"
+Regarding semaphores in C++20, true or false:
 
+    You can use them [semaphores] like mutexes, with the benefit that the threads
+    granting access to a resource do not necessarily have to be the same threads that acquired
+    the access to the resource.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -3529,12 +3589,16 @@ std::future / std::promise
             {94, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    There is a guarantee that threads that wait the longest time are preferred.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+False - infact the contrary is usually true. If the thread scheduler already has
+a thread running calling std::counting_semaphore<>::release() and said thread immediately
+calls std::counting_semaphore<>::acquire(), the schedule would prefer it as there would
+be no context switching in this case.
 "
                     },
                     {"snippetA", @"
@@ -3551,12 +3615,13 @@ std::future / std::promise
             {95, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Compare and contract std::binary_semaphore with std::condition_variable
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Both synchronization primitives can be used to signal/notify a thread from another
+thread. However std::binary_semaphore can conduct this signal/notify mechanism multiple times.
 "
                     },
                     {"snippetA", @"
@@ -3573,15 +3638,83 @@ std::future / std::promise
             {96, new Dictionary<string, string>()
                 {
                     { "q", @"
+State the STL class template which satisfies the following description:
 
+    [...] atomic API for trivially copying reference types. This allows you to provide
+    a temporary atomic API to an existing object that is usually not atomic. One application
+    would be to initialize an object without caring about concurreny and later use it with 
+    different threads.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+std::atomic_ref<> - study the following snippet carefully.
 "
                     },
                     {"snippetA", @"
+#include <chrono>
+#include <iostream>
+#include <random>
+#include <thread>
+#include <vector>
+#include <array>
+#include <algorithm>
+
+using namespace std::literals;
+
+void for_main()
+{
+	std::array<int, 1'000> values;
+	std::fill_n(values.begin(), values.size(), 100);
+
+	std::stop_source common_stop_source;
+	std::stop_token common_stop_token{ common_stop_source.get_token() };
+
+	constexpr int THREAD_COUNT{ 9 };
+	std::vector<std::jthread> jthread_vector;
+	jthread_vector.reserve(THREAD_COUNT);
+
+	for (int i{ 0 }; i < THREAD_COUNT; ++i)
+	{
+		jthread_vector.push_back(
+			std::jthread{
+				[&values](std::stop_token stop_token)
+				{
+					std::mt19937 mersenne_twister{std::random_device{}()};
+					std::uniform_int_distribution uniform_int_distribution{ std::size_t{0}, values.size() - 1 };
+
+					while (not stop_token.stop_requested())
+					{
+						auto idx = uniform_int_distribution(mersenne_twister);
+
+						// enable atomic access to the value with the index
+						// note that different threads of this program DO NOT use the same std::atomic_ref
+						// objects. That is fine as std::atomic_ref<> guarantees that all concurrent access to 
+						// a specific object through any std::atomic_ref<> created for it is synchronised.
+
+						// so if two threads happen to reference the same indexed value in memory - access
+						// is synchronised.
+						std::atomic_ref value_atomic_ref{ values[idx] };
+
+						// decrements the value atomically
+						--value_atomic_ref;
+
+						// loads the value atomically to compare it with 0
+						if (value_atomic_ref.load() <= 0)
+						{
+							std::cout << std::format(""index {} is zero\n"", idx);
+						}
+					}
+				} ,
+				common_stop_token
+			}
+		);
+	}
+
+	std::this_thread::sleep_for(0.5s);
+	std::cout << ""\nSTOP\n"";
+	common_stop_source.request_stop();
+}
 "
                     },
                     {"imgQ", @"
@@ -3595,12 +3728,13 @@ std::future / std::promise
             {97, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What does the compile-time static member function std::atomic<T>::is_always_lock_free() tell us?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Whether the type T uses locks internally to be atomic (false), or whether you
+have native hardware support for the atomic operations (true).
 "
                     },
                     {"snippetA", @"
