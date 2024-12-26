@@ -2451,15 +2451,16 @@ d) $<TARGET_OBJECTS:target>
                     },
                 }
             },
-            {83, new Dictionary<string, string>()
+            {83, new Dictionary<string, string>() // Chapter 7 - Compiling C++ Sources with CMake
                 {
                     { "q", @"
-
+In C++, we use static compilation. What is meant by 'static compilation'.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Static compilation means an entire program must be translated into native
+code before it can be executed.
 "
                     },
                     {"snippetA", @"
@@ -2476,12 +2477,16 @@ d) $<TARGET_OBJECTS:target>
             {84, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is memory fragmentation?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Memory fragmentation occurs when memory is allocated and deallocated in such a way that free
+memory becomes divided into non-contiguous chunks.
 
+This makes it difficult for the system to find a sufficiently large contiguous block of memory
+to fulfill a new allocation request, even though the total free memory might be adequate.
 "
                     },
                     {"snippetA", @"
@@ -2498,15 +2503,104 @@ d) $<TARGET_OBJECTS:target>
             {85, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) What is an object pool?
+b) What are the benefits of employing an object pool?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) An object pool is a design pattern that manages a collection of reusable objects.
+    Instead of creating and destroying objects repeatedly, the object pool maintains a 
+    pool of pre-allocated objects that can be reused.
 
+b) Benefits include:
+    1) reduces the overhead of frequent memory allocation and deallocation
+    2) beneficial for objects that are expensive to create or destroy (i.e. significant initialization or cleanup)
+    3) mitigates memory fragmentation by keeping allocations contiguous
+    4) provides better control over resource usage
+
+Check out my rendition of a thread-unsafe object pool.
 "
                     },
                     {"snippetA", @"
+#pragma once
+#include <vector>
+#include <memory>
+#include <span>
+#include <print>
+#include <concepts>
+
+class ObjectPoolEmptyException : public std::runtime_error
+{
+public:
+	ObjectPoolEmptyException() :
+		std::runtime_error{""ObjectPool is empty and cannot allocate more objects""}
+	{}
+};
+
+template<typename T, std::size_t EXTENT = std::dynamic_extent>
+	requires std::default_initializable<T>
+class ObjectPool
+{
+public:
+	explicit ObjectPool(std::size_t max_size)
+		: m_max_size{ max_size }
+	{
+		setup_internal_pool(m_max_size);
+	}
+
+	[[nodiscard]] std::unique_ptr<T> acquire()
+	{
+		if (empty())
+		{
+			if constexpr (EXTENT == std::dynamic_extent)
+			{
+				std::println(""[ObjectPool<>::acquire] pool is empty, creating a new object (dynamic_extent)"");
+				return std::make_unique<T>();
+			}
+			else
+			{
+				std::println(""[ObjectPool<>::acquire] pool is empty, throwing (fixed extent)"");
+				throw ObjectPoolEmptyException{};
+			}
+		}
+		else
+		{
+			auto obj = std::move( m_internal_pool.back() );
+			m_internal_pool.pop_back();
+			return obj;
+		}
+	}
+
+	void release(std::unique_ptr<T>&& up_object)
+	{
+		if (full())
+		{
+			std::println(""[ObjectPool<>::release] pool is full, cannot add more objects"");
+			return;
+		}
+		else
+		{
+			m_internal_pool.push_back(std::move(up_object));
+		}
+	}
+
+private:
+	void setup_internal_pool(std::size_t max_size)
+	{
+		m_internal_pool.reserve(m_max_size);
+		for (std::size_t idx{ 0 }; idx < m_max_size; ++idx)
+		{
+			m_internal_pool.push_back(std::make_unique<T>());
+		}
+	}
+
+	bool empty() const { return m_internal_pool.empty(); }
+	bool full() const { return m_internal_pool.size() >= m_max_size; }
+
+	std::vector<std::unique_ptr<T>> m_internal_pool;
+	std::size_t m_max_size;
+};
 "
                     },
                     {"imgQ", @"
@@ -2520,12 +2614,17 @@ d) $<TARGET_OBJECTS:target>
             {86, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+a) Explain the optimization technique 'inline expansion' or 'inlining'.
+b) Does the C++ standard explicitly define the circumstances under which this occurs?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) The compiler effectively ""cuts"" (ctrl+x) the body of a function and ""pastes"" it in place
+of its call.
 
+b) The C++ standard DOES NOT explicitly define the circumstances under which this occurs, it is 
+    implementation dependent.
 "
                     },
                     {"snippetA", @"
@@ -2542,12 +2641,13 @@ d) $<TARGET_OBJECTS:target>
             {87, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of the C++ compilation process, describe the 'code emission' phase.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+The code emission phase involves writing the optimized machine code into an object file
+in a format that aligns with the target platform's specifications.
 "
                     },
                     {"snippetA", @"
@@ -2564,12 +2664,22 @@ d) $<TARGET_OBJECTS:target>
             {88, new Dictionary<string, string>()
                 {
                     { "q", @"
+What is the difference between
 
+1. 
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+2.
+target_compile_features(<my_target> PUBLIC cxx_std_23)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Logically there are effectively the same this (setting the standard C++23 and making this non-negotiable).
 
+However 'target_compile_features' works on a per-target basis, while the set commands apply
+globally for the project.
 "
                     },
                     {"snippetA", @"
@@ -2586,12 +2696,17 @@ d) $<TARGET_OBJECTS:target>
             {89, new Dictionary<string, string>()
                 {
                     { "q", @"
+Cosnider the following:
+    'add_executable(${PROJECT_NAME} main.cpp source1.cpp source2.cpp source2.cpp)'
 
+Why would we turn to 'target_source(${PROJECT_NAME} source3.cpp)' when we can simply add
+'source3.cpp' to the 'add_executable' list?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+One good reason would be for conditional compilation e.g. adding a Windows specific
+source file if we're compiling in the windows platform.
 "
                     },
                     {"snippetA", @"
@@ -2608,12 +2723,13 @@ d) $<TARGET_OBJECTS:target>
             {90, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the command that CMake provides to manipulate paths being searched to find
+#include'd files.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+target_include_directories
 "
                     },
                     {"snippetA", @"
@@ -2630,15 +2746,34 @@ d) $<TARGET_OBJECTS:target>
             {91, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+Use a single call to 'target_compile_definitions' to define the following pre-processor macros,
+as if they were defined in 'definitions.cpp' as following
+
+#define ABC
+#define DEF 8
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.26)
+project(Definitions CXX)
+
+# with definitions
+set(VAR 8)
+add_executable(defined definitions.cpp)
 "},
                     { "a", @"
-
+See the following snippet:
 "
                     },
                     {"snippetA", @"
+cmake_minimum_required(VERSION 3.26)
+project(Definitions CXX)
+
+# with definitions
+set(VAR 8)
+add_executable(defined definitions.cpp)
+target_compile_definitions(defined PRIVATE ABC ""DEF=${VAR}"")
 "
                     },
                     {"imgQ", @"
@@ -2652,12 +2787,19 @@ d) $<TARGET_OBJECTS:target>
             {92, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following excerpt:
 
+    Note that 'target_compile_options()' is a general command. It can also be used
+to provide other arguments to the compiler like -D definitions, for which CMake offers
+the 'target_compile_definition()'
+
+True or false:
+It is always advisable to use the most specialized CMake commands wherever possible.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -2674,12 +2816,39 @@ d) $<TARGET_OBJECTS:target>
             {93, new Dictionary<string, string>()
                 {
                     { "q", @"
+Outline the significance of the following optimization levels/specifications:
 
+    1) -O0
+    2) -O1
+    3) -O2
+    4) -O3
+    5) -Os
+    6) -Ofast
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) -O0:
+    - no optimization
+    - default level for compilers
 
+2) -O1:
+    - considered a compromise between -O0 and -O2
+    - enables a reasonable amount of optimization without slowing the compilation too much
+
+3) -O2:
+    - considered a full optimization
+    - price payable is slower compilation time
+
+4) -O3:
+    - like 02 with the addition of more aggressive subprogram inlining and loop vectorization.
+
+5) -Os:
+    - optimizes for the size (and not necessary the speed) of the produced file 
+
+6) -Ofast:
+    - -O3 optimization that doesn't strictly comply with C++ standards
+    - would want to avoid if your program is about fast calculations.
 "
                     },
                     {"snippetA", @"
@@ -2696,12 +2865,14 @@ d) $<TARGET_OBJECTS:target>
             {94, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State a few optimization benefits of inlining?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) Bypasses the creation and teardown a new call frame
+2) Bypasses the need to look up the address of the next instruction to execute (and return to)
+3) Enhancing instruction caching as they are in close proximity.
 "
                     },
                     {"snippetA", @"
@@ -2718,15 +2889,39 @@ d) $<TARGET_OBJECTS:target>
             {95, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+What is 'loop unrolling'?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Loop unrolling is an programmer/compiler optimization technique that involves
+reducing the number of iterations in a loop by executing multiple iterations in a single loop cycle (or
+no loops at all) - see snippet.
 "
                     },
                     {"snippetA", @"
+void func()
+{
+  // 'rolled' for loop
+  for(int i{0}; i < 6; ++i)
+  {
+    std::cout << ""hello world!\n"";
+  }
+
+  // semi-unrolled loop
+  for(int i{0}; i < 6; i+=2)
+  {
+    std::cout << ""hello world!\n"";
+    std::cout << ""hello world!\n"";
+  }
+
+  // unrolled 'loop'
+  // con: increases the ssize of the program
+  // pros: eliminates the loop control instruction and end-of-loop checks
+  std::cout << ""hello world!\n"";
+  std::cout << ""hello world!\n"";
+  std::cout << ""hello world!\n"";
+}
 "
                     },
                     {"imgQ", @"
@@ -2740,15 +2935,32 @@ d) $<TARGET_OBJECTS:target>
             {96, new Dictionary<string, string>()
                 {
                     { "q", @"
+Since version 3.16, CMake offers a command to enable header precompilation.
 
+a) What does 'header precompilation' allow for and;
+b) Which CMake command is used for header precompilation?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+a) Header procompilation allows the compiler to process headers separately from the implementation file,
+    thereby speeding up the compilation process.
 
+b) target_precompile_headers(<target> ...) 
+    See snippet
 "
                     },
                     {"snippetA", @"
+cmake_minimum_required(VERSION 3.26)
+project(Precompile CXX)
+
+add_executable(precompiled hello.cpp)
+target_precompile_headers(precompiled PRIVATE <iostream>)
+
+# note that you would not have to include the <iostream> header in the 'hello.cpp' file
+int main() {
+  std::cout << ""hello world"" << std::endl;
+}
 "
                     },
                     {"imgQ", @"
@@ -2762,12 +2974,15 @@ d) $<TARGET_OBJECTS:target>
             {97, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
+    'CMAKE_CXX_FLAGS_DEBUG:STRING=-g'
 
+What does the '-g' flag mean?
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+Add debugging information e.g. .pdb files in MSVC
 "
                     },
                     {"snippetA", @"
