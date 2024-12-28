@@ -2996,24 +2996,32 @@ Add debugging information e.g. .pdb files in MSVC
                     },
                 }
             },
-            {98, new Dictionary<string, string>()
+            {98, new Dictionary<string, string>() // Chapter 8 - Linking Executables and Libraries
                 {
                     { "q", @"
+Consider the image, which crudely outlines the structure of an object file.
 
+In the context of linking, what is ""relocation""? 
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Relocation is the procedure by which each section of an object file will be grouped
+with sections of the same type as other object files.
 
+Relocation additionally involves updating internal references in the file, such as addresses
+of variables, functions, symbol table indices, and string table indices.
 "
                     },
                     {"snippetA", @"
 "
                     },
                     {"imgQ", @"
+98_structure_of_an_object_file.png
 "
                     },
                     {"imgA", @"
+98_relocation_diagram.png
 "
                     },
                 }
@@ -3021,15 +3029,26 @@ Add debugging information e.g. .pdb files in MSVC
             {99, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+State the expected filenames for the output libraries specified for a GCC compiler
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.26)
+project(Libraries CXX)
+
+add_library(my_static STATIC function_a.cpp function_b.cpp)
+add_library(my_shared SHARED function_a.cpp function_b.cpp)
+add_library(my_module MODULE function_a.cpp function_b.cpp)
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+add_library(my_static STATIC function_a.cpp function_b.cpp) # expect libmy_static.a
+add_library(my_shared SHARED function_a.cpp function_b.cpp) # expect libmy_shared.so
+add_library(my_module MODULE function_a.cpp function_b.cpp) # expect libmy_module.so
 "
                     },
                     {"imgQ", @"
@@ -3043,11 +3062,23 @@ Add debugging information e.g. .pdb files in MSVC
             {100, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following excerpt:
+    Static libraries are essentially a collection of raw object files stored in an archive.
+    Sometimes, they’re extended with an index to speed up linking the process.
 
+What does it mean to extend a static library with an index and how does this speed up the linking process.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+When the linked processes a static library, it needs to search for the specific symbols
+required by the program being linked.
+
+Without an index, the linker must scan through each object file in the library, which can
+be slow if the library contains many files.
+
+Think of an index like a ""table of contents"" the linker can use to find the symbols required
+by the program faster.
 
 "
                     },
@@ -3065,12 +3096,14 @@ Add debugging information e.g. .pdb files in MSVC
             {101, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    During the build process, only the necessary symbols from the static library are imported
+    into the final executable, optimizing its size and memory usage.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -3087,12 +3120,25 @@ Add debugging information e.g. .pdb files in MSVC
             {102, new Dictionary<string, string>()
                 {
                     { "q", @"
+Compare and contrast how a program:
+    1) loads
+    2) uses
 
+A shared library vs a shared module
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+Shared library:
+    - implicitly loaded when a program starts
+    - usage: linkage and symbol resolution are handled automatically because the shared library
+        is part of the program's dependency graph, defined at build time
 
+Shared module:
+    - explicitly loaded by the program at runtime using platform-specific APIs
+    - program decides when and whether to load the module, often based on runtime conditions
+    - usage: not directly linked at compile time. Instead, the program must explicitly request
+        the module and resolve symbolds (functions or variables) dynamically.
 "
                     },
                     {"snippetA", @"
@@ -3109,12 +3155,17 @@ Add debugging information e.g. .pdb files in MSVC
             {103, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the API used to explicitly load a shared module for a program at runtime for:
+    a) Unix-based systems
+    b) Windows
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+open library \ get symbols \ close
 
+a) dlopen \ dlsym \ dlclose
+b) LoadLibrary[Ex] \ GetProcAddress \ FreeLibrary
 "
                     },
                     {"snippetA", @"
@@ -3131,12 +3182,17 @@ Add debugging information e.g. .pdb files in MSVC
             {104, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following 'MODULE' variable of the add_library command
+    'add_library(<name> MODULE [<source>...])'
 
+True or false:
+    You shouldn't attempt to link your executable with a module e.g. with 'target_link_libraries',
+    as the module is designed to be deployed separately from the executable that will utilize it.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True
 "
                     },
                     {"snippetA", @"
@@ -3153,12 +3209,19 @@ Add debugging information e.g. .pdb files in MSVC
             {105, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+1) What is position-independent code (PIC)?
+2) Which of the following is position-independent code typically used for:
+    a) Static libraries
+    b) Shared libraries
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
+1) Position-independent code is a body of machine code that can be executed at any
+    memory address without modification. Note that this differs from absolute code,
+    which must be loaded at a specific location to function correctly.
 
+2) a) Shared libraries
 "
                     },
                     {"snippetA", @"
@@ -3175,15 +3238,38 @@ Add debugging information e.g. .pdb files in MSVC
             {106, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following CMakeLists.txt snippet:
 
+Assume libraries 'outer' and 'nested' have cyclical references to each other
+which need to be resolved - state two ways call 'target_link_libraries' to ensure
+the cyclical references are resolved
 "                   },
                     {"snippetQ", @"
+cmake_minimum_required(VERSION 3.28)
+project(Order LANGUAGES CXX)
+
+add_library(outer outer.cpp)
+add_library(nested nested.cpp)
+
+add_executable(main main.cpp)
+# TODO: target_link_libraries(main ...)
 "},
                     { "a", @"
+See snippet.
 
+Note that cyclical references indicate poor design in any case.
 "
                     },
                     {"snippetA", @"
+# 'nested outer' will resolve any undefined symbols references in 'nested' that
+#               are defined in 'outer'
+# 'outer nested' will resolve any undefined symbols references in 'outer' that
+#               are defined in 'nested'
+target_link_libraries(main nested outer nested)
+
+# CMake version 3.26+, note that this mechanism will introduce additional
+# processing steps and should be used only if necessary
+target_link_libraries(main  ""$<LINK_GROUP:RESCAN,nested,outer>"")
 "
                     },
                     {"imgQ", @"
@@ -3197,12 +3283,20 @@ Add debugging information e.g. .pdb files in MSVC
             {107, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+State the target_link_option for including all object files from a static library
+into a final executable for:
+    1) GCC
+    2) Clang
+    3) MSVC
+    4) CMake generator expression (3.24)
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) --whole-archive
+2) --force-load
+3) /WHOLEARCHIVE
+4) target_link_libraries(<target> INTERFACE $<LINK_LIBRARY:WHOLE_ARCHIVE,<lib>>)
 "
                     },
                     {"snippetA", @"
