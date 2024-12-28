@@ -39,7 +39,7 @@ namespace QNALibrary.mappings.CPP
 			- a source file (i.e .c/.cpp) after it has been preprocessed
 
 		   From a translation unit, the compiler generates an object file,
-		   the object file can be further processed and linked (possible with other
+		   the object file can be further processed and linked (possibly with other
 		   object files) to form an executable program."},
         {"snippetQ", @""},
         {"snippetA", @""},
@@ -2784,12 +2784,14 @@ void for_main()
             {131, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+True or false:
+    By convention, we define a function that's inline, constexpr or consteval in a header file.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+True - since 'constexpr' and 'consteval' functions are implicitly inline, adding the definitions
+in the header file ensures that only one definition is used in the final program (ODR)
 "
                     },
                     {"snippetA", @"
@@ -2806,15 +2808,24 @@ void for_main()
             {132, new Dictionary<string, string>()
                 {
                     { "q", @"
+Consider the following snippet:
 
+An object declaration (outside a class) is a also a definition unless...
 "                   },
                     {"snippetQ", @"
+int i;
+extern int j;
+extern int k{ 42 };
 "},
                     { "a", @"
+... unless it contains an extern sepcifier and no initializer (see snippet)
 
 "
                     },
                     {"snippetA", @"
+int i;				// definition
+extern int j;		// non-defining declaration
+extern int k{ 42 };	// definition
 "
                     },
                     {"imgQ", @"
@@ -2828,15 +2839,41 @@ void for_main()
             {133, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+Free (standalone) functions are implicitly `extern` (i.e. they have external linkage by default)
+State a few exception cases where free functions would not implicitly have external linkage.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+See snippet
 "
                     },
                     {"snippetA", @"
+void f1()
+{
+	// external linkage by default
+}
+
+static void f2()
+{
+	// static function - internal linkage - i.e. private to the translation unit
+}
+
+namespace
+{
+	void f3()
+	{
+		// unnamed namespace - internal linkage
+	}
+}
+
+inline void f4()
+{
+	// external linkage but the ODR exception allows the same definition in multiple
+	// translation units. The compiler may optimize to avoid duplicate symbol definitions
+	// in each translation unit (e.g., by inlining or treating it as if it has internal
+	// linkage during optimization).
+}
 "
                     },
                     {"imgQ", @"
@@ -2850,12 +2887,14 @@ void for_main()
             {134, new Dictionary<string, string>()
                 {
                     { "q", @"
-
+In the context of the One Definition Rule (ODR) - state two kinds of 
+entities which must be defined in exactly one translation unit.
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+1) non-inline variables (e.g. global or static declared in a .hpp but defined in one .cpp)
+2) non-inline, non-template functions (e.g. non-template free function declared in a .hpp, implemented in one .cpp)
 "
                     },
                     {"snippetA", @"
@@ -2872,12 +2911,16 @@ void for_main()
             {135, new Dictionary<string, string>()
                 {
                     { "q", @"
+True or false:
 
+a) Templates should be declared and defined in a .hpp file
+b) Explicit template specializations should be declared in a .hpp file, defined in a .cpp file
 "                   },
                     {"snippetQ", @"
 "},
                     { "a", @"
-
+a) True
+b) True
 "
                     },
                     {"snippetA", @"
